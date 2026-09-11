@@ -40,7 +40,7 @@ class SecurityHeaders
             ."style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://unpkg.com; "
             ."font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; "
             ."script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://accounts.google.com https://cdnjs.cloudflare.com https://unpkg.com https://cdn.tailwindcss.com; "
-            ."connect-src 'self' https://*.supabase.co https://accounts.google.com; "
+            ."connect-src 'self' https://*.supabase.co wss://*.supabase.co https://accounts.google.com; "
             ."frame-src https://accounts.google.com https://online.anyflip.com;"
         );
 
