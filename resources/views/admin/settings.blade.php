@@ -86,9 +86,10 @@
 
       </div><!-- /.settings-grid -->
 
+      @if ($isSuperAdmin)
       <div class="card settings-card" style="max-width:860px;margin-top:22px;">
         <div class="card-header">
-          <h2>Keamanan Login (2FA)</h2>
+          <h2>Keamanan Login Superadmin (2FA)</h2>
           <p>Verifikasi dua langkah pakai aplikasi otentikator (Google Authenticator, Authy, dsb.)</p>
         </div>
         <div class="card-body">
@@ -138,6 +139,7 @@
           </div>
         </div>
       </div>
+      @endif
 
       @if ($isSuperAdmin)
       <div class="card settings-card" style="max-width:860px;margin-top:22px;">

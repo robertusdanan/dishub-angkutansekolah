@@ -26,6 +26,11 @@ class AdminTwoFactorController extends Controller
 
     public function setup(): JsonResponse
     {
+        $roleKey = Session::get('admin_role_key');
+        if ($roleKey !== 'superadmin') {
+            return response()->json(['error' => 'Fitur 2FA khusus untuk akun superadmin.'], 403);
+        }
+
         $accountId = Session::get('admin_account_id');
         if (!$accountId) {
             return response()->json(['error' => 'Sesi tidak valid.'], 401);
@@ -42,6 +47,11 @@ class AdminTwoFactorController extends Controller
 
     public function confirm(Request $request): JsonResponse
     {
+        $roleKey = Session::get('admin_role_key');
+        if ($roleKey !== 'superadmin') {
+            return response()->json(['error' => 'Fitur 2FA khusus untuk akun superadmin.'], 403);
+        }
+
         $accountId = Session::get('admin_account_id');
         $secret = Session::get('admin_2fa_setup_secret');
         if (!$accountId || !$secret) {
