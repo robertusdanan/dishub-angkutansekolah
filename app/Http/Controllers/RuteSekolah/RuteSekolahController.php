@@ -4,6 +4,7 @@ namespace App\Http\Controllers\RuteSekolah;
 
 use App\Http\Controllers\Controller;
 use App\Services\MenuLayanan\MenuLayananService;
+use Illuminate\Http\Response;
 use Illuminate\View\View;
 
 /**
@@ -19,7 +20,7 @@ class RuteSekolahController extends Controller
     }
 
     /** GET /rute-sekolah — setara rute-bus-sekolah.php */
-    public function index(): View
+    public function index(): Response
     {
         $this->menuLayanan->requireAktif('rute_sekolah');
 
@@ -27,7 +28,7 @@ class RuteSekolahController extends Controller
     }
 
     /** GET /rute-sekolah/peta — setara peta-gabungan.php */
-    public function petaGabungan(): View
+    public function petaGabungan(): Response
     {
         $this->menuLayanan->requireAktif('rute_sekolah');
 
@@ -35,7 +36,7 @@ class RuteSekolahController extends Controller
     }
 
     /** GET /rute-sekolah/lihat-peta — setara rute.php */
-    public function liveMap(): View
+    public function liveMap(): Response
     {
         $this->menuLayanan->requireAktif('rute_sekolah');
 
@@ -43,7 +44,7 @@ class RuteSekolahController extends Controller
     }
 
     /** GET /rute-sekolah/bus — setara rutebus.php (+ _rute_detail_shell.php) */
-    public function detailBus(): View
+    public function detailBus(): Response
     {
         $this->menuLayanan->requireAktif('rute_sekolah');
 
@@ -66,7 +67,7 @@ class RuteSekolahController extends Controller
     }
 
     /** GET /rute-sekolah/mpu — setara rutempu.php (+ _rute_detail_shell.php) */
-    public function detailMpu(): View
+    public function detailMpu(): Response
     {
         $this->menuLayanan->requireAktif('rute_sekolah');
 
@@ -92,7 +93,7 @@ class RuteSekolahController extends Controller
      * Setara send_html_headers() lama — dipasang di semua halaman modul ini
      * karena datanya (posisi live driver dkk.) tidak boleh di-cache browser.
      */
-    protected function noCache(View $view)
+    protected function noCache(View $view): Response
     {
         return response($view)->withHeaders([
             'Cache-Control' => 'no-cache, no-store, must-revalidate',

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Asdp;
 
 use App\Http\Controllers\Controller;
 use App\Services\MenuLayanan\MenuLayananService;
+use Illuminate\Http\Response;
 use Illuminate\View\View;
 
 /**
@@ -21,14 +22,14 @@ class AsdpController extends Controller
     }
 
     /** GET /asdp/ — setara pages/asdp/index.php */
-    public function index(): View
+    public function index(): Response
     {
         $this->menuLayanan->requireAktif('asdp');
 
         return $this->noCache(view('asdp.index'));
     }
 
-    protected function noCache(View $view)
+    protected function noCache(View $view): Response
     {
         return response($view)->withHeaders([
             'Cache-Control' => 'no-cache, no-store, must-revalidate',

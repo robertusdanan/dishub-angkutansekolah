@@ -70,7 +70,7 @@ class AdminAuthController extends Controller
 
         if (preg_match('/^[a-zA-Z0-9_.-]{3,50}$/', $inputUser)) {
             [$code, $rows] = $this->supabase->rawRequest('GET', 'admin_accounts?username=eq.'.rawurlencode($inputUser)
-                .'&select=id,username,password_hash,full_name,is_active,two_factor_secret,two_factor_enabled_at,admin_roles(id,role_key,role_name,level,permissions,is_active)'
+                .'&select=id,username,password_hash,full_name,is_active,admin_roles(id,role_key,role_name,level,permissions,is_active)'
                 .'&limit=1');
 
             $account = ($code >= 200 && $code < 300 && is_array($rows) && count($rows) > 0) ? $rows[0] : null;
@@ -78,7 +78,17 @@ class AdminAuthController extends Controller
             if ($account && !empty($account['is_active']) && password_verify($inputPass, $account['password_hash'])) {
                 $role = $account['admin_roles'] ?? null;
                 if ($role && !empty($role['is_active'])) {
-                    if (!empty($account['two_factor_enabled_at']) && !empty($account['two_factor_secret'])) {
+                    // Cek 2FA di query terpisah: kolom two_factor_* mungkin belum
+                    // ada di schema Supabase (migration 002 belum dijalankan) —
+                    // gagal query tidak boleh memblokir login.
+                    $twoFactorAktif = false;
+                    [$tCode, $tRows] = $this->supabase->rawRequest('GET', 'admin_accounts?id=eq.'.$account['id'].'&select=two_factor_secret,two_factor_enabled_at&limit=1');
+                    if ($tCode >= 200 && $tCode < 300 && is_array($tRows) && !empty($tRows)
+                        && !empty($tRows[0]['two_factor_enabled_at']) && !empty($tRows[0]['two_factor_secret'])) {
+                        $twoFactorAktif = true;
+                    }
+
+                    if ($twoFactorAktif) {
                         $request->session()->regenerate();
                         Session::put('admin_2fa_pending_account_id', $account['id']);
                         Session::put('admin_2fa_pending_role', $role);

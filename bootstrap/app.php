@@ -21,6 +21,10 @@ return Application::configure(basePath: dirname(__DIR__))
         // REKOMENDASI KEAMANAN: header standar untuk SEMUA response.
         $middleware->append(\App\Http\Middleware\SecurityHeaders::class);
 
+        // Deploy di balik proxy (Cloudflare Tunnel / cPanel): supaya
+        // request()->secure() & asset() ikut skema HTTPS aslinya.
+        $middleware->trustProxies(at: '*');
+
         // PENGECUALIAN CSRF yang DISENGAJA: endpoint absensi RFID/QR Code
         // dipanggil dari perangkat kiosk PUBLIK tanpa login (tempel kartu,
         // update GPS tiap ~10 detik), yang halamannya bisa terbuka
