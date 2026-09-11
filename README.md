@@ -1,4 +1,4 @@
-# Sistem Layanan Transportasi Publik — Dishub Tulungagung (Laravel 11)
+# Sistem Layanan Transportasi Publik - Dishub Tulungagung (Laravel 11)
 
 Aplikasi layanan transportasi publik Dinas Perhubungan Kabupaten Tulungagung yang telah dimigrasikan penuh dari PHP native ke **Laravel 11**.
 
