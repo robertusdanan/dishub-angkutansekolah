@@ -1,0 +1,168 @@
+body {
+  font-family: Arial, sans-serif;
+  background-image: url('images/angkutansekolah.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.55); /* overlay gelap */
+  background-blend-mode: darken;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  align-items: flex-start;      /* ← bukan center, agar konten panjang tidak terpotong */
+  justify-content: center;
+}
+
+.container {
+  max-width: 500px;
+  width: 90%;
+  margin: auto;
+  background: rgba(255, 255, 255, 0.12);
+  padding: 30px 20px;
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.container h1 {
+  text-align: center;
+  color: white;
+  font-size: 28px;
+  margin-bottom: 30px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+}
+
+input[name="nama"],
+label[for="nama"] {
+  display: none;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+form input[type="text"],
+form select {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: rgba(255, 255, 255, 0.8);
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #45a049;
+  transform: scale(1.02);
+}
+
+#response {
+  margin-top: 20px;
+  font-weight: bold;
+  color: green;
+  text-align: center;
+}
+
+#info-angkutan {
+  font-size: 14px;
+  color: #ffffff;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .container {
+    padding: 25px 15px;
+  }
+
+  form input[type="text"],
+  form select,
+  button {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+
+  #info-angkutan {
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 500px;
+  }
+}
+
+.spinner {
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #3498db;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 8px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.autocomplete-wrapper {
+  position: relative;
+}
+
+#domisiliDropdown,
+#sekolahDropdown {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  max-height: 200px;
+  overflow-y: auto;
+  width: 100%;
+  z-index: 999;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.autocomplete-item {
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.autocomplete-item:hover {
+  background-color: #f0f0f0;
+}
+

@@ -1,0 +1,12 @@
+{
+  "name": "Trayek Wisata Gratis - Dishub Tulungagung",
+  "short_name": "Trayek Wisata",
+  "description": "Jelajahi Pantai Selatan Tulungagung gratis setiap Sabtu & Minggu.",
+  "start_url": "/trayek-wisata",
+  "display": "standalone",
+  "background_color": "#FBFBF7",
+  "theme_color": "#1C4235",
+  "icons": [
+    { "src": "/favicon.ico", "sizes": "64x64", "type": "image/x-icon" }
+  ]
+}
