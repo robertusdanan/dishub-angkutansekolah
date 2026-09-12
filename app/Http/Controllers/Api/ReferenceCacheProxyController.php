@@ -113,29 +113,35 @@ class ReferenceCacheProxyController extends Controller
                 });
             }
 
-            // Selection & Alias col (misal select=sopir:driver,nopol:plat)
+            // Selection & Alias col (misal select=sopir:driver,nopol:plat).
+            // 'select=*' berarti "semua kolom" — jangan sampai '*' dianggap nama
+            // kolom sungguhan, karena hasilnya baris kosong {} (bug halaman
+            // admin Rute Web: 312 titik menumpuk jadi 1 rute tanpa nama/koordinat).
             if ($request->filled('select')) {
                 $selectRaw = (string) $request->query('select');
                 $cols = array_filter(array_map('trim', explode(',', $selectRaw)));
-                $rows = array_map(function ($row) use ($cols) {
-                    $out = [];
-                    foreach ($cols as $c) {
-                        if (str_contains($c, ':')) {
-                            [$alias, $orig] = explode(':', $c, 2);
-                            $alias = trim($alias);
-                            $orig = trim($orig);
-                            if (array_key_exists($orig, $row)) {
-                                $out[$alias] = $row[$orig];
-                            }
-                        } else {
-                            if (array_key_exists($c, $row)) {
-                                $out[$c] = $row[$c];
+                $wantsAll = in_array('*', $cols, true);
+                if (!$wantsAll) {
+                    $rows = array_map(function ($row) use ($cols) {
+                        $out = [];
+                        foreach ($cols as $c) {
+                            if (str_contains($c, ':')) {
+                                [$alias, $orig] = explode(':', $c, 2);
+                                $alias = trim($alias);
+                                $orig = trim($orig);
+                                if (array_key_exists($orig, $row)) {
+                                    $out[$alias] = $row[$orig];
+                                }
+                            } else {
+                                if (array_key_exists($c, $row)) {
+                                    $out[$c] = $row[$c];
+                                }
                             }
                         }
-                    }
 
-                    return $out;
-                }, $rows);
+                        return $out;
+                    }, $rows);
+                }
             }
 
             $response = response()->json($rows);

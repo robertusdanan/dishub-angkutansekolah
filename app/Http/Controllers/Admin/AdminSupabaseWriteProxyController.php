@@ -117,7 +117,22 @@ class AdminSupabaseWriteProxyController
         }
 
         if ($method !== 'GET') {
+            // code_map driver harus ikut berubah begitu trayek/titik rute/trayek
+            // berubah — lihat App\Services\AbsenRfid\DriverCodeMapSync.
+            // Jalan SEBELUM invalidasi cache supaya baris hasil sync yang baru
+            // tidak ikut tersimpan basi di cache referensi.
+            $touchedDriverCache = false;
+            if (in_array($table, ['driver_bus', 'driver_mpu', 'map', 'trayek_bus', 'trayek_mpu'], true)) {
+                app(\App\Services\AbsenRfid\DriverCodeMapSync::class)->syncAll();
+                $touchedDriverCache = true;
+            }
+
             $this->refCache->invalidate($table);
+            if ($touchedDriverCache) {
+                $this->refCache->invalidate('driver_bus');
+                $this->refCache->invalidate('driver_mpu');
+            }
+
             if (isset($config['after_write'])) {
                 $config['after_write']($table);
             }

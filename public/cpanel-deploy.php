@@ -2,14 +2,27 @@
 /**
  * cpanel-deploy.php — Webhook Auto-Deployment Laravel 11
  * Menerima payload push dari GitHub Webhook dan mengeksekusi pull + deploy.
+ *
+ * Token TIDAK boleh ditulis di file ini: file ini ikut ter-commit ke GitHub,
+ * dan repo ini PUBLIC — siapa pun bisa membacanya lalu memicu deploy.
+ * Token dibaca dari DEPLOY_WEBHOOK_TOKEN di file .env (tidak ikut ke git).
  */
 
 header('Content-Type: application/json');
 
-// Token keamanan (ganti atau sesuaikan dengan query param webhook di GitHub)
-$secretToken = 'dishub_deploy_secure_908430316';
+$secretToken = '';
+$envFile = dirname(__DIR__).'/.env';
+if (is_readable($envFile)) {
+    foreach (file($envFile, FILE_IGNORE_NEW_LINES) as $line) {
+        if (preg_match('/^DEPLOY_WEBHOOK_TOKEN=(.*)$/', trim($line), $m)) {
+            $secretToken = trim($m[1], " \t\n\r\0\x0B\"'");
+            break;
+        }
+    }
+}
 
-if (($_GET['token'] ?? '') !== $secretToken) {
+// Fail closed: tanpa token yang terkonfigurasi, endpoint ini tidak pernah bisa dipakai.
+if ($secretToken === '' || !hash_equals($secretToken, (string) ($_GET['token'] ?? ''))) {
     http_response_code(403);
     echo json_encode(['status' => 'error', 'message' => 'Token tidak valid.']);
     exit;
