@@ -691,37 +691,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     window.addEventListener('resize', positionRecenterBtn);
     setTimeout(positionRecenterBtn, 300); // jaga-jaga kalau layout stat card berubah setelah data masuk
 
-
-    // ── 7. Tombol kembali (selaras dengan design) ─────────────────────────
-    const btn = L.DomUtil.create('button');
-    btn.innerHTML = `<i class="fa-solid fa-arrow-left" style="font-size:13px;"></i>
-                     <span>Kembali</span>`;
-    btn.onclick = () => history.back();
-    Object.assign(btn.style, {
-      position      : 'fixed',
-      bottom        : '24px',
-      left          : '20px',
-      zIndex        : '1001',
-      background    : CLR.bg,
-      color         : CLR.text,
-      padding       : '9px 16px',
-      borderRadius  : '20px',
-      fontWeight    : '500',
-      fontSize      : '13px',
-      border        : `1px solid ${CLR.mutedDim}`,
-      cursor        : 'pointer',
-      display       : 'flex',
-      alignItems    : 'center',
-      gap           : '7px',
-      backdropFilter: 'blur(16px)',
-      letterSpacing : '0.01em',
-      transition    : 'border-color 0.15s',
-      fontFamily    : "'Plus Jakarta Sans', sans-serif",
-    });
-    btn.onmouseover = () => { btn.style.borderColor = CLR.tealBorder; btn.style.color = CLR.teal; };
-    btn.onmouseout  = () => { btn.style.borderColor = CLR.mutedDim;   btn.style.color = CLR.text; };
-    document.body.appendChild(btn);
-
   } catch (err) {
     console.error('[rute_map]', err);
     setTitle('Gagal memuat peta.');

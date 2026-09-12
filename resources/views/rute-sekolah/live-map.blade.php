@@ -52,7 +52,7 @@
     }
 
     /* ── Top Header Bar ── */
-    #header-bar {
+    #top-nav-bar {
       position: absolute;
       top: 14px;
       left: 14px;
@@ -60,7 +60,41 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 10px 18px 10px 12px;
+      max-width: calc(100vw - 28px);
+    }
+
+    #map-back-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(10, 14, 28, 0.88);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #F0F4F8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 14px;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.03), 0 8px 32px rgba(0, 0, 0, 0.5);
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    #map-back-btn:hover {
+      background: rgba(14, 116, 144, 0.95);
+      border-color: #06b6d4;
+      color: #fff;
+      transform: scale(1.05);
+    }
+
+    #header-bar {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 18px 8px 12px;
       background: rgba(10, 14, 28, 0.72);
       backdrop-filter: blur(20px) saturate(180%);
       -webkit-backdrop-filter: blur(20px) saturate(180%);
@@ -68,7 +102,8 @@
       border-radius: 100px;
       box-shadow: 0 0 0 1px rgba(255,255,255,0.03), 0 8px 32px rgba(0, 0, 0, 0.5);
       pointer-events: none;
-      max-width: calc(100vw - 28px);
+      min-width: 0;
+      overflow: hidden;
     }
 
     #map-title {
@@ -288,13 +323,30 @@
     @media (max-width: 480px) {
       #bottom-card {
         bottom: 16px;
-        padding: 12px 16px;
+        padding: 10px 14px;
         min-width: unset;
         width: calc(100vw - 32px);
       }
 
+      #top-nav-bar {
+        top: 10px;
+        left: 10px;
+        gap: 8px;
+        max-width: calc(100vw - 20px);
+      }
+
+      #map-back-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 13px;
+      }
+
       #header-bar {
-        padding: 12px 16px;
+        padding: 6px 14px 6px 10px;
+      }
+
+      .title-name {
+        font-size: 13px;
       }
     }
 
@@ -397,17 +449,22 @@
     <span class="loading-text">Memuat peta rute...</span>
   </div>
 
-  <!-- Header Bar -->
-  <div id="header-bar">
-    <div id="map-title">
-      <div class="title-icon">
-        <i class="fas fa-route"></i>
+  <!-- Top Navigation & Header Bar -->
+  <div id="top-nav-bar">
+    <button type="button" id="map-back-btn" onclick="history.back()" aria-label="Kembali ke halaman sebelumnya">
+      <i class="fa-solid fa-arrow-left"></i>
+    </button>
+    <div id="header-bar">
+      <div id="map-title">
+        <div class="title-icon">
+          <i class="fas fa-route"></i>
+        </div>
+        <div class="title-text">
+          <span class="title-label">Peta Rute</span>
+          <span class="title-name" id="title-name-text">Memuat...</span>
+        </div>
+        <div class="live-dot"></div>
       </div>
-      <div class="title-text">
-        <span class="title-label">Peta Rute</span>
-        <span class="title-name" id="title-name-text">Memuat...</span>
-      </div>
-      <div class="live-dot"></div>
     </div>
   </div>
 
