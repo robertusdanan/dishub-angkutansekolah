@@ -193,6 +193,12 @@
     cursor: pointer;
     flex-shrink: 0;
   }
+  .gh-right-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
   @media (max-width: 900px) {
     .gh-menu-toggle { display: inline-flex; }
     .gh-links {
@@ -212,21 +218,42 @@
     }
     .gh-links.is-active { display: flex; }
     .gh-link { padding: 10px 4px; font-size: 14.5px; width: 100%; }
+    .gh-mobile-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 10px 16px;
+      margin-top: 10px;
+      border-radius: 100px;
+      background: #f59e0b;
+      color: #0a1f44;
+      font-weight: 700;
+      font-size: 13.5px;
+      text-decoration: none;
+    }
   }
   @media (max-width: 768px) {
-    .gh-header { padding: 0 1rem; gap: 10px; }
-    .gh-brand { min-width: 0; }
+    .gh-header { padding: 0 0.85rem; gap: 8px; }
+    .gh-brand { min-width: 0; gap: 8px; }
     .gh-brand-text { min-width: 0; overflow: hidden; }
-    .gh-brand-text h1 { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .gh-cta { gap: 8px; }
-    .gh-btn, .nav-link { padding: 7px 13px; font-size: 12.5px; }
+    .gh-brand-text h1 { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 13.5px; }
+    .gh-cta { gap: 6px; flex-shrink: 0; }
+    .gh-btn, .nav-link { padding: 6px 11px; font-size: 12px; }
+  }
+  @media (max-width: 640px) {
+    .gh-cta .gh-btn-solid { display: none; }
   }
   @media (max-width: 480px) {
+    .gh-header { padding: 0 10px; gap: 4px; }
+    .gh-brand img { height: 26px; }
     .gh-brand-text p { display: none; }
-    .gh-brand-text h1 { font-size: 13px; }
+    .gh-brand-text h1 { font-size: 11.5px; max-width: 95px; }
+    .gh-right-actions { gap: 4px; }
+    .gh-menu-toggle { width: 34px; height: 34px; border-radius: 8px; }
     .nav-account-name { display: none; }
-    .nav-account { padding: 5px; }
-    .gh-btn { padding: 7px 11px; font-size: 12px; }
+    .nav-account { padding: 3px 6px 3px 3px; font-size: 11px; }
+    .gh-btn { padding: 4px 8px; font-size: 11px; }
   }
 </style>
 @endonce
@@ -240,20 +267,27 @@
     </div>
   </a>
   @if ($links)
-  <button class="gh-menu-toggle" type="button" aria-label="Buka menu" aria-controls="ghNavLinks" aria-expanded="false" onclick="(function(b){var n=document.getElementById('ghNavLinks');var o=n.classList.toggle('is-active');b.setAttribute('aria-expanded',o?'true':'false');})(this)">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
-  </button>
   <nav class="gh-links" id="ghNavLinks">
     @foreach ($links as $l)
       <a class="gh-link{{ !empty($l['active']) ? ' is-active' : '' }}" href="{{ $l['href'] }}">{{ $l['label'] }}</a>
     @endforeach
+    @if ($cta)
+      <a class="gh-mobile-cta" href="{{ $cta['href'] }}">{{ $cta['label'] }}</a>
+    @endif
   </nav>
   @endif
-  <div class="gh-cta">
-    @if ($cta)
-      <a class="gh-btn gh-btn-solid" href="{{ $cta['href'] }}">{{ $cta['label'] }}</a>
+  <div class="gh-right-actions">
+    <div class="gh-cta">
+      @if ($cta)
+        <a class="gh-btn gh-btn-solid" href="{{ $cta['href'] }}">{{ $cta['label'] }}</a>
+      @endif
+      @include('partials.nav-account', ['loginNext' => $loginNext])
+    </div>
+    @if ($links)
+    <button class="gh-menu-toggle" type="button" aria-label="Buka menu" aria-controls="ghNavLinks" aria-expanded="false" onclick="(function(b){var n=document.getElementById('ghNavLinks');var o=n.classList.toggle('is-active');b.setAttribute('aria-expanded',o?'true':'false');})(this)">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
     @endif
-    @include('partials.nav-account', ['loginNext' => $loginNext])
   </div>
 </header>
 @unless ($solid)

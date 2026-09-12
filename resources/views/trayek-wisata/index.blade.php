@@ -53,8 +53,8 @@
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
       <span><strong id="heroStatNum">0</strong> orang sudah ikut trayek wisata ini</span>
     </div>
-    <h1 class="hero-title">Jelajahi <em>Pantai Selatan</em><br/>Tulungagung, Gratis<br/>Setiap Akhir Pekan.</h1>
-    <p class="hero-sub">Angkutan sekolah dialihkan jadi trayek wisata gratis lewat Jalur Lintas Selatan (JLS) — menyusuri pantai-pantai tersembunyi di ujung selatan Tulungagung, tanpa biaya sepeser pun.</p>
+    <h1 class="hero-title">Jelajahi <em>Pantai Selatan</em><br/>Tulungagung.</h1>
+    <p class="hero-sub">Angkutan sekolah dialihkan jadi trayek wisata gratis lewat Jalur Lintas Selatan (JLS), gratis setiap akhir pekan.</p>
     <div class="hero-cta">
       <a class="btn btn-solid" href="/trayek-wisata/rute">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 21s7-4.35 7-11a7 7 0 1 0-14 0c0 6.65 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
