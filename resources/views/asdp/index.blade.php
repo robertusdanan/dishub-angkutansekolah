@@ -453,7 +453,7 @@
     startSmooth();
 
     const map = L.map('map', { zoomControl: false }).setView([-8.068, 111.985], 11);
-    L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+    L.tileLayer('https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
       maxZoom: 19, subdomains: ['mt0','mt1','mt2','mt3']
     }).addTo(map);
 

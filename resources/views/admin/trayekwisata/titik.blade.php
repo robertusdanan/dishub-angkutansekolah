@@ -228,7 +228,7 @@ function initMiniMap() {
   // Tile Google Maps asli — pola yang sama dengan peta publik ASDP Anda
   // (pages/asdp/index.html), supaya tampilan peta konsisten di seluruh
   // aplikasi dan benar-benar terlihat seperti Google Maps.
-  L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+  L.tileLayer('https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
     maxZoom: 20, subdomains: ['mt0','mt1','mt2','mt3']
   }).addTo(miniMap);
   miniMap.on('click', (e) => setMarker(e.latlng.lat, e.latlng.lng));

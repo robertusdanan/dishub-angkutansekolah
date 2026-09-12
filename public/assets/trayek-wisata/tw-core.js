@@ -231,7 +231,7 @@ function initTwMap() {
     scrollWheelZoom: false, dragging: false, touchZoom: false, tap: false, doubleClickZoom: false,
   }).setView([-8.15, 111.95], 11);
   activateMapOnInteract(twMap, document.getElementById('twMap'));
-  L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+  L.tileLayer('https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
     maxZoom: 20, subdomains: ['mt0','mt1','mt2','mt3']
   }).addTo(twMap);
   L.control.zoom({ position: 'bottomright' }).addTo(twMap);
