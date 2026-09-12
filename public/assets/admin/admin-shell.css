@@ -460,8 +460,14 @@ select.form-control {
 .stat-chip .value { font-weight: 700; color: var(--text-1); font-size: 15px; font-variant-numeric: tabular-nums; }
 
 /* Table */
-.table-wrapper { overflow-x: auto; border-radius: 14px; }
-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.table-wrapper, .table-responsive, .adm-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 14px;
+  width: 100%;
+  max-width: 100%;
+}
+table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 600px; }
 thead tr { background: var(--navy); }
 thead th {
   padding: 11px 14px;
@@ -477,6 +483,43 @@ tbody tr { border-bottom: 1px solid var(--surface-2); transition: background var
 tbody tr:hover { background: #f0f7ff; }
 tbody tr:last-child { border-bottom: none; }
 tbody td { padding: 10px 14px; color: var(--text-2); vertical-align: middle; }
+
+/* Global Responsive Helpers for Admin */
+@media (max-width: 768px) {
+  .adm-content { padding: 16px 12px 60px; }
+  .adm-page-header { flex-direction: column; align-items: stretch; gap: 12px; }
+  .adm-page-header > div { width: 100%; }
+  
+  /* Stack form/layout grids with FIXED tracks on mobile.
+     Sengaja daftar eksplisit: kelas grid lain (stat-grid, perm-grid, gal-grid,
+     trayek-grid, grid-titik, menu-grid) sudah auto-fit/minmax = responsif;
+     cal-grid = kalender 7 kolom, memang harus tetap 7. */
+  .new-row-grid, .fam-add-grid, .verif-grid, .filter-grid, .form-grid,
+  .f-two, .f-three, .f-four, .field-row, .chk-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Flex toolbars */
+  .toolbar, .filter-bar, .search-bar, .action-bar, .adm-toolbar {
+    flex-direction: column;
+    align-items: stretch !important;
+    gap: 10px !important;
+  }
+  .toolbar > *, .filter-bar > *, .search-bar > *, .action-bar > *, .adm-toolbar > * {
+    width: 100% !important;
+  }
+  .btn { justify-content: center; }
+
+  /* Modals */
+  .modal-dialog, .modal-content, .modal-box, .popup-content {
+    width: calc(100vw - 24px) !important;
+    max-width: 100% !important;
+    margin: 12px auto !important;
+    padding: 16px !important;
+    max-height: 90vh !important;
+    overflow-y: auto !important;
+  }
+}
 
 /* Pagination */
 #pagination {

@@ -181,14 +181,52 @@
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+  .gh-menu-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 38px; height: 38px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    border-radius: 9px;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
   @media (max-width: 900px) {
-    .gh-links { display: none; }
+    .gh-menu-toggle { display: inline-flex; }
+    .gh-links {
+      display: none;
+      position: absolute;
+      top: 100%; left: 0; right: 0;
+      background: rgba(10, 31, 68, 0.98);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      padding: 18px 1.25rem 22px;
+      gap: 4px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 14px 34px rgba(0,0,0,0.45);
+    }
+    .gh-links.is-active { display: flex; }
+    .gh-link { padding: 10px 4px; font-size: 14.5px; width: 100%; }
   }
   @media (max-width: 768px) {
-    .gh-header { padding: 0 1rem; }
+    .gh-header { padding: 0 1rem; gap: 10px; }
+    .gh-brand { min-width: 0; }
+    .gh-brand-text { min-width: 0; overflow: hidden; }
+    .gh-brand-text h1 { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .gh-cta { gap: 8px; }
+    .gh-btn, .nav-link { padding: 7px 13px; font-size: 12.5px; }
   }
   @media (max-width: 480px) {
     .gh-brand-text p { display: none; }
+    .gh-brand-text h1 { font-size: 13px; }
+    .nav-account-name { display: none; }
+    .nav-account { padding: 5px; }
+    .gh-btn { padding: 7px 11px; font-size: 12px; }
   }
 </style>
 @endonce
@@ -202,7 +240,10 @@
     </div>
   </a>
   @if ($links)
-  <nav class="gh-links">
+  <button class="gh-menu-toggle" type="button" aria-label="Buka menu" aria-controls="ghNavLinks" aria-expanded="false" onclick="(function(b){var n=document.getElementById('ghNavLinks');var o=n.classList.toggle('is-active');b.setAttribute('aria-expanded',o?'true':'false');})(this)">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+  </button>
+  <nav class="gh-links" id="ghNavLinks">
     @foreach ($links as $l)
       <a class="gh-link{{ !empty($l['active']) ? ' is-active' : '' }}" href="{{ $l['href'] }}">{{ $l['label'] }}</a>
     @endforeach

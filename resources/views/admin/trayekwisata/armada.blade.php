@@ -13,8 +13,8 @@
   .tabs { display:flex; gap:6px; margin-bottom:16px; border-bottom:1.5px solid var(--border); }
   .tab-btn { padding:10px 16px; font-size:13.5px; font-weight:600; color:var(--text-3); background:none; border:none; cursor:pointer; border-bottom:2.5px solid transparent; }
   .tab-btn.active { color:var(--accent); border-color:var(--accent); }
-  .data-card { background:var(--surface); border:1.5px solid var(--border); border-radius:14px; overflow:hidden; }
-  .data-table { width:100%; border-collapse:collapse; }
+  .data-card { background:var(--surface); border:1.5px solid var(--border); border-radius:14px; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  .data-table { width:100%; min-width:640px; border-collapse:collapse; }
   .data-table thead tr { background:var(--surface-2); border-bottom:1.5px solid var(--border); }
   .data-table th { padding:10px 14px; text-align:left; font-size:10.5px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--text-3); }
   .data-table td { padding:10px 14px; font-size:13px; color:var(--text-1); border-bottom:1px solid var(--border); }

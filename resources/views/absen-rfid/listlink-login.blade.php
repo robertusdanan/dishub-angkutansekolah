@@ -25,6 +25,7 @@
         radial-gradient(ellipse at top left,  var(--navy2) 0%, transparent 55%),
         radial-gradient(ellipse at bottom right, var(--purple) 0%, transparent 55%);
       min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
       align-items: center;
       justify-content: center;

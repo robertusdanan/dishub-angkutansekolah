@@ -131,7 +131,7 @@
     /* ── Writer panel ── */
     .writer-card {
       background: var(--surface); border: 1.5px solid var(--border);
-      border-radius: 16px; overflow: hidden;
+      border-radius: 16px; overflow-x:auto; -webkit-overflow-scrolling:touch;
     }
 
     /* Selected student preview */

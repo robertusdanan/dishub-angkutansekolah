@@ -25,8 +25,8 @@
     .count-badge strong { color:var(--accent); font-weight:700; }
 
     /* ── Table card ── */
-    .data-card { background:var(--surface); border:1.5px solid var(--border); border-radius:14px; overflow:hidden; }
-    .data-table { width:100%; border-collapse:collapse; }
+    .data-card { background:var(--surface); border:1.5px solid var(--border); border-radius:14px; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+    .data-table { width:100%; min-width:640px; border-collapse:collapse; }
     .data-table thead tr { background:var(--surface-2); border-bottom:1.5px solid var(--border); }
     .data-table th { padding:10px 16px; text-align:left; font-size:10.5px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--text-3); white-space:nowrap; }
     .data-table tbody tr { border-bottom:1px solid var(--border); transition:background .12s; }

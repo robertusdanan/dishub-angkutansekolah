@@ -38,6 +38,7 @@
       background-color: rgba(20, 16, 60, 0.82) !important;
       background-blend-mode: multiply !important;
       min-height: 100vh !important;
+      min-height: 100dvh !important;
       margin: 0 !important;
       padding: 20px 16px !important;
       display: flex !important;

@@ -47,6 +47,12 @@
     /* Trayek badge on route head */
     .trayek-tag{display:inline-flex;align-items:center;padding:3px 10px;border-radius:6px;font-size:11.5px;font-weight:600;background:#dcfce7;color:#15803d;border:1px solid #bbf7d0;flex-shrink:0}
 
+    @media (max-width: 640px) {
+      .route-head { flex-wrap: wrap; gap: 8px; padding: 10px 12px; }
+      .route-meta { width: 100%; order: 3; }
+      .points-section { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .points-table { min-width: 680px; }
+    }
     /* Expanded body */
     .route-body{border-top:1.5px solid var(--border);padding:0;display:none}
     .route-block.expanded .route-body{display:block}

@@ -42,7 +42,8 @@
       position: relative;
       width: 100%;
       height: 100vh;
-      min-height: 580px;
+      height: 100dvh;
+      min-height: 520px;
       overflow: hidden;
     }
     .hero-video {

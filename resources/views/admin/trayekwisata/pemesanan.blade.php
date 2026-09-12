@@ -12,8 +12,8 @@
   .adm-shell { display:flex !important; } .adm-main { flex:1; min-width:0; }
   .filter-bar { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:16px; }
   .filter-bar select, .filter-bar input { padding:8px 12px; border:1.5px solid var(--border); border-radius:9px; font-size:13px; }
-  .data-card { background:var(--surface); border:1.5px solid var(--border); border-radius:14px; overflow:hidden; }
-  .data-table { width:100%; border-collapse:collapse; }
+  .data-card { background:var(--surface); border:1.5px solid var(--border); border-radius:14px; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  .data-table { width:100%; min-width:640px; border-collapse:collapse; }
   .data-table thead tr { background:var(--surface-2); border-bottom:1.5px solid var(--border); }
   .data-table th { padding:10px 14px; text-align:left; font-size:10.5px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--text-3); }
   .data-table td { padding:10px 14px; font-size:12.5px; color:var(--text-1); border-bottom:1px solid var(--border); vertical-align:top; }

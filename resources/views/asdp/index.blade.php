@@ -32,6 +32,7 @@
       background: #060b17;
       color: var(--text);
       height: 100vh;
+      height: 100dvh;
       overflow: hidden;
     }
 

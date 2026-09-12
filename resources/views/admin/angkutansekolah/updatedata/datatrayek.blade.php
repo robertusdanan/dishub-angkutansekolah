@@ -29,8 +29,8 @@
     .search-input:focus { border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-glow); background:#fff; }
 
     /* ── Table card ── */
-    .trayek-card { background:var(--surface); border:1.5px solid var(--border); border-radius:14px; overflow:hidden; }
-    .trayek-table { width:100%; border-collapse:collapse; }
+    .trayek-card { background:var(--surface); border:1.5px solid var(--border); border-radius:14px; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+    .trayek-table { width:100%; min-width:640px; border-collapse:collapse; }
     .trayek-table thead tr { background:var(--surface-2); border-bottom:1.5px solid var(--border); }
     .trayek-table th { padding:10px 16px; text-align:left; font-size:10.5px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--text-3); white-space:nowrap; }
     .trayek-table tbody tr { border-bottom:1px solid var(--border); transition:background .12s; }
