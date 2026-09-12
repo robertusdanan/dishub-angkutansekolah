@@ -766,15 +766,9 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!devLink) return;
 
   devLink.addEventListener("click", function () {
-
-    // 1️⃣ Masuk ke link ke-2 dulu
-    window.location.href =
-      "https://www.effectivegatecpm.com/g9r1spxyjv?key=98fdddddb99f8c1cca7c5c76f963aaa2";
-
-    // 2️⃣ Redirect ke Instagram setelah 3 detik
-    setTimeout(() => {
+    if (devLink.dataset.ig) {
       window.location.href = devLink.dataset.ig;
-    }, 3000);
+    }
   });
 });
 

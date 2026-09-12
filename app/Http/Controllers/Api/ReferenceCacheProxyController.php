@@ -38,6 +38,12 @@ class ReferenceCacheProxyController extends Controller
 
     public function show(Request $request): JsonResponse
     {
+        // Halaman peta (rute_map.js / peta_gabungan.js) memakai endpoint yang
+        // sama untuk routing jalan: ?action=route&coords=lng,lat;lng,lat&profile=driving
+        if ($request->query('action') === 'route') {
+            return $this->route($request);
+        }
+
         $table = trim((string) $request->query('table', ''));
         if (!in_array($table, self::ALLOWED_TABLES, true)) {
             return response()->json(['error' => 'Tabel tidak diizinkan: '.$table], 400);
@@ -136,5 +142,61 @@ class ReferenceCacheProxyController extends Controller
         }
 
         return $response->header('X-SB-Cache', $result['source']);
+    }
+
+    /**
+     * Routing jalan raya lewat OSRM publik (router.project-osrm.org).
+     *
+     * Kenapa lewat server (bukan fetch langsung dari browser ke OSRM):
+     * 1. OSRM demo tidak mengirim header CORS, jadi dipanggil langsung dari
+     *    browser akan gagal "CORS blocked".
+     * 2. Membatasi profil & jumlah waypoint yang boleh diminta (anti-abuse,
+     *    endpoint ini publik).
+     *
+     * Hasilnya di-cache 24 jam: koordinat titik rute jarang berubah, jadi
+     * halaman peta tidak membebani OSRM publik tiap kali dibuka.
+     */
+    protected function route(Request $request): JsonResponse
+    {
+        $profile = (string) $request->query('profile', 'driving');
+        if (!in_array($profile, ['driving', 'walking', 'cycling'], true)) {
+            return response()->json(['error' => 'Profile tidak dikenal: '.$profile], 400);
+        }
+
+        $coordsRaw = trim((string) $request->query('coords', ''));
+        $points = explode(';', $coordsRaw);
+        if (count($points) < 2 || count($points) > 100) {
+            return response()->json(['error' => 'Koordinat tidak valid (butuh 2-100 titik).'], 400);
+        }
+
+        $clean = [];
+        foreach ($points as $p) {
+            $parts = explode(',', trim($p));
+            if (count($parts) !== 2 || !is_numeric($parts[0]) || !is_numeric($parts[1])) {
+                return response()->json(['error' => 'Format koordinat salah: '.$p], 400);
+            }
+            $lng = (float) $parts[0];
+            $lat = (float) $parts[1];
+            if (abs($lng) > 180 || abs($lat) > 90) {
+                return response()->json(['error' => 'Koordinat di luar jangkauan: '.$p], 400);
+            }
+            $clean[] = round($lng, 6).','.round($lat, 6);
+        }
+
+        $url = 'https://router.project-osrm.org/route/v1/'.$profile.'/'.implode(';', $clean)
+            .'?overview=full&geometries=geojson';
+
+        $result = $this->cache->fetchWithCache('osrm_route_'.$profile, $url, ['Accept' => 'application/json'], 24 * 3600);
+
+        $data = json_decode($result['body'], true);
+        if ($result['status'] !== 200 || !is_array($data)) {
+            return response()->json(['error' => 'Layanan routing sedang tidak tersedia.'], 502);
+        }
+
+        if (($data['code'] ?? '') !== 'Ok') {
+            return response()->json(['error' => 'Rute tidak ditemukan: '.($data['code'] ?? 'unknown')], 404);
+        }
+
+        return response()->json($data)->header('X-SB-Cache', $result['source']);
     }
 }
