@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="csrf-token" content="{{ csrf_token() }}"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tambah Absensi Foto — Admin</title>
+  <title>Tambah Absensi Foto - Admin</title>
   <link rel="canonical" href="angkutan/admin/tambah-absen-foto"/>
   <link rel="icon" href="/favicon.ico"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -236,7 +236,7 @@
       <div class="adm-page-header">
         <div>
           <h1 class="adm-page-title">Tambah Absensi Foto</h1>
-          <p class="adm-page-subtitle">Input batch — tambahkan beberapa data ke antrian lalu kirim sekaligus</p>
+          <p class="adm-page-subtitle">Input batch - tambahkan beberapa data ke antrian lalu kirim sekaligus</p>
         </div>
       </div>
 
@@ -273,7 +273,7 @@
             </div>
 
             <div class="form-group">
-              <label class="form-label">Plat — Driver</label>
+              <label class="form-label">Plat - Driver</label>
               <select id="platDriver" class="form-select"></select>
             </div>
 
@@ -289,7 +289,7 @@
                 <div class="file-drop-icon">📷</div>
                 <div class="file-drop-text">
                   <strong>Pilih foto</strong> atau kamera<br>
-                  <span style="font-size:11px;">JPG / PNG — maks. 5MB</span>
+                  <span style="font-size:11px;">JPG / PNG - maks. 5MB</span>
                 </div>
               </div>
               <div class="file-preview" id="filePreview">
@@ -401,7 +401,7 @@ function todayWIB() {
 // ── Load driver data ──────────────────────────────────────────────
 async function loadData() {
   // Hanya trayek/plat/driver yang benar-benar dipakai untuk isi dropdown
-  // di halaman ini — select=* sebelumnya ikut menarik kolom lain yang
+  // di halaman ini - select=* sebelumnya ikut menarik kolom lain yang
   // tidak pernah dibaca (halaman ini dibuka tiap hari untuk absen foto).
   [dataBus, dataMpu] = await Promise.all([
     sbGetShared('driver_bus', 'select=trayek,plat,driver&order=trayek.asc'),
@@ -423,7 +423,7 @@ function updateTrayekDanDriver() {
     const sel = trayekSel.value;
     platSel.innerHTML = data
       .filter(d => d.trayek === sel)
-      .map(d => `<option value="${d.plat} - ${d.driver}">${d.plat} — ${d.driver}</option>`)
+      .map(d => `<option value="${d.plat} - ${d.driver}">${d.plat} - ${d.driver}</option>`)
       .join('');
   };
   trayekSel.onchange = fillPlat;
@@ -511,7 +511,7 @@ function showFormError(msg) {
 // ── Reset form setelah tambah ─────────────────────────────────────
 function resetForm() {
   removeFoto();
-  // Jangan reset tanggal/sesi/transportasi — biarkan untuk entri berikutnya
+  // Jangan reset tanggal/sesi/transportasi - biarkan untuk entri berikutnya
 }
 
 // ── Hapus dari antrian ────────────────────────────────────────────
@@ -550,7 +550,7 @@ function renderQueue() {
       statusHtml = `<div class="qi-status">✅ Berhasil disimpan</div>`;
     } else if (item.status === 'duplicate') {
       stateClass = 'error';
-      statusHtml = `<div class="qi-status">⚠️ Duplikat — sudah absen ${item.sesi} di tanggal ini</div>`;
+      statusHtml = `<div class="qi-status">⚠️ Duplikat - sudah absen ${item.sesi} di tanggal ini</div>`;
     } else if (item.status === 'error') {
       stateClass = 'error';
       statusHtml = `<div class="qi-status">❌ ${esc(item.statusMsg || 'Gagal')}</div>`;
@@ -672,7 +672,7 @@ async function sendSingle(item) {
     const uploadRes = await fetch('/admin/api/angkutansekolah/upload-foto?action=upload', { method: 'POST', headers: { 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content }, body: formData });
     if (!uploadRes.ok) throw new Error(`Upload gagal (${uploadRes.status})`);
     // PENTING: pakai nama file HASIL server (server yang generate nama
-    // final demi keamanan — lihat AbsensiFotoUploadController), BUKAN
+    // final demi keamanan - lihat AbsensiFotoUploadController), BUKAN
     // ditebak di client, supaya kolom `foto` di database selalu cocok
     // dengan file yang benar-benar tersimpan di disk.
     const uploadJson = await uploadRes.json();

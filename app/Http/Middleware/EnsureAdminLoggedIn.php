@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Port dari bagian "wajib login" di admin/auth.php — dipasang di semua
+ * Port dari bagian "wajib login" di admin/auth.php - dipasang di semua
  * route /admin/* KECUALI /admin/login (lihat routes/web.php).
  */
 class EnsureAdminLoggedIn

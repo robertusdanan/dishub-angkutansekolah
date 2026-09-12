@@ -184,7 +184,7 @@ function makeDriverMarker(driver, status) {
 }
 
 // ═══════════════════════════════════════════════════════════════════════
-//  CARD INFO DRIVER — mengambang di atas titik driver, ikut mengalir halus
+//  CARD INFO DRIVER - mengambang di atas titik driver, ikut mengalir halus
 //  saat titik bergerak (posisi dihitung dari koordinat marker Leaflet).
 // ═══════════════════════════════════════════════════════════════════════
 function formatLastOnline(ts) {
@@ -237,11 +237,11 @@ function ensureDriverCard() {
   card.innerHTML = `
     <div class="dc-inner">
       <button class="dc-close" type="button" aria-label="Tutup">✕</button>
-      <div class="dc-plat" id="dc-plat">—</div>
-      <div class="dc-row"><span class="dc-label">Driver</span><span class="dc-value" id="dc-driver">—</span></div>
-      <div class="dc-row"><span class="dc-label">Trayek</span><span class="dc-value" id="dc-trayek">—</span></div>
+      <div class="dc-plat" id="dc-plat">-</div>
+      <div class="dc-row"><span class="dc-label">Driver</span><span class="dc-value" id="dc-driver">-</span></div>
+      <div class="dc-row"><span class="dc-label">Trayek</span><span class="dc-value" id="dc-trayek">-</span></div>
       <div class="dc-row"><span class="dc-label">Terakhir Online</span>
-        <span class="dc-value dc-status"><span class="dc-dot" id="dc-dot"></span><span id="dc-lastonline">—</span></span>
+        <span class="dc-value dc-status"><span class="dc-dot" id="dc-dot"></span><span id="dc-lastonline">-</span></span>
       </div>
     </div>
     <svg class="dc-arrow" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -253,9 +253,9 @@ function ensureDriverCard() {
 }
 
 function fillDriverCard(driver, status) {
-  document.getElementById('dc-plat').textContent   = driver.plat || '—';
-  document.getElementById('dc-driver').textContent = driver.driver || '—';
-  document.getElementById('dc-trayek').textContent = driver.trayek || '—';
+  document.getElementById('dc-plat').textContent   = driver.plat || '-';
+  document.getElementById('dc-driver').textContent = driver.driver || '-';
+  document.getElementById('dc-trayek').textContent = driver.trayek || '-';
   document.getElementById('dc-lastonline').textContent =
     status.key === 'online' ? 'Online sekarang' : `${status.label} · ${formatLastOnline(driver.update_at)}`;
   document.getElementById('dc-dot').style.background = status.color;
@@ -387,7 +387,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       subdomains: ['mt0'],
     }).addTo(map);
 
-    // Garis batas Kota/Kabupaten Tulungagung — gaya sama dengan peta ASDP
+    // Garis batas Kota/Kabupaten Tulungagung - gaya sama dengan peta ASDP
     fetch('/assets/rute-sekolah/geo/tulungagung.geojson')
       .then(r => r.json())
       .then(data => {
@@ -471,8 +471,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         `border-color:${CLR.warn}33;margin-top:8px;margin-right:8px;`
       ).addTo(map);
 
-      setStat('stat-jarak', '—');
-      setStat('stat-durasi', '—');
+      setStat('stat-jarak', '-');
+      setStat('stat-durasi', '-');
     }
 
     // ── 5. Driver markers (REALTIME asli, bukan polling) ───────────────────
@@ -489,10 +489,10 @@ document.addEventListener('DOMContentLoaded', async () => {
       const key = `${table}-${driver.id}`;
       const existing = driverMarkers.get(key);
 
-      // PENTING: payload broadcast dari driver (bus.js) sengaja RINGAN — hanya
+      // PENTING: payload broadcast dari driver (bus.js) sengaja RINGAN - hanya
       // {id, table, plat, lat, lng, update_at}, TIDAK memuat driver/trayek.
       // Kalau langsung di-replace total, data driver/trayek yang sudah lengkap
-      // dari fetch awal (REST, select=*) akan hilang tertimpa "—" tiap kali ada
+      // dari fetch awal (REST, select=*) akan hilang tertimpa "-" tiap kali ada
       // broadcast baru. Jadi digabung (merge): field yang tidak ada di payload
       // baru tetap pakai data lama; field yang ada (lat/lng/update_at/plat)
       // selalu pakai yang terbaru.
@@ -527,7 +527,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     }
 
-    // Presence baru masuk/keluar TIDAK mengubah lat/lng — cukup hitung ulang
+    // Presence baru masuk/keluar TIDAK mengubah lat/lng - cukup hitung ulang
     // status & ikon tiap marker yang sudah ada, tanpa perlu fetch ulang ke DB.
     function refreshAllMarkerStatuses() {
       driverMarkers.forEach((marker) => {
@@ -539,11 +539,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // Jam berganti tanpa event apapun bisa mengubah status "Belum Beroperasi"
-    // ↔ "Offline" pada jam batas (04:00/20:00) — cek ulang tiap menit supaya
+    // ↔ "Offline" pada jam batas (04:00/20:00) - cek ulang tiap menit supaya
     // tidak perlu menunggu event lain untuk memperbarui tampilan.
     setInterval(refreshAllMarkerStatuses, 60_000);
 
-    // Muat posisi awal sekali via proxy (bukan polling — hanya saat halaman dibuka).
+    // Muat posisi awal sekali via proxy (bukan polling - hanya saat halaman dibuka).
     // code_map bisa cocok di driver_bus ATAU driver_mpu (namespace-nya sudah
     // beda: "rute_..." untuk Bus, "rute_mpu_..." untuk MPU), jadi query dua-duanya.
     const loadInitialDrivers = async () => {
@@ -596,7 +596,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             else upsertDriverMarker(payload.new, 'driver_mpu');
           }
         )
-        // Presence: sinkron status koneksi tablet driver — jauh lebih instan
+        // Presence: sinkron status koneksi tablet driver - jauh lebih instan
         // & akurat (hitungan detik) dibanding menebak dari selisih update_at.
         .on('presence', { event: 'sync' }, () => {
           presentDriverIds.clear();
@@ -615,12 +615,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       // ── Jaring pengaman: re-sync REST berkala ──────────────────────────
       // Realtime (broadcast/postgres_changes) BISA sesekali terlewat (mis.
-      // reconnect WebSocket, replication lag di sisi Supabase) — kalau itu
+      // reconnect WebSocket, replication lag di sisi Supabase) - kalau itu
       // terjadi pas driver sedang diam (hanya heartbeat DB tiap 45 detik,
       // tidak broadcast), marker bisa macet di data lama sampai halaman
       // di-reload manual. Re-fetch penuh (select=*, termasuk driver/trayek)
       // tiap 45 detik ini menjamin data akhirnya tetap benar walau ada event
-      // Realtime yang terlewat — dan karena proxy sudah cache query "live"
+      // Realtime yang terlewat - dan karena proxy sudah cache query "live"
       // 5 detik + query lain permanen (lihat supabase_proxy.php), ini tetap
       // ringan meski dibuka banyak pengunjung sekaligus.
       const safetySync = setInterval(loadInitialDrivers, 45_000);
@@ -647,7 +647,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       setInterval(() => navigator.geolocation.getCurrentPosition(updatePos, () => {}), 3_000);
     }
 
-    // ── 6b. Tombol "Fokus ke Lokasi Anda" — mengambang tepat di atas panel
+    // ── 6b. Tombol "Fokus ke Lokasi Anda" - mengambang tepat di atas panel
     //        Jalur/Jarak/Durasi, kamera terbang halus kembali ke posisi user. ──
     const recenterBtn = L.DomUtil.create('button');
     recenterBtn.innerHTML = `<i class="fa-solid fa-location-crosshairs" style="font-size:14px;"></i>`;

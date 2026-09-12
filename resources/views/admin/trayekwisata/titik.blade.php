@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="csrf-token" content="{{ csrf_token() }}"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Titik Lokasi Wisata — Admin</title>
+<title>Titik Lokasi Wisata - Admin</title>
 <link rel="icon" href="/favicon.ico"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -75,7 +75,7 @@
       <div class="adm-page-header">
         <div>
           <h1 class="adm-page-title">Titik Lokasi Wisata</h1>
-          <p class="adm-page-subtitle">Master pantai/terminal/transit — koordinat &amp; galeri di sini dipakai peta rute publik dan Pengaturan Trayek Tahunan.</p>
+          <p class="adm-page-subtitle">Master pantai/terminal/transit - koordinat &amp; galeri di sini dipakai peta rute publik dan Pengaturan Trayek Tahunan.</p>
         </div>
         <button class="btn btn-primary btn-sm" onclick="openForm()">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
@@ -133,7 +133,7 @@
         <textarea class="f-textarea" id="f_deskripsi" placeholder="Deskripsi untuk ditampilkan saat marker peta diklik..."></textarea>
       </div>
       <div class="f-row">
-        <span class="f-label">Koordinat — klik peta atau isi manual, lalu geser marker jika perlu</span>
+        <span class="f-label">Koordinat - klik peta atau isi manual, lalu geser marker jika perlu</span>
         <div id="miniMap"></div>
         <div class="f-two">
           <input class="f-input" id="f_lat" placeholder="Latitude, mis. -8.1936" inputmode="decimal"/>
@@ -196,7 +196,7 @@ function renderGrid() {
       <div class="card-titik-body">
         <span class="card-titik-name">${twEsc(r.nama)}</span>
         <span class="card-titik-coord">${r.lat && r.lng ? `${r.lat}, ${r.lng}` : 'Koordinat belum diatur'}</span>
-        <span class="card-titik-desc">${twEsc(r.deskripsi || '—')}</span>
+        <span class="card-titik-desc">${twEsc(r.deskripsi || '-')}</span>
         <div class="card-titik-foot">
           <button class="btn btn-secondary btn-sm" onclick="openForm('${r.id}')">Kelola</button>
           <button class="btn btn-secondary btn-sm" style="color:#b91c1c" onclick="deleteTitik('${r.id}','${twEsc(r.nama)}')">Hapus</button>
@@ -218,14 +218,14 @@ function renderGrid() {
 
 function initMiniMap() {
   if (typeof L === 'undefined' || typeof L.map !== 'function') {
-    console.error('Leaflet belum termuat — peta pemilih koordinat tidak bisa ditampilkan.');
+    console.error('Leaflet belum termuat - peta pemilih koordinat tidak bisa ditampilkan.');
     const el = document.getElementById('miniMap');
     if (el) el.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-4);font-size:12px;padding:12px;text-align:center">Peta gagal dimuat. Coba muat ulang halaman, atau isi koordinat manual di bawah.</div>';
     return;
   }
   if (miniMap) return;
   miniMap = L.map('miniMap', { zoomControl: true }).setView([-8.0654, 111.9022], 10); // pusat Tulungagung
-  // Tile Google Maps asli — pola yang sama dengan peta publik ASDP Anda
+  // Tile Google Maps asli - pola yang sama dengan peta publik ASDP Anda
   // (pages/asdp/index.html), supaya tampilan peta konsisten di seluruh
   // aplikasi dan benar-benar terlihat seperti Google Maps.
   L.tileLayer('https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
@@ -362,7 +362,7 @@ async function saveForm() {
     } else {
       const created = await twPost('trayekwisata_titik', payload);
       allTitik.unshift(created[0]);
-      twToast('✓ Titik lokasi ditambahkan — sekarang tambahkan galeri fotonya');
+      twToast('✓ Titik lokasi ditambahkan - sekarang tambahkan galeri fotonya');
       renderGrid();
       openForm(created[0].id); // buka lagi supaya bisa langsung upload galeri
     }

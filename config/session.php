@@ -8,7 +8,7 @@ return [
     // "file" driver di Laravel = perilaku paling setara.
     'driver' => env('SESSION_DRIVER', 'file'),
 
-    // Kode lama: ini_set('session.gc_maxlifetime', 10 * 365 * 24 * 60 * 60) — sangat panjang.
+    // Kode lama: ini_set('session.gc_maxlifetime', 10 * 365 * 24 * 60 * 60) - sangat panjang.
     // Kita pakai nilai wajar (2 minggu) kecuali di-override lewat .env, supaya
     // sesi admin/akun publik tidak "abadi" tanpa alasan.
     'lifetime' => (int) env('SESSION_LIFETIME', 20160),
@@ -36,7 +36,7 @@ return [
 
     'domain' => env('SESSION_DOMAIN'),
 
-    // Kode lama pakai cookie_httponly=true & cookie_samesite=Lax — dipertahankan.
+    // Kode lama pakai cookie_httponly=true & cookie_samesite=Lax - dipertahankan.
     'secure' => env('SESSION_SECURE_COOKIE'),
 
     'http_only' => true,

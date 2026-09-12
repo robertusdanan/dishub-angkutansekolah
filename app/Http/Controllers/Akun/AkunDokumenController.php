@@ -87,7 +87,7 @@ class AkunDokumenController extends Controller
     }
 
     /**
-     * GET /akun/api/dokumen-view — mengalirkan file foto KTP/KK milik akun
+     * GET /akun/api/dokumen-view - mengalirkan file foto KTP/KK milik akun
      * yang sedang login (file-nya tersimpan di luar web root).
      */
     public function view(Request $request): Response|StreamedResponse

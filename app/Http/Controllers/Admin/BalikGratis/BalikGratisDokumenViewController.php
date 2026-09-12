@@ -49,7 +49,7 @@ class BalikGratisDokumenViewController extends Controller
             }
             $path = $this->dokumen->dirLegacyBalikGratis().'/'.$filename;
         } elseif (!empty($row['akun_id'])) {
-            // Baris BARU — dokumen (foto KTP/KK) hidup di profil akun_publik.
+            // Baris BARU - dokumen (foto KTP/KK) hidup di profil akun_publik.
             $jenis = $request->query('jenis', 'ktp') === 'kk' ? 'kk' : 'ktp';
             $column = $jenis === 'ktp' ? 'foto_ktp_url' : 'foto_kk_url';
             [$aCode, $aRows] = $this->supabase->rawRequest('GET', 'akun_publik?id=eq.'.$row['akun_id'].'&select='.$column.'&limit=1');

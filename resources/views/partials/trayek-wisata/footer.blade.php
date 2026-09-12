@@ -2,7 +2,7 @@
     Port dari pages/trayekwisata/partials/footer.php.
 --}}
 @include('partials.site-footer', [
-    'desc' => 'Program Dinas Perhubungan Kabupaten Tulungagung — mengantar warga menikmati Pantai Selatan lewat Jalur Lintas Selatan, gratis setiap akhir pekan.',
+    'desc' => 'Program Dinas Perhubungan Kabupaten Tulungagung - mengantar warga menikmati Pantai Selatan lewat Jalur Lintas Selatan, gratis setiap akhir pekan.',
 ])
 
 <div class="tw-toast" id="twToastEl"></div>

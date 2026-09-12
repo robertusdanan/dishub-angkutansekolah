@@ -76,7 +76,7 @@ function setStat(id, value) {
 
 function makeDriverMarker(driver, status) {
   const color = status.color;
-  const label = driver.plat ?? '—';
+  const label = driver.plat ?? '-';
   const busOpacity = status.dim ? 0.55 : 1;
   return mkIcon(
     `<div style="display:flex;flex-direction:column;align-items:center;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;opacity:${busOpacity};">
@@ -100,7 +100,7 @@ function makeDriverMarker(driver, status) {
 }
 
 // ═══════════════════════════════════════════════════════════════════════
-//  CARD INFO DRIVER — mengambang di atas titik driver, ikut mengalir halus
+//  CARD INFO DRIVER - mengambang di atas titik driver, ikut mengalir halus
 //  saat titik bergerak (posisi dihitung dari koordinat marker Leaflet).
 // ═══════════════════════════════════════════════════════════════════════
 function formatLastOnline(ts) {
@@ -153,11 +153,11 @@ function ensureDriverCard() {
   card.innerHTML = `
     <div class="dc-inner">
       <button class="dc-close" type="button" aria-label="Tutup">✕</button>
-      <div class="dc-plat" id="dc-plat">—</div>
-      <div class="dc-row"><span class="dc-label">Driver</span><span class="dc-value" id="dc-driver">—</span></div>
-      <div class="dc-row"><span class="dc-label">Trayek</span><span class="dc-value" id="dc-trayek">—</span></div>
+      <div class="dc-plat" id="dc-plat">-</div>
+      <div class="dc-row"><span class="dc-label">Driver</span><span class="dc-value" id="dc-driver">-</span></div>
+      <div class="dc-row"><span class="dc-label">Trayek</span><span class="dc-value" id="dc-trayek">-</span></div>
       <div class="dc-row"><span class="dc-label">Terakhir Online</span>
-        <span class="dc-value dc-status"><span class="dc-dot" id="dc-dot"></span><span id="dc-lastonline">—</span></span>
+        <span class="dc-value dc-status"><span class="dc-dot" id="dc-dot"></span><span id="dc-lastonline">-</span></span>
       </div>
     </div>
     <svg class="dc-arrow" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -169,9 +169,9 @@ function ensureDriverCard() {
 }
 
 function fillDriverCard(driver, status) {
-  document.getElementById('dc-plat').textContent   = driver.plat || '—';
-  document.getElementById('dc-driver').textContent = driver.driver || '—';
-  document.getElementById('dc-trayek').textContent = driver.trayek || '—';
+  document.getElementById('dc-plat').textContent   = driver.plat || '-';
+  document.getElementById('dc-driver').textContent = driver.driver || '-';
+  document.getElementById('dc-trayek').textContent = driver.trayek || '-';
   document.getElementById('dc-lastonline').textContent =
     status.key === 'online' ? 'Online sekarang' : `${status.label} · ${formatLastOnline(driver.update_at)}`;
   document.getElementById('dc-dot').style.background = status.color;
@@ -250,7 +250,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       subdomains: ['mt0'],
     }).addTo(map);
 
-    // Garis batas Kota/Kabupaten Tulungagung — gaya sama dengan peta ASDP
+    // Garis batas Kota/Kabupaten Tulungagung - gaya sama dengan peta ASDP
     fetch('/assets/rute-sekolah/geo/tulungagung.geojson')
       .then(r => r.json())
       .then(data => {
@@ -307,7 +307,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     setLoadingStep(`Menggambar rute (0/${trayekIds.length} trayek)...`, 45);
 
-    // Derivasi nomor rute ("Rute 1", "Rute 2", ...) dari id_map — sama seperti rute_bus.js
+    // Derivasi nomor rute ("Rute 1", "Rute 2", ...) dari id_map - sama seperti rute_bus.js
     function ruteNumFromIdMap(idMap) {
       const m = String(idMap || '').match(/rute[_-]?(\d+)/i);
       return m ? parseInt(m[1], 10) : 1;
@@ -325,7 +325,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       const idMapGroups = byTrayek[idTrayek];
 
       // Semua id_map (rute) dalam satu trayek digambar paralel, tiap-tiap
-      // rute mengikuti jalan sungguhan lewat OSRM — persis seperti di
+      // rute mengikuti jalan sungguhan lewat OSRM - persis seperti di
       // halaman detail rute (rute_map.js).
       await Promise.all(Object.keys(idMapGroups).map(async idMap => {
         const waktuKey = waktuKeyFromIdMap(idMap);
@@ -589,7 +589,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     renderSidebar(); // semua trayek nonaktif di awal
 
-    // Tombol elegan "Rute Pagi" / "Rute Siang" di header sidebar — daftar rute
+    // Tombol elegan "Rute Pagi" / "Rute Siang" di header sidebar - daftar rute
     // per trayek bisa berbeda antar waktu, jadi tampilan direset & sidebar
     // digambar ulang setiap kali waktu berpindah.
     const waktuButtons = document.querySelectorAll('.waktu-btn');
@@ -610,7 +610,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       });
     });
 
-    // ── 5. Marker driver — SELALU tampil SEMUA, tidak ikut filter sidebar ──
+    // ── 5. Marker driver - SELALU tampil SEMUA, tidak ikut filter sidebar ──
     const driverMarkers = new Map();
     const presentDriverIds = new Set(); // id driver yang presence-nya aktif (gabungan semua channel code_map)
     let onlineCount = 0;
@@ -623,7 +623,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       const existing = driverMarkers.get(key);
 
       // Sama seperti di rute_map.js: broadcast dari driver cuma bawa
-      // {id, table, plat, lat, lng, update_at} — merge, jangan replace total,
+      // {id, table, plat, lat, lng, update_at} - merge, jangan replace total,
       // supaya driver/trayek yang sudah didapat dari fetch awal tidak hilang.
       const merged = existing ? { ...existing.driverData, ...driver } : driver;
       const status = DRIVER_STATUS.compute(presentDriverIds.has(String(merged.id)), merged.update_at);
@@ -664,7 +664,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       setStat('stat-driver', onlineCount);
     }
 
-    // Presence baru masuk/keluar TIDAK mengubah lat/lng — cukup hitung ulang
+    // Presence baru masuk/keluar TIDAK mengubah lat/lng - cukup hitung ulang
     // status & ikon tiap marker yang sudah ada, tanpa fetch ulang ke DB.
     function refreshAllMarkerStatuses() {
       driverMarkers.forEach((marker) => {
@@ -677,7 +677,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // Jam berganti tanpa event apapun bisa mengubah status "Belum Beroperasi"
-    // ↔ "Offline" pada jam batas (04:00/20:00) — cek ulang tiap menit.
+    // ↔ "Offline" pada jam batas (04:00/20:00) - cek ulang tiap menit.
     setInterval(refreshAllMarkerStatuses, 60_000);
 
     const loadAllDrivers = async () => {
@@ -698,7 +698,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // PERBAIKAN BUG: versi lama subscribe ke channel bernama 'driver-pos-all',
     // padahal driver (bus.js) broadcast ke channel 'driver-pos-<code_map>'
     // masing-masing trayek. Nama channel Supabase harus PERSIS SAMA supaya
-    // broadcast diterima — jadi selama ini peta gabungan TIDAK PERNAH
+    // broadcast diterima - jadi selama ini peta gabungan TIDAK PERNAH
     // menerima broadcast posisi sama sekali (hanya "meloncat" tiap ~60 detik
     // lewat postgres_changes). Sekarang subscribe SATU channel per code_map
     // yang benar-benar ada di data rute (allMap), sama seperti driver.
@@ -757,7 +757,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       window.addEventListener('pagehide', () => sbRealtime.removeAllChannels());
 
       // Jaring pengaman: re-sync REST berkala (lihat penjelasan lengkap di
-      // rute_map.js) — Realtime bisa sesekali terlewat, jadi tetap re-fetch
+      // rute_map.js) - Realtime bisa sesekali terlewat, jadi tetap re-fetch
       // penuh secara berkala supaya data akhirnya konsisten.
       const safetySync = setInterval(loadAllDrivers, 45_000);
       window.addEventListener('pagehide', () => clearInterval(safetySync));

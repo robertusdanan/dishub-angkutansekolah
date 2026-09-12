@@ -22,7 +22,7 @@ class AbsenRfidApiController extends Controller
     ) {
     }
 
-    /** POST /absenrfid/php/cek — absen manual (input nama) */
+    /** POST /absenrfid/php/cek - absen manual (input nama) */
     public function cek(Request $request): JsonResponse
     {
         $payload = (array) $request->input('payload', []);
@@ -31,7 +31,7 @@ class AbsenRfidApiController extends Controller
         return response()->json($body, $status);
     }
 
-    /** POST /absenrfid/php/cek-rfid — absen via kartu RFID */
+    /** POST /absenrfid/php/cek-rfid - absen via kartu RFID */
     public function cekRfid(Request $request): JsonResponse
     {
         $payload = (array) $request->input('payload', []);

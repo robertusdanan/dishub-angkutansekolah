@@ -61,7 +61,7 @@ Route::prefix('akun')->name('akun.')->group(function () {
     Route::get('callback', [AkunAuthController::class, 'callback'])->name('callback');
     Route::get('keluar', [AkunAuthController::class, 'logout'])->name('keluar');
 
-    // ── "akun/saya" (halaman profil) — [SUDAH dimigrasikan, Tahap 2] ──
+    // ── "akun/saya" (halaman profil) - [SUDAH dimigrasikan, Tahap 2] ──
     Route::get('saya', [AkunProfilController::class, 'index'])->name('saya');
 
     Route::prefix('api')->name('api.')->group(function () {
@@ -75,7 +75,7 @@ Route::prefix('akun')->name('akun.')->group(function () {
 
 /*
 |--------------------------------------------------------------------------
-| Modul: Rute Angkutan Sekolah (peta live bus/MPU)  — [SUDAH dimigrasikan]
+| Modul: Rute Angkutan Sekolah (peta live bus/MPU)  - [SUDAH dimigrasikan]
 |--------------------------------------------------------------------------
 */
 Route::prefix('rute-sekolah')->controller(RuteSekolahController::class)->group(function () {
@@ -86,23 +86,23 @@ Route::prefix('rute-sekolah')->controller(RuteSekolahController::class)->group(f
     Route::get('lihat-peta', 'liveMap');
 });
 
-// Dipakai lintas modul (JS partial supabase_proxy_client.js) — cache lokal
+// Dipakai lintas modul (JS partial supabase_proxy_client.js) - cache lokal
 // data referensi (driver_bus, driver_mpu, domisili, sekolah) supaya tidak
 // membebani Supabase. Port dari core/reference_cache_proxy_endpoint.php
 // (sebelumnya /api/supabase_proxy.php).
 Route::get('/api/supabase-proxy', [ReferenceCacheProxyController::class, 'show'])->name('api.supabase-proxy');
 
-// Port dari api/absensi_proxy.php — publik (tidak login-gated), sama seperti
+// Port dari api/absensi_proxy.php - publik (tidak login-gated), sama seperti
 // kode lama. Halaman pemanggilnya (Rekap Operasional) yang dijaga login admin.
 Route::get('/api/absensi-proxy', [\App\Http\Controllers\Api\AbsensiProxyController::class, 'show'])->name('api.absensi-proxy');
 
 // Webhook Supabase Database Trigger (server-to-server, dilindungi
-// X-Cache-Secret, BUKAN sesi/CSRF) — port dari api/cache_invalidate.php.
+// X-Cache-Secret, BUKAN sesi/CSRF) - port dari api/cache_invalidate.php.
 Route::post('/api/cache-invalidate', [\App\Http\Controllers\Api\CacheInvalidateController::class, 'handle'])->name('api.cache-invalidate');
 
 /*
 |--------------------------------------------------------------------------
-| Modul: Peta Interaktif ASDP  — [SUDAH dimigrasikan]
+| Modul: Peta Interaktif ASDP  - [SUDAH dimigrasikan]
 |--------------------------------------------------------------------------
 | Kode lama WAJIB trailing slash karena asset relatif (images/x.png,
 | *.geojson) dimuat relatif terhadap /asdp/. Di Laravel semua asset itu
@@ -118,9 +118,9 @@ Route::get('/asdp', [AsdpController::class, 'index']);
 
 /*
 |--------------------------------------------------------------------------
-| Modul: Absensi RFID Angkutan Sekolah  — [SUDAH dimigrasikan sebagian:
+| Modul: Absensi RFID Angkutan Sekolah  - [SUDAH dimigrasikan sebagian:
 | alur scan/absen publik. Halaman admin listlink/login/logout DITUNDA ke
-| tahap Panel Admin — satu sistem RBAC yang sama dengan admin_roles]
+| tahap Panel Admin - satu sistem RBAC yang sama dengan admin_roles]
 |--------------------------------------------------------------------------
 */
 Route::prefix('absenrfid')->group(function () {
@@ -134,8 +134,8 @@ Route::prefix('absenrfid')->group(function () {
     });
     Route::get('error', fn () => view('absen.error', ['errorCode' => request()->query('code', 500), 'backUrl' => '/absenrfid/listlink']));
 
-    // Halaman admin (link kartu RFID ke bus/driver) — DITUNDA ke tahap Panel Admin.
-    // Halaman admin (link kartu RFID ke bus/driver) — [SUDAH dimigrasikan]
+    // Halaman admin (link kartu RFID ke bus/driver) - DITUNDA ke tahap Panel Admin.
+    // Halaman admin (link kartu RFID ke bus/driver) - [SUDAH dimigrasikan]
     Route::get('listlink', [AbsenRfidController::class, 'listlink']);
     Route::get('login', [\App\Http\Controllers\AbsenRfid\ListlinkAuthController::class, 'show']);
     Route::post('login', [\App\Http\Controllers\AbsenRfid\ListlinkAuthController::class, 'show'])
@@ -145,7 +145,7 @@ Route::prefix('absenrfid')->group(function () {
 
 /*
 |--------------------------------------------------------------------------
-| Modul: Absensi QR Code Angkutan Sekolah  — [SUDAH dimigrasikan sebagian,
+| Modul: Absensi QR Code Angkutan Sekolah  - [SUDAH dimigrasikan sebagian,
 | sama seperti absenrfid: listlink DITUNDA ke tahap Panel Admin]
 |--------------------------------------------------------------------------
 */
@@ -161,14 +161,14 @@ Route::prefix('absenqrcode')->group(function () {
 
     Route::get('error', fn () => view('absen.error', ['errorCode' => request()->query('code', 500), 'backUrl' => '/absenqrcode/listlink']));
 
-    // Halaman admin (link akun Google ke bus/driver) — DITUNDA ke tahap Panel Admin.
-    // Halaman admin (link akun Google ke bus/driver) — [SUDAH dimigrasikan, publik]
+    // Halaman admin (link akun Google ke bus/driver) - DITUNDA ke tahap Panel Admin.
+    // Halaman admin (link akun Google ke bus/driver) - [SUDAH dimigrasikan, publik]
     Route::get('listlink', [AbsenQrController::class, 'listlink']);
 });
 
 /*
 |--------------------------------------------------------------------------
-| Modul: Trayek Wisata Gratis  — [SUDAH dimigrasikan]
+| Modul: Trayek Wisata Gratis  - [SUDAH dimigrasikan]
 |--------------------------------------------------------------------------
 */
 Route::prefix('trayek-wisata')->controller(TrayekWisataController::class)->group(function () {
@@ -181,7 +181,7 @@ Route::prefix('trayek-wisata')->controller(TrayekWisataController::class)->group
 });
 
 // pages/trayekwisata/auth/{login,callback,logout}.php lama cuma redirect
-// tipis ke sistem akun terpusat — dipertahankan sebagai redirect murni,
+// tipis ke sistem akun terpusat - dipertahankan sebagai redirect murni,
 // tidak perlu controller.
 Route::get('/trayek-wisata/auth/login', function () {
     $next = request()->query('next', '/trayek-wisata');
@@ -210,7 +210,7 @@ Route::prefix('trayek-wisata/api')->controller(TrayekWisataApiController::class)
 
 /*
 |--------------------------------------------------------------------------
-| Modul: Balik Gratis  — [SUDAH dimigrasikan]
+| Modul: Balik Gratis  - [SUDAH dimigrasikan]
 |--------------------------------------------------------------------------
 */
 Route::get('/balikgratis', [BalikGratisController::class, 'index']);
@@ -223,7 +223,7 @@ Route::prefix('balikgratis/api')->controller(BalikGratisApiController::class)->g
 
 /*
 |--------------------------------------------------------------------------
-| Panel Admin  — [Tahap 1+2 SUDAH dimigrasikan: shell, RBAC inti, Tiket
+| Panel Admin  - [Tahap 1+2 SUDAH dimigrasikan: shell, RBAC inti, Tiket
 | Saya, Profil Saya, Akun, Manajemen Role]
 |--------------------------------------------------------------------------
 | Modul terbesar, dipecah jadi beberapa tahap (lihat README-MIGRASI.md).
@@ -231,7 +231,7 @@ Route::prefix('balikgratis/api')->controller(BalikGratisApiController::class)->g
 | placeholder, menyusul tahap berikutnya.
 */
 Route::prefix('admin')->group(function () {
-    // "login" TIDAK pakai middleware admin.auth (justru sebaliknya — kalau
+    // "login" TIDAK pakai middleware admin.auth (justru sebaliknya - kalau
     // sudah login, di dalam controller-nya sendiri yang redirect ke dashboard).
     Route::get('login', [AdminAuthController::class, 'show']);
     Route::post('login', [AdminAuthController::class, 'show'])->middleware('throttle:admin-login');
@@ -317,7 +317,7 @@ Route::prefix('admin')->group(function () {
                 };
             });
 
-            // Proxy tulis Supabase (service_role) per modul — setara
+            // Proxy tulis Supabase (service_role) per modul - setara
             // admin/api/{modul}/db.php lama. Dipanggil dari sb-secure.js.
             Route::match(['get', 'post'], 'angkutansekolah/db', [AdminSupabaseWriteProxyController::class, 'angkutansekolah']);
             Route::post('angkutansekolah/invalidate-cache', [AdminSupabaseWriteProxyController::class, 'invalidateCache']);

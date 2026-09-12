@@ -20,7 +20,7 @@ class AkunProfilApiController extends Controller
     }
 
     /**
-     * Setara akun_require_login() — dipanggil di awal tiap method.
+     * Setara akun_require_login() - dipanggil di awal tiap method.
      */
     protected function requireLogin(Request $request): ?JsonResponse
     {
@@ -35,7 +35,7 @@ class AkunProfilApiController extends Controller
     }
 
     /**
-     * GET/POST /akun/api/profil — setara profil.php
+     * GET/POST /akun/api/profil - setara profil.php
      */
     public function profil(Request $request): JsonResponse
     {
@@ -81,7 +81,7 @@ class AkunProfilApiController extends Controller
             $jk = null;
         }
 
-        // NIK adalah identitas unik satu akun — cegah dipakai akun lain.
+        // NIK adalah identitas unik satu akun - cegah dipakai akun lain.
         if ($nik !== '') {
             [, $dup] = $this->supabase->select('akun_publik', [
                 'nik' => 'eq.'.$nik,
@@ -118,7 +118,7 @@ class AkunProfilApiController extends Controller
     }
 
     /**
-     * GET/POST/DELETE /akun/api/keluarga — setara keluarga.php
+     * GET/POST/DELETE /akun/api/keluarga - setara keluarga.php
      */
     public function keluarga(Request $request): JsonResponse
     {
@@ -197,7 +197,7 @@ class AkunProfilApiController extends Controller
 
         // Filter akun_id=eq.$akunId adalah PENJAGA UTAMA supaya seseorang
         // tidak bisa menghapus anggota keluarga akun ORANG LAIN hanya
-        // dengan menebak/mengubah ID di request — bukan sekadar validasi UI.
+        // dengan menebak/mengubah ID di request - bukan sekadar validasi UI.
         [$code] = $this->supabase->delete('akun_publik_keluarga', [
             'id' => 'eq.'.$id,
             'akun_id' => 'eq.'.$akunId,

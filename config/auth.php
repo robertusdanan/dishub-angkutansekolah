@@ -5,7 +5,7 @@ return [
     // CATATAN: Aplikasi ini TIDAK memakai sistem Auth bawaan Laravel
     // (Auth::user() dsb). Login admin & akun publik memakai session key
     // manual (admin_logged_in, akun_publik_id, dst.) persis seperti kode
-    // lama — lihat App\Services\AkunPublik\AkunPublikService dan
+    // lama - lihat App\Services\AkunPublik\AkunPublikService dan
     // App\Services\MenuLayanan\MenuLayananService::isPublicSuperadmin().
     // Config ini hanya disediakan supaya provider bawaan Laravel tidak error.
     'defaults' => [

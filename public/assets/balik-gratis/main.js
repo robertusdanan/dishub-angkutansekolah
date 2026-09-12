@@ -1,5 +1,5 @@
 
-// CATATAN MIGRASI: helper baru (tidak ada di kode lama) — Laravel butuh
+// CATATAN MIGRASI: helper baru (tidak ada di kode lama) - Laravel butuh
 // CSRF token untuk request POST. Meta tag <meta name="csrf-token">
 // disediakan di resources/views/balik-gratis/index.blade.php.
 function bgCsrfToken() {
@@ -70,7 +70,7 @@ async function openDaftar() {
   banner.classList.add('hidden');
   btn.disabled = false;
 
-  // Anggota keluarga akun (sama dengan yang dipakai Trayek Wisata —
+  // Anggota keluarga akun (sama dengan yang dipakai Trayek Wisata -
   // satu sumber data, lihat pages/akun/api/keluarga.php).
   const famRes = await fetch('/akun/api/keluarga');
   const family = famRes.ok ? await famRes.json() : [];
@@ -98,9 +98,9 @@ function openCekTiket() {
   document.getElementById('cekTiketWrapper').classList.remove('hidden');
 }
 
-// "Cek Tiket Saya" — kalau sudah login, langsung ke halaman Tiket Saya
+// "Cek Tiket Saya" - kalau sudah login, langsung ke halaman Tiket Saya
 // di shell admin (role 'pengguna', terbatas hanya melihat tiket sendiri
-// — lihat admin/pages/tiket-saya.php). Kalau belum login, jatuhkan ke
+// - lihat admin/pages/tiket-saya.php). Kalau belum login, jatuhkan ke
 // pencarian manual berbasis NIK seperti sebelumnya.
 async function cekTiketSaya() {
   try {
@@ -219,7 +219,7 @@ function bgEsc(s) {
 }
 
 // Menampilkan >1 tiket sekaligus (satu transaksi KAI-Access-style bisa
-// menghasilkan beberapa tiket — pemilik akun + anggota keluarga).
+// menghasilkan beberapa tiket - pemilik akun + anggota keluarga).
 function showTiketModalMulti(tikets) {
   if (!tikets || !tikets.length) return;
   if (tikets.length === 1) { showTiketModal(tikets[0]); return; }

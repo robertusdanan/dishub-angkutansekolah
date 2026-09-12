@@ -162,7 +162,7 @@ async function prefetchCache() {
   if (!navigator.onLine) return;
   try {
     // Kiosk hanya pernah membaca kolom nik/nama/jenis_kelamin/domisili/sekolah
-    // dari data siswa (lihat processNik/showResult) — kolom lain (mis. foto,
+    // dari data siswa (lihat processNik/showResult) - kolom lain (mis. foto,
     // rfid, created_at, dll) tidak pernah dipakai, jadi tidak perlu ikut
     // diunduh tiap kali kiosk boot/reconnect. Ini bisa jadi ribuan baris
     // siswa se-kabupaten, jadi pembatasan kolom ini lumayan terasa di egress.
@@ -335,7 +335,7 @@ async function processManualNik(nik, inp, feedback) {
     return;
   }
 
-  // Ditemukan — bersihkan field lalu jalankan proses absen normal
+  // Ditemukan - bersihkan field lalu jalankan proses absen normal
   inp.value = '';
   inp.classList.remove('nik-valid', 'nik-error');
   document.getElementById('nik-char-count').textContent = '0 / 16';
@@ -480,7 +480,7 @@ async function saveAbsensiOnline(record) {
     body       : JSON.stringify({ payload: record }),
   });
 
-  // Pastikan response adalah JSON — jika bukan, lempar error dengan body mentah
+  // Pastikan response adalah JSON - jika bukan, lempar error dengan body mentah
   const text = await res.text();
   let json;
   try {
@@ -590,8 +590,8 @@ function updateVehicleIndicator(plat, driver) {
   const elDriver = document.getElementById('vehicle-driver');
   if (!el || !elPlat || !elDriver) return;
 
-  elPlat.textContent   = plat   || '—';
-  elDriver.textContent = driver || '—';
+  elPlat.textContent   = plat   || '-';
+  elDriver.textContent = driver || '-';
   el.classList.remove('hidden');
 }
 
@@ -647,7 +647,7 @@ function gpsBroadcastLocation(lat, lng) {
 
 async function gpsSaveLocation(lat, lng) {
   if (!gps_table || !DRIVER_ID) return;
-  if (!navigator.onLine) return; // pasti gagal — jangan coba kirim, tunggu online lagi
+  if (!navigator.onLine) return; // pasti gagal - jangan coba kirim, tunggu online lagi
   try {
     const res = await fetch(
       `${GPS_PROXY_URL}?action=save&table=${encodeURIComponent(gps_table)}&id=${encodeURIComponent(DRIVER_ID)}`,
@@ -661,7 +661,7 @@ async function gpsSaveLocation(lat, lng) {
     gpsUpdateBadge(`📡 GPS Aktif`, 'active');
   } catch (err) {
     console.warn('[GPS] gagal simpan lokasi:', err.message);
-    gpsUpdateBadge('📡 GPS — gagal kirim', 'error');
+    gpsUpdateBadge('📡 GPS - gagal kirim', 'error');
   }
 }
 
@@ -764,7 +764,7 @@ async function gpsStartTracking() {
     },
     err => {
       console.warn('[GPS] error geolocation:', err.message);
-      gpsUpdateBadge('📡 GPS — izin ditolak', 'error');
+      gpsUpdateBadge('📡 GPS - izin ditolak', 'error');
     },
     { enableHighAccuracy: true, maximumAge: 0, timeout: 15000 }
   );
@@ -772,7 +772,7 @@ async function gpsStartTracking() {
 
 
 async function initGpsDriver() {
-  gpsUpdateBadge('📡 GPS — memuat...', '');
+  gpsUpdateBadge('📡 GPS - memuat...', '');
 
   try {
 
@@ -798,8 +798,8 @@ async function initGpsDriver() {
     }
 
     if (!table) {
-      gpsUpdateBadge('📡 GPS — plat tidak ditemukan', 'error');
-      console.warn('[GPS] plat kosong — DRIVER_ID:', DRIVER_ID);
+      gpsUpdateBadge('📡 GPS - plat tidak ditemukan', 'error');
+      console.warn('[GPS] plat kosong - DRIVER_ID:', DRIVER_ID);
       return;
     }
 
@@ -817,7 +817,7 @@ async function initGpsDriver() {
     if (!initRes.ok) {
       const errData = await initRes.json().catch(() => ({}));
       console.warn('[GPS] init gagal:', errData.error || initRes.status);
-      gpsUpdateBadge('📡 GPS — gagal memuat kanal', 'error');
+      gpsUpdateBadge('📡 GPS - gagal memuat kanal', 'error');
       return;
     }
 
@@ -827,13 +827,13 @@ async function initGpsDriver() {
 
     if (!gps_codeMap) {
 
-      console.warn('[GPS] code_map kosong — lengkapi Trayek & Data Map driver ini agar muncul di peta publik.');
+      console.warn('[GPS] code_map kosong - lengkapi Trayek & Data Map driver ini agar muncul di peta publik.');
     }
 
     await gpsStartTracking();
 
   } catch (err) {
     console.error('[GPS] initGpsDriver error:', err);
-    gpsUpdateBadge('📡 GPS — error', 'error');
+    gpsUpdateBadge('📡 GPS - error', 'error');
   }
 }

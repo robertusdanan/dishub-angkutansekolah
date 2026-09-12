@@ -11,18 +11,18 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 /**
- * Port dari admin/api/akun.php — satu-satunya tempat yang boleh menulis ke
+ * Port dari admin/api/akun.php - satu-satunya tempat yang boleh menulis ke
  * tabel admin_accounts (lewat SupabaseClient dengan service key, TIDAK
  * PERNAH dikirim ke browser).
  *
- * Aturan hierarki (dicek di sini, bukan cuma UI — lihat komentar lengkap
+ * Aturan hierarki (dicek di sini, bukan cuma UI - lihat komentar lengkap
  * di kode lama, dipertahankan 1:1):
  *   - Daftar akun: level SETARA tetap TERLIHAT (read-only); level LEBIH
  *     TINGGI disembunyikan total.
  *   - Aksi (ubah, nonaktifkan, hapus, reset password): HANYA ke akun
- *     dengan level LEBIH RENDAH (strict, bukan setara) — canManageLevelStrict().
+ *     dengan level LEBIH RENDAH (strict, bukan setara) - canManageLevelStrict().
  *   - Penetapan role (create/pindah role): role tujuan WAJIB level LEBIH
- *     RENDAH dari level akun yang login — canManageLevelStrict().
+ *     RENDAH dari level akun yang login - canManageLevelStrict().
  *   - Superadmin selalu boleh (dicek via isSuperAdmin(), bukan angka level).
  *   - Akun tidak boleh menghapus/menonaktifkan dirinya sendiri.
  */

@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="csrf-token" content="{{ csrf_token() }}"/>
-<title>Profil Saya — Dishub Tulungagung</title>
+<title>Profil Saya - Dishub Tulungagung</title>
 <link rel="canonical" href="{{ url('/admin/profil-saya') }}"/>
 <link rel="icon" href="/favicon.ico"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -94,7 +94,7 @@
         </div>
       </div>
       <p class="profil-note">
-        Akun ini satu untuk semua layanan — data di halaman ini juga dipakai saat memesan
+        Akun ini satu untuk semua layanan - data di halaman ini juga dipakai saat memesan
         <a href="/balikgratis">Balik Gratis</a> dan <a href="/trayek-wisata">Trayek Wisata</a>.
       </p>
 
@@ -128,7 +128,7 @@
           <div class="field">
             <label for="p_jk">Jenis Kelamin</label>
             <select class="form-control" id="p_jk">
-              <option value="">— Pilih —</option>
+              <option value="">- Pilih -</option>
               <option value="Laki-laki">Laki-laki</option>
               <option value="Perempuan">Perempuan</option>
             </select>
@@ -164,7 +164,7 @@
       <!-- ── Dokumen ───────────────────────────────────────────────── -->
       <div class="card profil-card">
         <div class="profil-card-title">Verifikasi Dokumen</div>
-        <div class="profil-card-sub">Ambil foto langsung lewat kamera — tidak bisa upload dari galeri.</div>
+        <div class="profil-card-sub">Ambil foto langsung lewat kamera - tidak bisa upload dari galeri.</div>
 
         <div class="doc-row">
           <div class="doc-thumb" id="thumbKtp">KTP</div>
@@ -181,7 +181,7 @@
       <!-- ── Anggota Keluarga ──────────────────────────────────────── -->
       <div class="card profil-card">
         <div class="profil-card-title">Anggota Keluarga</div>
-        <div class="profil-card-sub">Bisa ikut dipesankan kursi — tiap NIK tetap tunduk aturan 1 tiket / 4 minggu.</div>
+        <div class="profil-card-sub">Bisa ikut dipesankan kursi - tiap NIK tetap tunduk aturan 1 tiket / 4 minggu.</div>
         <div id="famList"></div>
         <div class="fam-add-grid">
           <input class="form-control" id="fam_nama" placeholder="Nama anggota"/>

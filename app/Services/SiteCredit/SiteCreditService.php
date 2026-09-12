@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
 /**
- * Port dari core/footer.php — sebelumnya kode ini di-obfuscate lewat
+ * Port dari core/footer.php - sebelumnya kode ini di-obfuscate lewat
  * eval(gzuncompress(base64_decode(...))). Isinya sudah didekode dan
  * fungsinya di sini SAMA PERSIS: mengambil baris kredit developer
  * (developer, text, link, org_name) dari tabel `site_credit` di project

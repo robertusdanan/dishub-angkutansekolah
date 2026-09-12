@@ -11,13 +11,13 @@ use Illuminate\View\View;
  * Port dari pages/absenrfid/{index,bus}.php.
  *
  * CATATAN MIGRASI: pages/absenrfid/oauth2callback.php dan redirect.php TIDAK
- * ikut dipindahkan — sudah dicek, keduanya dead code (tidak direferensikan
+ * ikut dipindahkan - sudah dicek, keduanya dead code (tidak direferensikan
  * dari manapun; login sekarang lewat Google Identity Services client-side,
  * bukan redirect server-side). Lihat README untuk detail.
  */
 class AbsenRfidController extends Controller
 {
-    /** GET /absenrfid — setara index.php (redirect ke bus atau listlink) */
+    /** GET /absenrfid - setara index.php (redirect ke bus atau listlink) */
     public function index(Request $request): RedirectResponse
     {
         $driverId = trim((string) $request->query('id', ''));
@@ -29,7 +29,7 @@ class AbsenRfidController extends Controller
         return redirect('/absenrfid/listlink');
     }
 
-    /** GET /absenrfid/bus — setara bus.php (layar tempel-kartu di kendaraan) */
+    /** GET /absenrfid/bus - setara bus.php (layar tempel-kartu di kendaraan) */
     public function bus(Request $request): View
     {
         return view('absen-rfid.bus', [
@@ -37,7 +37,7 @@ class AbsenRfidController extends Controller
         ]);
     }
 
-    /** GET /absenrfid/listlink — setara pages/listlink.php */
+    /** GET /absenrfid/listlink - setara pages/listlink.php */
     public function listlink(): View|RedirectResponse
     {
         if (!session('listlink_logged_in')) {

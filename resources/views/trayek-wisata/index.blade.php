@@ -4,20 +4,20 @@
 <meta charset="UTF-8"/>
 <meta name="csrf-token" content="{{ csrf_token() }}"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
-<title>Trayek Wisata Gratis — Pantai Selatan Tulungagung | Dishub Kabupaten Tulungagung</title>
+<title>Trayek Wisata Gratis - Pantai Selatan Tulungagung | Dishub Kabupaten Tulungagung</title>
 <meta name="description" content="Jelajahi Pantai Selatan Tulungagung gratis setiap Sabtu & Minggu lewat Jalur Lintas Selatan (JLS). Layanan Trayek Wisata Gratis dari Dinas Perhubungan Kabupaten Tulungagung."/>
 
 <meta property="og:type" content="website"/>
 <meta property="og:site_name" content="Dishub Kabupaten Tulungagung"/>
-<meta property="og:title" content="Trayek Wisata Gratis — Jelajahi Pantai Selatan Tulungagung"/>
-<meta property="og:description" content="Gratis setiap Sabtu & Minggu lewat Jalur Lintas Selatan (JLS). Pesan kursi langsung dari HP — kuota terbatas."/>
+<meta property="og:title" content="Trayek Wisata Gratis - Jelajahi Pantai Selatan Tulungagung"/>
+<meta property="og:description" content="Gratis setiap Sabtu & Minggu lewat Jalur Lintas Selatan (JLS). Pesan kursi langsung dari HP - kuota terbatas."/>
 <meta property="og:image" content="{{ url('/assets/trayek-wisata/hero-poster.jpg') }}"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
 <meta property="og:url" content="{{ url('/trayek-wisata') }}"/>
 <meta property="og:locale" content="id_ID"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Trayek Wisata Gratis — Jelajahi Pantai Selatan Tulungagung"/>
+<meta name="twitter:title" content="Trayek Wisata Gratis - Jelajahi Pantai Selatan Tulungagung"/>
 <meta name="twitter:description" content="Gratis setiap Sabtu & Minggu lewat Jalur Lintas Selatan (JLS). Pesan kursi langsung dari HP."/>
 <meta name="twitter:image" content="{{ url('/assets/trayek-wisata/hero-poster.jpg') }}"/>
 <meta name="theme-color" content="#0A1F44"/>
@@ -74,7 +74,7 @@
     <div class="story-head reveal">
       <div class="eyebrow">Alur Perjalanan</div>
       <h2 class="sect-title" style="margin-top:14px">Satu trayek,<br/>banyak cerita.</h2>
-      <p class="sect-lede">Dari terminal keberangkatan, menyusuri Jalur Lintas Selatan, hingga singgah di tiap pantai — begini urutan perjalanan yang akan Anda tempuh.</p>
+      <p class="sect-lede">Dari terminal keberangkatan, menyusuri Jalur Lintas Selatan, hingga singgah di tiap pantai - begini urutan perjalanan yang akan Anda tempuh.</p>
     </div>
     <div class="story-track">
       <div class="story-spine"></div>
@@ -92,7 +92,7 @@
     <div class="reveal">
       <div class="eyebrow">Destinasi</div>
       <h2 class="sect-title" style="margin-top:14px">Pantai-pantai yang<br/>akan Anda singgahi.</h2>
-      <p class="sect-lede">Setiap titik dipilih karena punya karakter sendiri — dari ombak besar Selatan hingga teluk tenang tersembunyi di balik tebing.</p>
+      <p class="sect-lede">Setiap titik dipilih karena punya karakter sendiri - dari ombak besar Selatan hingga teluk tenang tersembunyi di balik tebing.</p>
     </div>
     <div class="gallery-grid" id="galleryGrid">
       <div class="skel skel-card" style="aspect-ratio:4/5"></div>
@@ -126,7 +126,7 @@
     <div class="reveal">
       <div class="eyebrow">Jadwal</div>
       <h2 class="sect-title" style="margin-top:14px">Berangkat<br/>akhir pekan ini.</h2>
-      <p class="sect-lede">Kursi terbatas — status hijau berarti masih longgar. Lihat jadwal lengkap 4 minggu ke depan di halaman Jadwal.</p>
+      <p class="sect-lede">Kursi terbatas - status hijau berarti masih longgar. Lihat jadwal lengkap 4 minggu ke depan di halaman Jadwal.</p>
     </div>
     <div class="jadwal-scroll" id="jadwalScroll">
       <div class="skel" style="flex:0 0 280px;height:230px;background:rgba(255,255,255,.08)"></div>
@@ -160,10 +160,10 @@
           <img src="/assets/icons/bus_sekolah.svg" alt="Ilustrasi Bus Sekolah" class="kuota-bus-img"/>
         </div>
         <div class="kuota-list" id="kuotaList">
-          <div class="kuota-list-item"><span>Total Kuota</span><b id="kTotal">—</b></div>
-          <div class="kuota-list-item"><span>Kursi Terisi</span><b id="kTerisi">—</b></div>
-          <div class="kuota-list-item"><span>Sisa Kursi</span><b id="kSisa">—</b></div>
-          <div class="kuota-list-item"><span>Jumlah Trayek Minggu Ini</span><b id="kTrayek">—</b></div>
+          <div class="kuota-list-item"><span>Total Kuota</span><b id="kTotal">-</b></div>
+          <div class="kuota-list-item"><span>Kursi Terisi</span><b id="kTerisi">-</b></div>
+          <div class="kuota-list-item"><span>Sisa Kursi</span><b id="kSisa">-</b></div>
+          <div class="kuota-list-item"><span>Jumlah Trayek Minggu Ini</span><b id="kTrayek">-</b></div>
         </div>
       </div>
     </div>
@@ -182,7 +182,7 @@
         <div class="boarding-num">01</div>
         <div class="boarding-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="M10 17l5-5-5-5"/><path d="M15 12H3"/></svg></div>
         <div class="boarding-title">Login</div>
-        <div class="boarding-desc">Masuk dengan akun Google — cepat, tanpa perlu buat akun baru.</div>
+        <div class="boarding-desc">Masuk dengan akun Google - cepat, tanpa perlu buat akun baru.</div>
       </div>
       <div class="boarding-step">
         <div class="boarding-num">02</div>
@@ -194,13 +194,13 @@
         <div class="boarding-num">03</div>
         <div class="boarding-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="17" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/></svg></div>
         <div class="boarding-title">Pesan Kursi</div>
-        <div class="boarding-desc">Pilih trayek &amp; tanggal — 1 NIK berhak 1 tiket setiap 4 minggu.</div>
+        <div class="boarding-desc">Pilih trayek &amp; tanggal - 1 NIK berhak 1 tiket setiap 4 minggu.</div>
       </div>
       <div class="boarding-step">
         <div class="boarding-num">04</div>
         <div class="boarding-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 6v6M2 12h19.6M2 12c0-3.3 0-5 .8-6.1S5 4 8.5 4h7c3.5 0 4.9.8 5.7 1.9S22 8.7 22 12v3.5c0 1.2 0 1.8-.4 2.2s-1 .4-2.2.4H4.6c-1.2 0-1.8 0-2.2-.4S2 16.7 2 15.5z"/></svg></div>
         <div class="boarding-title">Datang &amp; Berangkat</div>
-        <div class="boarding-desc">Hadir di titik keberangkatan sesuai jam — bus akan menunggu Anda di sana.</div>
+        <div class="boarding-desc">Hadir di titik keberangkatan sesuai jam - bus akan menunggu Anda di sana.</div>
       </div>
     </div>
   </div>
@@ -216,11 +216,11 @@
     <div class="faq-list" id="faqList">
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false"><span>Apakah benar-benar gratis?</span><span class="faq-q-icon">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">Ya. Trayek Wisata ini adalah alih fungsi layanan Angkutan Sekolah Gratis milik Dinas Perhubungan Kabupaten Tulungagung yang dioperasikan setiap Sabtu &amp; Minggu — tidak ada biaya tiket sama sekali.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Ya. Trayek Wisata ini adalah alih fungsi layanan Angkutan Sekolah Gratis milik Dinas Perhubungan Kabupaten Tulungagung yang dioperasikan setiap Sabtu &amp; Minggu - tidak ada biaya tiket sama sekali.</div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false"><span>Apakah saya bisa memesan lebih dari 1 kali dalam sebulan?</span><span class="faq-q-icon">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">Setiap NIK — baik pemilik akun maupun anggota keluarga yang didaftarkan — hanya bisa memperoleh 1 tiket setiap 4 minggu, dihitung dari tanggal pemesanan terakhir.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Setiap NIK - baik pemilik akun maupun anggota keluarga yang didaftarkan - hanya bisa memperoleh 1 tiket setiap 4 minggu, dihitung dari tanggal pemesanan terakhir.</div></div>
       </div>
     </div>
     <div class="reveal" style="margin-top:24px">

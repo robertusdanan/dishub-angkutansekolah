@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="csrf-token" content="{{ csrf_token() }}"/>
-  <title>Manajemen Role — Admin</title>
+  <title>Manajemen Role - Admin</title>
   <link rel="canonical" href="{{ url('/admin/manajemen-role') }}"/>
   <link rel="icon" href="/favicon.ico"/>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -290,7 +290,7 @@ async function loadRoles() {
 function renderRow(r) {
   const perms = r.permissions || {};
   const menus = perms.menus || [];
-  const menuLabel = menus.includes('*') ? 'Semua menu' : (menus.length ? `${menus.length} menu` : '—');
+  const menuLabel = menus.includes('*') ? 'Semua menu' : (menus.length ? `${menus.length} menu` : '-');
 
   const actions = [];
   if (r.is_mine) {
@@ -309,8 +309,8 @@ function renderRow(r) {
       <td>${escapeHtml(r.role_name)}<br><span class="role-key">${escapeHtml(r.role_key)}</span>${r.is_system ? '<span class="sys-badge">bawaan</span>' : ''}${r.is_mine ? '<span class="you-tag">(Role Anda)</span>' : ''}</td>
       <td><span class="level-badge">${r.level}</span></td>
       <td>${menuLabel}</td>
-      <td style="max-width:220px;">${escapeHtml(r.description || '—')}</td>
-      <td><div class="row-actions">${actions.join('') || '<span style="color:var(--text-4);font-size:12px;">—</span>'}</div></td>
+      <td style="max-width:220px;">${escapeHtml(r.description || '-')}</td>
+      <td><div class="row-actions">${actions.join('') || '<span style="color:var(--text-4);font-size:12px;">-</span>'}</div></td>
     </tr>`;
 }
 
@@ -400,7 +400,7 @@ function openEditModal(r) {
 }
 
 function openViewModal(r) {
-  document.getElementById('roleFormTitle').textContent = 'Lihat Role — ' + r.role_name;
+  document.getElementById('roleFormTitle').textContent = 'Lihat Role - ' + r.role_name;
   clearModalMsg('roleFormMsg');
   document.getElementById('roleId').value = r.id;
   document.getElementById('roleKey').value = r.role_key;

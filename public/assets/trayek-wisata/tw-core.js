@@ -1,7 +1,7 @@
 
 const TW_PROXY = '/api/supabase-proxy';
 
-// CATATAN MIGRASI: helper baru (tidak ada di kode lama) — Laravel butuh
+// CATATAN MIGRASI: helper baru (tidak ada di kode lama) - Laravel butuh
 // CSRF token untuk request POST/DELETE. Meta tag <meta name="csrf-token">
 // disediakan di setiap Blade halaman Trayek Wisata yang meng-include
 // partials.trayek-wisata.nav / footer.
@@ -171,7 +171,7 @@ function coverFor(titikId) {
 }
 
 // ═══════════════════════════════════════════════════════════════════
-// STORY PERJALANAN — dipakai di beranda (ringkas) & /rute (bagian atas)
+// STORY PERJALANAN - dipakai di beranda (ringkas) & /rute (bagian atas)
 // ═══════════════════════════════════════════════════════════════════
 function renderStory(opts = {}) {
   const wrap = document.getElementById('storyItems');
@@ -215,13 +215,13 @@ function renderStory(opts = {}) {
 }
 
 // ═══════════════════════════════════════════════════════════════════
-// INTERACTIVE ROUTE EXPLORER — dipakai penuh di /rute
+// INTERACTIVE ROUTE EXPLORER - dipakai penuh di /rute
 // ═══════════════════════════════════════════════════════════════════
 let twMap, twRouteLayer, twMarkersLayer, twVehicleMarker, twAnimFrame;
 
 function initTwMap() {
   if (typeof L === 'undefined' || typeof L.map !== 'function') {
-    console.error('Leaflet belum termuat — peta rute tidak bisa ditampilkan.');
+    console.error('Leaflet belum termuat - peta rute tidak bisa ditampilkan.');
     const stage = document.getElementById('twMap');
     if (stage) stage.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--ink-3);font-size:13px;padding:20px;text-align:center">Peta gagal dimuat. Coba muat ulang halaman.</div>';
     return;
@@ -244,7 +244,7 @@ function activateMapOnInteract(map, container) {
   hint.className = 'map-activate-hint';
   hint.innerHTML = window.matchMedia('(pointer:coarse)').matches
     ? '👆 Ketuk peta untuk mulai berinteraksi'
-    : '🖱️ Klik peta untuk zoom &amp; geser — scroll halaman tetap bebas';
+    : '🖱️ Klik peta untuk zoom &amp; geser - scroll halaman tetap bebas';
   container.appendChild(hint);
 
   function activate() {
@@ -310,7 +310,7 @@ function selectTrayek(trayekId, chipEl) {
   });
 
   twMap.fitBounds(latlngs, { padding: [60,60] });
-  document.querySelector('.explorer-hint').textContent = `🖱️ ${points.length} titik pada trayek ini — ketuk marker untuk detail`;
+  document.querySelector('.explorer-hint').textContent = `🖱️ ${points.length} titik pada trayek ini - ketuk marker untuk detail`;
 
   animateVehicle(latlngs, color);
 }
@@ -358,9 +358,9 @@ function openPanel(titik, rel) {
   }
 
   document.getElementById('panelName').textContent = titik.nama;
-  document.getElementById('panelDesc').textContent = titik.deskripsi || '—';
-  document.getElementById('panelEta').textContent = rel?.jam_perkiraan_tiba ? rel.jam_perkiraan_tiba.slice(0,5) : '—';
-  document.getElementById('panelDur').textContent = rel?.estimasi_menit_dari_sebelumnya ? `${rel.estimasi_menit_dari_sebelumnya} mnt` : '—';
+  document.getElementById('panelDesc').textContent = titik.deskripsi || '-';
+  document.getElementById('panelEta').textContent = rel?.jam_perkiraan_tiba ? rel.jam_perkiraan_tiba.slice(0,5) : '-';
+  document.getElementById('panelDur').textContent = rel?.estimasi_menit_dari_sebelumnya ? `${rel.estimasi_menit_dari_sebelumnya} mnt` : '-';
   document.getElementById('panelVisit').textContent = titik.jumlah_kunjungan ?? 0;
   document.getElementById('panelGmaps').href = `https://www.google.com/maps/dir/?api=1&destination=${titik.lat},${titik.lng}`;
 
@@ -369,7 +369,7 @@ function openPanel(titik, rel) {
 function closePanel() { document.getElementById('explorerPanel')?.classList.remove('open'); }
 
 // ═══════════════════════════════════════════════════════════════════
-// GALERI DESTINASI — dipakai di beranda (ringkas) & /destinasi (penuh)
+// GALERI DESTINASI - dipakai di beranda (ringkas) & /destinasi (penuh)
 // ═══════════════════════════════════════════════════════════════════
 function renderGallery(opts = {}) {
   const wrap = document.getElementById('galleryGrid');
@@ -481,7 +481,7 @@ document.addEventListener('keydown', e => {
 });
 
 // ═══════════════════════════════════════════════════════════════════
-// JADWAL — dipakai di beranda (ringkas) & /jadwal (penuh + tab)
+// JADWAL - dipakai di beranda (ringkas) & /jadwal (penuh + tab)
 // ═══════════════════════════════════════════════════════════════════
 function switchJadwalTab(el, hari) {
   document.querySelectorAll('.jadwal-tab').forEach(t => t.classList.remove('active'));
@@ -518,7 +518,7 @@ function renderJadwal(hariFilter, opts = {}) {
       <span class="jadwal-card-status status-${st}"></span>
       <div class="jadwal-card-day">${j.hari === 'SABTU' ? 'Sabtu' : 'Minggu'} · ${tgl}</div>
       <div class="jadwal-card-name">${twEsc(trayek?.nama || 'Trayek')}</div>
-      <div class="jadwal-card-time"><span>🚌 ${j.jam_berangkat?.slice(0,5)}</span><span>↩ ${j.jam_pulang ? j.jam_pulang.slice(0,5) : '—'}</span></div>
+      <div class="jadwal-card-time"><span>🚌 ${j.jam_berangkat?.slice(0,5)}</span><span>↩ ${j.jam_pulang ? j.jam_pulang.slice(0,5) : '-'}</span></div>
       <div class="jadwal-card-meta">${j.kuota_terisi}/${j.kuota_total} kursi terisi</div>
       <div class="jadwal-card-bar"><div class="jadwal-card-bar-fill" style="width:${pct}%"></div></div>
       <div class="jadwal-card-actions">
@@ -538,7 +538,7 @@ function shareJadwalWA(jadwalId) {
   const j = TW_JADWAL.find(x => x.id === jadwalId);
   const trayek = TW_TRAYEK.find(t => t.id === j?.trayek_id);
   const tgl = j ? new Date(j.tanggal).toLocaleDateString('id-ID', { weekday:'long', day:'numeric', month:'long' }) : '';
-  const text = `🚌 Yuk ikut *${trayek?.nama || 'Trayek Wisata Gratis'}*!\n${tgl}, berangkat ${j?.jam_berangkat?.slice(0,5)} — GRATIS dari Dishub Kabupaten Tulungagung.\n\nPesan kursi di sini: ${location.origin}/trayek-wisata/jadwal`;
+  const text = `🚌 Yuk ikut *${trayek?.nama || 'Trayek Wisata Gratis'}*!\n${tgl}, berangkat ${j?.jam_berangkat?.slice(0,5)} - GRATIS dari Dishub Kabupaten Tulungagung.\n\nPesan kursi di sini: ${location.origin}/trayek-wisata/jadwal`;
   window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
 }
 
@@ -556,7 +556,7 @@ async function joinWaitlist(jadwalId, btn) {
     if (!res.ok) throw new Error((await res.json()).error || 'Gagal mendaftar');
     TW_WAITLIST.push(jadwalId);
     btn.textContent = '✓ Terdaftar di Daftar Tunggu';
-    twToast('✓ Anda terdaftar — kami akan hubungi lewat nomor HP di profil kalau ada kursi kosong');
+    twToast('✓ Anda terdaftar - kami akan hubungi lewat nomor HP di profil kalau ada kursi kosong');
   } catch (e) {
     twToast('Gagal: ' + e.message);
   } finally {
@@ -565,7 +565,7 @@ async function joinWaitlist(jadwalId, btn) {
 }
 
 // ═══════════════════════════════════════════════════════════════════
-// KUOTA MINGGU INI — dipakai di beranda & /jadwal
+// KUOTA MINGGU INI - dipakai di beranda & /jadwal
 // ═══════════════════════════════════════════════════════════════════
 function renderKuota() {
   const fill = document.getElementById('kuotaRingFill');
@@ -590,7 +590,7 @@ function renderKuota() {
 }
 
 // ═══════════════════════════════════════════════════════════════════
-// AUTH STATE — nav & tombol pesan menyesuaikan status login
+// AUTH STATE - nav & tombol pesan menyesuaikan status login
 // ═══════════════════════════════════════════════════════════════════
 async function twLoadAuth() {
   try {
@@ -731,7 +731,7 @@ async function twLoadHeroStat() {
       if (p < 1) requestAnimationFrame(step);
     }
     requestAnimationFrame(step);
-  } catch (e) { /* diam-diam gagal — bukan elemen kritikal */ }
+  } catch (e) { /* diam-diam gagal - bukan elemen kritikal */ }
 }
 
 async function twBootstrap(sections = {}) {

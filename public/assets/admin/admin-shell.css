@@ -1,5 +1,5 @@
 /* ════════════════════════════════════════════════
-   admin-shell.css — Layout shell & sidebar styles
+   admin-shell.css - Layout shell & sidebar styles
    Dipakai oleh semua halaman admin
    ════════════════════════════════════════════════ */
 
@@ -552,7 +552,7 @@ tbody td { padding: 10px 14px; color: var(--text-2); vertical-align: middle; }
 .shift-siang { background: #eff6ff; color: #1d4ed8; }
 .shift-other { background: var(--surface-2); color: var(--text-3); }
 
-/* Source badges — menandai asal data absensi (RFID = tabel absensi_RFID, QR Code = tabel absensi_QRCode) */
+/* Source badges - menandai asal data absensi (RFID = tabel absensi_RFID, QR Code = tabel absensi_QRCode) */
 .source-badge {
   display: inline-flex; align-items: center; gap: 4px;
   padding: 3px 9px; border-radius: 999px;
@@ -603,7 +603,7 @@ tbody td { padding: 10px 14px; color: var(--text-2); vertical-align: middle; }
 .dev-credit a:hover { color: var(--accent); }
 
 /* ════════════════════════════════════════════
-   RESPONSIVE — Tablet & Mobile
+   RESPONSIVE - Tablet & Mobile
    ════════════════════════════════════════════ */
 @media (max-width: 1024px) {
   .adm-content { padding: 24px 24px 60px; }

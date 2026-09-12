@@ -3,7 +3,7 @@
  * ─────────────────────────────────────────────────────────────────
  * Pengganti SB_URL + SB_KEY (service_role) yang dulu tertanam
  * langsung di HTML tiap halaman admin. Sekarang browser TIDAK
- * pernah menyimpan service key — semua request ditembakkan ke
+ * pernah menyimpan service key - semua request ditembakkan ke
  * admin/api/angkutansekolah/db.php (server kita sendiri), yang baru di sisi server
  * menempelkan service key dari private/config.php.
  *
@@ -14,7 +14,7 @@
  */
 const SB_API = '/admin/api/angkutansekolah/db';
 
-// CATATAN MIGRASI: helper baru (tidak ada di kode lama) — Laravel butuh
+// CATATAN MIGRASI: helper baru (tidak ada di kode lama) - Laravel butuh
 // CSRF token untuk request POST (termasuk yang di-override jadi PATCH/DELETE).
 function _admCsrfToken() {
   const el = document.querySelector('meta[name="csrf-token"]');
@@ -26,7 +26,7 @@ function _admCsrfToken() {
 // simpan) setiap kali sbPost/sbPatch/sbDelete sukses, supaya cache tabel
 // referensi (driver_bus, driver_mpu, sekolah, domisili, trayek_*, rute_*,
 // map) langsung segar di halaman lain (operasional.php, absensifoto.php,
-// rfidwriter.php, registrasi.php, dll) — tanpa menunggu webhook Supabase
+// rfidwriter.php, registrasi.php, dll) - tanpa menunggu webhook Supabase
 // (yang bisa telat/gagal kalau trigger belum terpasang atau jaringan
 // bermasalah). admin/api/invalidate_cache.php sendiri yang menentukan
 // apakah tabel ini termasuk tabel referensi yang di-cache atau bukan,
@@ -38,7 +38,7 @@ function _invalidateServerCache(table) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ table }),
   }).catch((e) => {
-    // best-effort — jangan sampai ganggu alur simpan, tapi tetap jejak di console
+    // best-effort - jangan sampai ganggu alur simpan, tapi tetap jejak di console
     console.warn('Gagal invalidasi cache untuk tabel', table, e);
   });
 }
@@ -52,7 +52,7 @@ async function sbGet(table, qs = '') {
   return r.json();
 }
 
-// Ambil satu halaman (Range) — dipakai untuk paging manual bila perlu.
+// Ambil satu halaman (Range) - dipakai untuk paging manual bila perlu.
 async function sbGetRange(table, qs, from, to) {
   const r = await fetch(`${SB_API}?table=${encodeURIComponent(table)}&qs=${encodeURIComponent(qs)}`, {
     headers: { 'X-SB-Range': `${from}-${to}` },
@@ -127,7 +127,7 @@ async function sbDelete(table, filterQs) {
  * Baca lewat api/supabase_proxy.php (anon key publik, BUKAN service_role)
  * yang sudah punya cache file permanen di server (TTL aman 24 jam,
  * dihapus otomatis begitu ada sbPost/sbPatch/sbDelete ke tabel yang sama
- * lewat _invalidateServerCache() di atas — lihat core/cache_helper.php).
+ * lewat _invalidateServerCache() di atas - lihat core/cache_helper.php).
  *
  * Beda dengan sbGetCached() (cache localStorage per-browser, TIDAK
  * dibagi antar admin): cache di sini SATU FILE dipakai bersama oleh
@@ -135,12 +135,12 @@ async function sbDelete(table, filterQs) {
  * halaman publik (mis. peta ASDP, tampilan rute). Jadi kalau ada
  * puluhan admin buka halaman yang sama lalu 1 admin menyimpan
  * perubahan, cuma admin PERTAMA yang reload setelah itu yang benar2
- * menembak Supabase — sisanya kena cache hit (nol request tambahan).
+ * menembak Supabase - sisanya kena cache hit (nol request tambahan).
  *
  * Dipakai untuk tabel yang memang sudah terdaftar di $allowed_tables
  * pada api/supabase_proxy.php (trayek_bus/mpu, map, driver_bus/mpu,
  * user_RFID, domisili, sekolah, list_tambangan).
- * Tabel di luar itu akan ditolak (HTTP 400) oleh proxy — pakai sbGet()
+ * Tabel di luar itu akan ditolak (HTTP 400) oleh proxy - pakai sbGet()
  * biasa untuk tabel yang memang tidak cocok di-cache (mis. data yang
  * terus berubah tiap detik/menit seperti absensi harian).
  */
@@ -158,7 +158,7 @@ async function sbGetShared(table, qs = '') {
  * ── Cache lokal (localStorage) untuk tabel REFERENSI ──────────────
  * Ditujukan untuk tabel kecil yang jarang berubah tapi dibaca ulang di
  * banyak halaman admin (sekolah, trayek, armada bus/mpu, rute, peta,
- * domisili) — BUKAN untuk tabel besar yang terus tumbuh (absensi, siswa).
+ * domisili) - BUKAN untuk tabel besar yang terus tumbuh (absensi, siswa).
  *
  * CATATAN: cache ini per-BROWSER (tidak dibagi antar admin lain), jadi
  * untuk tabel yang sudah didukung sbGetShared() di atas, pakai itu saja
@@ -182,18 +182,18 @@ async function sbGetCached(table, qs = '', ttlMs = SB_CACHE_TTL_MS) {
     const raw = localStorage.getItem(key);
     if (raw) {
       const { data, ts } = JSON.parse(raw);
-      if (Date.now() - ts < ttlMs) return data; // cache hit — nol request ke server
+      if (Date.now() - ts < ttlMs) return data; // cache hit - nol request ke server
     }
-  } catch (_) { /* localStorage penuh/nonaktif — lanjut fetch biasa, tidak fatal */ }
+  } catch (_) { /* localStorage penuh/nonaktif - lanjut fetch biasa, tidak fatal */ }
 
   const data = await sbGet(table, qs);
   try {
     localStorage.setItem(key, JSON.stringify({ data, ts: Date.now() }));
-  } catch (_) { /* gagal simpan (kuota penuh dsb) — tidak fatal, data tetap valid */ }
+  } catch (_) { /* gagal simpan (kuota penuh dsb) - tidak fatal, data tetap valid */ }
   return data;
 }
 
-// Hapus semua entri cache milik satu tabel — dipanggil dari handler
+// Hapus semua entri cache milik satu tabel - dipanggil dari handler
 // realtime tiap halaman begitu ada INSERT/UPDATE/DELETE nyata, supaya
 // halaman lain (atau kunjungan berikutnya) tidak menampilkan data basi.
 function sbCacheInvalidate(table) {
@@ -213,7 +213,7 @@ function sbCacheInvalidate(table) {
  * Pemakaian (di dalam fungsi async):
  *   if (!(await confirmDangerModal(`Hapus "${nama}"?`))) return;
  *
- * Mengembalikan Promise<boolean> — true jika user menekan "Ya, Hapus".
+ * Mengembalikan Promise<boolean> - true jika user menekan "Ya, Hapus".
  */
 function _ensureConfirmModalEl() {
   if (document.getElementById('confirmModalOverlay')) return;
@@ -228,7 +228,7 @@ function _ensureConfirmModalEl() {
         <div class="confirm-modal-sub" id="confirmModalSub"></div>
         <div class="confirm-modal-warn">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
-          <span>Tindakan ini <strong>permanen</strong> — data yang sudah dihapus <strong>tidak bisa dikembalikan atau di-backup</strong>.</span>
+          <span>Tindakan ini <strong>permanen</strong> - data yang sudah dihapus <strong>tidak bisa dikembalikan atau di-backup</strong>.</span>
         </div>
         <div class="confirm-modal-actions">
           <button type="button" class="confirm-modal-cancel" id="confirmModalCancel">Batal</button>

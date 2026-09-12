@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             </svg>
           </summary>
           <div class="p-4 space-y-2">
-            <p class="text-gray-700"><span class="font-medium text-gray-600">Rute:</span> ${item.rute || '—'}</p>
+            <p class="text-gray-700"><span class="font-medium text-gray-600">Rute:</span> ${item.rute || '-'}</p>
             <div>
               <span class="font-medium text-gray-600">Driver:</span>
               <ul class="mt-1 space-y-1 list-disc list-inside text-sm text-gray-800">

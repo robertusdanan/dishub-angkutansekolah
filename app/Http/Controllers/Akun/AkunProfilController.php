@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 /**
- * Port dari pages/akun/saya.php (bagian render halaman — logic form/JS-nya
+ * Port dari pages/akun/saya.php (bagian render halaman - logic form/JS-nya
  * tetap di client seperti kode lama, cuma endpoint API-nya pindah ke
  * AkunProfilApiController).
  */

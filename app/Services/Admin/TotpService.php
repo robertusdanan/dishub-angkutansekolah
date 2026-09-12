@@ -3,7 +3,7 @@
 namespace App\Services\Admin;
 
 /**
- * REKOMENDASI KEAMANAN — implementasi TOTP (RFC 6238) murni PHP, kompatibel
+ * REKOMENDASI KEAMANAN - implementasi TOTP (RFC 6238) murni PHP, kompatibel
  * Google Authenticator/Authy. Ditulis sendiri (bukan composer package)
  * supaya tidak ada risiko resolve dependency baru.
  */

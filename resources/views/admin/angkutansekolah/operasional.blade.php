@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
 <meta name="csrf-token" content="{{ csrf_token() }}"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Rekap Operasional — Admin</title>
+  <title>Rekap Operasional - Admin</title>
   <link rel="canonical" href="{{ url('/admin/operasional') }}"/>
   <link rel="icon" href="/favicon.ico"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -70,7 +70,7 @@
       <div class="adm-page-header">
         <div>
           <h1 class="adm-page-title">Rekap Operasional</h1>
-          <p class="adm-page-subtitle">Angkutan Sekolah — Dinas Perhubungan Kab. Tulungagung</p>
+          <p class="adm-page-subtitle">Angkutan Sekolah - Dinas Perhubungan Kab. Tulungagung</p>
         </div>
       </div>
 
@@ -275,12 +275,12 @@ function onTahunChange() {
 }
 function showProgress(){progressBar.style.width="0%";progressText.textContent="0%";progressContainer.classList.add("visible");const lb=document.getElementById("loadBadge");lb.style.display="flex";lb.classList.remove("done");document.getElementById("pulseDot").classList.remove("done");document.getElementById("lbLabel").textContent="Memuat";document.getElementById("loadedCount").textContent="0";document.getElementById("totalDataCount").textContent="...";}
 function hideProgress(){progressText.textContent="Selesai";setTimeout(()=>progressContainer.classList.remove("visible"),1000);const lb=document.getElementById("loadBadge");document.getElementById("lbLabel").textContent="Selesai";lb.classList.add("done");document.getElementById("pulseDot").classList.add("done");setTimeout(()=>{lb.style.display="none";},3000);}
-function updateProgress(current,total,label=""){if(total===0)return;const percent=Math.min(100,Math.round((current/total)*100));progressBar.style.width=percent+"%";if(label&&current<total){const elapsed=Date.now()-progressStartTime;const etrMs=current>0?(elapsed/current)*(total-current):0;let estText="menghitung...";if(etrMs>=1000){const s=Math.round(etrMs/1000),m=Math.floor(s/60),rs=s%60;estText=m>0?`${m}mnt ${rs}dtk`:`${rs}dtk`;}progressText.textContent=`${percent}% — sisa ~${estText}`;}else{progressText.textContent=`${percent}%`;}document.getElementById("loadedCount").textContent=current.toLocaleString("id-ID");}
+function updateProgress(current,total,label=""){if(total===0)return;const percent=Math.min(100,Math.round((current/total)*100));progressBar.style.width=percent+"%";if(label&&current<total){const elapsed=Date.now()-progressStartTime;const etrMs=current>0?(elapsed/current)*(total-current):0;let estText="menghitung...";if(etrMs>=1000){const s=Math.round(etrMs/1000),m=Math.floor(s/60),rs=s%60;estText=m>0?`${m}mnt ${rs}dtk`:`${rs}dtk`;}progressText.textContent=`${percent}% - sisa ~${estText}`;}else{progressText.textContent=`${percent}%`;}document.getElementById("loadedCount").textContent=current.toLocaleString("id-ID");}
 function buatNamaFile(prefix){const tr=transportasiSelect.value,b=parseInt(bulanSelect.value),t=parseInt(tahunSelect.value);return `${prefix}_${tr==="all"?"bus-mpu":tr.toLowerCase()}_${bulanNama[b]}_${t}`;}
 async function loadDrivers(){if(allBus.length||allMpu.length)return;progressText.textContent="Memuat data kendaraan...";[allBus,allMpu]=await Promise.all([sbGetShared('driver_bus','select=trayek,plat,driver'),sbGetShared('driver_mpu','select=trayek,plat,driver')]);kendaraanList=[];allBus.forEach(d=>kendaraanList.push({transportasi:"Bus",trayek:d.trayek||"-",plat:d.plat,driver:d.driver,platDriver:`${d.plat} - ${d.driver}`}));allMpu.forEach(d=>kendaraanList.push({transportasi:"MPU",trayek:d.trayek||"-",plat:d.plat,driver:d.driver,platDriver:`${d.plat} - ${d.driver}`}));kendaraanList.sort((a,b)=>{if(a.transportasi==="Bus"&&b.transportasi==="MPU")return -1;if(a.transportasi==="MPU"&&b.transportasi==="Bus")return 1;return a.plat.localeCompare(b.plat);});}
 async function loadData(){progressStartTime=Date.now();showProgress();btnFilter.disabled=true;btnLoading.classList.remove('hidden');const b=parseInt(bulanSelect.value),t=parseInt(tahunSelect.value),filterTr=transportasiSelect.value;const WIB_OFFSET=7*60*60*1000;const lastDay=new Date(t,b+1,0).getDate();const startISO=new Date(Date.UTC(t,b,1,0,0,0)-WIB_OFFSET).toISOString();const endISO=new Date(Date.UTC(t,b,lastDay,23,59,59,999)-WIB_OFFSET).toISOString();function getWIBParts(isoStr){const ms=new Date(isoStr).getTime()+WIB_OFFSET;const d=new Date(ms);return{date:d.getUTCDate(),hours:d.getUTCHours()};}
 try{progressText.textContent="Memeriksa data kendaraan...";progressBar.style.width="10%";await loadDrivers();progressText.textContent="Mengambil data absensi...";progressBar.style.width="30%";
-// Rentang tanggal (kalender WIB) untuk absensi_proxy.php — cache per-hari,
+// Rentang tanggal (kalender WIB) untuk absensi_proxy.php - cache per-hari,
 // jadi hari-hari lama dalam bulan ini tidak ditarik ulang dari Supabase
 // tiap kali admin buka/filter ulang halaman ini.
 const pad2=n=>String(n).padStart(2,'0');
@@ -609,7 +609,7 @@ function downloadPDF() {
     doc.setFont("helvetica", "normal");
     doc.setFontSize(7.5);
     doc.setTextColor(148, 163, 184);
-    doc.text(`Dicetak: ${dicetak} pukul ${jam}  —  Periode: ${periodeStr}  —  ${filterLabel}`, 14, footerY);
+    doc.text(`Dicetak: ${dicetak} pukul ${jam}  -  Periode: ${periodeStr}  -  ${filterLabel}`, 14, footerY);
     doc.setFont("helvetica", "bold");
     doc.setTextColor(...WHITE);
     doc.text(`${i} / ${pageCount}`, PW - 14, footerY, { align: "right" });

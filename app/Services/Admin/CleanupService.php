@@ -49,13 +49,13 @@ class CleanupService
             $result = $this->deleteOld($tabel, 'waktu', $batasISO);
 
             if ($result['error']) {
-                $log[] = "[GAGAL] {$tabel} — HTTP {$result['http_code']}: {$result['error']}";
+                $log[] = "[GAGAL] {$tabel} - HTTP {$result['http_code']}: {$result['error']}";
             } else {
-                $log[] = "[OK]    {$tabel} — {$result['deleted']} baris dihapus";
+                $log[] = "[OK]    {$tabel} - {$result['deleted']} baris dihapus";
 
                 // Setara: hapus file cache/absensi/{tabel}.json lama.
                 // Di Laravel, cache absensi (kalau ada) dikelola lewat
-                // Cache facade dengan prefix per-tabel — invalidasi umum.
+                // Cache facade dengan prefix per-tabel - invalidasi umum.
                 Cache::forget('absensi_cache_'.$tabel);
 
                 if ($tabel === 'absensi_foto' && !empty($result['rows'])) {
@@ -85,25 +85,25 @@ class CleanupService
         [, $pemesananLama] = $this->supabase->rawRequest('GET', 'trayekwisata_pemesanan?select=id&created_at=lt.'.urlencode($batasPemesananISO));
 
         if (!is_array($pemesananLama)) {
-            $log[] = '[GAGAL] trayekwisata_pemesanan — gagal mengambil daftar id lama dari Supabase.';
+            $log[] = '[GAGAL] trayekwisata_pemesanan - gagal mengambil daftar id lama dari Supabase.';
         } elseif (count($pemesananLama) === 0) {
-            $log[] = '[OK]    trayekwisata_pemesanan_nik — 0 baris dihapus (tidak ada pemesanan lama)';
-            $log[] = '[OK]    trayekwisata_pemesanan — 0 baris dihapus';
+            $log[] = '[OK]    trayekwisata_pemesanan_nik - 0 baris dihapus (tidak ada pemesanan lama)';
+            $log[] = '[OK]    trayekwisata_pemesanan - 0 baris dihapus';
         } else {
             $idsLama = array_column($pemesananLama, 'id');
 
             $nikResult = $this->deleteByIds('trayekwisata_pemesanan_nik', 'pemesanan_id', $idsLama);
             if ($nikResult['error']) {
-                $log[] = "[GAGAL] trayekwisata_pemesanan_nik — {$nikResult['error']}";
+                $log[] = "[GAGAL] trayekwisata_pemesanan_nik - {$nikResult['error']}";
                 $log[] = '        Dibatalkan: trayekwisata_pemesanan TIDAK dihapus supaya baris anak tidak jadi yatim.';
             } else {
-                $log[] = "[OK]    trayekwisata_pemesanan_nik — {$nikResult['deleted']} baris dihapus";
+                $log[] = "[OK]    trayekwisata_pemesanan_nik - {$nikResult['deleted']} baris dihapus";
 
                 $indukResult = $this->deleteByIds('trayekwisata_pemesanan', 'id', $idsLama);
                 if ($indukResult['error']) {
-                    $log[] = "[GAGAL] trayekwisata_pemesanan — {$indukResult['error']}";
+                    $log[] = "[GAGAL] trayekwisata_pemesanan - {$indukResult['error']}";
                 } else {
-                    $log[] = "[OK]    trayekwisata_pemesanan — {$indukResult['deleted']} baris dihapus";
+                    $log[] = "[OK]    trayekwisata_pemesanan - {$indukResult['deleted']} baris dihapus";
 
                     $this->refCache->invalidate('trayekwisata_pemesanan');
                     Cache::forget('trayekwisata_stats');

@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Storage;
  *
  * Satu-satunya tempat di seluruh aplikasi Laravel yang boleh memakai
  * SUPABASE_SERVICE_KEY untuk permintaan yang dipicu dari BROWSER admin
- * (via fetch, session cookie) — sama seperti filosofi kode lama.
+ * (via fetch, session cookie) - sama seperti filosofi kode lama.
  */
 class AdminSupabaseWriteProxyController
 {
@@ -42,7 +42,7 @@ class AdminSupabaseWriteProxyController
     }
 
     /**
-     * Inti generik — setara admin_proxy_*() di kode lama. $config berisi
+     * Inti generik - setara admin_proxy_*() di kode lama. $config berisi
      * bagian spesifik per modul.
      */
     protected function proxy(Request $request, array $config): JsonResponse
@@ -118,7 +118,7 @@ class AdminSupabaseWriteProxyController
 
         if ($method !== 'GET') {
             // code_map driver harus ikut berubah begitu trayek/titik rute/trayek
-            // berubah — lihat App\Services\AbsenRfid\DriverCodeMapSync.
+            // berubah - lihat App\Services\AbsenRfid\DriverCodeMapSync.
             // Jalan SEBELUM invalidasi cache supaya baris hasil sync yang baru
             // tidak ikut tersimpan basi di cache referensi.
             $touchedDriverCache = false;
@@ -157,16 +157,16 @@ class AdminSupabaseWriteProxyController
     }
 
     /**
-     * Peta tabel → menu yang mengatur akses tulisnya — dipakai supaya
+     * Peta tabel → menu yang mengatur akses tulisnya - dipakai supaya
      * proxy tulis KONSISTEN dengan canAccessMenu() yang sudah mengatur
      * visibilitas halamannya (lihat sidebar & requireMenuAccess() di
      * masing-masing controller halaman). Beberapa tabel dijaga LEBIH DARI
-     * SATU menu (mis. list_tambangan dipakai 2 halaman ASDP) — cukup salah
+     * SATU menu (mis. list_tambangan dipakai 2 halaman ASDP) - cukup salah
      * satu izin menu itu untuk boleh menulis ke tabelnya.
      *
      * PERBAIKAN (atas permintaan pemilik project): kode lama mengunci
      * SELURUH tabel di endpoint ini ke role 'superadmin' secara blanket,
-     * tidak peduli menu apa yang sudah diberikan lewat Manajemen Role —
+     * tidak peduli menu apa yang sudah diberikan lewat Manajemen Role -
      * jadi kalau ada role non-superadmin diberi akses menu (mis. hanya
      * "Lokasi ASDP"), mereka BISA lihat halamannya tapi SELALU gagal (403)
      * saat menyimpan. Sekarang proxy ini ikut memeriksa canAccessMenu()
@@ -191,7 +191,7 @@ class AdminSupabaseWriteProxyController
         ];
     }
 
-    /** POST/GET /admin/api/angkutansekolah/db — setara admin/api/angkutansekolah/db.php */
+    /** POST/GET /admin/api/angkutansekolah/db - setara admin/api/angkutansekolah/db.php */
     public function angkutansekolah(Request $request): JsonResponse
     {
         return $this->proxy($request, [
@@ -217,7 +217,7 @@ class AdminSupabaseWriteProxyController
         ]);
     }
 
-    /** POST/GET /admin/api/balikgratis/db — setara admin/api/balikgratis/db.php */
+    /** POST/GET /admin/api/balikgratis/db - setara admin/api/balikgratis/db.php */
     public function balikgratis(Request $request): JsonResponse
     {
         return $this->proxy($request, [
@@ -247,7 +247,7 @@ class AdminSupabaseWriteProxyController
         ]);
     }
 
-    /** POST/GET /admin/api/trayekwisata/db — setara admin/api/trayekwisata/db.php */
+    /** POST/GET /admin/api/trayekwisata/db - setara admin/api/trayekwisata/db.php */
     public function trayekwisata(Request $request): JsonResponse
     {
         $cacheableTables = [

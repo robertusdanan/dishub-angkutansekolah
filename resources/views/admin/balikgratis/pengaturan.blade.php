@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="csrf-token" content="{{ csrf_token() }}"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Pengaturan Kuota — Admin Balik Gratis</title>
+<title>Pengaturan Kuota - Admin Balik Gratis</title>
 <link rel="icon" href="/favicon.ico"/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/admin/admin-shell.css">
@@ -55,19 +55,19 @@
     <div class="adm-page-header">
       <div>
         <h1 class="adm-page-title">Pengaturan Kuota Tahun Ini</h1>
-        <p class="adm-page-subtitle">Tahun terdeteksi otomatis mengikuti tahun kalender berjalan — tidak perlu diganti manual setiap tahun.</p>
+        <p class="adm-page-subtitle">Tahun terdeteksi otomatis mengikuti tahun kalender berjalan - tidak perlu diganti manual setiap tahun.</p>
       </div>
     </div>
 
     <div class="pengaturan-wrap">
 
       <div class="status-hero">
-        <div class="tahun-label" id="tahunLabel">Balik Gratis —</div>
+        <div class="tahun-label" id="tahunLabel">Balik Gratis -</div>
         <div class="status-badge off" id="statusBadge"><span class="dot"></span><span id="statusText">Memuat…</span></div>
         <div class="kuota-summary">
-          <div><div class="k-val" id="kKuota">—</div><div class="k-lbl">Kuota</div></div>
-          <div><div class="k-val" id="kTerisi">—</div><div class="k-lbl">Terisi</div></div>
-          <div><div class="k-val" id="kSisa">—</div><div class="k-lbl">Sisa</div></div>
+          <div><div class="k-val" id="kKuota">-</div><div class="k-lbl">Kuota</div></div>
+          <div><div class="k-val" id="kTerisi">-</div><div class="k-lbl">Terisi</div></div>
+          <div><div class="k-val" id="kSisa">-</div><div class="k-lbl">Sisa</div></div>
         </div>
         <div class="meta-line" id="metaLine"></div>
       </div>
@@ -118,7 +118,7 @@ async function loadStatus() {
 
 function render() {
   const s = currentStatus;
-  document.getElementById('tahunLabel').textContent = 'Balik Gratis — Tahun ' + s.tahun;
+  document.getElementById('tahunLabel').textContent = 'Balik Gratis - Tahun ' + s.tahun;
 
   const badge = document.getElementById('statusBadge');
   const buka = s.status === 'buka';

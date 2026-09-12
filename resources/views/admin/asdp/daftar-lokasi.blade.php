@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="csrf-token" content="{{ csrf_token() }}"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Daftar Lokasi ASDP — Admin</title>
+<title>Daftar Lokasi ASDP - Admin</title>
 <link rel="icon" href="/favicon.ico"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -141,7 +141,7 @@
       <div class="info-panel">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
         <div>
-          ID lokasi <strong>digenerate otomatis</strong>. Foto yang diupload <strong>otomatis dikompres &amp; diperkecil</strong> maksimal resolusi HD (1280×720) — upload foto sebesar apapun (termasuk 4K) tetap aman. Data di tabel ini dibaca lewat <strong>cache bersama</strong> dengan halaman peta ASDP publik (segar otomatis begitu ada perubahan). Untuk mengatur koordinat peta, buka menu <strong>Lokasi ASDP</strong>.
+          ID lokasi <strong>digenerate otomatis</strong>. Foto yang diupload <strong>otomatis dikompres &amp; diperkecil</strong> maksimal resolusi HD (1280×720) - upload foto sebesar apapun (termasuk 4K) tetap aman. Data di tabel ini dibaca lewat <strong>cache bersama</strong> dengan halaman peta ASDP publik (segar otomatis begitu ada perubahan). Untuk mengatur koordinat peta, buka menu <strong>Lokasi ASDP</strong>.
         </div>
       </div>
 
@@ -150,7 +150,7 @@
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           <input type="text" id="searchInput" class="search-input" placeholder="Cari nama atau deskripsi lokasi..." oninput="renderTable()"/>
         </div>
-        <div class="count-badge">Total: <strong id="totalCount">—</strong> lokasi</div>
+        <div class="count-badge">Total: <strong id="totalCount">-</strong> lokasi</div>
       </div>
 
       <div class="data-card">
@@ -239,7 +239,7 @@ let allData     = [];
 let currentPage = 1;
 const PER_PAGE  = 15;
 
-// File yang baru dipilih tapi BELUM diupload — diupload betulan hanya
+// File yang baru dipilih tapi BELUM diupload - diupload betulan hanya
 // saat tombol Simpan/Tambah diklik, supaya klik "Batal" tidak pernah
 // menimpa foto lama di server (lihat catatan di saveEdit/addRow).
 const pendingFiles  = {};   // { [rowId]: File }
@@ -289,7 +289,7 @@ async function loadData() {
     // parameter select → default '*') supaya cache-nya SATU FILE YANG SAMA
     // dipakai bersama oleh admin & publik. Cache ini permanen (TTL aman 24
     // jam) dan otomatis dihapus tiap ada sbPost/sbPatch/sbDelete ke tabel
-    // ini (lihat _invalidateServerCache di sb-secure.js) — jadi meskipun
+    // ini (lihat _invalidateServerCache di sb-secure.js) - jadi meskipun
     // dibaca dari cache, datanya tetap segar begitu ada perubahan nyata,
     // tanpa perlu tiap admin/tab menembak Supabase langsung satu-satu.
     allData = await sbGetShared('list_tambangan', 'order=name.asc');
@@ -367,7 +367,7 @@ function renderTable() {
 
       <!-- Deskripsi -->
       <td>
-        <span class="vv-text desc-view ${row.description ? '' : 'empty'}">${row.description ? esc(row.description) : '— tidak ada deskripsi —'}</span>
+        <span class="vv-text desc-view ${row.description ? '' : 'empty'}">${row.description ? esc(row.description) : '- tidak ada deskripsi -'}</span>
         <textarea class="edit-textarea vv-edit ei-desc" style="display:none" rows="3" maxlength="1000">${esc(row.description || '')}</textarea>
       </td>
 
@@ -490,7 +490,7 @@ function markRemoveImage(id) {
 
 // Upload gambar ke server (kompres + resize otomatis di sisi server).
 // `name` dikirim karena nama file yang disimpan di server sekarang
-// mengikuti Nama Lokasi (bukan id lagi) — lihat upload_image.php.
+// mengikuti Nama Lokasi (bukan id lagi) - lihat upload_image.php.
 async function uploadImageFor(id, file, oldImage, name) {
   const fd = new FormData();
   fd.append('action', 'upload');
@@ -505,7 +505,7 @@ async function uploadImageFor(id, file, oldImage, name) {
 }
 
 // Sinkronkan nama file foto yang SUDAH ADA dengan Nama Lokasi baru,
-// dipakai saat admin ganti nama tapi TIDAK memilih foto baru — supaya
+// dipakai saat admin ganti nama tapi TIDAK memilih foto baru - supaya
 // nama file tetap konsisten mengikuti nama lokasi tanpa perlu upload ulang.
 async function renameImageFor(oldFilename, name) {
   const fd = new FormData();

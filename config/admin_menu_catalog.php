@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Port dari admin/config/menu_catalog.php — dipakai AdminRoleApiController
+ * Port dari admin/config/menu_catalog.php - dipakai AdminRoleApiController
  * untuk memvalidasi isi permissions.menus (mencegah id menu ngasal lewat
  * request manual) dan untuk render UI checklist menu di Manajemen Role.
  */

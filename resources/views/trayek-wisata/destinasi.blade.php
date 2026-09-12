@@ -4,8 +4,8 @@
 <meta charset="UTF-8"/>
 <meta name="csrf-token" content="{{ csrf_token() }}"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
-<title>Destinasi Pantai — Trayek Wisata Gratis | Dishub Kabupaten Tulungagung</title>
-<meta name="description" content="Semua pantai yang disinggahi Trayek Wisata Gratis Dishub Kabupaten Tulungagung — lengkap foto, video, dan cerita tiap destinasi."/>
+<title>Destinasi Pantai - Trayek Wisata Gratis | Dishub Kabupaten Tulungagung</title>
+<meta name="description" content="Semua pantai yang disinggahi Trayek Wisata Gratis Dishub Kabupaten Tulungagung - lengkap foto, video, dan cerita tiap destinasi."/>
 <meta name="theme-color" content="#0A1F44"/>
 <link rel="icon" href="/favicon.ico"/>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,400..600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -20,7 +20,7 @@
 @include('partials.trayek-wisata.page-header', [
     'twPageEyebrow' => 'Destinasi',
     'twPageTitle' => 'Pantai-pantai yang<br/>akan Anda singgahi.',
-    'twPageDesc' => 'Setiap titik dipilih karena punya karakter sendiri — dari ombak besar Selatan hingga teluk tenang tersembunyi di balik tebing. Ketuk untuk melihat galeri lengkapnya.',
+    'twPageDesc' => 'Setiap titik dipilih karena punya karakter sendiri - dari ombak besar Selatan hingga teluk tenang tersembunyi di balik tebing. Ketuk untuk melihat galeri lengkapnya.',
 ])
 
 <main id="main">

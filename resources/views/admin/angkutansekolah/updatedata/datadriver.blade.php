@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
 <meta name="csrf-token" content="{{ csrf_token() }}"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Data Driver — Admin</title>
+  <title>Data Driver - Admin</title>
   <link rel="icon" href="/favicon.ico"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -194,12 +194,12 @@
         <button class="tab-btn active" id="tabBus" onclick="switchTab('bus')">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
           Driver Bus
-          <span class="tab-count" id="cntBus">—</span>
+          <span class="tab-count" id="cntBus">-</span>
         </button>
         <button class="tab-btn" id="tabMpu" onclick="switchTab('mpu')">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3"/><rect x="9" y="11" width="14" height="10" rx="2"/><circle cx="12" cy="21" r="1"/><circle cx="20" cy="21" r="1"/></svg>
           Driver MPU
-          <span class="tab-count" id="cntMpu">—</span>
+          <span class="tab-count" id="cntMpu">-</span>
         </button>
       </div>
 
@@ -269,7 +269,7 @@
             <div class="field-group">
               <span class="field-label">Trayek</span>
               <select id="nTrayek" class="edit-input">
-                <option value="">— Pilih Trayek —</option>
+                <option value="">- Pilih Trayek -</option>
               </select>
             </div>
 
@@ -291,7 +291,7 @@
     <div class="rm-head">
       <div>
         <div class="rm-title" id="rmTitle">Atur Rute</div>
-        <div class="rm-sub" id="rmSub">—</div>
+        <div class="rm-sub" id="rmSub">-</div>
       </div>
       <button class="rm-close" id="rmClose" type="button">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
@@ -316,7 +316,7 @@ const SB_ANON_PUBLIC = {!! json_encode(config('services.supabase.anon_key')) !!}
 <script src="/assets/admin/angkutansekolah/sb-secure.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-// service_role key tidak lagi dikirim ke browser — sbGet/sbPost/sbPatch/
+// service_role key tidak lagi dikirim ke browser - sbGet/sbPost/sbPatch/
 // sbDelete sekarang datang dari admin/assets/angkutansekolah/sb-secure.js (lewat admin/api/angkutansekolah/db.php).
 const sbRealtime = window.supabase ? window.supabase.createClient(SB_URL_PUBLIC, SB_ANON_PUBLIC) : null;
 
@@ -324,7 +324,7 @@ const sbRealtime = window.supabase ? window.supabase.createClient(SB_URL_PUBLIC,
 let currentTab = 'bus';
 let data       = { bus: [], mpu: [] };
 let trayekData = { bus: [], mpu: [] };
-let allMapRows = []; // semua baris tabel map — dipakai untuk deteksi Rute 1/2/3 per trayek
+let allMapRows = []; // semua baris tabel map - dipakai untuk deteksi Rute 1/2/3 per trayek
 let rmDriverId = null; // id driver yang sedang diatur rutenya di modal
 
 // ── Tables affected by driver changes ─────────────────────────────
@@ -397,13 +397,13 @@ function populateTrayekSelect(selectId, tab, selected) {
   const sel  = document.getElementById(selectId);
   if (!sel) return;
   const list = trayekData[tab] || [];
-  sel.innerHTML = '<option value="">— Pilih Trayek —</option>' +
+  sel.innerHTML = '<option value="">- Pilih Trayek -</option>' +
     list.map(t => `<option value="${esc(t.nama)}"${t.nama === selected ? ' selected' : ''}>${esc(t.nama)}</option>`).join('');
 }
 
 function buildTrayekOpts(tab, selected) {
   const list = trayekData[tab] || [];
-  return '<option value="">— Pilih Trayek —</option>' +
+  return '<option value="">- Pilih Trayek -</option>' +
     list.map(t => `<option value="${esc(t.nama)}"${t.nama === selected ? ' selected' : ''}>${esc(t.nama)}</option>`).join('');
 }
 
@@ -430,7 +430,7 @@ function ruteLabelFromIdMap(idMap) {
 }
 
 // Ambil daftar rute (per id_map unik) yang TERDETEKSI dari tabel `map`
-// untuk satu nama trayek tertentu — inilah yang jadi pilihan checklist.
+// untuk satu nama trayek tertentu - inilah yang jadi pilihan checklist.
 function getRuteOptionsForTrayek(tab, trayekNama) {
   if (!trayekNama) return [];
   const tr = (trayekData[tab] || []).find(t => t.nama === trayekNama);
@@ -532,7 +532,7 @@ function renderTable() {
 
       <!-- Trayek -->
       <td>
-        <span class="vv-trayek"><span class="trayek-badge${d.trayek?'':' empty'}">${d.trayek ? esc(d.trayek) : '—'}</span></span>
+        <span class="vv-trayek"><span class="trayek-badge${d.trayek?'':' empty'}">${d.trayek ? esc(d.trayek) : '-'}</span></span>
         <select class="edit-input ei-trayek vv-edit" style="display:none">${tOp}</select>
       </td>
 
@@ -701,7 +701,7 @@ async function addDriver() {
 async function deleteDriver(id) {
   const rec = (data[currentTab]||[]).find(d=>String(d.id)===String(id));
   if (!rec) return;
-  if (!(await confirmDangerModal(`Hapus driver "${rec.plat} — ${rec.driver}"?\n\nData di tabel lain TIDAK otomatis dihapus.`))) return;
+  if (!(await confirmDangerModal(`Hapus driver "${rec.plat} - ${rec.driver}"?\n\nData di tabel lain TIDAK otomatis dihapus.`))) return;
 
   try {
     const table = currentTab==='bus' ? 'driver_bus' : 'driver_mpu';
@@ -751,7 +751,7 @@ function openRuteModal(id) {
   const options = getRuteOptionsForTrayek(currentTab, rec.trayek);
   rmDriverId = id;
 
-  document.getElementById('rmTitle').textContent = `Atur Rute — ${rec.plat}`;
+  document.getElementById('rmTitle').textContent = `Atur Rute - ${rec.plat}`;
   document.getElementById('rmSub').textContent    = `${rec.driver} · Trayek: ${rec.trayek}`;
 
   const body = document.getElementById('rmBody');

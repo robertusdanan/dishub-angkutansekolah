@@ -13,7 +13,7 @@ use Illuminate\View\View;
  * Port dari admin/pages/profil-saya.php.
  *
  * Halaman ini secara fungsional IDENTIK dengan /akun/saya (form data diri,
- * dokumen, keluarga) — cuma dibungkus shell admin (sidebar) alih-alih
+ * dokumen, keluarga) - cuma dibungkus shell admin (sidebar) alih-alih
  * header/footer publik, dan datanya via endpoint /akun/api/* yang SAMA
  * (satu sumber data, tidak digandakan).
  */

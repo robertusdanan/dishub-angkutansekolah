@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
 <meta name="csrf-token" content="{{ csrf_token() }}"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>RFID Writer — Admin</title>
+  <title>RFID Writer - Admin</title>
   <link rel="canonical" href="/admin/rfid-writer"/>
   <link rel="icon" href="/favicon.ico"/>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -471,13 +471,13 @@
             </div>
             <div id="previewCard" class="preview-card" style="display:none;">
               <div class="preview-badges">
-                <span class="preview-badge badge-jk" id="prevJk">—</span>
-                <span class="preview-badge badge-dom" id="prevDom">—</span>
+                <span class="preview-badge badge-jk" id="prevJk">-</span>
+                <span class="preview-badge badge-dom" id="prevDom">-</span>
               </div>
-              <div class="preview-card-name" id="prevNama">—</div>
-              <div class="preview-card-school" id="prevSekolah">—</div>
+              <div class="preview-card-name" id="prevNama">-</div>
+              <div class="preview-card-school" id="prevSekolah">-</div>
               <div class="preview-nik-label">NIK</div>
-              <div class="preview-nik-value" id="prevNIK">— — — — — — — —</div>
+              <div class="preview-nik-value" id="prevNIK">- - - - - - - -</div>
               <div class="nfc-icon">
                 <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2">
                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
@@ -512,10 +512,10 @@
             <!-- Payload preview -->
             <div id="payloadBox" class="payload-box">
               <div><span class="payload-key">// Data yang akan ditulis ke RFID</span></div>
-              <div><span class="payload-key">nik      : </span><span class="payload-nik" id="plNik">—</span></div>
-              <div><span class="payload-key">nama     : </span><span class="payload-val" id="plNama">—</span></div>
-              <div><span class="payload-key">sekolah  : </span><span class="payload-val" id="plSekolah">—</span></div>
-              <div><span class="payload-key">domisili : </span><span class="payload-val" id="plDomisili">—</span></div>
+              <div><span class="payload-key">nik      : </span><span class="payload-nik" id="plNik">-</span></div>
+              <div><span class="payload-key">nama     : </span><span class="payload-val" id="plNama">-</span></div>
+              <div><span class="payload-key">sekolah  : </span><span class="payload-val" id="plSekolah">-</span></div>
+              <div><span class="payload-key">domisili : </span><span class="payload-val" id="plDomisili">-</span></div>
               <div><span class="payload-key">format   : </span><span class="payload-val">NDEF / Plain Text (UTF-8)</span></div>
             </div>
 
@@ -532,11 +532,11 @@
               </div>
               <ol>
                 <li>Pastikan <strong>ACR122U</strong> sudah terhubung ke PC via USB</li>
-                <li>Install <strong>RFID Bridge</strong> (agen lokal) di PC — download di <code>localhost:7777/setup</code></li>
+                <li>Install <strong>RFID Bridge</strong> (agen lokal) di PC - download di <code>localhost:7777/setup</code></li>
                 <li>Cari dan <strong>pilih siswa</strong> dari daftar di sebelah kiri</li>
                 <li>Tempelkan <strong>kartu RFID kosong</strong> ke reader ACR122U</li>
                 <li>Klik tombol <strong>"Tempel Kartu & Write NIK"</strong></li>
-                <li>Tunggu hingga lampu hijau dan bunyi <em>beep</em> — write berhasil</li>
+                <li>Tunggu hingga lampu hijau dan bunyi <em>beep</em> - write berhasil</li>
               </ol>
             </div>
 
@@ -554,7 +554,7 @@
 <script src="/assets/admin/angkutansekolah/sb-secure.js"></script>
 <script>
 /* ══════════════════════════════════════════════════════════════════
-   RFID Writer — halaman admin
+   RFID Writer - halaman admin
    Alat: ACS ACR122U-A9 (USB NFC/RFID Reader-Writer)
    Protokol: RFID Bridge agent berjalan di localhost:7777
              menggantikan akses Web NFC API (terbatas ke Android)
@@ -582,7 +582,7 @@ let pollTimer          = null;
    ─────────────────────────────────────────────────
    PENTING: TIDAK PERNAH mengunduh seluruh tabel siswa.
    Hanya ambil maks PAGE_SIZE baris yang cocok dengan
-   pencarian/filter aktif — supaya tetap ringan walau
+   pencarian/filter aktif - supaya tetap ringan walau
    data sudah puluhan ribu baris.
    ═════════════════════════════════════════════════ */
 async function searchStudents() {
@@ -637,7 +637,7 @@ async function searchStudents() {
 }
 
 /**
- * Daftar sekolah untuk dropdown filter — diambil dari tabel `sekolah`
+ * Daftar sekolah untuk dropdown filter - diambil dari tabel `sekolah`
  * yang khusus & kecil (bukan dari data siswa), jadi tetap ringan
  * walau data siswa sudah sangat besar.
  */
@@ -691,8 +691,8 @@ function renderList() {
       <div class="student-avatar ${isF ? 'female' : ''}">${initial}</div>
       <div class="student-info">
         <div class="student-name">${esc(s.nama)}</div>
-        <div class="student-meta">${s.nik || '—'}</div>
-        <div class="student-school">${esc(s.sekolah || '—')}</div>
+        <div class="student-meta">${s.nik || '-'}</div>
+        <div class="student-school">${esc(s.sekolah || '-')}</div>
       </div>
       <div class="student-check">
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
@@ -734,10 +734,10 @@ function selectStudent(nik) {
 function updatePreview(s) {
   document.getElementById('previewEmpty').style.display = 'none';
   document.getElementById('previewCard').style.display  = 'block';
-  document.getElementById('prevNama').textContent    = s.nama    || '—';
-  document.getElementById('prevSekolah').textContent = s.sekolah || '—';
-  document.getElementById('prevJk').textContent      = s.jenis_kelamin || '—';
-  document.getElementById('prevDom').textContent     = s.domisili || '—';
+  document.getElementById('prevNama').textContent    = s.nama    || '-';
+  document.getElementById('prevSekolah').textContent = s.sekolah || '-';
+  document.getElementById('prevJk').textContent      = s.jenis_kelamin || '-';
+  document.getElementById('prevDom').textContent     = s.domisili || '-';
 
   // Format NIK with spaces every 4 digits
   const nik = s.nik || '';
@@ -745,15 +745,15 @@ function updatePreview(s) {
     nik.match(/.{1,4}/g)?.join(' ') || nik;
 
   // Payload box
-  document.getElementById('plNik').textContent      = s.nik || '—';
-  document.getElementById('plNama').textContent     = s.nama || '—';
-  document.getElementById('plSekolah').textContent  = s.sekolah || '—';
-  document.getElementById('plDomisili').textContent = s.domisili || '—';
+  document.getElementById('plNik').textContent      = s.nik || '-';
+  document.getElementById('plNama').textContent     = s.nama || '-';
+  document.getElementById('plSekolah').textContent  = s.sekolah || '-';
+  document.getElementById('plDomisili').textContent = s.domisili || '-';
   document.getElementById('payloadBox').classList.add('show');
 }
 
 /* ═════════════════════════════════════════════════
-   5.  RFID BRIDGE — deteksi & polling
+   5.  RFID BRIDGE - deteksi & polling
    ═════════════════════════════════════════════════ */
 async function checkBridge() {
   try {
@@ -766,7 +766,7 @@ async function checkBridge() {
       setReaderStatus('connected',
         data.reader ? `Reader: ${data.reader}` : 'ACR122U terdeteksi');
       setWriteStatus('connected',
-        data.reader ? `Siap — ${data.reader}` : 'Reader siap digunakan');
+        data.reader ? `Siap - ${data.reader}` : 'Reader siap digunakan');
       updateWriteReady();
       return true;
     }
@@ -774,7 +774,7 @@ async function checkBridge() {
 
   bridgeOnline = false;
   setReaderStatus('error', 'RFID Bridge tidak terdeteksi');
-  setWriteStatus('error', 'Bridge offline — jalankan agen di PC');
+  setWriteStatus('error', 'Bridge offline - jalankan agen di PC');
   document.getElementById('writeBtn').disabled = true;
   return false;
 }
@@ -830,7 +830,7 @@ async function doWrite() {
   try {
     /* Kirim ke RFID Bridge agen di localhost.
        Bridge memerintahkan ACR122U menulis NIK ke kartu
-       sebagai NDEF Text Record — hanya 16 digit NIK. */
+       sebagai NDEF Text Record - hanya 16 digit NIK. */
     const payload = {
       action      : 'write',
       format      : 'ndef_text',
@@ -841,7 +841,7 @@ async function doWrite() {
       method  : 'POST',
       headers : { 'Content-Type': 'application/json' },
       body    : JSON.stringify(payload),
-      signal  : AbortSignal.timeout(15000), // 15s — kartu mungkin belum ditempel
+      signal  : AbortSignal.timeout(15000), // 15s - kartu mungkin belum ditempel
     });
 
     const result = await res.json();
@@ -851,7 +851,7 @@ async function doWrite() {
       btn.className = 'write-btn success';
       btnText.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Write Berhasil!`;
       setWriteStatus('connected', `✓ NIK ${nik} berhasil ditulis`);
-      addLog('ok', `✓ Write sukses — NIK: ${nik} | UID kartu: ${result.uid || 'N/A'}`);
+      addLog('ok', `✓ Write sukses - NIK: ${nik} | UID kartu: ${result.uid || 'N/A'}`);
       toast(`NIK ${nik} berhasil ditulis ke kartu RFID`, 'success');
 
       // Reset setelah 3 detik
@@ -868,11 +868,11 @@ async function doWrite() {
 
   } catch (err) {
     const msg = err.name === 'TimeoutError'
-      ? 'Timeout — kartu tidak terdeteksi dalam 15 detik'
+      ? 'Timeout - kartu tidak terdeteksi dalam 15 detik'
       : err.message;
 
     btn.className = 'write-btn fail';
-    btnText.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Gagal — Coba Lagi`;
+    btnText.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Gagal - Coba Lagi`;
     setWriteStatus('error', msg);
     addLog('err', `✗ Gagal: ${msg}`);
     toast(msg, 'error');

@@ -5,7 +5,7 @@ namespace App\Services\Admin;
 use Illuminate\Support\Facades\Log;
 
 /**
- * REKOMENDASI KEAMANAN — TIDAK ADA di kode PHP asli. Mencatat jejak aksi
+ * REKOMENDASI KEAMANAN - TIDAK ADA di kode PHP asli. Mencatat jejak aksi
  * admin sensitif ke channel log terpisah, supaya bisa ditelusuri kalau
  * perlu investigasi ("siapa yang menghapus akun X, kapan?").
  */

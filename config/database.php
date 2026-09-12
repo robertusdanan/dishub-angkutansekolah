@@ -6,12 +6,12 @@ return [
 
     // CATATAN MIGRASI: seluruh data aplikasi (user, tiket, absensi, dst.)
     // TETAP di Supabase, diakses lewat HTTP REST (lihat app/Services/Supabase),
-    // persis seperti sb_request() di kode lama — sesuai keputusan untuk TIDAK
+    // persis seperti sb_request() di kode lama - sesuai keputusan untuk TIDAK
     // pindah ke Eloquent/koneksi Postgres langsung.
     //
     // Koneksi database di bawah ini HANYA dipakai untuk kebutuhan internal
     // framework Laravel sendiri (mis. tabel queue jobs / cache database
-    // driver, kalau nanti dipakai) — bukan untuk data bisnis aplikasi.
+    // driver, kalau nanti dipakai) - bukan untuk data bisnis aplikasi.
     'default' => env('DB_CONNECTION', 'sqlite'),
 
     'connections' => [

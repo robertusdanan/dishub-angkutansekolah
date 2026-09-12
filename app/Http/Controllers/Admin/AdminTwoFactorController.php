@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 /**
- * REKOMENDASI KEAMANAN — enrollment 2FA (TOTP) untuk akun admin, dipasang
+ * REKOMENDASI KEAMANAN - enrollment 2FA (TOTP) untuk akun admin, dipasang
  * dari halaman Pengaturan. Wajib jalankan
  * database/supabase-sql/002_two_factor_auth.sql dulu di Supabase.
  */

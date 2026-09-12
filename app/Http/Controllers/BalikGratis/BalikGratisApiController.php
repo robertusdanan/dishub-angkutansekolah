@@ -33,7 +33,7 @@ class BalikGratisApiController extends Controller
         }
     }
 
-    /** GET /balikgratis/api/status — setara api/status.php */
+    /** GET /balikgratis/api/status - setara api/status.php */
     public function status(): JsonResponse
     {
         $tahun = $this->bg->tahunIni();
@@ -51,7 +51,7 @@ class BalikGratisApiController extends Controller
         ]);
     }
 
-    /** GET /balikgratis/api/auth-status — setara api/auth_status.php */
+    /** GET /balikgratis/api/auth-status - setara api/auth_status.php */
     public function authStatus(Request $request): JsonResponse
     {
         if (!$this->akun->isLogin()) {
@@ -77,7 +77,7 @@ class BalikGratisApiController extends Controller
         ]);
     }
 
-    /** GET /balikgratis/api/cek-tiket — setara api/cek_tiket.php */
+    /** GET /balikgratis/api/cek-tiket - setara api/cek_tiket.php */
     public function cekTiket(Request $request): JsonResponse
     {
         if ($fail = $this->rateLimit('cek_tiket', 20, 300)) {
@@ -100,7 +100,7 @@ class BalikGratisApiController extends Controller
         return response()->json(['ok' => true, 'tiket' => $rows]);
     }
 
-    /** POST /balikgratis/api/daftar — setara api/daftar.php */
+    /** POST /balikgratis/api/daftar - setara api/daftar.php */
     public function daftar(Request $request): JsonResponse
     {
         if (!$this->akun->isLogin()) {

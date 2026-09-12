@@ -8,7 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 /**
- * Port dari admin/pages/tiket-saya.php — KHUSUS role 'pengguna'.
+ * Port dari admin/pages/tiket-saya.php - KHUSUS role 'pengguna'.
  */
 class AdminTiketSayaController extends Controller
 {

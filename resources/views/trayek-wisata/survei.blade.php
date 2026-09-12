@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="csrf-token" content="{{ csrf_token() }}"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Survei Kepuasan — Trayek Wisata Gratis</title>
+<title>Survei Kepuasan - Trayek Wisata Gratis</title>
 <link rel="icon" href="/favicon.ico"/>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,400..600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset_url('/assets/trayek-wisata/style.css') }}"/>
@@ -29,7 +29,7 @@
   <div class="survei-form" id="surveiForm">
     <div class="survei-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7-4.35 7-11a7 7 0 1 0-14 0c0 6.65 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
     <div class="survei-title">Bagaimana pengalaman Anda?</div>
-    <p class="survei-sub">Terima kasih sudah ikut Trayek Wisata Gratis Dishub Kabupaten Tulungagung — masukan Anda membantu kami memperbaiki layanan.</p>
+    <p class="survei-sub">Terima kasih sudah ikut Trayek Wisata Gratis Dishub Kabupaten Tulungagung - masukan Anda membantu kami memperbaiki layanan.</p>
 
     <div class="survei-stars" id="surveiStars">
       <button class="survei-star" data-v="1">★</button>

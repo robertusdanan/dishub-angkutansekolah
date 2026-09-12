@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
  *
  * CATATAN MIGRASI: enforce_cfg_sync_api() (kill-switch) SENGAJA DIHAPUS,
  * sama seperti modul lain. Endpoint ini memang PUBLIK (tidak ada
- * pengecekan admin_logged_in) persis seperti kode lama — halaman
+ * pengecekan admin_logged_in) persis seperti kode lama - halaman
  * pemanggilnya (Rekap Operasional) yang dijaga login admin, bukan
  * endpoint datanya sendiri.
  */

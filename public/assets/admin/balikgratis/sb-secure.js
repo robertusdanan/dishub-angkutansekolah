@@ -1,12 +1,12 @@
 /**
  * admin/assets/balikgratis/sb-secure.js
- * Helper fetch ke admin/api/balikgratis/db.php — pola sama dengan
+ * Helper fetch ke admin/api/balikgratis/db.php - pola sama dengan
  * admin/assets/trayekwisata/sb-secure.js. Browser tidak pernah
  * menyentuh service_role key.
  */
 const BG_API = '/admin/api/balikgratis/db';
 
-// CATATAN MIGRASI: helper baru (tidak ada di kode lama) — Laravel butuh
+// CATATAN MIGRASI: helper baru (tidak ada di kode lama) - Laravel butuh
 // CSRF token untuk request POST (termasuk yang di-override jadi PATCH/DELETE).
 function _admCsrfToken() {
   const el = document.querySelector('meta[name="csrf-token"]');

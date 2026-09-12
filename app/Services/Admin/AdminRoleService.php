@@ -5,7 +5,7 @@ namespace App\Services\Admin;
 use Illuminate\Support\Facades\Session;
 
 /**
- * Port dari admin/roles.php — kumpulan pengecekan role MURNI (baca session,
+ * Port dari admin/roles.php - kumpulan pengecekan role MURNI (baca session,
  * tidak ada redirect/exit). Dipakai baik di controller halaman biasa
  * maupun controller API yang butuh respons JSON 401/403, bukan redirect.
  */
@@ -26,14 +26,14 @@ class AdminRoleService
         return Session::get('admin_role') === 'viewer';
     }
 
-    /** Guest — akses read-only Data Absensi hari ini saja. */
+    /** Guest - akses read-only Data Absensi hari ini saja. */
     public function isGuest(): bool
     {
         return Session::get('admin_role') === 'guest';
     }
 
     /**
-     * Pengguna — akun publik yang login lewat Google, HANYA boleh melihat
+     * Pengguna - akun publik yang login lewat Google, HANYA boleh melihat
      * "Tiket Saya" & "Profil Saya". Lihat catatan jaminan keamanan yang
      * sama di admin/roles.php lama: role ini tidak pernah lewat admin_roles,
      * currentPermissions() akan selalu kosong untuknya.
@@ -100,7 +100,7 @@ class AdminRoleService
     }
 
     /**
-     * Versi KETAT — target HARUS level lebih rendah (bukan setara).
+     * Versi KETAT - target HARUS level lebih rendah (bukan setara).
      * Dipakai KHUSUS urusan Manajemen Role & penetapan role.
      */
     public function canManageLevelStrict(int $targetLevel): bool
@@ -114,7 +114,7 @@ class AdminRoleService
 
     /*
     |--------------------------------------------------------------------------
-    | Guard methods (redirect-based) — port dari function requireX() di
+    | Guard methods (redirect-based) - port dari function requireX() di
     | admin/auth.php. Dipanggil di awal method controller:
     |   if ($r = $this->roles->requireSuperAdmin()) return $r;
     |--------------------------------------------------------------------------
@@ -125,7 +125,7 @@ class AdminRoleService
         return $this->isSuperAdmin() ? null : redirect('/admin/');
     }
 
-    /** Superadmin ATAU dishubta — halaman registrasi siswa, tambah absen foto. */
+    /** Superadmin ATAU dishubta - halaman registrasi siswa, tambah absen foto. */
     public function requireAbsensiAccess(): mixed
     {
         return ($this->isSuperAdmin() || $this->isDishubta()) ? null : redirect('/admin/');

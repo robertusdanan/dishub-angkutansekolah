@@ -11,7 +11,7 @@ use DateTime;
  *
  * "Minggu ke-N" dihitung dengan definisi TETAP (lihat weekOfMonth()):
  * minggu Senin-Minggu, dipakai KONSISTEN di seluruh modul Trayek Wisata
- * (planner, dashboard, fitur salin ini) — supaya "Minggu ke-2 Januari" di
+ * (planner, dashboard, fitur salin ini) - supaya "Minggu ke-2 Januari" di
  * mana pun di aplikasi selalu merujuk ke rentang tanggal yang sama.
  */
 class TrayekWisataCopyService

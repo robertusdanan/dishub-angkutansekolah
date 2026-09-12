@@ -12,7 +12,7 @@ use Illuminate\View\View;
  *
  * Anti-eskalasi izin: checkbox izin (menu & aksi akun/manajemen_role/
  * listlink/pengaturan) yang TIDAK dimiliki akun yang sedang login TIDAK
- * dirender sama sekali di form — dihitung di sini persis seperti fungsi
+ * dirender sama sekali di form - dihitung di sini persis seperti fungsi
  * _iHaveX() di kode lama. Backend (AdminRoleApiController::clampPermissionsToOwn)
  * juga menegakkan ini sebagai defense in depth, jadi bukan cuma proteksi
  * tampilan.

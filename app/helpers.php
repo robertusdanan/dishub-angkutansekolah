@@ -2,7 +2,7 @@
 
 if (!function_exists('asset_url')) {
     /**
-     * Port dari core/cache_helper.php (asset_url()) — URL asset dengan
+     * Port dari core/cache_helper.php (asset_url()) - URL asset dengan
      * ?v=filemtime otomatis untuk cache-busting.
      */
     function asset_url(string $path): string

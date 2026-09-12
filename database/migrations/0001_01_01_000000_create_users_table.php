@@ -9,7 +9,7 @@ return new class extends Migration
     public function up(): void
     {
         // Tabel ini TIDAK dipakai untuk data user aplikasi (ada di Supabase
-        // tabel akun_publik / admin) — hanya disediakan supaya framework
+        // tabel akun_publik / admin) - hanya disediakan supaya framework
         // Laravel punya skema bawaan yang valid (mis. untuk password reset
         // kalau suatu saat dibutuhkan fitur Laravel-native).
         Schema::create('users', function (Blueprint $table) {

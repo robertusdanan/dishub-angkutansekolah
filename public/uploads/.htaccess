@@ -1,6 +1,6 @@
 # PERBAIKAN KEAMANAN (ditemukan saat audit ulang): kode PHP native lama
 # punya proteksi ini di TIAP subfolder uploads/ (asdp, trayekwisata/galeri/*,
-# angkutansekolah/absensi-foto) — diletakkan satu kali di sini supaya
+# angkutansekolah/absensi-foto) - diletakkan satu kali di sini supaya
 # berlaku ke SEMUA subfolder di bawahnya (termasuk yang dibuat otomatis
 # saat runtime, mis. folder galeri baru per titik wisata), tanpa perlu
 # membuat .htaccess manual tiap folder baru.

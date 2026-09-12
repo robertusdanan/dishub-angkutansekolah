@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="csrf-token" content="{{ csrf_token() }}"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Data Absensi — Admin Angkutan Sekolah</title>
+<title>Data Absensi - Admin Angkutan Sekolah</title>
 <link rel="canonical" href="{{ url('/admin/data-absensi') }}"/>
 <link rel="icon" href="/favicon.ico"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -80,7 +80,7 @@
      area yang di-scroll), jadi tidak bertumpuk dengan scrollbar horizontal. */
   .table-down-row { display: flex; justify-content: center; margin-top: 10px; }
 
-  /* Tombol navigasi scroll — selalu terlihat, posisinya statis di luar
+  /* Tombol navigasi scroll - selalu terlihat, posisinya statis di luar
      kotak scroll (bukan mengambang di atasnya) */
   .scroll-nav-btn {
     display: flex;
@@ -130,7 +130,7 @@
       <div class="adm-page-header">
         <div>
           <h1 class="adm-page-title">Data Absensi</h1>
-          <p class="adm-page-subtitle">Angkutan Sekolah — Dinas Perhubungan Kab. Tulungagung</p>
+          <p class="adm-page-subtitle">Angkutan Sekolah - Dinas Perhubungan Kab. Tulungagung</p>
         </div>
       </div>
 
@@ -138,7 +138,7 @@
       <div class="stats-row">
         <div class="stat-chip">
           <span class="label">Total Data</span>
-          <span class="value" id="totalCount">—</span>
+          <span class="value" id="totalCount">-</span>
         </div>
       </div>
 
@@ -148,7 +148,7 @@
       <div class="card filter-card">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;padding:9px 13px;background:#eff6ff;border:1px solid #bfdbfe;border-radius:9px;">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-          <span style="font-size:12.5px;color:#1d4ed8;font-weight:500;">Mode Tamu — menampilkan data absensi hari ini</span>
+          <span style="font-size:12.5px;color:#1d4ed8;font-weight:500;">Mode Tamu - menampilkan data absensi hari ini</span>
           <a href="/admin/logout" style="margin-left:auto;font-size:12px;color:#64748b;text-decoration:none;display:flex;align-items:center;gap:4px;">
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
             Login
@@ -283,7 +283,7 @@
           </button>
         </div>
       </div>
-      <p class="scroll-hint">Menampilkan 10 baris per tampilan — geser tabel untuk melihat data selengkapnya</p>
+      <p class="scroll-hint">Menampilkan 10 baris per tampilan - geser tabel untuk melihat data selengkapnya</p>
 
       <div id="pagination"></div>
 
@@ -300,7 +300,7 @@ const SB_ANON  = {!! json_encode(config('services.supabase.anon_key')) !!};
 const IS_GUEST = {{ $isGuest ? 'true' : 'false' }};
 const sbHdr = () => ({ 'apikey': SB_ANON, 'Authorization': `Bearer ${SB_ANON}` });
 // Kolom NIK/Email disembunyikan di Mode Tamu, jadi total kolom tabel
-// jadi satu lebih sedikit — dipakai untuk colspan placeholder loading/kosong/error.
+// jadi satu lebih sedikit - dipakai untuk colspan placeholder loading/kosong/error.
 const COLSPAN = IS_GUEST ? 10 : 11;
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -349,7 +349,7 @@ function setFilterEnabled(enabled) {
   ids.forEach(id => {
     const el = document.getElementById(id); if (el) el.disabled = !enabled;
   });
-  // Filter sesi (Pagi/Siang) butuh rentang tanggal yang jelas — kalau admin
+  // Filter sesi (Pagi/Siang) butuh rentang tanggal yang jelas - kalau admin
   // sedang pilih "Semua Tanggal", filter sesi tetap dikunci nonaktif meski
   // filter lain baru selesai loading & diaktifkan kembali.
   if (!IS_GUEST && enabled && filterTanggal && filterTanggal.value === '') {
@@ -360,7 +360,7 @@ function setFilterEnabled(enabled) {
 
 async function loadDropdownData() {
   // Mode Tamu tidak punya filter Trayek/Driver di UI-nya sama sekali,
-  // jadi tidak perlu tarik seluruh isi driver_bus/driver_mpu — hemat egress.
+  // jadi tidak perlu tarik seluruh isi driver_bus/driver_mpu - hemat egress.
   if (IS_GUEST) return;
   try {
     const [allBus, allMpu] = await Promise.all([
@@ -371,7 +371,7 @@ async function loadDropdownData() {
   } catch (e) { console.error('loadDropdownData gagal:', e); }
 }
 
-// Autocomplete nama siswa — TIDAK mengunduh semua nama siswa sekaligus
+// Autocomplete nama siswa - TIDAK mengunduh semua nama siswa sekaligus
 // (bisa puluhan ribu baris), cukup cari ke server tiap kali mengetik
 // (di-debounce), hasil dibatasi 8 nama saja untuk saran datalist.
 let _namaAcTimer = null;
@@ -395,7 +395,7 @@ document.querySelectorAll('#filterNama').forEach(input => {
   });
 });
 
-// Live search kolom "Cari Nama/NIK Siswa" — begitu Tamu/Admin mengetik,
+// Live search kolom "Cari Nama/NIK Siswa" - begitu Tamu/Admin mengetik,
 // data laporan otomatis diperbarui sendiri per huruf, tanpa perlu klik
 // "Terapkan Filter". Di-debounce sedikit (350ms) supaya tidak menembak
 // request ke server di setiap ketukan tombol saat mengetik cepat.
@@ -526,7 +526,7 @@ function ymd(d) {
 
 // Susun parameter query untuk admin/api/angkutansekolah/absensi_report.php dari kondisi
 // filter UI saat ini. Tidak ada lagi query PostgREST langsung dari
-// browser — server yang menentukan sumber data (cache lokal untuk hari
+// browser - server yang menentukan sumber data (cache lokal untuk hari
 // sebelumnya, live untuk hari ini) berdasarkan tanggal yang diminta di sini.
 function buildFilters() {
   const p = {};
@@ -595,7 +595,7 @@ async function fetchAllForExport(filters) {
 
 function sourceBadge(source) {
   if (source === 'absensi_QRCode') {
-    return `<span class="source-badge source-qr" title="Data migrasi — absen via QR Code (tabel absensi_QRCode)">
+    return `<span class="source-badge source-qr" title="Data migrasi - absen via QR Code (tabel absensi_QRCode)">
       <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><line x1="14" y1="14" x2="14" y2="21"/><line x1="21" y1="14" x2="21" y2="21"/><line x1="17.5" y1="14" x2="17.5" y2="17.5"/><line x1="14" y1="17.5" x2="21" y2="17.5"/></svg>
       QR Code
     </span>`;
@@ -619,7 +619,7 @@ function renderRows(rows) {
     const dt = new Date(item.waktu);
     const wibMs = dt.getTime() + 7 * 3600000;
     const dtWib = new Date(wibMs);
-    const waktuStr = dtWib.toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'UTC' }) + ' — ' + dtWib.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' });
+    const waktuStr = dtWib.toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'UTC' }) + ' - ' + dtWib.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' });
     const h = dtWib.getUTCHours();
     let shift = 'Lainnya', cls = 'shift-other';
     if (h >= 4 && h < 11)  { shift = 'Pagi';  cls = 'shift-pagi'; }
@@ -627,15 +627,15 @@ function renderRows(rows) {
     return `<tr>
       <td><div style="display:flex;align-items:center;gap:9px;">
         <div class="avatar-placeholder">👤</div>
-        <span style="font-weight:500;color:var(--text-1);">${item.nama || '—'}</span>
+        <span style="font-weight:500;color:var(--text-1);">${item.nama || '-'}</span>
       </div></td>
-      ${IS_GUEST ? '' : `<td style="font-family:'DM Mono',monospace;font-size:11.5px;">${item.nik || item.email || '—'}</td>`}
-      <td>${item.jenis_kelamin || '—'}</td>
-      <td>${item.domisili || '—'}</td>
-      <td>${item.sekolah || '—'}</td>
-      <td>${item.transportasi || '—'}</td>
-      <td>${item.trayek || '—'}</td>
-      <td>${item.plat_driver || '—'}</td>
+      ${IS_GUEST ? '' : `<td style="font-family:'DM Mono',monospace;font-size:11.5px;">${item.nik || item.email || '-'}</td>`}
+      <td>${item.jenis_kelamin || '-'}</td>
+      <td>${item.domisili || '-'}</td>
+      <td>${item.sekolah || '-'}</td>
+      <td>${item.transportasi || '-'}</td>
+      <td>${item.trayek || '-'}</td>
+      <td>${item.plat_driver || '-'}</td>
       <td style="font-family:'DM Mono',monospace;font-size:11.5px;white-space:nowrap;">${waktuStr}</td>
       <td><span class="shift-badge ${cls}">${shift}</span></td>
       <td>${sourceBadge(item._source)}</td>
@@ -732,7 +732,7 @@ async function goToPage(page) {
   } finally { setFilterEnabled(true); }
 }
 
-// Penanda urutan permintaan — dipakai supaya kalau live search menembak
+// Penanda urutan permintaan - dipakai supaya kalau live search menembak
 // beberapa loadReport() beruntun (mengetik cepat), hanya respons dari
 // permintaan TERAKHIR yang boleh menimpa tabel. Respons lama yang datang
 // belakangan (out-of-order karena jaringan) otomatis diabaikan.
@@ -747,7 +747,7 @@ async function loadReport() {
       <div class="spinner"></div>
       <span style="font-style:italic;">Memuat data...</span>
     </div></td></tr>`;
-  document.getElementById('totalCount').textContent = '—';
+  document.getElementById('totalCount').textContent = '-';
   document.getElementById('pagination').innerHTML = '';
   setFilterEnabled(false);
   try {
@@ -769,7 +769,7 @@ function periodeLabel(filters) {
   if (filters.tanggal === 'today') return 'Hari Ini (' + new Date().toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' }) + ')';
   if (filters.tanggal === 'week' && filters.range_start && filters.range_end) {
     const f = d => new Date(d).toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' });
-    return `${f(filters.range_start)} — ${f(filters.range_end)}`;
+    return `${f(filters.range_start)} - ${f(filters.range_end)}`;
   }
   if (filters.tanggal === 'month' && filters.range_month) {
     const [y, m] = filters.range_month.split('-').map(Number);
@@ -801,9 +801,9 @@ async function downloadExcel() {
       if (item.plat_driver) { const p = item.plat_driver.split('-').map(x => x.trim()).filter(Boolean); plat = p[0] || ''; drv = p.slice(1).join(' - '); }
       const jk = item.jenis_kelamin || '';
       if (jk === 'Laki-laki') countL++; else if (jk === 'Perempuan') countP++;
-      const row = [idx + 1, tgl, jam, sesi, item.nama || '—'];
-      if (!IS_GUEST) row.push(item.nik || item.email || '—');
-      row.push(jk || '—', item.domisili || '—', item.sekolah || '—', item.transportasi || '—', item.trayek || '—', plat || '—', drv || '—', item._source === 'absensi_QRCode' ? 'QR Code' : 'RFID');
+      const row = [idx + 1, tgl, jam, sesi, item.nama || '-'];
+      if (!IS_GUEST) row.push(item.nik || item.email || '-');
+      row.push(jk || '-', item.domisili || '-', item.sekolah || '-', item.transportasi || '-', item.trayek || '-', plat || '-', drv || '-', item._source === 'absensi_QRCode' ? 'QR Code' : 'RFID');
       return row;
     });
     const totalAbsen = rows.length;
@@ -841,7 +841,7 @@ async function downloadExcel() {
 
     let r = 1;
 
-    // ══ KOP LAPORAN — logo di kiri, identitas instansi di kanan (dipadatkan) ══
+    // ══ KOP LAPORAN - logo di kiri, identitas instansi di kanan (dipadatkan) ══
     ws.mergeCells(1, 1, 3, 2);
     if (logoBuffer) {
       const imgId = wb.addImage({ buffer: logoBuffer, extension: 'png' });
@@ -868,7 +868,7 @@ async function downloadExcel() {
     ws.getRow(r).height = 6;
     r++;
 
-    // Info periode & waktu cetak — satu sel saja (tidak di-merge lebar), teks
+    // Info periode & waktu cetak - satu sel saja (tidak di-merge lebar), teks
     // meluber alami ke sel kosong di sebelahnya, jadi baris tetap ringkas.
     ws.getCell(r, 1).value = 'Periode : ' + periodeLabel(activeFilters);
     ws.getCell(r, 1).font = { size: 9.5, color: { argb: 'FF334155' } };
@@ -879,7 +879,7 @@ async function downloadExcel() {
     ws.getRow(r).height = 14;
     r += 2;
 
-    // ══ RINGKASAN — 3 kartu total ══
+    // ══ RINGKASAN - 3 kartu total ══
     const per = Math.floor(N / 3);
     const spans = [[1, per], [per + 1, per * 2], [per * 2 + 1, N]];
     const cards = [
@@ -950,7 +950,7 @@ async function downloadExcel() {
     r += 1;
     ws.mergeCells(r, 1, r, N);
     const footCell = ws.getCell(r, 1);
-    footCell.value = `Dicetak otomatis oleh Sistem Layanan Angkutan Sekolah — Dinas Perhubungan Kabupaten Tulungagung. Total ${totalAbsen.toLocaleString('id-ID')} data absensi.`;
+    footCell.value = `Dicetak otomatis oleh Sistem Layanan Angkutan Sekolah - Dinas Perhubungan Kabupaten Tulungagung. Total ${totalAbsen.toLocaleString('id-ID')} data absensi.`;
     footCell.font = { size: 8.5, italic: true, color: { argb: 'FF94A3B8' } };
     footCell.alignment = { horizontal: 'center' };
 
@@ -986,7 +986,7 @@ window.onload = async () => {
   // ── Realtime ──────────────────────────────────────────────────
   // Absensi (RFID/foto) masuk kapan saja sepanjang hari. Auto-refresh
   // laporan hanya jika admin sedang melihat rentang "Hari ini" &
-  // sedang di halaman pertama — supaya tidak mengganggu saat admin
+  // sedang di halaman pertama - supaya tidak mengganggu saat admin
   // sedang menelusuri laporan bulan/minggu lalu atau halaman lain.
   let _rtReloadTimer = null;
   const scheduleReload = () => {

@@ -10,7 +10,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 /**
- * Port dari admin/api/roles.php — satu-satunya tempat yang boleh menulis
+ * Port dari admin/api/roles.php - satu-satunya tempat yang boleh menulis
  * ke tabel admin_roles. Lihat komentar lengkap aturan hierarki & anti-
  * eskalasi izin di kode lama, dipertahankan 1:1 di sini.
  */
@@ -223,7 +223,7 @@ class AdminRoleApiController extends Controller
 
         $id = trim((string) $request->input('id', ''));
         // PERBAIKAN KEAMANAN (ditemukan saat audit ulang): validasi format
-        // UUID, bukan cuma "tidak kosong" — lihat catatan sama di
+        // UUID, bukan cuma "tidak kosong" - lihat catatan sama di
         // AdminAkunApiController.
         if (!preg_match('/^[0-9a-fA-F-]{36}$/', $id)) {
             return response()->json(['error' => 'ID role tidak valid.'], 400);
@@ -299,7 +299,7 @@ class AdminRoleApiController extends Controller
 
         $id = trim((string) $request->input('id', ''));
         // PERBAIKAN KEAMANAN (ditemukan saat audit ulang): validasi format
-        // UUID, bukan cuma "tidak kosong" — lihat catatan sama di
+        // UUID, bukan cuma "tidak kosong" - lihat catatan sama di
         // AdminAkunApiController.
         if (!preg_match('/^[0-9a-fA-F-]{36}$/', $id)) {
             return response()->json(['error' => 'ID role tidak valid.'], 400);
@@ -320,7 +320,7 @@ class AdminRoleApiController extends Controller
 
         [, $usedBy] = $this->supabase->rawRequest('GET', 'admin_accounts?role_id=eq.'.$id.'&select=id&limit=1');
         if (is_array($usedBy) && count($usedBy) > 0) {
-            return response()->json(['error' => 'Role masih dipakai oleh akun aktif — pindahkan akun tersebut ke role lain dulu.'], 400);
+            return response()->json(['error' => 'Role masih dipakai oleh akun aktif - pindahkan akun tersebut ke role lain dulu.'], 400);
         }
 
         [$code] = $this->supabase->rawRequest('DELETE', 'admin_roles?id=eq.'.$id);

@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
 <meta name="csrf-token" content="{{ csrf_token() }}"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Registrasi Siswa — Admin</title>
+  <title>Registrasi Siswa - Admin</title>
   <link rel="canonical" href="/admin/registrasi-siswa"/>
   <link rel="icon" href="/favicon.ico"/>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -145,7 +145,7 @@
             <label>NIK <span style="color:#ef4444">*</span></label>
             <input type="text" id="f-nik" inputmode="numeric" pattern="\d*" maxlength="16" placeholder="16 digit NIK" autocomplete="off"/>
             <div style="display:flex;justify-content:space-between;align-items:center;">
-              <span class="hint">Sesuai KTP/KIA — 16 digit angka</span>
+              <span class="hint">Sesuai KTP/KIA - 16 digit angka</span>
               <span class="hint" id="nik-counter" style="font-variant-numeric:tabular-nums;">0 / 16</span>
             </div>
           </div>
@@ -291,7 +291,7 @@ async function fetchPage(page, limit, q, fSek, fDom, fJk) {
   const params = new URLSearchParams({ select: '*', order: 'nama.asc' });
 
   if (q) {
-    // Supabase: OR filter — cari di nama atau nik
+    // Supabase: OR filter - cari di nama atau nik
     params.set('or', `(nama.ilike.*${q}*,nik.ilike.*${q}*)`);
   }
   if (fSek) params.set('sekolah', `eq.${fSek}`);
@@ -321,7 +321,7 @@ async function fetchPage(page, limit, q, fSek, fDom, fJk) {
   return { rows, total };
 }
 
-/** Fetch semua halaman — hanya untuk export CSV */
+/** Fetch semua halaman - hanya untuk export CSV */
 async function fetchAllForExport(q, fSek, fDom, fJk) {
   const all = [];
   let from  = 0;
@@ -518,7 +518,7 @@ function updateFilterSummary(q, fSek, fDom, fJk, total) {
   if (fSek) parts.push(`sekolah "<strong>${esc(fSek)}</strong>"`);
   if (fDom) parts.push(`kecamatan "<strong>${esc(fDom)}</strong>"`);
   if (fJk)  parts.push(`JK "<strong>${esc(fJk)}</strong>"`);
-  el.innerHTML = `Ditemukan <strong>${total}</strong> siswa — filter: ${parts.join(', ')}`;
+  el.innerHTML = `Ditemukan <strong>${total}</strong> siswa - filter: ${parts.join(', ')}`;
 }
 
 // ── Dropdown builders ────────────────────────────────────────────────────────
@@ -637,7 +637,7 @@ async function hapusSiswa(id, nama) {
   if (!(await confirmDangerModal(`Hapus siswa "${nama}"?`))) return;
   try {
     // Lewat admin/api/angkutansekolah/db.php (pakai service key server-side), bukan fetch
-    // langsung ke Supabase dengan anon key — anon key tidak diizinkan
+    // langsung ke Supabase dengan anon key - anon key tidak diizinkan
     // DELETE oleh RLS sehingga sebelumnya selalu gagal ("Failed to fetch").
     await sbDelete('user_RFID', `nik=eq.${encodeURIComponent(id)}`);
     toast('Siswa dihapus', 'success');

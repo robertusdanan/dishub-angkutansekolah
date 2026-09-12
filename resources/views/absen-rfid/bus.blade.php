@@ -21,7 +21,7 @@
       <p class="standby-sub">Dinas Perhubungan Kabupaten Tulungagung</p>
       <div class="divider"></div>
       <div class="clock" id="clock">00:00:00</div>
-      <div class="date-label" id="date-label">—</div>
+      <div class="date-label" id="date-label">-</div>
       <div class="tap-hint">
         <span class="tap-icon">⬡</span>
         Tempelkan kartu untuk absen
@@ -46,13 +46,13 @@
         <div class="nik-feedback" id="nik-feedback"></div>
       </div>
 
-      <div id="offline-badge" class="offline-badge hidden">● Offline — data tersimpan lokal</div>
+      <div id="offline-badge" class="offline-badge hidden">● Offline - data tersimpan lokal</div>
 
       <!-- ══ INDIKATOR KENDARAAN ══ -->
       <div id="vehicle-indicator" class="vehicle-indicator hidden">
-        <div class="vehicle-plat" id="vehicle-plat">—</div>
+        <div class="vehicle-plat" id="vehicle-plat">-</div>
         <div class="vehicle-divider"></div>
-        <div class="vehicle-driver" id="vehicle-driver">—</div>
+        <div class="vehicle-driver" id="vehicle-driver">-</div>
       </div>
     </div>
   </div>
@@ -60,8 +60,8 @@
   <!-- ══ RESULT SCREEN ══ -->
   <div id="screen-result" class="screen">
     <div class="result-inner">
-      <div class="result-name" id="result-name">—</div>
-      <div class="result-meta" id="result-meta">—</div>
+      <div class="result-name" id="result-name">-</div>
+      <div class="result-meta" id="result-meta">-</div>
       <div class="result-status" id="result-status">
         <div class="status-icon" id="status-icon">✓</div>
         <div class="status-text" id="status-text">Absen Berhasil</div>

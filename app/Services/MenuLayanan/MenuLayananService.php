@@ -65,7 +65,7 @@ class MenuLayananService
 
     /**
      * Guard untuk dipakai di controller: kalau menu nonaktif (dan bukan
-     * superadmin), lempar 404 dengan halaman "Segera Hadir" bermerek —
+     * superadmin), lempar 404 dengan halaman "Segera Hadir" bermerek -
      * setara render_menu_layanan_nonaktif() + require_menu_layanan_aktif()
      * di kode lama.
      */

@@ -6,14 +6,14 @@ Aplikasi layanan transportasi publik Dinas Perhubungan Kabupaten Tulungagung yan
 
 ## 🌟 Modul & Fitur
 
-1. **Beranda & Toggle Menu Layanan** — Pengaturan aktif/nonaktif modul layanan publik secara terpusat via tabel Supabase `menu_layanan`.
-2. **Akun Pengguna Terpusat (SSO Google)** — Login Google OAuth, profil pengguna, manajemen keluarga, dan upload dokumen terenkripsi.
-3. **Rute & Peta Live Angkutan Sekolah** — Peta gabungan interaktif bus/MPU, tracking posisi armada live, dan detail rute.
-4. **Absensi Siswa (RFID & QR Code)** — Scan kartu RFID/QR kios publik, GPS tracking berkala tiap armada, dan portal manajemen List Link.
-5. **Peta Interaktif ASDP** — Titik lokasi penyeberangan air & perahu tambangan Kabupaten Tulungagung.
-6. **Pemesanan Trayek Wisata Gratis** — Jadwal keberangkatan, booking tiket online, survei kepuasan, kuota real-time, dan manajemen galeri foto/video.
-7. **Pemesanan Balik Gratis** — Form pendaftaran musim mudik, verifikasi tiket, fail-closed jika periode belum dibuka admin.
-8. **Panel Admin & RBAC Bertingkat** — Dashboard analitik, manajemen akun & role bertingkat (strict hierarchy), proteksi superadmin terakhir, audit log 1 tahun, dan 2FA (TOTP).
+1. **Beranda & Toggle Menu Layanan** - Pengaturan aktif/nonaktif modul layanan publik secara terpusat via tabel Supabase `menu_layanan`.
+2. **Akun Pengguna Terpusat (SSO Google)** - Login Google OAuth, profil pengguna, manajemen keluarga, dan upload dokumen terenkripsi.
+3. **Rute & Peta Live Angkutan Sekolah** - Peta gabungan interaktif bus/MPU, tracking posisi armada live, dan detail rute.
+4. **Absensi Siswa (RFID & QR Code)** - Scan kartu RFID/QR kios publik, GPS tracking berkala tiap armada, dan portal manajemen List Link.
+5. **Peta Interaktif ASDP** - Titik lokasi penyeberangan air & perahu tambangan Kabupaten Tulungagung.
+6. **Pemesanan Trayek Wisata Gratis** - Jadwal keberangkatan, booking tiket online, survei kepuasan, kuota real-time, dan manajemen galeri foto/video.
+7. **Pemesanan Balik Gratis** - Form pendaftaran musim mudik, verifikasi tiket, fail-closed jika periode belum dibuka admin.
+8. **Panel Admin & RBAC Bertingkat** - Dashboard analitik, manajemen akun & role bertingkat (strict hierarchy), proteksi superadmin terakhir, audit log 1 tahun, dan 2FA (TOTP).
 
 ---
 
@@ -60,7 +60,7 @@ Buka `http://localhost:8000` di browser Anda.
 ## 🗄️ Setup Database Supabase
 
 Jalankan script SQL di folder `database/supabase-sql/` pada **Supabase SQL Editor**:
-- `002_two_factor_auth.sql` — Menambahkan kolom 2FA pada tabel `admin_accounts`.
+- `002_two_factor_auth.sql` - Menambahkan kolom 2FA pada tabel `admin_accounts`.
 
 ---
 

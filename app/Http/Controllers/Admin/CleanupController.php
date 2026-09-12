@@ -35,7 +35,7 @@ class CleanupController extends Controller
             return response()->json(['status' => 'error', 'message' => 'Akses ditolak'], 403);
         }
 
-        // Token URL saja TIDAK cukup (defense in depth) — wajib juga login
+        // Token URL saja TIDAK cukup (defense in depth) - wajib juga login
         // sebagai admin dengan izin pengaturan.cleanup, sama seperti kode lama.
         if (!Session::get('admin_logged_in') || (!$this->roles->isSuperAdmin() && !$this->roles->hasPermission('pengaturan', 'cleanup'))) {
             return response()->json(['status' => 'error', 'message' => 'Akses ditolak: Anda tidak punya izin menjalankan Pembersihan Data Lama.'], 403);

@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="csrf-token" content="{{ csrf_token() }}"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Pemesanan — Admin Trayek Wisata</title>
+<title>Pemesanan - Admin Trayek Wisata</title>
 <link rel="icon" href="/favicon.ico"/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/admin/admin-shell.css">
@@ -29,12 +29,12 @@
   @include('admin.partials.sidebar', ['currentPage' => 'trayekwisata_pemesanan', 'currentModule' => 'trayekwisata'])
   <main class="adm-main"><div class="adm-content">
     <div class="adm-page-header">
-      <div><h1 class="adm-page-title">Pemesanan</h1><p class="adm-page-subtitle">Data pemesanan kursi trayek wisata — otomatis terisi begitu website publik (login Google + pesan kursi) aktif.</p></div>
+      <div><h1 class="adm-page-title">Pemesanan</h1><p class="adm-page-subtitle">Data pemesanan kursi trayek wisata - otomatis terisi begitu website publik (login Google + pesan kursi) aktif.</p></div>
       <button class="btn btn-secondary btn-sm" onclick="exportPdf()">⬇ Export PDF</button>
     </div>
 
     <div class="filter-bar" style="justify-content:space-between">
-      <select id="fManifesJadwal" style="min-width:280px"><option value="">— Pilih trayek untuk cetak manifes —</option></select>
+      <select id="fManifesJadwal" style="min-width:280px"><option value="">- Pilih trayek untuk cetak manifes -</option></select>
       <button class="btn btn-primary btn-sm" onclick="cetakManifes()">🖨 Cetak Manifes Keberangkatan</button>
     </div>
 
@@ -81,11 +81,11 @@ function populateManifesDropdown() {
   rows.filter(r => r.status === 'terkonfirmasi').forEach(r => {
     const j = r.trayekwisata_jadwal;
     if (!j) return;
-    const label = `${j.trayekwisata_trayek?.nama || 'Trayek'} — ${new Date(j.tanggal).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})} ${ (j.jam_berangkat||'').slice(0,5) }`;
+    const label = `${j.trayekwisata_trayek?.nama || 'Trayek'} - ${new Date(j.tanggal).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})} ${ (j.jam_berangkat||'').slice(0,5) }`;
     seen.set(r.jadwal_id, label);
   });
   const sel = document.getElementById('fManifesJadwal');
-  sel.innerHTML = '<option value="">— Pilih trayek untuk cetak manifes —</option>' +
+  sel.innerHTML = '<option value="">- Pilih trayek untuk cetak manifes -</option>' +
     [...seen.entries()].map(([id, label]) => `<option value="${id}">${twEsc(label)}</option>`).join('');
 }
 
@@ -97,11 +97,11 @@ async function cetakManifes() {
 
   const jadwal = list[0].trayekwisata_jadwal;
   const trayekNama = jadwal?.trayekwisata_trayek?.nama || 'Trayek';
-  const tglLabel = jadwal ? new Date(jadwal.tanggal).toLocaleDateString('id-ID', { weekday:'long', day:'numeric', month:'long', year:'numeric' }) : '—';
+  const tglLabel = jadwal ? new Date(jadwal.tanggal).toLocaleDateString('id-ID', { weekday:'long', day:'numeric', month:'long', year:'numeric' }) : '-';
 
   const penumpang = [];
   list.forEach(r => {
-    const paxList = (r._nik && r._nik.length) ? r._nik : [{ nama: r.akun_publik?.nama || '—', nik: r.akun_publik?.nik || '—' }];
+    const paxList = (r._nik && r._nik.length) ? r._nik : [{ nama: r.akun_publik?.nama || '-', nik: r.akun_publik?.nik || '-' }];
     paxList.forEach(p => penumpang.push({ nama: p.nama, nik: p.nik, hp: r.akun_publik?.no_hp || '' }));
   });
 
@@ -114,7 +114,7 @@ async function cetakManifes() {
   doc.setTextColor(255,255,255); doc.setFont('helvetica','bold'); doc.setFontSize(14);
   doc.text('MANIFES KEBERANGKATAN', 36, 28);
   doc.setFont('helvetica','normal'); doc.setFontSize(10);
-  doc.text('Dinas Perhubungan Kabupaten Tulungagung — Trayek Wisata Gratis', 36, 44);
+  doc.text('Dinas Perhubungan Kabupaten Tulungagung - Trayek Wisata Gratis', 36, 44);
 
   doc.setTextColor(15,30,56); doc.setFontSize(12); doc.setFont('helvetica','bold');
   doc.text(trayekNama, 36, 92);
@@ -154,10 +154,10 @@ function renderTable() {
 
   tbody.innerHTML = filtered.map(r => `
     <tr>
-      <td><strong>${twEsc(r.trayekwisata_jadwal?.trayekwisata_trayek?.nama || '—')}</strong><br/><span style="color:var(--text-3)">${twEsc(r.trayekwisata_jadwal?.tanggal||'')} · ${(r.trayekwisata_jadwal?.jam_berangkat||'').slice(0,5)}</span></td>
-      <td>${twEsc(r.akun_publik?.nama||'—')}<br/><span style="color:var(--text-3)">${twEsc(r.akun_publik?.email||'')}</span><br/>
+      <td><strong>${twEsc(r.trayekwisata_jadwal?.trayekwisata_trayek?.nama || '-')}</strong><br/><span style="color:var(--text-3)">${twEsc(r.trayekwisata_jadwal?.tanggal||'')} · ${(r.trayekwisata_jadwal?.jam_berangkat||'').slice(0,5)}</span></td>
+      <td>${twEsc(r.akun_publik?.nama||'-')}<br/><span style="color:var(--text-3)">${twEsc(r.akun_publik?.email||'')}</span><br/>
         <a href="/admin/api/trayekwisata/dokumen-view?profil_id=${r.profil_id}&jenis=ktp" target="_blank" style="font-size:11px;color:var(--accent)">Lihat KTP</a></td>
-      <td><div class="nik-list">${(r._nik||[]).map(n => `${twEsc(n.nama)} — ${twEsc(n.nik)}`).join('<br/>') || '—'}</div></td>
+      <td><div class="nik-list">${(r._nik||[]).map(n => `${twEsc(n.nama)} - ${twEsc(n.nik)}`).join('<br/>') || '-'}</div></td>
       <td>${r.jumlah_kursi}</td>
       <td><span class="status-pill status-${r.status}">${r.status}</span></td>
       <td><button class="btn btn-secondary btn-sm" onclick="copySurveiLink('${r.id}')">Salin Link Survei</button></td>
@@ -169,7 +169,7 @@ document.getElementById('fStatus');
 function copySurveiLink(pemesananId) {
   const link = `${location.origin}/trayek-wisata/survei?pemesanan_id=${pemesananId}`;
   navigator.clipboard.writeText(link).then(
-    () => twToast('✓ Link survei disalin — bisa dibagikan manual lewat WA'),
+    () => twToast('✓ Link survei disalin - bisa dibagikan manual lewat WA'),
     () => prompt('Salin link ini secara manual:', link)
   );
 }
@@ -205,13 +205,13 @@ async function exportPdf() {
 
   // ── Tabel ────────────────────────────────────────────────────────
   const body = rows.map(r => {
-    const trayek = r.trayekwisata_jadwal?.trayekwisata_trayek?.nama || '—';
+    const trayek = r.trayekwisata_jadwal?.trayekwisata_trayek?.nama || '-';
     const tanggal = r.trayekwisata_jadwal?.tanggal
-      ? new Date(r.trayekwisata_jadwal.tanggal).toLocaleDateString('id-ID', { day:'numeric', month:'short', year:'numeric' }) : '—';
-    const jam = (r.trayekwisata_jadwal?.jam_berangkat || '').slice(0,5) || '—';
-    const pemesan = r.akun_publik?.nama || '—';
+      ? new Date(r.trayekwisata_jadwal.tanggal).toLocaleDateString('id-ID', { day:'numeric', month:'short', year:'numeric' }) : '-';
+    const jam = (r.trayekwisata_jadwal?.jam_berangkat || '').slice(0,5) || '-';
+    const pemesan = r.akun_publik?.nama || '-';
     const penumpang = (r._nik || []).map(n => n.nama).join(', ') || pemesan;
-    const nik = (r._nik || []).map(n => n.nik).join(', ') || (r.akun_publik?.nik || '—');
+    const nik = (r._nik || []).map(n => n.nik).join(', ') || (r.akun_publik?.nik || '-');
     const status = r.status === 'terkonfirmasi' ? 'Terkonfirmasi' : r.status === 'dibatalkan' ? 'Dibatalkan' : r.status;
     return [trayek, tanggal, jam, pemesan, penumpang, nik, String(r.jumlah_kursi), status];
   });
@@ -236,7 +236,7 @@ async function exportPdf() {
       const pageCount = doc.internal.getNumberOfPages();
       const pageH = doc.internal.pageSize.getHeight();
       doc.setFontSize(8); doc.setTextColor(...GRAY); doc.setFont('helvetica', 'normal');
-      doc.text('Dishub Kabupaten Tulungagung — Sistem Trayek Wisata Gratis', 36, pageH - 20);
+      doc.text('Dishub Kabupaten Tulungagung - Sistem Trayek Wisata Gratis', 36, pageH - 20);
       doc.text(`Halaman ${doc.internal.getCurrentPageInfo().pageNumber} / ${pageCount}`, pageW - 36, pageH - 20, { align: 'right' });
     },
   });

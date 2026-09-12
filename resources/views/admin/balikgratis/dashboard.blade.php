@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="csrf-token" content="{{ csrf_token() }}"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Dashboard Balik Gratis — Admin</title>
+<title>Dashboard Balik Gratis - Admin</title>
 <link rel="icon" href="/favicon.ico"/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/admin/admin-shell.css">
@@ -43,11 +43,11 @@
     <div id="statusBanner" class="status-banner off">Memuat status pendaftaran…</div>
 
     <div class="stat-grid">
-      <div class="stat-card"><div class="stat-label">Kuota Dibuka</div><div class="stat-value" id="sKuota">—</div><div class="stat-sub">tiket tersedia</div></div>
-      <div class="stat-card"><div class="stat-label">Terisi</div><div class="stat-value" id="sTerisi">—</div><div class="stat-sub" id="sPersen">—</div></div>
-      <div class="stat-card"><div class="stat-label">Sisa Kuota</div><div class="stat-value" id="sSisa">—</div><div class="stat-sub">masih bisa daftar</div></div>
-      <div class="stat-card"><div class="stat-label">Sudah Hadir</div><div class="stat-value" id="sHadir">—</div><div class="stat-sub">terverifikasi boarding</div></div>
-      <div class="stat-card"><div class="stat-label">Dibatalkan</div><div class="stat-value" id="sBatal">—</div><div class="stat-sub">tiket batal</div></div>
+      <div class="stat-card"><div class="stat-label">Kuota Dibuka</div><div class="stat-value" id="sKuota">-</div><div class="stat-sub">tiket tersedia</div></div>
+      <div class="stat-card"><div class="stat-label">Terisi</div><div class="stat-value" id="sTerisi">-</div><div class="stat-sub" id="sPersen">-</div></div>
+      <div class="stat-card"><div class="stat-label">Sisa Kuota</div><div class="stat-value" id="sSisa">-</div><div class="stat-sub">masih bisa daftar</div></div>
+      <div class="stat-card"><div class="stat-label">Sudah Hadir</div><div class="stat-value" id="sHadir">-</div><div class="stat-sub">terverifikasi boarding</div></div>
+      <div class="stat-card"><div class="stat-label">Dibatalkan</div><div class="stat-value" id="sBatal">-</div><div class="stat-sub">tiket batal</div></div>
     </div>
 
     <div class="panel-card">
@@ -75,7 +75,7 @@ async function reload() {
     const buka = pengaturan && pengaturan.status === 'buka';
     banner.className = 'status-banner ' + (buka ? 'on' : 'off');
     banner.textContent = buka
-      ? `Pendaftaran ${tahun} SEDANG DIBUKA — kuota ${kuota} tiket.`
+      ? `Pendaftaran ${tahun} SEDANG DIBUKA - kuota ${kuota} tiket.`
       : `Pendaftaran ${tahun} sedang TUTUP.`;
     document.getElementById('sKuota').textContent = kuota;
   } catch (e) {
@@ -91,7 +91,7 @@ async function reload() {
   const kuotaVal = parseInt(document.getElementById('sKuota').textContent) || 0;
 
   document.getElementById('sTerisi').textContent = terisi;
-  document.getElementById('sPersen').textContent = kuotaVal ? `${Math.round(terisi/kuotaVal*100)}% terisi` : '—';
+  document.getElementById('sPersen').textContent = kuotaVal ? `${Math.round(terisi/kuotaVal*100)}% terisi` : '-';
   document.getElementById('sSisa').textContent = Math.max(0, kuotaVal - terisi);
   document.getElementById('sHadir').textContent = hadir;
   document.getElementById('sBatal').textContent = batal;

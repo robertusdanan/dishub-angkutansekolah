@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
 <meta name="csrf-token" content="{{ csrf_token() }}"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Edit Data Map — Admin</title>
+  <title>Edit Data Map - Admin</title>
   <link rel="icon" href="/favicon.ico"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -127,7 +127,7 @@
     .modal-field input:focus,.modal-field select:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow);background:#fff}
     .modal-ft{display:flex;justify-content:flex-end;gap:10px;padding:16px 22px;border-top:1.5px solid var(--border);background:var(--surface-2)}
 
-    /* Nomor rute field — hanya muncul saat MPU */
+    /* Nomor rute field - hanya muncul saat MPU */
     .modal-field.rute-num-field{display:none}
     .modal-field.rute-num-field.visible{display:block}
     .rute-num-hint{font-size:11px;color:var(--text-4);margin-top:4px;line-height:1.5}
@@ -178,8 +178,8 @@
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
         <div>
           Setiap <strong>id_map</strong> = 1 rute lengkap. Klik baris untuk expand, lalu edit titik lokasi.<br>
-          Format id_map — Bus: <span class="tbadge">kalidawir1_pagi</span> &nbsp; MPU: <span class="tbadge">mpu_campurdarat_rute1_siang</span><br>
-          <strong>code_map</strong> dibuat otomatis dari id_map — Bus: <span class="tbadge">rute_karangrejo</span> &nbsp; MPU: <span class="tbadge">rute_mpu_campurdarat</span>
+          Format id_map - Bus: <span class="tbadge">kalidawir1_pagi</span> &nbsp; MPU: <span class="tbadge">mpu_campurdarat_rute1_siang</span><br>
+          <strong>code_map</strong> dibuat otomatis dari id_map - Bus: <span class="tbadge">rute_karangrejo</span> &nbsp; MPU: <span class="tbadge">rute_mpu_campurdarat</span>
         </div>
       </div>
 
@@ -218,7 +218,7 @@
       <div class="modal-field">
         <label>Trayek <span style="color:#ef4444">*</span></label>
         <select id="newTrayekSel" onchange="onModalTrayekChange()">
-          <option value="">— Pilih Trayek —</option>
+          <option value="">- Pilih Trayek -</option>
         </select>
       </div>
 
@@ -227,7 +227,7 @@
         <label>Waktu <span style="color:#ef4444">*</span></label>
         <select id="newWaktuSel" onchange="updateIdMapPreview()"
           style="width:100%;padding:9px 12px;border:1.5px solid var(--border);border-radius:9px;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text-1);background:var(--surface-2);outline:none;appearance:none;-webkit-appearance:none;background-image:url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'13\' height=\'13\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%2394a3b8\' stroke-width=\'2\'%3E%3Cpolyline points=\'6 9 12 15 18 9\'/%3E%3C/svg%3E');background-repeat:no-repeat;background-position:right 10px center;padding-right:30px;box-sizing:border-box">
-          <option value="">— Pilih Waktu —</option>
+          <option value="">- Pilih Waktu -</option>
           <option value="pagi">Pagi</option>
           <option value="siang">Siang</option>
           <option value="sore">Sore</option>
@@ -235,7 +235,7 @@
         </select>
       </div>
 
-      <!-- Nomor Rute — hanya muncul untuk MPU -->
+      <!-- Nomor Rute - hanya muncul untuk MPU -->
       <div class="modal-field rute-num-field" id="fieldRuteNum">
         <label>
           Nomor Rute
@@ -451,10 +451,10 @@ function buildRouteBlock(id) {
   const g       = routeGroups[id];
   const trId    = g.id_trayek;
   const tr      = allTrayeks.find(t => String(t.id) === String(trId));
-  const trLabel = tr ? tr.label : (g.nama_trayek || '—');
+  const trLabel = tr ? tr.label : (g.nama_trayek || '-');
   const codeMap = g.code_map || generateCodeMap(id);
 
-  const trOpts = ''; // tidak dipakai — trayek read-only
+  const trOpts = ''; // tidak dipakai - trayek read-only
 
   const ptRows = g.points.map((p,i) => buildPointRow(id, i, p)).join('');
 
@@ -474,7 +474,7 @@ function buildRouteBlock(id) {
       <span class="count-pill">${g.points.length} titik</span>
     </div>
     <div class="route-body" id="body_${esc(id)}">
-      <!-- Trayek row — read-only -->
+      <!-- Trayek row - read-only -->
       <div class="trayek-row">
         <label>Trayek</label>
       </div>
@@ -482,7 +482,7 @@ function buildRouteBlock(id) {
       <div class="codemap-row">
         <label>code_map</label>
         <div class="codemap-val" id="codeMapVal_${esc(id)}">
-          ${esc(codeMap) || '<span style="color:#d97706;font-weight:400;font-size:12px;font-style:italic">—</span>'}
+          ${esc(codeMap) || '<span style="color:#d97706;font-weight:400;font-size:12px;font-style:italic">-</span>'}
           <span class="codemap-auto-badge">AUTO</span>
         </div>
       </div>
@@ -625,7 +625,7 @@ function readPoints(id) {
 async function saveRoute(id) {
   const btn     = document.getElementById(`btnSaveMap_${id}`);
   const status  = document.getElementById(`saveStatus_${id}`);
-  // Trayek tidak bisa diubah — ambil dari state lokal
+  // Trayek tidak bisa diubah - ambil dari state lokal
   const trId    = routeGroups[id]?.id_trayek   || null;
   const trNama  = routeGroups[id]?.nama_trayek || '';
   const points  = readPoints(id);
@@ -642,7 +642,7 @@ async function saveRoute(id) {
     // 1. Delete existing rows
     await sbDelete('map', `id_map=eq.${encodeURIComponent(id)}`);
 
-    // 2. Insert new rows — sertakan code_map di setiap baris
+    // 2. Insert new rows - sertakan code_map di setiap baris
     const rows = points.map(p => ({
       id_map      : id,
       code_map    : codeMap  || null,   // ← kolom code_map dikirim ke Supabase
@@ -660,7 +660,7 @@ async function saveRoute(id) {
     if (!routeGroups[id]) routeGroups[id] = {};
     routeGroups[id].points   = points;
     routeGroups[id].code_map = codeMap || '';
-    // id_trayek & nama_trayek tidak diupdate — tidak bisa diubah
+    // id_trayek & nama_trayek tidak diupdate - tidak bisa diubah
 
     // Update header preview
     const headSub    = document.querySelector(`#rb_${id} .route-sub`);
@@ -742,7 +742,7 @@ function updateIdMapPreview() {
 // ── Populate new route modal ───────────────────────────────────────
 function populateNewRouteModal() {
   const sel = document.getElementById('newTrayekSel');
-  sel.innerHTML = `<option value="">— Pilih Trayek —</option>` +
+  sel.innerHTML = `<option value="">- Pilih Trayek -</option>` +
     allTrayeks.map(t => `<option value="${esc(t.id)}" data-nama="${esc(t.nama)}" data-jenis="${esc(t.jenis)}">${esc(t.label)}</option>`).join('');
 }
 
@@ -811,7 +811,7 @@ document.getElementById('modalSave').addEventListener('click', async () => {
       const block = document.getElementById(`rb_${newId}`);
       if (block) { block.classList.add('expanded'); block.scrollIntoView({behavior:'smooth',block:'center'}); }
     }, 100);
-    showToast(`✅ Rute ${newId} dibuat (code_map: ${codeMap}) — isi titiknya sekarang`);
+    showToast(`✅ Rute ${newId} dibuat (code_map: ${codeMap}) - isi titiknya sekarang`);
   } catch(e) {
     showToast(`❌ ${e.message}`, 'error');
   } finally {

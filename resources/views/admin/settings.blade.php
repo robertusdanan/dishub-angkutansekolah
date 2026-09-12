@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Pengaturan Akun — Admin</title>
+  <title>Pengaturan Akun - Admin</title>
   <meta name="csrf-token" content="{{ csrf_token() }}"/>
   <link rel="canonical" href="{{ url('/admin/settings') }}"/>
   <link rel="icon" href="/favicon.ico"/>
@@ -548,7 +548,7 @@ async function jalankanCleanup() {
 
     if (json.status === 'ok') {
       const rows = (json.log || [])
-        .map(l => l.match(/^\[(OK|GAGAL)\]\s+(\S+)\s+—\s+(.*)$/))
+        .map(l => l.match(/^\[(OK|GAGAL)\]\s+(\S+)\s+-\s+(.*)$/))
         .filter(Boolean)
         .map(m => ({ status: m[1], table: m[2], detail: m[3] }));
 

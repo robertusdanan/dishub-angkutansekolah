@@ -1,10 +1,10 @@
 <?php
 /**
- * cpanel-deploy.php — Webhook Auto-Deployment Laravel 11
+ * cpanel-deploy.php - Webhook Auto-Deployment Laravel 11
  * Menerima payload push dari GitHub Webhook dan mengeksekusi pull + deploy.
  *
  * Token TIDAK boleh ditulis di file ini: file ini ikut ter-commit ke GitHub,
- * dan repo ini PUBLIC — siapa pun bisa membacanya lalu memicu deploy.
+ * dan repo ini PUBLIC - siapa pun bisa membacanya lalu memicu deploy.
  * Token dibaca dari DEPLOY_WEBHOOK_TOKEN di file .env (tidak ikut ke git).
  */
 

@@ -15,12 +15,12 @@ use Illuminate\View\View;
  * CATATAN MIGRASI: kode lama pakai session PHP TERPISAH (cookie
  * `listlink_session`, benar-benar independen dari sesi admin panel utama)
  * supaya teknisi yang cuma butuh akses "List Link" tidak perlu login penuh
- * ke Admin. Laravel secara default satu sesi per aplikasi — di sini
+ * ke Admin. Laravel secara default satu sesi per aplikasi - di sini
  * disederhanakan jadi KEY sesi terpisah (`listlink_logged_in` dkk) di
  * DALAM sesi Laravel yang sama, bukan cookie session yang benar-benar
  * terpisah. Efeknya: kalau seseorang sudah login ke Admin panel utama di
  * browser yang sama, session ID-nya sama (bukan lagi dua session_id
- * berbeda) — tapi status login listlink tetap independen (key sendiri,
+ * berbeda) - tapi status login listlink tetap independen (key sendiri,
  * guard sendiri), jadi perilaku fungsionalnya tetap sama.
  */
 class ListlinkAuthController extends Controller

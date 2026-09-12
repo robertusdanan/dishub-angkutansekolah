@@ -7,7 +7,7 @@ namespace App\Services\LocalMedia;
  * (akun_media_dokumen_dir, akun_compress_image / tw_compress_image,
  * tw_media_apply_orientation, tw_media_ensure_dir).
  *
- * Path penyimpanan: storage/app/private/dokumen/{ktp|kk} — setara
+ * Path penyimpanan: storage/app/private/dokumen/{ktp|kk} - setara
  * "private/dokumen/{jenis}" di kode lama (di luar web root, tidak bisa
  * diakses langsung lewat URL). Ini adalah root disk "local" bawaan
  * Laravel 11 (lihat config/filesystems.php).
@@ -24,7 +24,7 @@ class DokumenService
 
     /**
      * Direktori LEGACY khusus Balik Gratis (data lama SEBELUM fitur akun
-     * terpusat ada — baris balikgratis_pemesanan.dokumen_filename).
+     * terpusat ada - baris balikgratis_pemesanan.dokumen_filename).
      * Data baru sudah pakai dir('ktp'/'kk') via akun_publik.
      */
     public function dirLegacyBalikGratis(): string
@@ -52,7 +52,7 @@ class DokumenService
 
     /**
      * Kompres & simpan gambar sebagai JPEG (resize proporsional + auto-rotate
-     * EXIF) — port 1:1 dari tw_compress_image().
+     * EXIF) - port 1:1 dari tw_compress_image().
      */
     public function compressImage(string $srcPath, string $destPath, int $maxDim = 2000, int $quality = 88): bool
     {

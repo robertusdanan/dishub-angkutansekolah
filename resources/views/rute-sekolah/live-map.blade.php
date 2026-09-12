@@ -476,7 +476,7 @@
     <div class="stop-modal-inner">
       <button class="stop-modal-close" id="stop-modal-close" aria-label="Tutup">✕</button>
       <div class="stop-modal-label">Titik Jalur</div>
-      <div class="stop-modal-name" id="stop-modal-name">—</div>
+      <div class="stop-modal-name" id="stop-modal-name">-</div>
       <div class="stop-modal-index" id="stop-modal-index"></div>
     </div>
     <svg class="stop-modal-arrow" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -488,17 +488,17 @@
   <div id="bottom-card">
     <div class="card-stat">
       <span class="card-stat-label">Jalur</span>
-      <span class="card-stat-value accent" id="stat-halte">—</span>
+      <span class="card-stat-value accent" id="stat-halte">-</span>
     </div>
     <div class="card-divider"></div>
     <div class="card-stat">
       <span class="card-stat-label">Jarak</span>
-      <span class="card-stat-value" id="stat-jarak">—</span>
+      <span class="card-stat-value" id="stat-jarak">-</span>
     </div>
     <div class="card-divider"></div>
     <div class="card-stat">
       <span class="card-stat-label">Durasi</span>
-      <span class="card-stat-value" id="stat-durasi">—</span>
+      <span class="card-stat-value" id="stat-durasi">-</span>
     </div>
   </div>
 

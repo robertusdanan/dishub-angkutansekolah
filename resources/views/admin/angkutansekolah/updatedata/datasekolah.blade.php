@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
 <meta name="csrf-token" content="{{ csrf_token() }}"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Data Sekolah — Admin</title>
+  <title>Data Sekolah - Admin</title>
   <link rel="icon" href="/favicon.ico"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -112,7 +112,7 @@
       <div class="adm-page-header">
         <div>
           <h1 class="adm-page-title">Data Sekolah</h1>
-          <p class="adm-page-subtitle">Kelola daftar nama sekolah — huruf otomatis kapital semua (UPPERCASE)</p>
+          <p class="adm-page-subtitle">Kelola daftar nama sekolah - huruf otomatis kapital semua (UPPERCASE)</p>
         </div>
         <button class="btn btn-secondary btn-sm" id="btnRefresh" onclick="loadData()">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
@@ -134,7 +134,7 @@
           <input type="text" id="searchInput" class="search-input" placeholder="Cari nama sekolah..." oninput="renderTable()"/>
         </div>
         <div class="count-badge">
-          Total: <strong id="totalCount">—</strong> sekolah
+          Total: <strong id="totalCount">-</strong> sekolah
         </div>
       </div>
 

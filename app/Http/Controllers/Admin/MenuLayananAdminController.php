@@ -48,7 +48,7 @@ class MenuLayananAdminController extends Controller
         $id = trim((string) $request->input('id', ''));
         $isActive = (bool) $request->input('aktif', true);
         // PERBAIKAN KEAMANAN (ditemukan saat audit ulang): validasi format
-        // UUID, bukan cuma "tidak kosong" — lihat catatan sama di
+        // UUID, bukan cuma "tidak kosong" - lihat catatan sama di
         // AdminAkunApiController.
         if (!preg_match('/^[0-9a-fA-F-]{36}$/', $id)) {
             return response()->json(['error' => 'ID menu layanan tidak valid.'], 400);

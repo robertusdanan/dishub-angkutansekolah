@@ -37,7 +37,7 @@ class AbsenRfidService
     }
 
     /**
-     * Setara php/cek.php — absen manual (input nama, tanpa kartu RFID),
+     * Setara php/cek.php - absen manual (input nama, tanpa kartu RFID),
      * auto-membuat baris user_RFID kalau namanya belum pernah tercatat.
      *
      * @return array{0:int,1:array} [http_status, body]
@@ -119,7 +119,7 @@ class AbsenRfidService
     }
 
     /**
-     * Setara php/cek_rfid.php — absen via kartu RFID (NIK sudah pasti
+     * Setara php/cek_rfid.php - absen via kartu RFID (NIK sudah pasti
      * terdaftar di user_RFID, TIDAK auto-membuat user baru seperti cekManual).
      *
      * @return array{0:int,1:array}

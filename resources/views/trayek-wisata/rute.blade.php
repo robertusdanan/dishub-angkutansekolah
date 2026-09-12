@@ -4,8 +4,8 @@
 <meta charset="UTF-8"/>
 <meta name="csrf-token" content="{{ csrf_token() }}"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
-<title>Peta Rute Interaktif — Trayek Wisata Gratis | Dishub Kabupaten Tulungagung</title>
-<meta name="description" content="Jelajahi rute lengkap Trayek Wisata Gratis di peta interaktif — lihat tiap titik, foto, video, dan estimasi waktu tiba sebelum berangkat."/>
+<title>Peta Rute Interaktif - Trayek Wisata Gratis | Dishub Kabupaten Tulungagung</title>
+<meta name="description" content="Jelajahi rute lengkap Trayek Wisata Gratis di peta interaktif - lihat tiap titik, foto, video, dan estimasi waktu tiba sebelum berangkat."/>
 <meta name="theme-color" content="#0A1F44"/>
 <link rel="icon" href="/favicon.ico"/>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,400..600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -40,9 +40,9 @@
         <div class="explorer-panel-name" id="panelName"></div>
         <div class="explorer-panel-desc" id="panelDesc"></div>
         <div class="explorer-panel-stats">
-          <div class="explorer-stat"><b id="panelEta">—</b>Perkiraan Tiba</div>
-          <div class="explorer-stat"><b id="panelDur">—</b>Dari Titik Sebelumnya</div>
-          <div class="explorer-stat"><b id="panelVisit">—</b>Kunjungan</div>
+          <div class="explorer-stat"><b id="panelEta">-</b>Perkiraan Tiba</div>
+          <div class="explorer-stat"><b id="panelDur">-</b>Dari Titik Sebelumnya</div>
+          <div class="explorer-stat"><b id="panelVisit">-</b>Kunjungan</div>
         </div>
         <div class="explorer-panel-actions">
           <a class="btn btn-solid btn-sm" id="panelGmaps" target="_blank" rel="noopener">Buka di Google Maps</a>
@@ -59,7 +59,7 @@
     <div class="story-head reveal">
       <div class="eyebrow">Alur Perjalanan</div>
       <h2 class="sect-title" style="margin-top:14px">Satu trayek,<br/>banyak cerita.</h2>
-      <p class="sect-lede">Dari terminal keberangkatan, menyusuri Jalur Lintas Selatan, hingga singgah di tiap pantai — begini urutan perjalanan yang akan Anda tempuh.</p>
+      <p class="sect-lede">Dari terminal keberangkatan, menyusuri Jalur Lintas Selatan, hingga singgah di tiap pantai - begini urutan perjalanan yang akan Anda tempuh.</p>
     </div>
     <div class="story-track">
       <div class="story-spine"></div>

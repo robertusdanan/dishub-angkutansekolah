@@ -129,7 +129,7 @@
       <!-- Pendaftaran gaya "KAI Access": pemilik akun jadi penumpang
            default, bisa ditambah anggota keluarga yang sudah terdaftar
            di halaman Akun Saya. Data identitas & foto KTP/KK TIDAK
-           diinput ulang di sini — semua diambil dari akun yang login. -->
+           diinput ulang di sini - semua diambil dari akun yang login. -->
       <div id="lengkapiProfilBanner" class="hidden" style="background:#fff4e5;border:1.5px solid #f5c98c;border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:13px;color:#7a4a0a;">
         Lengkapi dulu data akun Anda sebelum bisa mendaftar: <strong id="lengkapiList"></strong>.
         <a id="lengkapiLink" href="/akun/saya" style="color:#7a4a0a;font-weight:700;text-decoration:underline;">Lengkapi sekarang →</a>

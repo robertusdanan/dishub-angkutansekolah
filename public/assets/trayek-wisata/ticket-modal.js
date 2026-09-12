@@ -35,7 +35,7 @@ function showTicketModal(data) {
           <div class="ticket-row"><span class="ticket-label">Berangkat</span><span class="ticket-val">${(data.jamBerangkat||'').slice(0,5)} ${data.jamPulang ? '· Pulang '+data.jamPulang.slice(0,5) : ''}</span></div>
           <div class="ticket-divider"></div>
           <div class="ticket-label" style="margin-bottom:8px">Penumpang</div>
-          <div class="ticket-pax-list">${namaList || '<div class="ticket-pax-row"><span>—</span></div>'}</div>
+          <div class="ticket-pax-list">${namaList || '<div class="ticket-pax-row"><span>-</span></div>'}</div>
           <div class="ticket-divider"></div>
           <div class="ticket-qr-wrap">
             <div id="ticketQrCanvas"></div>

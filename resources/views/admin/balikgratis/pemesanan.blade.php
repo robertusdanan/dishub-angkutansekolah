@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="csrf-token" content="{{ csrf_token() }}"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Data Pemesanan — Admin Balik Gratis</title>
+<title>Data Pemesanan - Admin Balik Gratis</title>
 <link rel="icon" href="/favicon.ico"/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/admin/admin-shell.css">
@@ -94,7 +94,7 @@ function renderTable() {
       <td class="mono">${bgEscAdm(r.nik)}<br/>${bgEscAdm(r.no_hp)}</td>
       <td>${bgEscAdm(r.kategori)}</td>
       <td style="max-width:200px">${bgEscAdm(r.alamat)}</td>
-      <td>${r.dokumen_filename ? `<a class="link-btn" href="/admin/api/balikgratis/dokumen-view?id=${r.id}" target="_blank">Lihat Foto</a>` : '—'}</td>
+      <td>${r.dokumen_filename ? `<a class="link-btn" href="/admin/api/balikgratis/dokumen-view?id=${r.id}" target="_blank">Lihat Foto</a>` : '-'}</td>
       <td><span class="status-pill status-${r.status}">${r.status}</span></td>
       <td>${new Date(r.created_at).toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric'})}</td>
       <td>
@@ -147,7 +147,7 @@ async function exportPdf() {
       const pageCount = doc.internal.getNumberOfPages();
       const pageH = doc.internal.pageSize.getHeight();
       doc.setFontSize(8); doc.setTextColor(...GRAY); doc.setFont('helvetica', 'normal');
-      doc.text('Dishub Kabupaten Tulungagung — Sistem Balik Gratis', 36, pageH - 20);
+      doc.text('Dishub Kabupaten Tulungagung - Sistem Balik Gratis', 36, pageH - 20);
       doc.text(`Halaman ${doc.internal.getCurrentPageInfo().pageNumber} / ${pageCount}`, pageW - 36, pageH - 20, { align: 'right' });
     },
   });

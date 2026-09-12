@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Peta Gabungan Rute — Dishub Tulungagung</title>
+  <title>Peta Gabungan Rute - Dishub Tulungagung</title>
   <link rel="icon" href="/favicon.ico"/>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -694,7 +694,7 @@
       });
 
       // Jaring pengaman TERAKHIR: kalau proses benar-benar MACET (tidak ada
-      // progress masuk sama sekali selama beberapa waktu — bukan sekadar
+      // progress masuk sama sekali selama beberapa waktu - bukan sekadar
       // lama), baru tampilkan error. Timer ini di-RESET setiap kali ada
       // event map-progress baru, jadi proses yang masih berjalan (walau
       // lambat) tidak akan salah dianggap macet.

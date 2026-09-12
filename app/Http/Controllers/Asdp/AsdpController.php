@@ -12,7 +12,7 @@ use Illuminate\View\View;
  *
  * CATATAN MIGRASI: enforce_cfg_sync() (kill-switch remote) SENGAJA DIHAPUS,
  * sama seperti modul lain. File pages/asdp/style.css di kode lama TIDAK
- * ikut dipindahkan — sudah dicek, file itu tidak di-<link> di manapun
+ * ikut dipindahkan - sudah dicek, file itu tidak di-<link> di manapun
  * (dead code / sisa desain lama sebelum CSS-nya dipindah inline).
  */
 class AsdpController extends Controller
@@ -21,7 +21,7 @@ class AsdpController extends Controller
     {
     }
 
-    /** GET /asdp/ — setara pages/asdp/index.php */
+    /** GET /asdp/ - setara pages/asdp/index.php */
     public function index(): Response
     {
         $this->menuLayanan->requireAktif('asdp');

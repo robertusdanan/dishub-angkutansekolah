@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Akun — Admin</title>
+  <title>Akun - Admin</title>
   <link rel="canonical" href="{{ url('/admin/akun') }}"/>
   <link rel="icon" href="/favicon.ico"/>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -60,7 +60,7 @@
       <div class="adm-page-header">
         <div>
           <h1 class="adm-page-title">Akun</h1>
-          <p class="adm-page-subtitle">Kelola akun login admin — daftar, nonaktifkan, ubah role</p>
+          <p class="adm-page-subtitle">Kelola akun login admin - daftar, nonaktifkan, ubah role</p>
         </div>
       </div>
 
@@ -197,7 +197,7 @@ function showMsg(type, text) {
   window._msgTimer = setTimeout(() => { el.style.display = 'none'; }, 5000);
 }
 
-// Pesan di DALAM modal — dipakai untuk error validasi (mis. "Password
+// Pesan di DALAM modal - dipakai untuk error validasi (mis. "Password
 // minimal 8 karakter") supaya tetap terlihat SELAGI modal masih terbuka.
 // #result-msg di halaman utama tidak cukup karena tertutup backdrop modal.
 function showModalMsg(msgElId, type, text) {
@@ -244,7 +244,7 @@ async function loadRoles() {
   if (!res.ok) throw new Error(json.error || 'Gagal memuat role');
   // roles.php list sekarang juga menyertakan role yang sedang dipakai
   // akun sendiri (is_mine, read-only) supaya terlihat di Manajemen
-  // Role — tapi role itu TIDAK BOLEH dipilih di sini saat membuat/
+  // Role - tapi role itu TIDAK BOLEH dipilih di sini saat membuat/
   // memindahkan akun (backend menolaknya, canManageLevelStrict butuh
   // level LEBIH RENDAH, bukan setara), jadi disaring dari dropdown.
   rolesCache = (json.data || []).filter(r => !r.is_mine);
@@ -274,19 +274,19 @@ function renderRow(a) {
   const isMe = a.id === MY_ACCOUNT_ID;
   const roleLevel = Number(role.level ?? 0);
   // Akun dengan level SETARA (bukan lebih rendah) hanya boleh dilihat,
-  // tidak bisa dikelola — sesuai backend (canManageLevelStrict butuh
+  // tidak bisa dikelola - sesuai backend (canManageLevelStrict butuh
   // level LEBIH RENDAH, bukan setara). Superadmin selalu bebas dari
   // batasan ini.
   const isManageable = IS_SUPERADMIN || roleLevel < MY_LEVEL;
   const lastLogin = a.last_login_at
     ? new Date(a.last_login_at).toLocaleString('id-ID', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })
-    : '—';
+    : '-';
 
   const actions = [];
   // Non-superadmin tidak bisa lagi mengedit/reset password akun sendiri
   // lewat panel ini (backend sekarang mewajibkan level LEBIH TINGGI dari
   // target, dan level akun sendiri tidak pernah lebih tinggi dari
-  // dirinya sendiri) — arahkan ke menu Pengaturan untuk kelola akun
+  // dirinya sendiri) - arahkan ke menu Pengaturan untuk kelola akun
   // sendiri. Superadmin dikecualikan (selalu lolos di backend).
   if (isManageable) {
     if (CAN_EDIT && (!isMe || IS_SUPERADMIN)) {
@@ -307,13 +307,13 @@ function renderRow(a) {
     ? actions.join('')
     : (!isManageable
         ? '<span style="color:var(--text-4);font-size:12px;"></span>'
-        : '<span style="color:var(--text-4);font-size:12px;">—</span>');
+        : '<span style="color:var(--text-4);font-size:12px;">-</span>');
 
   return `
     <tr>
       <td>${escapeHtml(a.username)}${isMe ? '<span class="you-tag">(Anda)</span>' : ''}</td>
-      <td>${escapeHtml(a.full_name || '—')}</td>
-      <td><span class="role-badge">${escapeHtml(role.role_name || '—')}</span></td>
+      <td>${escapeHtml(a.full_name || '-')}</td>
+      <td><span class="role-badge">${escapeHtml(role.role_name || '-')}</span></td>
       <td><span class="status-badge ${a.is_active ? 'on' : 'off'}"><span class="status-dot"></span>${a.is_active ? 'Aktif' : 'Nonaktif'}</span></td>
       <td>${lastLogin}</td>
       <td><div class="row-actions">${actionsHtml}</div></td>

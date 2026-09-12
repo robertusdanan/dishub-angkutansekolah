@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
 /**
- * Klien REST ke Supabase (PostgREST) — port 1:1 dari core/sb_client_helper.php
+ * Klien REST ke Supabase (PostgREST) - port 1:1 dari core/sb_client_helper.php
  * (fungsi sb_request / sb_select / sb_insert / sb_upsert / sb_update / sb_delete).
  *
  * Perilaku dipertahankan sama persis, termasuk:

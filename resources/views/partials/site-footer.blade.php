@@ -1,12 +1,12 @@
 {{--
     Port dari core/site_footer.php (render_site_footer_assets() + render_site_footer())
-    dan core/footer.php (kredit developer — dipertahankan sesuai instruksi).
+    dan core/footer.php (kredit developer - dipertahankan sesuai instruksi).
     Props: $orgName (string, opsional), $desc (string, opsional)
 --}}
 @php
     $credit = app(\App\Services\SiteCredit\SiteCreditService::class)->get();
     $footerOrgName = $orgName ?? ($credit['org_name'] ?: 'Dinas Perhubungan Kabupaten Tulungagung');
-    $footerDesc = $desc ?? 'Transformasi digital layanan transportasi publik — terintegrasi, inovatif, dan berorientasi pada peningkatan kualitas pelayanan bagi warga Kabupaten Tulungagung.';
+    $footerDesc = $desc ?? 'Transformasi digital layanan transportasi publik - terintegrasi, inovatif, dan berorientasi pada peningkatan kualitas pelayanan bagi warga Kabupaten Tulungagung.';
 @endphp
 
 @once

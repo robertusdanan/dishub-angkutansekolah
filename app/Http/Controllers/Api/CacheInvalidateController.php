@@ -9,10 +9,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
 /**
- * Port dari api/cache_invalidate.php — webhook dipanggil Supabase Database
+ * Port dari api/cache_invalidate.php - webhook dipanggil Supabase Database
  * Trigger (pg_net.http_post) tiap ada INSERT/UPDATE/DELETE di tabel yang
  * dipasangi trigger. TIDAK PERNAH dipanggil dari browser/JS, server-to-server
- * saja — dilindungi header X-Cache-Secret (bukan CSRF, makanya route ini
+ * saja - dilindungi header X-Cache-Secret (bukan CSRF, makanya route ini
  * juga masuk daftar pengecualian CSRF di bootstrap/app.php).
  */
 class CacheInvalidateController extends Controller
@@ -39,7 +39,7 @@ class CacheInvalidateController extends Controller
         $table = (string) $data['table'];
 
         if (in_array($table, self::ABSENSI_TABLES, true)) {
-            // Setara hapus cache/absensi/{table}.json lama — cache
+            // Setara hapus cache/absensi/{table}.json lama - cache
             // whole-table absensi sekarang dikelola AbsensiHybridService
             // lewat Cache facade dengan key 'absensi_whole_{table}'.
             $deleted = Cache::forget('absensi_whole_'.$table) ? [$table] : [];

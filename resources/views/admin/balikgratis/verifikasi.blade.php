@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="csrf-token" content="{{ csrf_token() }}"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Verifikasi Tiket — Admin Balik Gratis</title>
+<title>Verifikasi Tiket - Admin Balik Gratis</title>
 <link rel="icon" href="/favicon.ico"/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/admin/admin-shell.css">
@@ -75,7 +75,7 @@ let lastToken = null;
 async function initScanner() {
   if (typeof jsQR !== 'function') {
     document.getElementById('resultCard').innerHTML = '<div class="result-empty" style="color:#b91c1c">Library pemindai QR gagal dimuat. Gunakan pencarian manual di sebelah kiri.</div>';
-    bgAdmToast('Library QR gagal dimuat — pakai pencarian manual', 'error');
+    bgAdmToast('Library QR gagal dimuat - pakai pencarian manual', 'error');
     return;
   }
   const video = document.getElementById('scanVideo');

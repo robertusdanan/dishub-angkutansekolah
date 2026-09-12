@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 /**
  * Port dari admin/api/asdp/upload_image.php.
  *
- * Gambar ASDP disimpan di disk "uploads" (public/uploads/asdp/) — sama
+ * Gambar ASDP disimpan di disk "uploads" (public/uploads/asdp/) - sama
  * seperti kode lama yang menyimpan langsung ke filesystem lokal server,
  * BUKAN Supabase Storage. Nama file dibuat dari slug Nama Lokasi.
  */

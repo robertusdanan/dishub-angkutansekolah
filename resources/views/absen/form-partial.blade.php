@@ -1,5 +1,5 @@
 {{--
-    Port dari core/absen_form_partial.php — dipakai bersama oleh
+    Port dari core/absen_form_partial.php - dipakai bersama oleh
     /absenqrcode/pages/form dan /absenrfid/pages/form (sebelumnya dua file
     identik byte-per-byte, sekarang satu sumber Blade).
 --}}

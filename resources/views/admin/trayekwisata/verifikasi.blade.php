@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="csrf-token" content="{{ csrf_token() }}"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Verifikasi Tiket — Admin Trayek Wisata</title>
+<title>Verifikasi Tiket - Admin Trayek Wisata</title>
 <link rel="icon" href="/favicon.ico"/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/admin/admin-shell.css">
@@ -72,7 +72,7 @@ let scanning = true;
 async function initScanner() {
   if (typeof jsQR !== 'function') {
     document.getElementById('resultCard').innerHTML = '<div class="result-empty" style="color:#b91c1c">Library pemindai QR gagal dimuat. Coba muat ulang halaman, atau gunakan pencarian manual pakai NIK di sebelah kiri.</div>';
-    twToast('Library QR gagal dimuat — pakai pencarian manual NIK', 'error');
+    twToast('Library QR gagal dimuat - pakai pencarian manual NIK', 'error');
     return;
   }
   const video = document.getElementById('scanVideo');
@@ -126,7 +126,7 @@ async function loadPemesanan(id) {
 
     const jadwal = r.trayekwisata_jadwal;
     const trayek = jadwal?.trayekwisata_trayek;
-    const tgl = jadwal ? new Date(jadwal.tanggal).toLocaleDateString('id-ID', { weekday:'long', day:'numeric', month:'long' }) : '—';
+    const tgl = jadwal ? new Date(jadwal.tanggal).toLocaleDateString('id-ID', { weekday:'long', day:'numeric', month:'long' }) : '-';
 
     let pillClass = 'pill-ok', pillText = 'Terkonfirmasi';
     if (r.status === 'dibatalkan') { pillClass = 'pill-bad'; pillText = 'Dibatalkan'; }
@@ -137,7 +137,7 @@ async function loadPemesanan(id) {
         <div><div class="result-trayek">${twEsc(trayek?.nama || 'Trayek')}</div><div class="result-meta">${jadwal?.hari === 'SABTU' ? 'Sabtu' : 'Minggu'}, ${tgl} · ${(jadwal?.jam_berangkat||'').slice(0,5)}</div></div>
         <span class="result-pill ${pillClass}">${pillText}</span>
       </div>
-      <div class="result-meta">Pemesan: <strong>${twEsc(r.akun_publik?.nama||'—')}</strong> · ${twEsc(r.akun_publik?.no_hp||'')}</div>
+      <div class="result-meta">Pemesan: <strong>${twEsc(r.akun_publik?.nama||'-')}</strong> · ${twEsc(r.akun_publik?.no_hp||'')}</div>
       <table class="pax-table">
         <thead><tr><th>Nama Penumpang</th><th>NIK</th></tr></thead>
         <tbody>${pax.map(p => `<tr><td>${twEsc(p.nama)}</td><td style="font-family:'DM Mono',monospace">${twEsc(p.nik)}</td></tr>`).join('')}</tbody>

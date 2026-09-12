@@ -40,7 +40,7 @@ return [
         ],
 
         // REKOMENDASI KEAMANAN: channel terpisah untuk jejak audit aksi
-        // admin sensitif — storage/logs/audit.log, retensi 1 tahun.
+        // admin sensitif - storage/logs/audit.log, retensi 1 tahun.
         'audit' => [
             'driver' => 'daily',
             'path' => storage_path('logs/audit.log'),

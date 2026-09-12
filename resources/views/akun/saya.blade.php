@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="csrf-token" content="{{ csrf_token() }}"/>
-<title>Profil Saya — Dishub Kabupaten Tulungagung</title>
+<title>Profil Saya - Dishub Kabupaten Tulungagung</title>
 <link rel="icon" href="/favicon.ico"/>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,400..600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/akun/style.css"/>
@@ -74,7 +74,7 @@
   </div>
 
   <p style="font-size:12.5px;color:var(--ink-3);margin:-24px 0 28px;">
-    Akun ini satu untuk semua layanan — data di halaman ini juga dipakai saat memesan
+    Akun ini satu untuk semua layanan - data di halaman ini juga dipakai saat memesan
     <a href="/balikgratis" style="color:var(--forest);font-weight:600;">Balik Gratis</a>.
   </p>
 
@@ -120,7 +120,7 @@
       <div class="f-row">
         <span class="f-label">Jenis Kelamin</span>
         <select class="f-input" id="p_jk">
-          <option value="">— Pilih —</option>
+          <option value="">- Pilih -</option>
           <option value="Laki-laki">Laki-laki</option>
           <option value="Perempuan">Perempuan</option>
         </select>
@@ -156,7 +156,7 @@
   <!-- ── Dokumen ───────────────────────────────────────────────── -->
   <div class="akun-card">
     <div class="akun-card-title">Verifikasi Dokumen</div>
-    <div class="akun-card-sub">Ambil foto langsung lewat kamera — tidak bisa upload dari galeri.</div>
+    <div class="akun-card-sub">Ambil foto langsung lewat kamera - tidak bisa upload dari galeri.</div>
 
     <div class="doc-row">
       <div class="doc-thumb" id="thumbKtp">KTP</div>
@@ -173,7 +173,7 @@
   <!-- ── Anggota Keluarga ──────────────────────────────────────── -->
   <div class="akun-card">
     <div class="akun-card-title">Anggota Keluarga</div>
-    <div class="akun-card-sub">Bisa ikut dipesankan kursi — tiap NIK tetap tunduk aturan 1 tiket / 4 minggu.</div>
+    <div class="akun-card-sub">Bisa ikut dipesankan kursi - tiap NIK tetap tunduk aturan 1 tiket / 4 minggu.</div>
     <div id="famList"></div>
     <div class="fam-add-grid">
       <input class="f-input" id="fam_nama" placeholder="Nama anggota"/>
@@ -188,7 +188,7 @@
     </div>
   </div>
 
-  <!-- ── Tiket & Pemesanan: SENGAJA tidak ditampilkan di sini — itu
+  <!-- ── Tiket & Pemesanan: SENGAJA tidak ditampilkan di sini - itu
        logika masing-masing layanan, bukan logika akun. Lihat gabungan
        tiket Trayek Wisata & Balik Gratis di /admin/tiket-saya. ────── -->
   <a href="/admin/tiket-saya" class="akun-card" style="display:flex;align-items:center;justify-content:space-between;text-decoration:none;">
@@ -360,7 +360,7 @@ async function delFamily(id) {
   if (!confirm('Hapus anggota keluarga ini?')) return;
   // CATATAN MIGRASI: kode lama mengirim method:'POST' + header
   // X-HTTP-Method-Override, tapi server TIDAK PERNAH membaca header itu
-  // (langsung cek $_SERVER['REQUEST_METHOD']) — jadi hapus anggota
+  // (langsung cek $_SERVER['REQUEST_METHOD']) - jadi hapus anggota
   // keluarga selalu gagal (400 "Body tidak valid") di versi PHP native.
   // Di Laravel ini diperbaiki jadi DELETE request yang sesungguhnya.
   await fetch('/akun/api/keluarga?id=' + id, { method: 'DELETE', headers: {'X-CSRF-TOKEN': CSRF_TOKEN} });

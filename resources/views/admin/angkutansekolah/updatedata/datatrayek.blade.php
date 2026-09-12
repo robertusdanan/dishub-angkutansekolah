@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
 <meta name="csrf-token" content="{{ csrf_token() }}"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Data Trayek — Admin</title>
+  <title>Data Trayek - Admin</title>
   <link rel="icon" href="/favicon.ico"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -68,7 +68,7 @@
     .btn-del       { background:#fef2f2; color:#ef4444; border-color:#fecaca; }
     .btn-del:hover { background:#ef4444; color:#fff; border-color:#ef4444; }
 
-    /* Row view/edit states — visibility now handled by JS for split-nama */
+    /* Row view/edit states - visibility now handled by JS for split-nama */
     .row-view .id-readonly { display:block; }
     .row-view .btn-edit,
     .row-view .btn-del     { display:inline-flex; }
@@ -149,12 +149,12 @@
         <button class="tab-btn active" id="tabBus" onclick="switchTab('bus')">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
           Trayek Bus
-          <span class="tab-count" id="cntBus">—</span>
+          <span class="tab-count" id="cntBus">-</span>
         </button>
         <button class="tab-btn" id="tabMpu" onclick="switchTab('mpu')">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3"/><rect x="9" y="11" width="14" height="10" rx="2"/><circle cx="12" cy="21" r="1"/><circle cx="20" cy="21" r="1"/></svg>
           Trayek MPU
-          <span class="tab-count" id="cntMpu">—</span>
+          <span class="tab-count" id="cntMpu">-</span>
         </button>
       </div>
 
@@ -440,7 +440,7 @@ async function addTrayek() {
 async function deleteTrayek(id) {
   const rec = (data[currentTab] || []).find(r => String(r.id) === String(id));
   if (!rec) return;
-  if (!(await confirmDangerModal(`Hapus trayek "${rec.id} — ${rec.nama}"?\n\nPastikan trayek ini sudah tidak digunakan di data lain.`))) return;
+  if (!(await confirmDangerModal(`Hapus trayek "${rec.id} - ${rec.nama}"?\n\nPastikan trayek ini sudah tidak digunakan di data lain.`))) return;
 
   try {
     const tb = tabel(currentTab);

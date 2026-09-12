@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 /**
- * Port dari pages/absenqrcode/php/proxy.php — proxy CORS generik ke
+ * Port dari pages/absenqrcode/php/proxy.php - proxy CORS generik ke
  * Supabase REST/Storage pakai anon key (RLS Supabase yang jadi pagar
  * keamanan sesungguhnya, bukan proxy ini). BEDA dari
  * ReferenceCacheProxyController: yang itu whitelist tabel + caching,
- * yang ini full pass-through tanpa cache, tanpa whitelist tabel — hanya
+ * yang ini full pass-through tanpa cache, tanpa whitelist tabel - hanya
  * dibatasi prefix path /rest/v1/ atau /storage/v1/, sama seperti kode lama.
  */
 class SupabaseGenericProxyController extends Controller

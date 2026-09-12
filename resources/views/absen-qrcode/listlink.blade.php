@@ -462,7 +462,7 @@
     });
 
     // Sekarang lewat php/cache_proxy.php (cache whole-table di server,
-    // auto refresh 24 jam) — bukan fetch langsung ke Supabase dari browser.
+    // auto refresh 24 jam) - bukan fetch langsung ke Supabase dari browser.
     // Param `select` tetap dipakai untuk memangkas kolom yang dikirim balik.
     async function fetchAllRecords(table, select = '*') {
       const params = new URLSearchParams({ table, select });
@@ -474,7 +474,7 @@
     // Sumber data LANGSUNG dari driver_bus & driver_mpu (kolom id + driver),
     // tabel `deeplink_absenangkutan` TIDAK dipakai lagi sama sekali di sini.
     // Link absen dibangun sendiri dari id driver ("/absenqrcode?id=" + id), jadi
-    // datanya dijamin selalu match & realtime — begitu driver ditambah/diedit/
+    // datanya dijamin selalu match & realtime - begitu driver ditambah/diedit/
     // dihapus di Data Driver, halaman ini langsung ikut berubah.
     async function loadDrivers() {
       showSkeletons();

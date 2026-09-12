@@ -6,10 +6,10 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
 /**
- * Port dari bagian galeri di core/local_media_helper.php — dipakai
+ * Port dari bagian galeri di core/local_media_helper.php - dipakai
  * admin/api/trayekwisata/upload_galeri.php.
  *
- * Disk "uploads" (public/uploads/) — folder galeri per titik dibuat dari
+ * Disk "uploads" (public/uploads/) - folder galeri per titik dibuat dari
  * slug nama titik, dengan file penanda .titik_id (uuid) supaya tetap bisa
  * ditemukan lagi meskipun nama titiknya berubah setelah folder dibuat.
  */
@@ -142,7 +142,7 @@ class TrayekWisataGaleriService
     }
 
     /**
-     * Simpan video — dikompres kalau ffmpeg tersedia di server, kalau
+     * Simpan video - dikompres kalau ffmpeg tersedia di server, kalau
      * tidak disimpan apa adanya (tidak pernah gagal upload total).
      */
     public function saveVideo(string $srcPath, string $ext): string

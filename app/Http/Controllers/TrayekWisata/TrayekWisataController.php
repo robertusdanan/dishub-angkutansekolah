@@ -11,7 +11,7 @@ use Illuminate\View\View;
  * Port dari pages/trayekwisata/{index,destinasi,faq,jadwal,rute,survei}.php.
  *
  * CATATAN MIGRASI: require_menu_layanan_aktif() dipertahankan (bukan
- * kill-switch — ini toggle admin yang sah), tapi tidak ada enforce_cfg_sync()
+ * kill-switch - ini toggle admin yang sah), tapi tidak ada enforce_cfg_sync()
  * di halaman-halaman modul ini pada kode lama (beda dari ASDP/rute-sekolah),
  * jadi tidak ada yang perlu dihapus di sini.
  */

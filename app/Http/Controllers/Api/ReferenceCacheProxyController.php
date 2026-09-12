@@ -114,7 +114,7 @@ class ReferenceCacheProxyController extends Controller
             }
 
             // Selection & Alias col (misal select=sopir:driver,nopol:plat).
-            // 'select=*' berarti "semua kolom" — jangan sampai '*' dianggap nama
+            // 'select=*' berarti "semua kolom" - jangan sampai '*' dianggap nama
             // kolom sungguhan, karena hasilnya baris kosong {} (bug halaman
             // admin Rute Web: 312 titik menumpuk jadi 1 rute tanpa nama/koordinat).
             if ($request->filled('select')) {

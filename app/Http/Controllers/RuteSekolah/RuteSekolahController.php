@@ -11,7 +11,7 @@ use Illuminate\View\View;
  * Port dari pages/ruteangkutansekolah/pages/*.php.
  *
  * CATATAN MIGRASI: enforce_cfg_sync() (kill-switch remote) di tiap halaman
- * lama SENGAJA DIHAPUS, sama seperti modul lain — lihat MenuLayananService.
+ * lama SENGAJA DIHAPUS, sama seperti modul lain - lihat MenuLayananService.
  */
 class RuteSekolahController extends Controller
 {
@@ -19,7 +19,7 @@ class RuteSekolahController extends Controller
     {
     }
 
-    /** GET /rute-sekolah — setara rute-bus-sekolah.php */
+    /** GET /rute-sekolah - setara rute-bus-sekolah.php */
     public function index(): Response
     {
         $this->menuLayanan->requireAktif('rute_sekolah');
@@ -27,7 +27,7 @@ class RuteSekolahController extends Controller
         return $this->noCache(view('rute-sekolah.index'));
     }
 
-    /** GET /rute-sekolah/peta — setara peta-gabungan.php */
+    /** GET /rute-sekolah/peta - setara peta-gabungan.php */
     public function petaGabungan(): Response
     {
         $this->menuLayanan->requireAktif('rute_sekolah');
@@ -35,7 +35,7 @@ class RuteSekolahController extends Controller
         return $this->noCache(view('rute-sekolah.peta-gabungan'));
     }
 
-    /** GET /rute-sekolah/lihat-peta — setara rute.php */
+    /** GET /rute-sekolah/lihat-peta - setara rute.php */
     public function liveMap(): Response
     {
         $this->menuLayanan->requireAktif('rute_sekolah');
@@ -43,13 +43,13 @@ class RuteSekolahController extends Controller
         return $this->noCache(view('rute-sekolah.live-map'));
     }
 
-    /** GET /rute-sekolah/bus — setara rutebus.php (+ _rute_detail_shell.php) */
+    /** GET /rute-sekolah/bus - setara rutebus.php (+ _rute_detail_shell.php) */
     public function detailBus(): Response
     {
         $this->menuLayanan->requireAktif('rute_sekolah');
 
         return $this->noCache(view('rute-sekolah.detail-shell', ['cfg' => [
-            'title' => 'Detail Rute Bus Sekolah — Dishub Tulungagung',
+            'title' => 'Detail Rute Bus Sekolah - Dishub Tulungagung',
             'heading' => 'Detail Rute Bus',
             'badge_class' => 'badge-bus',
             'badge_label' => 'BUS',
@@ -66,13 +66,13 @@ class RuteSekolahController extends Controller
         ]]));
     }
 
-    /** GET /rute-sekolah/mpu — setara rutempu.php (+ _rute_detail_shell.php) */
+    /** GET /rute-sekolah/mpu - setara rutempu.php (+ _rute_detail_shell.php) */
     public function detailMpu(): Response
     {
         $this->menuLayanan->requireAktif('rute_sekolah');
 
         return $this->noCache(view('rute-sekolah.detail-shell', ['cfg' => [
-            'title' => 'Detail Rute MPU — Dishub Tulungagung',
+            'title' => 'Detail Rute MPU - Dishub Tulungagung',
             'heading' => 'Detail Rute MPU',
             'badge_class' => 'badge-mpu',
             'badge_label' => 'MPU',
@@ -90,7 +90,7 @@ class RuteSekolahController extends Controller
     }
 
     /**
-     * Setara send_html_headers() lama — dipasang di semua halaman modul ini
+     * Setara send_html_headers() lama - dipasang di semua halaman modul ini
      * karena datanya (posisi live driver dkk.) tidak boleh di-cache browser.
      */
     protected function noCache(View $view): Response

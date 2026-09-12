@@ -38,7 +38,7 @@ class AbsensiFotoUploadController extends Controller
 
             // PERBAIKAN KEAMANAN (ditemukan saat audit ulang): kode lama
             // langsung menyimpan file dengan nama ASLI dari client tanpa
-            // validasi isi/tipe sama sekali — berpotensi upload arbitrary
+            // validasi isi/tipe sama sekali - berpotensi upload arbitrary
             // file (mis. menyamar sebagai foto tapi isinya PHP). Sekarang
             // isi file diverifikasi BENAR gambar (getimagesize, bukan cuma
             // percaya ekstensi/MIME dari client) dan nama file di-generate

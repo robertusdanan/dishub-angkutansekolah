@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\Http;
 /**
  * Port dari core/cache_helper.php (reference_table_cache_category(),
  * sb_cache_category(), sb_cache_ttl_for_category(), sb_fetch_with_cache())
- * — dipakai oleh core/reference_cache_proxy_endpoint.php (sekarang
+ * - dipakai oleh core/reference_cache_proxy_endpoint.php (sekarang
  * ReferenceCacheProxyController).
  *
  * Beda dari kode lama: cache file lokal manual (di folder /cache/...)
- * diganti Cache facade Laravel (driver "file" bawaan — perilaku setara,
+ * diganti Cache facade Laravel (driver "file" bawaan - perilaku setara,
  * cuma lokasinya di storage/framework/cache/data, bukan /cache/ di web root).
  */
 class ReferenceCacheProxyService
@@ -60,7 +60,7 @@ class ReferenceCacheProxyService
     }
 
     /**
-     * Efek berantai — port dari reference_table_side_effects(). Contoh:
+     * Efek berantai - port dari reference_table_side_effects(). Contoh:
      * invalidasi 'trayekwisata_pemesanan' (aksi publik: pesan/batalkan
      * tiket) ikut menginvalidasi cache 'trayekwisata_jadwal' (kuota_terisi
      * berubah lewat trigger DB begitu baris pemesanan berubah).
@@ -76,7 +76,7 @@ class ReferenceCacheProxyService
      * Port dari invalidate_reference_cache(). Beda dari kode lama (hapus
      * file cache per tabel langsung): karena cache key Laravel di sini
      * mengandung hash query lengkap (bisa banyak variasi per tabel), kita
-     * pakai pola "cache version" — menaikkan versi tabel bikin SEMUA cache
+     * pakai pola "cache version" - menaikkan versi tabel bikin SEMUA cache
      * key lama untuk tabel itu otomatis tidak terpakai lagi (dianggap miss),
      * tanpa perlu tahu persis query apa saja yang pernah di-cache.
      */
@@ -125,7 +125,7 @@ class ReferenceCacheProxyService
             if (!$response->successful()) {
                 // Best-effort: kalau Supabase gagal tapi cache lama (walau
                 // sudah lewat TTL & terhapus dari store) tidak ada lagi di
-                // sini karena Cache::get sudah expired-nya beneran hilang —
+                // sini karena Cache::get sudah expired-nya beneran hilang -
                 // beda dari file lama yang tetap ada fisiknya walau basi.
                 // Untuk kesetiaan penuh ke perilaku "stale-fallback", kita
                 // simpan salinan permanen terpisah sebagai fallback.

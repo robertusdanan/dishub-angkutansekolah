@@ -45,7 +45,7 @@ class TrayekWisataApiController extends Controller
         }
     }
 
-    /** GET /trayek-wisata/api/auth-status — setara api/auth_status.php */
+    /** GET /trayek-wisata/api/auth-status - setara api/auth_status.php */
     public function authStatus(Request $request): JsonResponse
     {
         if (!$this->tw->isLoggedIn()) {
@@ -72,7 +72,7 @@ class TrayekWisataApiController extends Controller
         ]);
     }
 
-    /** POST /trayek-wisata/api/cek-nik — setara api/cek_nik.php */
+    /** POST /trayek-wisata/api/cek-nik - setara api/cek_nik.php */
     public function cekNik(Request $request): JsonResponse
     {
         if ($fail = $this->requireLogin()) {
@@ -107,7 +107,7 @@ class TrayekWisataApiController extends Controller
         return response()->json(['hasil' => $hasil]);
     }
 
-    /** GET /trayek-wisata/api/stats-publik — setara api/stats_publik.php */
+    /** GET /trayek-wisata/api/stats-publik - setara api/stats_publik.php */
     public function statsPublik(): JsonResponse
     {
         $cached = Cache::get('trayekwisata_stats');
@@ -132,7 +132,7 @@ class TrayekWisataApiController extends Controller
         return response()->json($result);
     }
 
-    /** GET/POST /trayek-wisata/api/waitlist — setara api/waitlist.php */
+    /** GET/POST /trayek-wisata/api/waitlist - setara api/waitlist.php */
     public function waitlist(Request $request): JsonResponse
     {
         if ($fail = $this->requireLogin()) {
@@ -166,7 +166,7 @@ class TrayekWisataApiController extends Controller
             [],
             true
         );
-        // Prefer resolution=ignore-duplicates setara kode lama — di sini
+        // Prefer resolution=ignore-duplicates setara kode lama - di sini
         // cukup andalkan constraint unik DB; kode status non-2xx karena
         // duplikat dianggap "sudah terdaftar", bukan error keras.
         if ($code < 200 || $code >= 300) {
@@ -176,7 +176,7 @@ class TrayekWisataApiController extends Controller
         return response()->json(['ok' => true]);
     }
 
-    /** POST /trayek-wisata/api/pesan — setara api/pesan.php */
+    /** POST /trayek-wisata/api/pesan - setara api/pesan.php */
     public function pesan(Request $request): JsonResponse
     {
         if ($fail = $this->requireLogin()) {
@@ -298,7 +298,7 @@ class TrayekWisataApiController extends Controller
         return response()->json(['ok' => true, 'pemesanan_id' => $pemesananId]);
     }
 
-    /** POST /trayek-wisata/api/batalkan-pesanan — setara api/batalkan_pesanan.php */
+    /** POST /trayek-wisata/api/batalkan-pesanan - setara api/batalkan_pesanan.php */
     public function batalkanPesanan(Request $request): JsonResponse
     {
         if ($fail = $this->requireLogin()) {
@@ -322,7 +322,7 @@ class TrayekWisataApiController extends Controller
             return response()->json(['error' => 'Pemesanan ini sudah tidak aktif.'], 422);
         }
         if (!empty($pemesanan['checked_in_at'])) {
-            return response()->json(['error' => 'Tidak bisa membatalkan — Anda sudah tercatat hadir di titik keberangkatan.'], 422);
+            return response()->json(['error' => 'Tidak bisa membatalkan - Anda sudah tercatat hadir di titik keberangkatan.'], 422);
         }
         if (strtotime($pemesanan['trayekwisata_jadwal']['tanggal'] ?? 'now') < strtotime(date('Y-m-d'))) {
             return response()->json(['error' => 'Trayek ini sudah lewat, tidak bisa dibatalkan lagi.'], 422);
@@ -342,7 +342,7 @@ class TrayekWisataApiController extends Controller
         return response()->json(['ok' => true]);
     }
 
-    /** GET /trayek-wisata/api/pemesanan-saya — setara api/pemesanan_saya.php */
+    /** GET /trayek-wisata/api/pemesanan-saya - setara api/pemesanan_saya.php */
     public function pemesananSaya(): JsonResponse
     {
         if ($fail = $this->requireLogin()) {
@@ -375,7 +375,7 @@ class TrayekWisataApiController extends Controller
         return response()->json($rows);
     }
 
-    /** POST /trayek-wisata/api/survei — setara api/survei.php */
+    /** POST /trayek-wisata/api/survei - setara api/survei.php */
     public function survei(Request $request): JsonResponse
     {
         if ($fail = $this->rateLimit($request, 'survei', 5, 600)) {

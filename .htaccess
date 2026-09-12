@@ -5,5 +5,5 @@
 
 # CATATAN: file ini HANYA diperlukan kalau hosting Anda tidak bisa mengatur
 # DocumentRoot langsung ke folder /public (umum di shared hosting cPanel).
-# Kalau Anda bisa mengatur DocumentRoot ke /public (VPS/VM sendiri —
+# Kalau Anda bisa mengatur DocumentRoot ke /public (VPS/VM sendiri -
 # direkomendasikan), file .htaccess root ini boleh dihapus.

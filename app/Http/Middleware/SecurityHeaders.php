@@ -7,18 +7,18 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * REKOMENDASI KEAMANAN — TIDAK ADA di kode PHP asli. Header standar untuk
+ * REKOMENDASI KEAMANAN - TIDAK ADA di kode PHP asli. Header standar untuk
  * mengurangi risiko clickjacking, MIME-sniffing, kebocoran Referer.
  *
  * CSP SENGAJA longgar (bukan strict/nonce) karena banyak halaman pakai
- * inline <script> untuk data dari server (window.SB_URL dst.) — CSP ketat
+ * inline <script> untuk data dari server (window.SB_URL dst.) - CSP ketat
  * butuh refactor besar. Ini titik awal aman, bisa diperketat bertahap.
  */
 class SecurityHeaders
 {
     /**
      * Domain pihak ketiga yang boleh dipanggil lewat fetch/XHR/WebSocket dari
-     * browser. Sumber map (.js.map) dari CDN juga lewat sini — tanpa ini DevTools
+     * browser. Sumber map (.js.map) dari CDN juga lewat sini - tanpa ini DevTools
      * memblokirnya dan console penuh error CSP.
      */
     protected const CONNECT_EXTRA = [
@@ -45,7 +45,7 @@ class SecurityHeaders
             $response->headers->set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
         }
 
-        // Supabase REST + Realtime (wss) — domain diambil dari config supaya
+        // Supabase REST + Realtime (wss) - domain diambil dari config supaya
         // pindah project Supabase tidak perlu sentuh middleware ini.
         $sbHost = parse_url((string) config('services.supabase.url'), PHP_URL_HOST);
         $connect = ["'self'"];

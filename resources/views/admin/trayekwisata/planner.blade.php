@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="csrf-token" content="{{ csrf_token() }}"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Pengaturan Trayek Tahunan — Admin</title>
+<title>Pengaturan Trayek Tahunan - Admin</title>
 <link rel="icon" href="/favicon.ico"/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/admin/admin-shell.css">
@@ -87,7 +87,7 @@
     <div class="adm-page-header">
       <div>
         <h1 class="adm-page-title">Pengaturan Trayek Tahunan</h1>
-        <p class="adm-page-subtitle">Kalender Sabtu &amp; Minggu — klik tanggal untuk mengatur trayek yang berangkat hari itu.</p>
+        <p class="adm-page-subtitle">Kalender Sabtu &amp; Minggu - klik tanggal untuk mengatur trayek yang berangkat hari itu.</p>
       </div>
       <button class="btn btn-primary btn-sm" onclick="openTrayekManager()">Kelola Master Trayek</button>
     </div>
@@ -95,7 +95,7 @@
     <div class="planner-toolbar">
       <div class="month-nav">
         <button onclick="shiftMonth(-1)">‹</button>
-        <span class="month-label" id="monthLabel">—</span>
+        <span class="month-label" id="monthLabel">-</span>
         <button onclick="shiftMonth(1)">›</button>
       </div>
       <div class="spacer"></div>
@@ -115,7 +115,7 @@
 <div class="modal-overlay" id="dayOverlay">
   <div class="modal-box">
     <div class="modal-head">
-      <span class="modal-title" id="dayTitle">Trayek —</span>
+      <span class="modal-title" id="dayTitle">Trayek -</span>
       <button class="modal-close" onclick="closeDay()">✕</button>
     </div>
     <div class="modal-body">
@@ -279,11 +279,11 @@ async function loadMasters() {
     twGet('trayekwisata_titik', 'select=*&order=nama.asc'),
   ]);
   fillSelect('nj_trayek', allTrayek, r => r.nama);
-  fillSelect('nj_bus', allBus, r => `${r.nama}${r.plat_nomor ? ' — '+r.plat_nomor : ''} (${r.kapasitas} kursi)`);
+  fillSelect('nj_bus', allBus, r => `${r.nama}${r.plat_nomor ? ' - '+r.plat_nomor : ''} (${r.kapasitas} kursi)`);
   fillSelect('nj_driver', allDriver, r => r.nama);
 }
 function fillSelect(id, rows, labelFn) {
-  document.getElementById(id).innerHTML = rows.map(r => `<option value="${r.id}">${twEsc(labelFn(r))}</option>`).join('') || '<option value="">— tidak ada —</option>';
+  document.getElementById(id).innerHTML = rows.map(r => `<option value="${r.id}">${twEsc(labelFn(r))}</option>`).join('') || '<option value="">- tidak ada -</option>';
 }
 
 // ── Modal: Jadwal per tanggal ────────────────────────────────────────
@@ -291,7 +291,7 @@ function openDay(dateStr, wk) {
   selectedDate = { dateStr, wk, tahun: viewYear, bulan: viewMonth };
   const dow = new Date(dateStr).getDay();
   const hariLabel = dow === 6 ? 'Sabtu' : 'Minggu';
-  document.getElementById('dayTitle').textContent = `Trayek — ${hariLabel}, ${dateStr}`;
+  document.getElementById('dayTitle').textContent = `Trayek - ${hariLabel}, ${dateStr}`;
   document.getElementById('dayOverlay').classList.add('open');
   renderJadwalList();
 }
@@ -306,7 +306,7 @@ function renderJadwalList() {
       <span class="jr-dot" style="background:${r.trayekwisata_trayek?.warna || '#1a56db'}"></span>
       <div class="jr-body">
         <div class="jr-name">${twEsc(r.trayekwisata_trayek?.nama || 'Trayek')} <span class="status-pill status-${r.status}">${r.status}</span></div>
-        <div class="jr-meta">Berangkat ${r.jam_berangkat?.slice(0,5)} · Pulang ${r.jam_pulang ? r.jam_pulang.slice(0,5) : '—'} · Kuota ${r.kuota_terisi}/${r.kuota_total}</div>
+        <div class="jr-meta">Berangkat ${r.jam_berangkat?.slice(0,5)} · Pulang ${r.jam_pulang ? r.jam_pulang.slice(0,5) : '-'} · Kuota ${r.kuota_terisi}/${r.kuota_total}</div>
         <div class="jr-meta" id="wl-${r.id}" style="color:var(--accent2,#F59E0B)"></div>
       </div>
       <button class="btn btn-secondary btn-sm" onclick="deleteJadwal('${r.id}')">Hapus</button>
@@ -378,7 +378,7 @@ function renderCopyTargets() {
   const mode = document.getElementById('copyMode').value;
   const wrap = document.getElementById('copyTargetsWrap');
   if (mode === 'months') {
-    wrap.innerHTML = `<div class="f-row"><span class="f-label">Pilih bulan tujuan (tahun ${selectedDate.tahun}) — minggu ke-${selectedDate.wk} di bulan tsb</span>
+    wrap.innerHTML = `<div class="f-row"><span class="f-label">Pilih bulan tujuan (tahun ${selectedDate.tahun}) - minggu ke-${selectedDate.wk} di bulan tsb</span>
       <div class="chk-grid">${MONTH_NAMES.map((m,i) => i+1===selectedDate.bulan ? '' : `<label><input type="checkbox" class="copyMonthChk" value="${i+1}"/>${m}</label>`).join('')}</div>
     </div>`;
   } else {

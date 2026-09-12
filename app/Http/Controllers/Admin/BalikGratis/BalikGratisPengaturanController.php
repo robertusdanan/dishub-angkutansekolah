@@ -112,7 +112,7 @@ class BalikGratisPengaturanController extends Controller
                 return response()->json(['error' => 'Kuota tidak valid.'], 422);
             }
             if (!$this->ambilPengaturan($tahunIni)) {
-                return response()->json(['error' => 'Pengaturan tahun ini belum ada — buka pendaftaran dulu.'], 404);
+                return response()->json(['error' => 'Pengaturan tahun ini belum ada - buka pendaftaran dulu.'], 404);
             }
 
             [$code] = $this->supabase->rawRequest('PATCH', 'balikgratis_pengaturan?tahun=eq.'.$tahunIni, [

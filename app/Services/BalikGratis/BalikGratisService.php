@@ -36,7 +36,7 @@ class BalikGratisService
     /**
      * Fail-CLOSED (beda dari MenuLayananService yang fail-open): kalau
      * admin belum pernah membuka tahun ini sama sekali, publik memang
-     * BELUM BOLEH mendaftar — bukan bug, ini keputusan desain yang
+     * BELUM BOLEH mendaftar - bukan bug, ini keputusan desain yang
      * dipertahankan apa adanya dari kode lama.
      */
     public function pengaturanTahun(int $tahun): array

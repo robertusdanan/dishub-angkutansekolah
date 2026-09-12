@@ -36,13 +36,13 @@ async function sbFetchRecord(table, id) {
   return rows[0] || null;
 }
 
-// ====== FUNGSI ABSEN — via php/cek.php (server yang tentukan jam/tanggal) ======
+// ====== FUNGSI ABSEN - via php/cek.php (server yang tentukan jam/tanggal) ======
 // PENTING: dulu fungsi ini menghitung jam/tanggal/shift dari `new Date()` di
 // BROWSER lalu menulis langsung ke Supabase pakai anon key. Masalahnya: jam
-// & tanggal di HP siswa bisa saja salah — baik karena zona waktu device
+// & tanggal di HP siswa bisa saja salah - baik karena zona waktu device
 // tidak di-set dengan benar, jam belum disinkronkan, atau sengaja diubah
 // manual. Kalau nilai itu dipercaya begitu saja, absensi bisa tercatat di
-// tanggal/shift yang salah (bahkan tanggal yang belum terjadi) — ini yang
+// tanggal/shift yang salah (bahkan tanggal yang belum terjadi) - ini yang
 // menyebabkan kasus "sudah absen tanggal besok padahal sekarang masih hari
 // ini". php/cek.php menghitung jam/tanggal/shift dari clock SERVER (zona
 // Asia/Jakarta, lihat $TIMEZONE di sana) yang tidak bisa dimanipulasi dari
@@ -193,7 +193,7 @@ function renderProfile() {
 
 // ====== CEK STATUS ABSEN ======
 // Server (php/status.php) yang tentukan jam/tanggal/shift, dengan cara
-// PERSIS SAMA seperti php/cek.php yang menyimpan absensi — supaya pesan
+// PERSIS SAMA seperti php/cek.php yang menyimpan absensi - supaya pesan
 // status di UI selalu sinkron dengan aturan yang benar-benar berlaku,
 // tidak tergantung jam di HP siswa.
 async function cekStatusAbsen(email) {
@@ -211,7 +211,7 @@ async function cekStatusAbsen(email) {
 
 // ====== FETCH SUPABASE (LIST DATA) ======
 // Tabel referensi (driver_bus, driver_mpu, domisili, sekolah) sekarang lewat
-// php/cache_proxy.php — cache whole-table di server (folder cache/, auto
+// php/cache_proxy.php - cache whole-table di server (folder cache/, auto
 // refresh tiap 24 jam), bukan fetch langsung ke Supabase di tiap kunjungan
 // halaman. Data absensi/user tetap langsung ke Supabase seperti biasa
 // (lihat kirimAbsen, cekStatusAbsen, dsb. di atas) karena itu harus selalu

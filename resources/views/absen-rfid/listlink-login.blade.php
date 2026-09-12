@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login — List Link Absen Angkutan</title>
+  <title>Login - List Link Absen Angkutan</title>
   <link rel="icon" href="/favicon.ico"/>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -189,7 +189,7 @@
     .input-wrap {
       position: relative;
     }
-    /* Hanya icon kiri — bukan tombol toggle */
+    /* Hanya icon kiri - bukan tombol toggle */
     .input-wrap > svg {
       position: absolute;
       left: 14px; top: 50%;

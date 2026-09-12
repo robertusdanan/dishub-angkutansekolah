@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="csrf-token" content="{{ csrf_token() }}"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Dashboard Trayek Wisata — Admin</title>
+<title>Dashboard Trayek Wisata - Admin</title>
 <link rel="icon" href="/favicon.ico"/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/admin/admin-shell.css">
@@ -35,7 +35,7 @@
   <main class="adm-main"><div class="adm-content">
 
     <div class="adm-page-header">
-      <div><h1 class="adm-page-title">Dashboard Trayek Wisata</h1><p class="adm-page-subtitle">Ringkasan operasional trayek wisata gratis — filter mengikuti kalender WIB.</p></div>
+      <div><h1 class="adm-page-title">Dashboard Trayek Wisata</h1><p class="adm-page-subtitle">Ringkasan operasional trayek wisata gratis - filter mengikuti kalender WIB.</p></div>
     </div>
 
     <div class="filter-bar">
@@ -46,12 +46,12 @@
     </div>
 
     <div class="stat-grid">
-      <div class="stat-card"><div class="stat-label">Jumlah Trayek</div><div class="stat-value" id="sJadwal">—</div><div class="stat-sub">jadwal keberangkatan</div></div>
-      <div class="stat-card"><div class="stat-label">Bus Aktif</div><div class="stat-value" id="sBus">—</div><div class="stat-sub">armada terdaftar</div></div>
-      <div class="stat-card"><div class="stat-label">Kuota</div><div class="stat-value" id="sKuota">—</div><div class="stat-sub">total kursi tersedia</div></div>
-      <div class="stat-card"><div class="stat-label">Kuota Terisi</div><div class="stat-value" id="sTerisi">—</div><div class="stat-sub" id="sPersen">—</div></div>
-      <div class="stat-card"><div class="stat-label">Sisa Kursi</div><div class="stat-value" id="sSisa">—</div><div class="stat-sub">masih bisa dipesan</div></div>
-      <div class="stat-card"><div class="stat-label">Jumlah Pemesanan</div><div class="stat-value" id="sPesan">—</div><div class="stat-sub">transaksi terkonfirmasi</div></div>
+      <div class="stat-card"><div class="stat-label">Jumlah Trayek</div><div class="stat-value" id="sJadwal">-</div><div class="stat-sub">jadwal keberangkatan</div></div>
+      <div class="stat-card"><div class="stat-label">Bus Aktif</div><div class="stat-value" id="sBus">-</div><div class="stat-sub">armada terdaftar</div></div>
+      <div class="stat-card"><div class="stat-label">Kuota</div><div class="stat-value" id="sKuota">-</div><div class="stat-sub">total kursi tersedia</div></div>
+      <div class="stat-card"><div class="stat-label">Kuota Terisi</div><div class="stat-value" id="sTerisi">-</div><div class="stat-sub" id="sPersen">-</div></div>
+      <div class="stat-card"><div class="stat-label">Sisa Kursi</div><div class="stat-value" id="sSisa">-</div><div class="stat-sub">masih bisa dipesan</div></div>
+      <div class="stat-card"><div class="stat-label">Jumlah Pemesanan</div><div class="stat-value" id="sPesan">-</div><div class="stat-sub">transaksi terkonfirmasi</div></div>
     </div>
 
     <div class="panel-card">
@@ -97,7 +97,7 @@ async function reload() {
   document.getElementById('sBus').textContent = bus.length;
   document.getElementById('sKuota').textContent = kuotaTotal;
   document.getElementById('sTerisi').textContent = kuotaTerisi;
-  document.getElementById('sPersen').textContent = kuotaTotal ? `${Math.round(kuotaTerisi/kuotaTotal*100)}% terisi` : '—';
+  document.getElementById('sPersen').textContent = kuotaTotal ? `${Math.round(kuotaTerisi/kuotaTotal*100)}% terisi` : '-';
   document.getElementById('sSisa').textContent = Math.max(0, kuotaTotal - kuotaTerisi);
   document.getElementById('sPesan').textContent = pemesanan.length;
 

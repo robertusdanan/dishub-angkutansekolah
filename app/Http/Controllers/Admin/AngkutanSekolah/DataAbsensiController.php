@@ -11,7 +11,7 @@ use Illuminate\View\View;
  * Port dari admin/pages/angkutansekolah/dataabsensi.php.
  *
  * Mode "hari ini" read-only berlaku untuk role guest (lama) MAUPUN
- * pengguna (akun publik Google) — sejak tombol Tamu dihapus, keduanya
+ * pengguna (akun publik Google) - sejak tombol Tamu dihapus, keduanya
  * digabung jadi satu perilaku (lihat komentar asli di kode lama).
  */
 class DataAbsensiController extends Controller

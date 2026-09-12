@@ -79,7 +79,7 @@ class AdminAuthController extends Controller
                 $role = $account['admin_roles'] ?? null;
                 if ($role && !empty($role['is_active'])) {
                     // Cek 2FA di query terpisah: kolom two_factor_* mungkin belum
-                    // ada di schema Supabase (migration 002 belum dijalankan) —
+                    // ada di schema Supabase (migration 002 belum dijalankan) -
                     // gagal query tidak boleh memblokir login.
                     $twoFactorAktif = false;
                     [$tCode, $tRows] = $this->supabase->rawRequest('GET', 'admin_accounts?id=eq.'.$account['id'].'&select=two_factor_secret,two_factor_enabled_at&limit=1');

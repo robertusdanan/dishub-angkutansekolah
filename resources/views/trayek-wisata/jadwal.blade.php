@@ -4,8 +4,8 @@
 <meta charset="UTF-8"/>
 <meta name="csrf-token" content="{{ csrf_token() }}"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
-<title>Jadwal & Pesan Kursi — Trayek Wisata Gratis | Dishub Kabupaten Tulungagung</title>
-<meta name="description" content="Lihat jadwal Trayek Wisata Gratis 4 minggu ke depan dan pesan kursi langsung — gratis, setiap Sabtu & Minggu, Dishub Kabupaten Tulungagung."/>
+<title>Jadwal & Pesan Kursi - Trayek Wisata Gratis | Dishub Kabupaten Tulungagung</title>
+<meta name="description" content="Lihat jadwal Trayek Wisata Gratis 4 minggu ke depan dan pesan kursi langsung - gratis, setiap Sabtu & Minggu, Dishub Kabupaten Tulungagung."/>
 <meta name="theme-color" content="#0A1F44"/>
 <link rel="icon" href="/favicon.ico"/>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,400..600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -20,7 +20,7 @@
 @include('partials.trayek-wisata.page-header', [
     'twPageEyebrow' => 'Jadwal',
     'twPageTitle' => '4 minggu ke depan,<br/>siap dipesan.',
-    'twPageDesc' => 'Trayek ditampilkan otomatis untuk 4 minggu ke depan mengikuti kalender Dishub. Kursi terbatas — status hijau berarti masih longgar.',
+    'twPageDesc' => 'Trayek ditampilkan otomatis untuk 4 minggu ke depan mengikuti kalender Dishub. Kursi terbatas - status hijau berarti masih longgar.',
 ])
 
 <main id="main">
@@ -64,10 +64,10 @@
           <img src="/assets/icons/bus_sekolah.svg" alt="Ilustrasi Bus Sekolah" class="kuota-bus-img"/>
         </div>
         <div class="kuota-list" id="kuotaList">
-          <div class="kuota-list-item"><span>Total Kuota</span><b id="kTotal">—</b></div>
-          <div class="kuota-list-item"><span>Kursi Terisi</span><b id="kTerisi">—</b></div>
-          <div class="kuota-list-item"><span>Sisa Kursi</span><b id="kSisa">—</b></div>
-          <div class="kuota-list-item"><span>Jumlah Trayek Minggu Ini</span><b id="kTrayek">—</b></div>
+          <div class="kuota-list-item"><span>Total Kuota</span><b id="kTotal">-</b></div>
+          <div class="kuota-list-item"><span>Kursi Terisi</span><b id="kTerisi">-</b></div>
+          <div class="kuota-list-item"><span>Sisa Kursi</span><b id="kSisa">-</b></div>
+          <div class="kuota-list-item"><span>Jumlah Trayek Minggu Ini</span><b id="kTrayek">-</b></div>
         </div>
       </div>
     </div>

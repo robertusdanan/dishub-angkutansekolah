@@ -33,7 +33,7 @@ class AdminAccountController extends Controller
         $currentRole = Session::get('admin_role', '');
 
         if ($currentAccountId === '') {
-            return response()->json(['status' => 'error', 'message' => 'Sesi tidak valid — silakan login ulang.']);
+            return response()->json(['status' => 'error', 'message' => 'Sesi tidak valid - silakan login ulang.']);
         }
 
         [$code, $rows] = $this->supabase->rawRequest('GET', 'admin_accounts?id=eq.'.$currentAccountId.'&select=id,username,password_hash,is_active&limit=1');

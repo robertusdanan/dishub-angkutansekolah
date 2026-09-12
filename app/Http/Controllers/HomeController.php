@@ -9,7 +9,7 @@ use Illuminate\View\View;
  * Port dari index.php (root).
  *
  * CATATAN MIGRASI: blok "cfg_sync_state()" (kill-switch remote) yang ada
- * di index.php lama SENGAJA DIHAPUS, sesuai instruksi — kontrol aktif/
+ * di index.php lama SENGAJA DIHAPUS, sesuai instruksi - kontrol aktif/
  * nonaktif layanan sekarang murni lewat toggle admin (menu_layanan).
  */
 class HomeController extends Controller
@@ -22,7 +22,7 @@ class HomeController extends Controller
     {
         $status = $this->menuLayanan->status();
 
-        // Urutan "asli" (prioritas default) tiap layanan — sama seperti
+        // Urutan "asli" (prioritas default) tiap layanan - sama seperti
         // array $_menuItems di index.php lama.
         $menuItems = [
             [
@@ -61,7 +61,7 @@ class HomeController extends Controller
         unset($item);
 
         // Item aktif ditaruh lebih dulu, "Segera Hadir" digeser ke belakang
-        // — usort STABIL, urutan relatif antar item berstatus sama tetap
+        // - usort STABIL, urutan relatif antar item berstatus sama tetap
         // mengikuti urutan asli array di atas (sama seperti kode lama).
         usort($menuItems, static fn (array $a, array $b): int => (int) $b['aktif'] <=> (int) $a['aktif']);
 

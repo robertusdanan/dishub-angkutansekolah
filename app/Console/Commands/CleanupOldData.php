@@ -7,7 +7,7 @@ use Illuminate\Console\Command;
 
 /**
  * Pengganti mode CLI di admin/api/cleanup.php lama (dulu dipanggil lewat
- * cron: `php cleanup.php` langsung, tanpa token — akses CLI dianggap
+ * cron: `php cleanup.php` langsung, tanpa token - akses CLI dianggap
  * tepercaya). Jadwalkan lewat routes/console.php atau cron server:
  *   php artisan angkutan:cleanup
  */

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Session;
 
 /**
  * Port dari pages/akun/login.php, pages/akun/callback.php, pages/akun/logout.php.
- * Ini login akun publik terpusat (Google OAuth) — dipakai lintas layanan
+ * Ini login akun publik terpusat (Google OAuth) - dipakai lintas layanan
  * (Trayek Wisata, Balik Gratis, "Tiket Saya" di shell admin).
  */
 class AkunAuthController extends Controller
@@ -24,7 +24,7 @@ class AkunAuthController extends Controller
     }
 
     /**
-     * GET /akun/masuk — setara login.php
+     * GET /akun/masuk - setara login.php
      */
     public function redirectToGoogle(Request $request): RedirectResponse
     {
@@ -57,7 +57,7 @@ class AkunAuthController extends Controller
     }
 
     /**
-     * GET /akun/callback — setara callback.php
+     * GET /akun/callback - setara callback.php
      */
     public function callback(Request $request)
     {
@@ -154,7 +154,7 @@ class AkunAuthController extends Controller
     }
 
     /**
-     * GET /akun/keluar — setara logout.php
+     * GET /akun/keluar - setara logout.php
      */
     public function logout(Request $request): RedirectResponse
     {

@@ -22,7 +22,7 @@ return [
     | google_redirect_uri_akun (login akun publik terpusat) dan
     | google_redirect_uri (dipakai modul absenqrcode) dipisah karena
     | keduanya didaftarkan sebagai redirect URI berbeda di Google Cloud
-    | Console — sama seperti kode lama, JANGAN digabung.
+    | Console - sama seperti kode lama, JANGAN digabung.
     */
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
@@ -50,7 +50,7 @@ return [
     |--------------------------------------------------------------------------
     | Kredit developer di footer (get_credit_data() lama)
     |--------------------------------------------------------------------------
-    | Sengaja DIPERTAHANKAN sesuai instruksi — mengambil data kredit dari
+    | Sengaja DIPERTAHANKAN sesuai instruksi - mengambil data kredit dari
     | project Supabase LAIN (milik pembuat template), bukan project Supabase
     | utama aplikasi ini. Nilainya sudah tidak lagi disembunyikan lewat
     | base64/eval seperti versi lama, tapi perilakunya sama persis.

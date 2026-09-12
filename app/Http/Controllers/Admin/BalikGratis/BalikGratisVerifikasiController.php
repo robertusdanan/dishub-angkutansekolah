@@ -50,7 +50,7 @@ class BalikGratisVerifikasiController extends Controller
         } else {
             // PERBAIKAN KEAMANAN (ditemukan saat audit ulang): kode lama
             // menyusun filter ini lewat array (otomatis di-encode oleh
-            // helper Supabase-nya) — saat porting sempat tertulis ulang
+            // helper Supabase-nya) - saat porting sempat tertulis ulang
             // jadi string mentah TANPA rawurlencode(), sehingga nilai $q
             // di cabang ini (nomor tiket, format bebas) bisa dipakai untuk
             // menyisipkan parameter query PostgREST tambahan (filter

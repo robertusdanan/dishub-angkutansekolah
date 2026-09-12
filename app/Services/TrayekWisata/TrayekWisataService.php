@@ -24,7 +24,7 @@ class TrayekWisataService
     /**
      * Aturan inti Trayek Wisata: 1 NIK hanya boleh 1 tiket / 4 minggu (28
      * hari), berlaku utk pemilik akun & semua anggota keluarga, LINTAS akun
-     * (dicek murni dari NIK-nya, bukan siapa pemesannya) — mencegah celah
+     * (dicek murni dari NIK-nya, bukan siapa pemesannya) - mencegah celah
      * "Akun A daftarkan NIK B, lalu NIK B bikin akun sendiri".
      *
      * @return array{blocked:bool, tanggal_terakhir:?string}

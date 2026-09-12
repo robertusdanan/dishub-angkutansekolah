@@ -11,9 +11,9 @@ use Illuminate\Http\JsonResponse;
 /**
  * Port dari admin/api/tiket_saya.php.
  *
- * SENGAJA TIDAK memakai requireMenuAccess()/canAccessMenu() milik staf —
+ * SENGAJA TIDAK memakai requireMenuAccess()/canAccessMenu() milik staf -
  * ini murni self-service, cukup isPenggunaPublik(). Data difilter dari
- * session (akun_id), TIDAK menerima id dari client sama sekali — sama
+ * session (akun_id), TIDAK menerima id dari client sama sekali - sama
  * seperti kode lama, supaya tidak mungkin dipakai mengintip tiket akun lain.
  */
 class AdminTiketSayaApiController extends Controller
@@ -46,11 +46,11 @@ class AdminTiketSayaApiController extends Controller
                 'layanan' => 'trayekwisata',
                 'label' => 'Trayek Wisata',
                 'id' => $r['id'],
-                'nama_trayek' => $r['trayekwisata_jadwal']['trayekwisata_trayek']['nama'] ?? '—',
+                'nama_trayek' => $r['trayekwisata_jadwal']['trayekwisata_trayek']['nama'] ?? '-',
                 'tanggal' => $r['trayekwisata_jadwal']['tanggal'] ?? null,
                 'jam' => $r['trayekwisata_jadwal']['jam_berangkat'] ?? null,
                 'jumlah_kursi' => $r['jumlah_kursi'] ?? null,
-                'status' => $r['status'] ?? '—',
+                'status' => $r['status'] ?? '-',
                 'checked_in' => !empty($r['checked_in_at']),
                 'created_at' => $r['created_at'] ?? null,
             ];
@@ -65,10 +65,10 @@ class AdminTiketSayaApiController extends Controller
                 'layanan' => 'balikgratis',
                 'label' => 'Balik Gratis',
                 'id' => $r['id'],
-                'nomor_tiket' => $r['nomor_tiket'] ?? '—',
+                'nomor_tiket' => $r['nomor_tiket'] ?? '-',
                 'tahun' => $r['tahun'] ?? null,
                 'kategori' => $r['kategori'] ?? null,
-                'status' => $r['status'] ?? '—',
+                'status' => $r['status'] ?? '-',
                 'created_at' => $r['created_at'] ?? null,
             ];
         }

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Session;
 
 /**
  * Port dari core/akun_publik_helper.php. Dipakai lintas layanan publik
- * (Trayek Wisata, Balik Gratis, shell admin "Tiket Saya") — akan dipakai
+ * (Trayek Wisata, Balik Gratis, shell admin "Tiket Saya") - akan dipakai
  * lagi saat modul-modul tsb dimigrasikan di tahap berikutnya.
  */
 class AkunPublikService
@@ -92,7 +92,7 @@ class AkunPublikService
     }
 
     /**
-     * Rate limit berbasis session — port apa adanya dari akun_rate_limit().
+     * Rate limit berbasis session - port apa adanya dari akun_rate_limit().
      * Melempar RateLimitExceededException (bukan langsung echo+exit seperti
      * kode lama) supaya controller pemanggil yang menentukan respons JSON.
      *

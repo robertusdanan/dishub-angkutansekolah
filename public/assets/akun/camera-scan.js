@@ -8,7 +8,7 @@ function createCameraScan({ container, jenis, onCapture }) {
       <video class="cscan-video" autoplay muted playsinline></video>
       <canvas class="cscan-canvas" style="display:none"></canvas>
       <div class="cscan-guide"><div class="cscan-guide-frame"></div></div>
-      <div class="cscan-warn" style="display:none">💡 Cahaya kurang — hidupkan flash</div>
+      <div class="cscan-warn" style="display:none">💡 Cahaya kurang - hidupkan flash</div>
       <button class="cscan-torch" style="display:none" title="Flash">🔦</button>
     </div>
     <div class="cscan-actions">

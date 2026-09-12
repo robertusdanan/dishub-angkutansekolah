@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="/favicon.ico"/>
-  <title>Rute Angkutan Sekolah — Dishub Tulungagung</title>
+  <title>Rute Angkutan Sekolah - Dishub Tulungagung</title>
   <meta name="description" content="Daftar trayek BUS dan MPU Angkutan Sekolah Gratis Dishub Tulungagung, lengkap dengan peta gabungan seluruh rute." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,7 +30,7 @@
       margin: 0;
     }
 
-    /* ── PAGE HERO STRIP (ringkas, bukan video — tetap serasi warna homepage) ── */
+    /* ── PAGE HERO STRIP (ringkas, bukan video - tetap serasi warna homepage) ── */
     .page-hero {
       background: linear-gradient(135deg, var(--navy) 0%, #0d2a5c 100%);
       padding: 112px 2rem 100px;
@@ -75,7 +75,7 @@
       line-height: 1.6;
     }
 
-    /* ── PETA GABUNGAN — banner elegan terpisah, di atas switcher BUS/MPU ── */
+    /* ── PETA GABUNGAN - banner elegan terpisah, di atas switcher BUS/MPU ── */
     .section-wrap {
       max-width: 1100px;
       margin: -56px auto 0;
@@ -359,7 +359,7 @@
 </head>
 <body>
 
-  <!-- Header — komponen terpusat, sama dengan seluruh halaman lain -->
+  <!-- Header - komponen terpusat, sama dengan seluruh halaman lain -->
   @include('partials.site-header', ['solid' => true, 'loginNext' => '/admin/data-absensi'])
 
   <!-- Page hero strip -->
@@ -377,7 +377,7 @@
 
   <div class="section-wrap">
 
-    <!-- Peta Gabungan — banner elegan tersendiri, terpisah dari switcher BUS/MPU -->
+    <!-- Peta Gabungan - banner elegan tersendiri, terpisah dari switcher BUS/MPU -->
     <a href="/rute-sekolah/peta" class="map-banner">
       <div class="map-banner-icon"><i class="fa-solid fa-map-location-dot"></i></div>
       <div class="map-banner-text">
@@ -418,7 +418,7 @@
     <div class="loader-ring"></div>
   </div>
 
-  <!-- Footer — komponen terpusat, sama dengan seluruh halaman lain -->
+  <!-- Footer - komponen terpusat, sama dengan seluruh halaman lain -->
   @include('partials.site-footer')
 
   <script type="module">

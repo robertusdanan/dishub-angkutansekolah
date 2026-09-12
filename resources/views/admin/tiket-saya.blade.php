@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="csrf-token" content="{{ csrf_token() }}"/>
-<title>Tiket Saya — Dishub Tulungagung</title>
+<title>Tiket Saya - Dishub Tulungagung</title>
 <link rel="canonical" href="{{ url('/admin/tiket-saya') }}"/>
 <link rel="icon" href="/favicon.ico"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,7 +51,7 @@
     if (s === 'dibatalkan') return 'dibatalkan';
     return 'menunggu';
   };
-  const fmtTanggal = (d) => d ? new Date(d).toLocaleDateString('id-ID', { day:'numeric', month:'long', year:'numeric' }) : '—';
+  const fmtTanggal = (d) => d ? new Date(d).toLocaleDateString('id-ID', { day:'numeric', month:'long', year:'numeric' }) : '-';
 
   function renderSection(title, items, renderItem) {
     if (!items.length) return '';

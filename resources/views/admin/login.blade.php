@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Login — Admin Absensi</title>
+  <title>Login - Admin Absensi</title>
   <link rel="canonical" href="{{ url('/admin/login') }}"/>
   <link rel="icon" href="/favicon.ico"/>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -167,7 +167,7 @@
       <div class="login-title">Selamat datang</div>
       <div class="login-sub">Pilih cara Anda masuk</div>
 
-      <!-- Login akun pengguna (publik) — Google, dipakai lintas layanan
+      <!-- Login akun pengguna (publik) - Google, dipakai lintas layanan
            Trayek Wisata, Balik Gratis, Data Absensi (mode hari ini), dan
            Tiket Saya. TERPISAH dari akun staf: lihat pages/akun/callback.php
            untuk detail pemisahan sesinya. -->

@@ -378,7 +378,7 @@
 
     <div class="stats-row">
       <div class="stat-card">
-        <div class="num" id="statTotal">—</div>
+        <div class="num" id="statTotal">-</div>
         <div class="lbl">Total Lokasi</div>
       </div>
     </div>
@@ -504,7 +504,7 @@
       if (img.startsWith('http://') || img.startsWith('https://')) return img;
       // Foto lokasi ASDP yang diupload lewat admin sekarang disimpan di
       // /uploads/asdp/ (dikumpulkan 1 folder dengan media lokal modul
-      // lain), makanya path absolut — beda dari icon marker statis
+      // lain), makanya path absolut - beda dari icon marker statis
       // 'images/penyeberangan.png' di atas yang tetap relatif.
       return '/uploads/asdp/' + img;
     }
