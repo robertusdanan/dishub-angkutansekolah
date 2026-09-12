@@ -52,57 +52,56 @@
       filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.55));
     }
 
+    /* ─── TOP NAV BAR ─── */
+    .top-nav-bar {
+      position: fixed; top: 16px; left: 16px; z-index: 1000;
+      display: inline-flex; align-items: center; gap: 10px;
+      max-width: calc(100vw - 32px);
+    }
+
+    /* ─── BACK BUTTON ─── */
+    .back-btn {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      background: var(--bg-glass); backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid var(--border); border-radius: 100px;
+      width: 42px; height: 42px; flex-shrink: 0;
+      color: var(--text); font-size: 13px; font-weight: 600;
+      font-family: 'Plus Jakarta Sans', sans-serif; text-decoration: none; cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4); transition: all .2s ease;
+    }
+    .back-btn svg { flex-shrink: 0; }
+    .back-btn span { display: none; }
+    .back-btn:hover {
+      border-color: var(--border-hover); background: rgba(15,22,46,0.92);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.5), 0 0 0 1px var(--border-hover);
+      color: var(--accent); transform: scale(1.05);
+    }
+
     /* ─── HEADER ─── */
     .header {
-      position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
-      z-index: 1200; display: flex; align-items: center; gap: 12px;
+      display: flex; align-items: center; gap: 10px;
       background: var(--bg-glass);
       backdrop-filter: blur(20px) saturate(180%);
       -webkit-backdrop-filter: blur(20px) saturate(180%);
       border: 1px solid var(--border); border-radius: 100px;
-      padding: 10px 20px 10px 14px;
+      padding: 8px 18px 8px 12px;
       box-shadow: 0 0 0 1px rgba(255,255,255,0.03), 0 8px 32px rgba(0,0,0,0.5);
-      white-space: nowrap;
+      white-space: nowrap; min-width: 0; overflow: hidden;
     }
-    .header img { height: 32px; border-radius: 50%; }
-    .header-divider { width: 1px; height: 22px; background: var(--border); }
-    .header .title { font-weight: 700; font-size: 14px; letter-spacing: .3px; color: #f1f5f9; }
-    .header .subtitle { font-size: 11px; color: var(--text-muted); font-weight: 400; }
-
-    /* ─── BACK BUTTON ─── */
-    .back-btn {
-      position: fixed; top: 16px; left: 16px; z-index: 1250;
-      display: flex; align-items: center; gap: 8px;
-      background: var(--bg-glass); backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border: 1px solid var(--border); border-radius: 100px;
-      width: 40px; height: 40px; justify-content: center;
-      color: var(--text); font-size: 13px; font-weight: 600;
-      font-family: 'Plus Jakarta Sans', sans-serif; text-decoration: none; cursor: pointer;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.4); transition: all .25s cubic-bezier(.4,0,.2,1);
-      overflow: hidden;
-    }
-    .back-btn svg { flex-shrink: 0; }
-    .back-btn span {
-      max-width: 0; opacity: 0; white-space: nowrap; overflow: hidden;
-      transition: max-width .25s ease, opacity .2s ease, margin .25s ease;
-    }
-    .back-btn:hover {
-      width: auto; padding: 0 18px 0 14px;
-      border-color: var(--border-hover); background: rgba(15,22,46,0.92);
-      box-shadow: 0 6px 24px rgba(0,0,0,0.5), 0 0 0 1px var(--border-hover);
-      color: var(--accent);
-    }
-    .back-btn:hover span { max-width: 100px; opacity: 1; margin-left: 2px; }
+    .header img { height: 28px; width: 28px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+    .header-divider { width: 1px; height: 20px; background: var(--border); flex-shrink: 0; }
+    .header .title { font-weight: 700; font-size: 13.5px; letter-spacing: .2px; color: #f1f5f9; overflow: hidden; text-overflow: ellipsis; }
+    .header .subtitle { font-size: 11px; color: var(--text-muted); font-weight: 400; overflow: hidden; text-overflow: ellipsis; }
 
     /* ─── MENU BTN ─── */
     .menu-btn {
-      position: fixed; top: 80px; left: 16px; z-index: 1200;
+      position: fixed; top: 70px; left: 16px; z-index: 1000;
       display: flex; align-items: center; gap: 8px;
       background: var(--bg-glass); backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border: 1px solid var(--border); border-radius: 12px;
-      padding: 10px 16px; color: var(--text); font-size: 13px; font-weight: 600;
+      padding: 9px 15px; color: var(--text); font-size: 13px; font-weight: 600;
       font-family: 'Plus Jakarta Sans', sans-serif; cursor: pointer;
       box-shadow: 0 4px 20px rgba(0,0,0,0.4); transition: all .2s ease;
     }
@@ -114,7 +113,7 @@
 
     /* ─── EBOOK BTN ─── */
     .ebook-btn {
-      position: fixed; bottom: 20px; right: 16px; z-index: 1200;
+      position: fixed; bottom: 20px; right: 16px; z-index: 1000;
       display: flex; align-items: center; gap: 8px;
       background: var(--bg-glass); backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
@@ -300,9 +299,19 @@
     }
 
     @media (max-width: 600px) {
-      .menu-panel { width: 88%; }
+      .top-nav-bar { top: 12px; left: 12px; max-width: calc(100vw - 24px); gap: 8px; }
+      .back-btn { width: 38px; height: 38px; font-size: 12px; }
+      .header { padding: 6px 14px 6px 10px; gap: 8px; }
+      .header img { height: 24px; width: 24px; }
+      .header .title { font-size: 12.5px; }
       .header .subtitle { display: none; }
-      .ebook-popup { width: 90%; right: 5%; }
+
+      .menu-btn { top: 62px; left: 12px; padding: 8px 13px; font-size: 12px; }
+
+      .menu-panel { width: 88%; max-width: 340px; }
+
+      .ebook-btn { bottom: 16px; right: 12px; padding: 8px 12px; font-size: 12px; }
+      .ebook-popup { width: calc(100vw - 24px); right: 12px; bottom: 65px; height: 55dvh; }
     }
   </style>
 </head>
@@ -319,23 +328,23 @@
     </div>
   </div>
 
-  <!-- BACK BUTTON -->
-  <a class="back-btn" href="/" aria-label="Kembali ke beranda">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-      <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
-    </svg>
-    <span>Beranda</span>
-  </a>
-
-  <!-- HEADER -->
-  <header class="header">
-    <img src="/assets/dishub.png" alt="Dishub">
-    <div class="header-divider"></div>
-    <div>
-      <div class="title">Dishub Tulungagung</div>
-      <div class="subtitle">Angkutan Sungai, Danau & Penyeberangan</div>
-    </div>
-  </header>
+  <!-- TOP NAV BAR -->
+  <div class="top-nav-bar">
+    <a class="back-btn" href="/" aria-label="Kembali ke beranda" title="Kembali ke beranda">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+      </svg>
+      <span>Beranda</span>
+    </a>
+    <header class="header">
+      <img src="/assets/dishub.png" alt="Dishub">
+      <div class="header-divider"></div>
+      <div>
+        <div class="title">Dishub Tulungagung</div>
+        <div class="subtitle">Angkutan Sungai, Danau & Penyeberangan</div>
+      </div>
+    </header>
+  </div>
 
   <!-- MENU BTN -->
   <button class="menu-btn" id="toggleMenu" aria-label="Buka daftar tambangan">
