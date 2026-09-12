@@ -72,6 +72,13 @@
       padding: 18px 18px 14px;
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
+    .sidebar-head-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
     .sidebar-back {
       display: inline-flex;
       align-items: center;
@@ -80,10 +87,24 @@
       font-weight: 600;
       color: #8BA3BC;
       text-decoration: none;
-      margin-bottom: 12px;
       transition: color 0.2s;
     }
     .sidebar-back:hover { color: #F0F4F8; }
+    .sidebar-close-btn {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #8BA3BC;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .sidebar-close-btn:hover { color: #F0F4F8; background: rgba(255,255,255,0.12); }
     .sidebar-title {
       font-size: 15px;
       font-weight: 700;
@@ -523,10 +544,29 @@
       white-space: nowrap;
     }
 
+    /* Backdrop overlay saat sidebar terbuka di mobile */
+    #sidebar-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 890;
+      background: rgba(6, 11, 23, 0.65);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    #sidebar-backdrop.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
     @media (max-width: 860px) {
-      #sidebar { width: 84vw; max-width: 320px; transform: translateX(-100%); }
+      #sidebar { width: 84vw; max-width: 320px; transform: translateX(-100%); z-index: 920; }
       #sidebar.open { transform: translateX(0); }
       #sidebar-toggle.shifted { left: 14px; }
+      #sidebar-toggle.hide-on-open { opacity: 0; pointer-events: none; }
+      .sidebar-close-btn { display: flex; }
       #header-bar { left: 66px; max-width: calc(100vw - 90px); }
       #header-bar.shifted { left: 66px; }
       #bottom-card { bottom: 16px; padding: 12px 16px; width: calc(100vw - 32px); }
@@ -545,6 +585,9 @@
     <button type="button" class="loading-retry-btn" onclick="location.reload()">Muat Ulang</button>
   </div>
 
+  <!-- Sidebar backdrop (klik luar untuk tutup di mobile) -->
+  <div id="sidebar-backdrop"></div>
+
   <!-- Sidebar toggle button -->
   <button id="sidebar-toggle" aria-label="Buka/tutup daftar rute">
     <i class="fa-solid fa-bars"></i>
@@ -562,9 +605,14 @@
   <!-- Sidebar -->
   <aside id="sidebar">
     <div class="sidebar-head">
-      <a href="/rute-sekolah" class="sidebar-back">
-        <i class="fa-solid fa-arrow-left fa-xs"></i> Kembali ke Rute Bus Sekolah
-      </a>
+      <div class="sidebar-head-top">
+        <a href="/rute-sekolah" class="sidebar-back">
+          <i class="fa-solid fa-arrow-left fa-xs"></i> Kembali ke Rute Bus Sekolah
+        </a>
+        <button type="button" class="sidebar-close-btn" id="sidebar-close" aria-label="Tutup daftar rute">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
       <div class="sidebar-title"><i class="fa-solid fa-sliders"></i> Tampilkan Rute</div>
       <div class="sidebar-sub">Pilih trayek yang ingin ditampilkan di peta.</div>
       <div class="waktu-toggle" id="waktu-toggle">
@@ -668,19 +716,25 @@
       var sidebar   = document.getElementById('sidebar');
       var toggleBtn = document.getElementById('sidebar-toggle');
       var headerBar = document.getElementById('header-bar');
+      var backdrop  = document.getElementById('sidebar-backdrop');
+      var closeBtn  = document.getElementById('sidebar-close');
       var isMobile  = () => window.innerWidth <= 860;
 
       function applyState(open) {
         if (isMobile()) {
           sidebar.classList.toggle('open', open);
           sidebar.classList.remove('collapsed');
+          toggleBtn.classList.toggle('hide-on-open', open);
           toggleBtn.classList.remove('shifted');
           headerBar.classList.remove('shifted');
+          if (backdrop) backdrop.classList.toggle('active', open);
         } else {
           sidebar.classList.toggle('collapsed', !open);
           sidebar.classList.remove('open');
+          toggleBtn.classList.remove('hide-on-open');
           toggleBtn.classList.toggle('shifted', open);
           headerBar.classList.toggle('shifted', open);
+          if (backdrop) backdrop.classList.remove('active');
         }
       }
 
@@ -691,6 +745,20 @@
         sidebarOpen = !sidebarOpen;
         applyState(sidebarOpen);
       });
+
+      if (closeBtn) {
+        closeBtn.addEventListener('click', function () {
+          sidebarOpen = false;
+          applyState(sidebarOpen);
+        });
+      }
+
+      if (backdrop) {
+        backdrop.addEventListener('click', function () {
+          sidebarOpen = false;
+          applyState(sidebarOpen);
+        });
+      }
 
       window.addEventListener('resize', function () { applyState(sidebarOpen); });
     });

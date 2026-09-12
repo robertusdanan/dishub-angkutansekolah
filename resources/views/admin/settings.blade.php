@@ -86,10 +86,9 @@
 
       </div><!-- /.settings-grid -->
 
-      @if ($isSuperAdmin)
       <div class="card settings-card" style="max-width:860px;margin-top:22px;">
         <div class="card-header">
-          <h2>Keamanan Login Superadmin (2FA)</h2>
+          <h2>Keamanan Login Akun (2FA)</h2>
           <p>Verifikasi dua langkah pakai aplikasi otentikator (Google Authenticator, Authy, dsb.)</p>
         </div>
         <div class="card-body">
@@ -98,7 +97,7 @@
           <div id="tfaDisabledState" style="display:none;">
             <div class="info-banner">
               <span class="icon">🔓</span>
-              <div>2FA belum aktif untuk akun Anda. Sangat disarankan untuk akun <strong>superadmin</strong>.</div>
+              <div>2FA belum aktif untuk akun Anda. Sangat disarankan untuk meningkatkan keamanan akun admin.</div>
             </div>
             <div id="tfaSetupStep1" style="margin-top:16px;">
               <button type="button" class="btn btn-primary" onclick="mulaiSetup2fa()">Aktifkan 2FA</button>
@@ -139,7 +138,6 @@
           </div>
         </div>
       </div>
-      @endif
 
       @if ($isSuperAdmin)
       <div class="card settings-card" style="max-width:860px;margin-top:22px;">
