@@ -107,12 +107,14 @@ Route::post('/api/cache-invalidate', [\App\Http\Controllers\Api\CacheInvalidateC
 | Kode lama WAJIB trailing slash karena asset relatif (images/x.png,
 | *.geojson) dimuat relatif terhadap /asdp/. Di Laravel semua asset itu
 | sudah dipindah ke /assets/asdp/ dengan path absolut di Blade-nya, jadi
-| trailing-slash sebenarnya tidak lagi krusial — tapi redirect 301 tetap
-| dipertahankan supaya URL lama yang sudah terlanjur di-bookmark/index
-| mesin pencari tidak rusak.
+| trailing slash tidak lagi krusial.
+|
+| CATATAN: jangan tambah Route::redirect('/asdp', '/asdp/') di sini.
+| Router Laravel sudah mencocokkan /asdp dan /asdp/ secara identik, dan
+| begitu route:cache aktif redirect itu menimpa route aslinya sehingga
+| /asdp/ me-redirect ke dirinya sendiri (ERR_TOO_MANY_REDIRECTS).
 */
-Route::redirect('/asdp', '/asdp/', 301);
-Route::get('/asdp/', [AsdpController::class, 'index']);
+Route::get('/asdp', [AsdpController::class, 'index']);
 
 /*
 |--------------------------------------------------------------------------
@@ -147,7 +149,6 @@ Route::prefix('absenrfid')->group(function () {
 | sama seperti absenrfid: listlink DITUNDA ke tahap Panel Admin]
 |--------------------------------------------------------------------------
 */
-Route::redirect('/absenqrcode', '/absenqrcode/', 301);
 Route::prefix('absenqrcode')->group(function () {
     Route::get('/', [AbsenQrController::class, 'index']);
     Route::get('pages/form', [AbsenQrController::class, 'form']);
