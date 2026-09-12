@@ -74,16 +74,20 @@
         </div>
       </div>
 
-      <div class="choice-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:20px">
+      <div class="choice-grid">
         <button type="button" id="btnDaftarChoice" onclick="openDaftar()" class="choice-btn primary">
-          <div class="choice-icon-wrap">🎫</div>
+          <div class="choice-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></svg>
+          </div>
           <div class="choice-text">
             <div class="choice-title">Daftar Sekarang</div>
             <div class="choice-sub">Ambil tiket Balik Gratis</div>
           </div>
         </button>
         <button type="button" onclick="cekTiketSaya()" class="choice-btn secondary">
-          <div class="choice-icon-wrap">🔍</div>
+          <div class="choice-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          </div>
           <div class="choice-text">
             <div class="choice-title">Cek Tiket Saya</div>
             <div class="choice-sub">Lihat &amp; unduh tiket</div>
