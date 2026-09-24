@@ -199,6 +199,7 @@
     gap: 8px;
     flex-shrink: 0;
   }
+  .gh-brand-short { display: none; }
   @media (max-width: 900px) {
     .gh-menu-toggle { display: inline-flex; }
     .gh-links {
@@ -236,19 +237,26 @@
   @media (max-width: 768px) {
     .gh-header { padding: 0 0.85rem; gap: 8px; }
     .gh-brand { min-width: 0; gap: 8px; }
-    .gh-brand-text { min-width: 0; overflow: hidden; }
-    .gh-brand-text h1 { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 13.5px; }
+    .gh-brand-text { min-width: 0; }
     .gh-cta { gap: 6px; flex-shrink: 0; }
     .gh-btn, .nav-link { padding: 6px 11px; font-size: 12px; }
   }
   @media (max-width: 640px) {
+    .gh-brand-full { display: none; }
+    .gh-brand-short {
+      display: block;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #fff;
+      white-space: nowrap;
+      letter-spacing: -0.2px;
+    }
     .gh-cta .gh-btn-solid { display: none; }
   }
   @media (max-width: 480px) {
     .gh-header { padding: 0 10px; gap: 4px; }
-    .gh-brand img { height: 26px; }
-    .gh-brand-text p { display: none; }
-    .gh-brand-text h1 { font-size: 11.5px; max-width: 95px; }
+    .gh-brand img { height: 28px; }
+    .gh-brand-short { font-size: 12px; }
     .gh-right-actions { gap: 4px; }
     .gh-menu-toggle { width: 34px; height: 34px; border-radius: 8px; }
     .nav-account-name { display: none; }
@@ -262,8 +270,11 @@
   <a class="gh-brand" href="/">
     <img src="/assets/dishub.png" alt="Logo Dishub"/>
     <div class="gh-brand-text">
-      <h1>Dinas Perhubungan</h1>
-      <p>Kabupaten Tulungagung</p>
+      <div class="gh-brand-full">
+        <h1>Dinas Perhubungan</h1>
+        <p>Kabupaten Tulungagung</p>
+      </div>
+      <div class="gh-brand-short">DISHUB Tulungagung</div>
     </div>
   </a>
   @if ($links)

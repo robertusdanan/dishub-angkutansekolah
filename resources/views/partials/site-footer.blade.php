@@ -33,6 +33,11 @@
     color: #fff;
     margin-bottom: 12px;
   }
+  .gh-footer-brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.25;
+  }
   .gh-footer-brand img { height: 30px; width: auto; }
   .gh-footer-desc {
     font-size: 13px;
@@ -94,7 +99,10 @@
       <div>
         <div class="gh-footer-brand">
           <img src="/assets/dishub.png" alt="Logo Dishub"/>
-          {{ $footerOrgName }}
+          <div class="gh-footer-brand-text">
+            <span>Dinas Perhubungan</span>
+            <span>Kabupaten Tulungagung</span>
+          </div>
         </div>
         <p class="gh-footer-desc">{{ $footerDesc }}</p>
       </div>
