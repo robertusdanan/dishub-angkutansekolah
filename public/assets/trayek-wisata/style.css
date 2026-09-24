@@ -141,8 +141,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 @keyframes scrollDrip{ 0%{ top:-40% } 100%{ top:100% } }
 
 @media (max-width: 640px) {
-  .hero { height: auto; min-height: 100dvh; padding-top: 84px; padding-bottom: 54px; }
-  .hero-inner { padding: 0 20px; justify-content: flex-start; }
+  .hero { height: 100dvh; min-height: 560px; padding-top: 68px; padding-bottom: 24px; display: flex; flex-direction: column; }
+  .hero-inner { padding: 0 20px; justify-content: center; flex: 1; }
   .hero-badge { font-size: 11px; padding: 6px 14px 6px 8px; margin-bottom: 16px; max-width: 100%; line-height: 1.35; border-radius: 100px; white-space: normal; }
   .hero-badge .dot { flex-shrink: 0; }
   .hero-title { font-size: clamp(28px, 7.5vw, 38px); line-height: 1.12; }

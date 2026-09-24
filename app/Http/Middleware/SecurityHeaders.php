@@ -26,6 +26,7 @@ class SecurityHeaders
         'https://cdn.jsdelivr.net',
         'https://cdnjs.cloudflare.com',
         'https://accounts.google.com',
+        'https://static.cloudflareinsights.com',
         // RFID Bridge agent lokal (halaman update-data RFID menulis ke PC admin)
         'http://localhost:7777',
         'ws://localhost:7777',
@@ -64,7 +65,7 @@ class SecurityHeaders
             ."media-src 'self' blob: https:; "
             ."style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://unpkg.com; "
             ."font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://unpkg.com; "
-            ."script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://accounts.google.com https://cdnjs.cloudflare.com https://unpkg.com; "
+            ."script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://accounts.google.com https://cdnjs.cloudflare.com https://unpkg.com https://static.cloudflareinsights.com; "
             ."connect-src ".implode(' ', $connect)."; "
             ."frame-src https://accounts.google.com https://www.google.com https://online.anyflip.com;"
         );
