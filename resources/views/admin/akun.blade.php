@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="csrf-token" content="{{ csrf_token() }}"/>
   <title>Akun - Admin</title>
   <link rel="canonical" href="{{ url('/admin/akun') }}"/>
   <link rel="icon" href="/favicon.ico"/>
@@ -179,6 +180,7 @@
 </div>
 
 <script>
+const CSRF_TOKEN     = document.querySelector('meta[name="csrf-token"]').content;
 const CAN_EDIT       = {{ $canEdit ? 'true' : 'false' }};
 const CAN_DEACTIVATE = {{ $canDeactivate ? 'true' : 'false' }};
 const CAN_DELETE     = {{ $canDelete ? 'true' : 'false' }};
@@ -187,6 +189,20 @@ const IS_SUPERADMIN  = {{ $isSuperAdmin ? 'true' : 'false' }};
 const MY_LEVEL        = {{ $myLevel }};
 
 let rolesCache = [];
+
+async function parseJsonResponse(res) {
+  const text = await res.text();
+  let json;
+  try {
+    json = JSON.parse(text);
+  } catch (err) {
+    if (!res.ok) {
+      throw new Error(`Permintaan gagal (${res.status}): ${res.statusText || 'Terjadi kesalahan sistem'}`);
+    }
+    throw new Error('Respon dari server tidak valid (bukan format JSON).');
+  }
+  return json;
+}
 
 function showMsg(type, text) {
   const el = document.getElementById('result-msg');
@@ -239,8 +255,10 @@ function confirmModal(title, sub, okLabel = 'Ya, Lanjutkan') {
 }
 
 async function loadRoles() {
-  const res = await fetch('/admin/api/roles?action=list');
-  const json = await res.json();
+  const res = await fetch('/admin/api/roles?action=list', {
+    headers: { 'Accept': 'application/json' }
+  });
+  const json = await parseJsonResponse(res);
   if (!res.ok) throw new Error(json.error || 'Gagal memuat role');
   // roles.php list sekarang juga menyertakan role yang sedang dipakai
   // akun sendiri (is_mine, read-only) supaya terlihat di Manajemen
@@ -255,8 +273,10 @@ async function loadRoles() {
 async function loadAkun() {
   const tbody = document.getElementById('akunBody');
   try {
-    const res = await fetch('/admin/api/akun?action=list');
-    const json = await res.json();
+    const res = await fetch('/admin/api/akun?action=list', {
+      headers: { 'Accept': 'application/json' }
+    });
+    const json = await parseJsonResponse(res);
     if (!res.ok) throw new Error(json.error || 'Gagal memuat akun');
     const rows = json.data || [];
     if (rows.length === 0) {
@@ -368,9 +388,15 @@ async function saveAkun() {
   clearModalMsg('akunFormMsg');
   try {
     const res = await fetch(`/admin/api/akun?action=${isCreate ? 'create' : 'update'}`, {
-      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': CSRF_TOKEN,
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(payload)
     });
-    const json = await res.json();
+    const json = await parseJsonResponse(res);
     if (!res.ok) throw new Error(json.error || 'Gagal menyimpan akun');
     showMsg('success', '✓ Akun berhasil disimpan.');
     closeModal('akunFormModal');
@@ -401,9 +427,15 @@ async function submitResetPassword() {
   btn.disabled = true; btn.textContent = 'Memproses…';
   try {
     const res = await fetch('/admin/api/akun?action=reset_password', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id, new_password: newPassword })
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': CSRF_TOKEN,
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({ id, new_password: newPassword })
     });
-    const json = await res.json();
+    const json = await parseJsonResponse(res);
     if (!res.ok) throw new Error(json.error || 'Gagal reset password');
     showMsg('success', '✓ Password berhasil direset.');
     closeModal('resetPassModal');
@@ -424,9 +456,15 @@ async function toggleActive(id, makeActive, username) {
   if (!ok) return;
   try {
     const res = await fetch('/admin/api/akun?action=toggle_active', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id, is_active: makeActive })
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': CSRF_TOKEN,
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({ id, is_active: makeActive })
     });
-    const json = await res.json();
+    const json = await parseJsonResponse(res);
     if (!res.ok) throw new Error(json.error || 'Gagal mengubah status');
     showMsg('success', '✓ Status akun diperbarui.');
     await loadAkun();
@@ -440,9 +478,15 @@ async function deleteAkun(id, username) {
   if (!ok) return;
   try {
     const res = await fetch('/admin/api/akun?action=delete', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id })
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': CSRF_TOKEN,
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({ id })
     });
-    const json = await res.json();
+    const json = await parseJsonResponse(res);
     if (!res.ok) throw new Error(json.error || 'Gagal menghapus akun');
     showMsg('success', '✓ Akun dihapus.');
     await loadAkun();
