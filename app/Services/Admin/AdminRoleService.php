@@ -85,6 +85,44 @@ class AdminRoleService
         return is_array($menus) && (in_array('*', $menus, true) || in_array($menuId, $menus, true));
     }
 
+    public function canMenuAction(string $menuId, string $action): bool
+    {
+        if ($this->isSuperAdmin()) {
+            return true;
+        }
+        if (!$this->canAccessMenu($menuId)) {
+            return false;
+        }
+        if ($action === 'view') {
+            return true;
+        }
+
+        $perms = $this->currentPermissions();
+        $actions = $perms['menu_actions'][$menuId] ?? null;
+
+        // Fallback kompatibel: jika role belum memiliki menu_actions spesifik, default izinkan
+        if ($actions === null) {
+            return true;
+        }
+
+        return !empty($actions[$action]);
+    }
+
+    public function canMenuCreate(string $menuId): bool
+    {
+        return $this->canMenuAction($menuId, 'create');
+    }
+
+    public function canMenuEdit(string $menuId): bool
+    {
+        return $this->canMenuAction($menuId, 'edit');
+    }
+
+    public function canMenuDelete(string $menuId): bool
+    {
+        return $this->canMenuAction($menuId, 'delete');
+    }
+
     /**
      * Boleh kelola akun/role level $targetLevel? Setara ATAU lebih rendah
      * dari level sendiri (dipakai utk operasi non-Manajemen-Role: ubah

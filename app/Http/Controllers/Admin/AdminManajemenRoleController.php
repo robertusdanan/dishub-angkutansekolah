@@ -41,16 +41,25 @@ class AdminManajemenRoleController extends Controller
         $myPengaturan = (array) ($myPerms['pengaturan'] ?? []);
 
         $iHaveMenu = fn (string $id): bool => $iHaveAllMenu || in_array($id, $myMenus, true);
+        $iHaveMenuAction = fn (string $id, string $act): bool => $this->roles->canMenuAction($id, $act);
         $iHaveAkun = fn (string $a): bool => $this->roles->isSuperAdmin() || !empty($myAkun[$a]);
         $iHaveRoleMgmt = fn (string $a): bool => $this->roles->isSuperAdmin() || !empty($myRoleMgmt[$a]);
         $iHaveListlink = fn (): bool => $this->roles->isSuperAdmin() || !empty($myListlink['access']);
         $iHavePengaturan = fn (string $a): bool => $this->roles->isSuperAdmin() || !empty($myPengaturan[$a]);
 
         $menuGroups = [];
+        $menuActionCaps = [];
         foreach (config('admin_menu_catalog.grup', []) as $groupName => $items) {
             $itemsIHave = array_filter($items, fn ($label, $id) => $iHaveMenu($id), ARRAY_FILTER_USE_BOTH);
             if (!empty($itemsIHave)) {
                 $menuGroups[$groupName] = $itemsIHave;
+                foreach (array_keys($itemsIHave) as $mId) {
+                    $menuActionCaps[$mId] = [
+                        'create' => $iHaveMenuAction($mId, 'create'),
+                        'edit' => $iHaveMenuAction($mId, 'edit'),
+                        'delete' => $iHaveMenuAction($mId, 'delete'),
+                    ];
+                }
             }
         }
 
@@ -61,6 +70,7 @@ class AdminManajemenRoleController extends Controller
             'isSuperAdmin' => $this->roles->isSuperAdmin(),
             'iHaveAllMenu' => $iHaveAllMenu,
             'menuGroups' => $menuGroups,
+            'menuActionCaps' => $menuActionCaps,
             'akunActions' => array_filter(['view' => $iHaveAkun('view'), 'create' => $iHaveAkun('create'), 'edit' => $iHaveAkun('edit'), 'deactivate' => $iHaveAkun('deactivate'), 'delete' => $iHaveAkun('delete')]),
             'roleMgmtActions' => array_filter(['view' => $iHaveRoleMgmt('view'), 'create' => $iHaveRoleMgmt('create'), 'edit' => $iHaveRoleMgmt('edit'), 'delete' => $iHaveRoleMgmt('delete')]),
             'iHaveListlink' => $iHaveListlink(),

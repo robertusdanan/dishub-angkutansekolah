@@ -52,8 +52,25 @@ class AdminRoleApiController extends Controller
         $roleMgmt = $raw['manajemen_role'] ?? [];
         $listlink = $raw['listlink'] ?? [];
 
+        // Olah aksi per menu (create, edit, delete)
+        $rawMenuActions = (array) ($raw['menu_actions'] ?? []);
+        $menuActions = [];
+        foreach ($menus as $m) {
+            if ($m === '*') {
+                continue;
+            }
+            $act = (array) ($rawMenuActions[$m] ?? []);
+            $menuActions[$m] = [
+                'view' => true,
+                'create' => $bool($act['create'] ?? false),
+                'edit' => $bool($act['edit'] ?? false),
+                'delete' => $bool($act['delete'] ?? false),
+            ];
+        }
+
         return [
             'menus' => $menus,
+            'menu_actions' => $menuActions,
             'akun' => [
                 'view' => $bool($akun['view'] ?? false),
                 'create' => $bool($akun['create'] ?? false),
@@ -93,6 +110,21 @@ class AdminRoleApiController extends Controller
 
         if (!$iHaveAllMenus) {
             $perms['menus'] = array_values(array_intersect((array) $perms['menus'], $myMenus));
+        }
+
+        // Clamp aksi per menu jika bukan superadmin
+        if (isset($perms['menu_actions']) && is_array($perms['menu_actions'])) {
+            foreach ($perms['menu_actions'] as $m => $actions) {
+                if (!in_array($m, $perms['menus'], true)) {
+                    unset($perms['menu_actions'][$m]);
+                    continue;
+                }
+                foreach (['create', 'edit', 'delete'] as $act) {
+                    if (!empty($actions[$act]) && !$this->roles->canMenuAction($m, $act)) {
+                        $perms['menu_actions'][$m][$act] = false;
+                    }
+                }
+            }
         }
 
         foreach (['akun', 'manajemen_role', 'pengaturan'] as $grp) {

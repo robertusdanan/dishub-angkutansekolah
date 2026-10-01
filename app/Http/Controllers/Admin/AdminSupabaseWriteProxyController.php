@@ -56,16 +56,21 @@ class AdminSupabaseWriteProxyController
             return response()->json(['error' => 'Tabel tidak diizinkan lewat endpoint ini: '.$table], 400);
         }
 
-        if ($fail = $config['authorize']($table)) {
+        $method = $this->resolveMethod($request);
+        $actionMap = [
+            'POST' => 'create',
+            'PATCH' => 'edit',
+            'PUT' => 'edit',
+            'DELETE' => 'delete',
+            'GET' => 'view',
+        ];
+        $action = $actionMap[$method] ?? 'view';
+
+        if ($fail = $config['authorize']($table, $action)) {
             return $fail;
         }
 
         $qs = (string) $request->query('qs', '');
-        if ($qs !== '' && !preg_match('/^[A-Za-z0-9_.,;:=&%\-*() +]*$/', $qs)) {
-            return response()->json(['error' => 'Query tidak valid.'], 400);
-        }
-
-        $method = $this->resolveMethod($request);
 
         // Baca cache (kalau tabel ini termasuk yang di-cache modul ini, GET saja).
         $cacheableCategory = $config['cacheable_tables'][$table] ?? null;
@@ -195,14 +200,17 @@ class AdminSupabaseWriteProxyController
     public function angkutansekolah(Request $request): JsonResponse
     {
         return $this->proxy($request, [
-            'authorize' => function (string $table) {
+            'authorize' => function (string $table, string $action) {
                 $requiredMenus = $this->angkutansekolahTableMenus()[$table] ?? [];
                 $allowed = empty($requiredMenus)
-                    ? $this->roles->isSuperAdmin() // tabel tak dikenal: fallback aman, superadmin saja
-                    : collect($requiredMenus)->contains(fn ($m) => $this->roles->canAccessMenu($m));
+                    ? $this->roles->isSuperAdmin()
+                    : collect($requiredMenus)->contains(fn ($m) => $this->roles->canMenuAction($m, $action));
 
                 if (!$allowed) {
-                    return response()->json(['error' => 'Forbidden: Anda tidak punya izin menu yang mengatur data ini.'], 403);
+                    $actionLabels = ['create' => 'Menambah', 'edit' => 'Mengubah', 'delete' => 'Menghapus', 'view' => 'Melihat'];
+                    $actText = $actionLabels[$action] ?? $action;
+
+                    return response()->json(['error' => 'Forbidden: Anda tidak memiliki izin untuk '.$actText.' data pada menu ini.'], 403);
                 }
 
                 return null;
@@ -220,10 +228,26 @@ class AdminSupabaseWriteProxyController
     /** POST/GET /admin/api/balikgratis/db - setara admin/api/balikgratis/db.php */
     public function balikgratis(Request $request): JsonResponse
     {
+        $tableMenus = [
+            'balikgratis_pemesanan' => ['balikgratis_pemesanan', 'balikgratis_verifikasi'],
+            'balikgratis_pengaturan' => ['balikgratis_pengaturan'],
+        ];
+
         return $this->proxy($request, [
-            'authorize' => function () {
+            'authorize' => function (string $table, string $action) use ($tableMenus) {
                 if (session('admin_role') === 'guest') {
                     return response()->json(['error' => 'Forbidden.'], 403);
+                }
+                $requiredMenus = $tableMenus[$table] ?? [];
+                $allowed = empty($requiredMenus)
+                    ? $this->roles->isSuperAdmin()
+                    : collect($requiredMenus)->contains(fn ($m) => $this->roles->canMenuAction($m, $action));
+
+                if (!$allowed) {
+                    $actionLabels = ['create' => 'Menambah', 'edit' => 'Mengubah', 'delete' => 'Menghapus', 'view' => 'Melihat'];
+                    $actText = $actionLabels[$action] ?? $action;
+
+                    return response()->json(['error' => 'Forbidden: Anda tidak memiliki izin untuk '.$actText.' data pada menu ini.'], 403);
                 }
 
                 return null;
@@ -259,10 +283,37 @@ class AdminSupabaseWriteProxyController
             'trayekwisata_trayek_titik' => 'trayekwisata',
         ];
 
+        $tableMenus = [
+            'trayekwisata_titik' => ['trayekwisata_titik'],
+            'trayekwisata_titik_galeri' => ['trayekwisata_titik'],
+            'trayekwisata_bus' => ['trayekwisata_armada'],
+            'trayekwisata_driver' => ['trayekwisata_armada'],
+            'trayekwisata_trayek' => ['trayekwisata_planner'],
+            'trayekwisata_trayek_titik' => ['trayekwisata_planner'],
+            'trayekwisata_jadwal' => ['trayekwisata_planner'],
+            'trayekwisata_pemesanan' => ['trayekwisata_pemesanan', 'trayekwisata_verifikasi'],
+            'trayekwisata_pemesanan_nik' => ['trayekwisata_pemesanan', 'trayekwisata_verifikasi'],
+            'trayekwisata_keluarga' => ['trayekwisata_pemesanan'],
+            'trayekwisata_waitlist' => ['trayekwisata_pemesanan'],
+            'trayekwisata_survei' => ['trayekwisata_pemesanan'],
+            'akun_publik' => ['trayekwisata_pemesanan'],
+        ];
+
         return $this->proxy($request, [
-            'authorize' => function () {
+            'authorize' => function (string $table, string $action) use ($tableMenus) {
                 if (session('admin_role') === 'guest') {
                     return response()->json(['error' => 'Forbidden.'], 403);
+                }
+                $requiredMenus = $tableMenus[$table] ?? [];
+                $allowed = empty($requiredMenus)
+                    ? $this->roles->isSuperAdmin()
+                    : collect($requiredMenus)->contains(fn ($m) => $this->roles->canMenuAction($m, $action));
+
+                if (!$allowed) {
+                    $actionLabels = ['create' => 'Menambah', 'edit' => 'Mengubah', 'delete' => 'Menghapus', 'view' => 'Melihat'];
+                    $actText = $actionLabels[$action] ?? $action;
+
+                    return response()->json(['error' => 'Forbidden: Anda tidak memiliki izin untuk '.$actText.' data pada menu ini.'], 403);
                 }
 
                 return null;
