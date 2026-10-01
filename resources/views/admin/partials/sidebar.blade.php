@@ -185,22 +185,6 @@
       </div>
     </div>
     @endif
-
-    @if (($isSuperAdmin || $isDishubta) && !$isGuest)
-    <a href="{{ $base }}/rfid-writer" class="adm-nav-item {{ $curPage === 'rfid_writer' ? 'active' : '' }}">
-      <span class="adm-nav-icon">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-          <rect x="2" y="5" width="20" height="14" rx="3"/>
-          <path d="M8.5 9.5 C8.5 9.5 7 11 7 12 C7 13 8.5 14.5 8.5 14.5"/>
-          <path d="M15.5 9.5 C15.5 9.5 17 11 17 12 C17 13 15.5 14.5 15.5 14.5"/>
-          <path d="M10.5 10.8 C10.5 10.8 9.8 11.3 9.8 12 C9.8 12.7 10.5 13.2 10.5 13.2"/>
-          <path d="M13.5 10.8 C13.5 10.8 14.2 11.3 14.2 12 C14.2 12.7 13.5 13.2 13.5 13.2"/>
-          <circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none"/>
-        </svg>
-      </span>
-      <span class="adm-nav-text">RFID Writer</span>
-    </a>
-    @endif
     @endif {{-- end modul angkutansekolah --}}
 
     @if ($activeModule === 'asdp' && !$isGuest)

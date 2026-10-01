@@ -23,9 +23,6 @@ return [
             'update_map' => 'Rute Web',
             'update_driver' => 'Data Driver',
         ],
-        'Lainnya' => [
-            'rfid_writer' => 'RFID Writer',
-        ],
         'Layanan ASDP' => [
             'asdp_daftar' => 'Daftar Lokasi ASDP',
             'asdp_koordinat' => 'Lokasi ASDP',

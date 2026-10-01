@@ -86,15 +86,6 @@ class AngkutanSekolahUpdateDataController extends Controller
         return view('admin.angkutansekolah.updatedata.registrasi');
     }
 
-    public function rfidWriter(): View|RedirectResponse
-    {
-        if ($r = $this->guardAbsensiAccess()) {
-            return $r;
-        }
-
-        return view('admin.angkutansekolah.updatedata.rfidwriter');
-    }
-
     public function absensiFoto(): View|RedirectResponse
     {
         if ($r = $this->guardAbsensiAccess()) {

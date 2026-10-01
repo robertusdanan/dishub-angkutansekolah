@@ -285,7 +285,6 @@ Route::prefix('admin')->group(function () {
             Route::get('rute-map', 'dataMap');
             Route::get('data-driver', 'dataDriver');
             Route::get('registrasi-siswa', 'registrasi');
-            Route::get('rfid-writer', 'rfidWriter');
             Route::get('tambah-absen-foto', 'absensiFoto');
         });
 
