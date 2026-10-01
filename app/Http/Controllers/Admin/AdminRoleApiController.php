@@ -52,20 +52,30 @@ class AdminRoleApiController extends Controller
         $roleMgmt = $raw['manajemen_role'] ?? [];
         $listlink = $raw['listlink'] ?? [];
 
-        // Olah aksi per menu (create, edit, delete)
+        // Olah aksi per menu hanya untuk menu & aksi yang memang didukung
         $rawMenuActions = (array) ($raw['menu_actions'] ?? []);
+        $supportedMap = config('admin_menu_catalog.menu_supported_actions', []);
         $menuActions = [];
+
         foreach ($menus as $m) {
             if ($m === '*') {
                 continue;
             }
+            $supported = $supportedMap[$m] ?? [];
+            if (empty($supported)) {
+                // Menu view-only (seperti data_absensi, report_foto, dashboard, dll)
+                $menuActions[$m] = ['view' => true];
+                continue;
+            }
+
             $act = (array) ($rawMenuActions[$m] ?? []);
-            $menuActions[$m] = [
-                'view' => true,
-                'create' => $bool($act['create'] ?? false),
-                'edit' => $bool($act['edit'] ?? false),
-                'delete' => $bool($act['delete'] ?? false),
-            ];
+            $entry = ['view' => true];
+            foreach (['create', 'edit', 'delete'] as $aKey) {
+                if (in_array($aKey, $supported, true)) {
+                    $entry[$aKey] = $bool($act[$aKey] ?? false);
+                }
+            }
+            $menuActions[$m] = $entry;
         }
 
         return [

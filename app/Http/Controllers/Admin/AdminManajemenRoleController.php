@@ -49,6 +49,8 @@ class AdminManajemenRoleController extends Controller
 
         $menuGroups = [];
         $menuActionCaps = [];
+        $supportedActions = config('admin_menu_catalog.menu_supported_actions', []);
+
         foreach (config('admin_menu_catalog.grup', []) as $groupName => $items) {
             $itemsIHave = array_filter($items, fn ($label, $id) => $iHaveMenu($id), ARRAY_FILTER_USE_BOTH);
             if (!empty($itemsIHave)) {
@@ -71,6 +73,7 @@ class AdminManajemenRoleController extends Controller
             'iHaveAllMenu' => $iHaveAllMenu,
             'menuGroups' => $menuGroups,
             'menuActionCaps' => $menuActionCaps,
+            'menuSupportedActions' => $supportedActions,
             'akunActions' => array_filter(['view' => $iHaveAkun('view'), 'create' => $iHaveAkun('create'), 'edit' => $iHaveAkun('edit'), 'deactivate' => $iHaveAkun('deactivate'), 'delete' => $iHaveAkun('delete')]),
             'roleMgmtActions' => array_filter(['view' => $iHaveRoleMgmt('view'), 'create' => $iHaveRoleMgmt('create'), 'edit' => $iHaveRoleMgmt('edit'), 'delete' => $iHaveRoleMgmt('delete')]),
             'iHaveListlink' => $iHaveListlink(),

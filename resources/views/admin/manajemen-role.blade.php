@@ -410,6 +410,24 @@
     .pill-edit   { color: #0369a1; font-weight: 600; font-size: 11px; }
     .pill-delete { color: #b91c1c; font-weight: 600; font-size: 11px; }
 
+    .dash-na {
+      color: #94a3b8;
+      font-size: 13px;
+      font-weight: 600;
+      user-select: none;
+    }
+    .badge-ro {
+      font-size: 9.5px;
+      font-weight: 700;
+      color: #0369a1;
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      padding: 1px 6px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: .3px;
+    }
+
     /* System Permissions Grid */
     .system-perms-grid {
       display: grid;
@@ -687,12 +705,20 @@
                 @foreach ($items as $mId => $label)
                 @php
                   $caps = $menuActionCaps[$mId] ?? ['create' => true, 'edit' => true, 'delete' => true];
+                  $supported = $menuSupportedActions[$mId] ?? [];
+                  $isViewOnly = empty($supported);
+                  $hasCreate = in_array('create', $supported, true);
+                  $hasEdit   = in_array('edit', $supported, true);
+                  $hasDelete = in_array('delete', $supported, true);
                 @endphp
                 <tr data-menu-row="{{ $mId }}">
                   <td>
                     <div class="menu-name-cell">
                       <span>{{ $label }}</span>
                       <span class="menu-badge-id">#{{ $mId }}</span>
+                      @if ($isViewOnly)
+                      <span class="badge-ro" title="Menu ini bersifat laporan atau pemantauan data">Hanya Lihat</span>
+                      @endif
                     </div>
                   </td>
                   <td>
@@ -701,23 +727,35 @@
                       <span style="font-weight:600; font-size:11.5px;">Buka</span>
                     </label>
                   </td>
-                  <td>
+                  <td style="text-align:center;">
+                    @if ($hasCreate)
                     <label class="crud-check-label crud-action-label {{ empty($caps['create']) ? 'disabled' : '' }}" title="{{ empty($caps['create']) ? 'Anda tidak memiliki wewenang ini' : 'Izin Tambah' }}">
                       <input type="checkbox" class="menu-act-check act-create" data-mid="{{ $mId }}" data-act="create" {{ empty($caps['create']) ? 'disabled' : '' }}>
                       <span class="pill-create">+ Tambah</span>
                     </label>
+                    @else
+                    <span class="dash-na" title="Menu ini tidak memiliki fungsi Tambah">-</span>
+                    @endif
                   </td>
-                  <td>
+                  <td style="text-align:center;">
+                    @if ($hasEdit)
                     <label class="crud-check-label crud-action-label {{ empty($caps['edit']) ? 'disabled' : '' }}" title="{{ empty($caps['edit']) ? 'Anda tidak memiliki wewenang ini' : 'Izin Edit' }}">
                       <input type="checkbox" class="menu-act-check act-edit" data-mid="{{ $mId }}" data-act="edit" {{ empty($caps['edit']) ? 'disabled' : '' }}>
                       <span class="pill-edit">✏️ Edit</span>
                     </label>
+                    @else
+                    <span class="dash-na" title="Menu ini tidak memiliki fungsi Edit">-</span>
+                    @endif
                   </td>
-                  <td>
+                  <td style="text-align:center;">
+                    @if ($hasDelete)
                     <label class="crud-check-label crud-action-label {{ empty($caps['delete']) ? 'disabled' : '' }}" title="{{ empty($caps['delete']) ? 'Anda tidak memiliki wewenang ini' : 'Izin Hapus' }}">
                       <input type="checkbox" class="menu-act-check act-delete" data-mid="{{ $mId }}" data-act="delete" {{ empty($caps['delete']) ? 'disabled' : '' }}>
                       <span class="pill-delete">🗑️ Hapus</span>
                     </label>
+                    @else
+                    <span class="dash-na" title="Menu ini tidak memiliki fungsi Hapus">-</span>
+                    @endif
                   </td>
                 </tr>
                 @endforeach
@@ -835,6 +873,7 @@
 const CSRF_TOKEN = document.querySelector('meta[name="csrf-token"]').content;
 const CAN_EDIT   = {{ $canEdit ? 'true' : 'false' }};
 const CAN_DELETE = {{ $canDelete ? 'true' : 'false' }};
+const SUPPORTED_ACTIONS = @json($menuSupportedActions);
 let allRolesData = [];
 
 function showMsg(type, text) {
@@ -1112,16 +1151,21 @@ function renderRow(r) {
   } else {
     menuLabel = `<strong>${menus.length} Menu Diizinkan</strong>`;
 
-    // Hitung ringkasan aksi
+    // Hitung ringkasan aksi hanya untuk menu yang mendukung aksi tersebut
     let totalCreate = 0, totalEdit = 0, totalDelete = 0;
     menus.forEach(mid => {
+      const supported = SUPPORTED_ACTIONS[mid] || [];
+      if (supported.length === 0) return; // View only, skip penghitungan CRUD
+
       const act = menuActions[mid];
       if (act) {
-        if (act.create) totalCreate++;
-        if (act.edit) totalEdit++;
-        if (act.delete) totalDelete++;
+        if (supported.includes('create') && act.create) totalCreate++;
+        if (supported.includes('edit') && act.edit) totalEdit++;
+        if (supported.includes('delete') && act.delete) totalDelete++;
       } else {
-        totalCreate++; totalEdit++; totalDelete++;
+        if (supported.includes('create')) totalCreate++;
+        if (supported.includes('edit')) totalEdit++;
+        if (supported.includes('delete')) totalDelete++;
       }
     });
 

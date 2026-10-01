@@ -97,6 +97,11 @@ class AdminRoleService
             return true;
         }
 
+        $supported = config('admin_menu_catalog.menu_supported_actions.' . $menuId);
+        if ($supported !== null && !in_array($action, $supported, true)) {
+            return false;
+        }
+
         $perms = $this->currentPermissions();
         $actions = $perms['menu_actions'][$menuId] ?? null;
 
