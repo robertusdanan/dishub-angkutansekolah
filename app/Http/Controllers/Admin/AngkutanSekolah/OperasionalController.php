@@ -23,6 +23,9 @@ class OperasionalController extends Controller
         if ($r = $this->roles->requireNonGuest()) {
             return $r;
         }
+        if ($r = $this->roles->requireMenuAccess('operasional')) {
+            return $r;
+        }
 
         return view('admin.angkutansekolah.operasional');
     }

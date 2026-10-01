@@ -10,7 +10,7 @@ use Illuminate\View\View;
 
 /**
  * Port dari admin/pages/angkutansekolah/updatedata/{datasekolah,datadomisili,
- * datatrayek,datamap,datadriver,registrasi,rfidwriter}.php.
+ * datatrayek,datamap,datadriver,registrasi}.php.
  */
 class AngkutanSekolahUpdateDataController extends Controller
 {
@@ -18,23 +18,16 @@ class AngkutanSekolahUpdateDataController extends Controller
     {
     }
 
-    protected function guardSuperAdmin(): ?RedirectResponse
+    protected function guardMenu(string $menuId): ?RedirectResponse
     {
         Session::put('admin_module', 'angkutansekolah');
 
-        return $this->roles->requireSuperAdmin();
-    }
-
-    protected function guardAbsensiAccess(): ?RedirectResponse
-    {
-        Session::put('admin_module', 'angkutansekolah');
-
-        return $this->roles->requireAbsensiAccess();
+        return $this->roles->requireMenuAccess($menuId);
     }
 
     public function dataSekolah(): View|RedirectResponse
     {
-        if ($r = $this->guardSuperAdmin()) {
+        if ($r = $this->guardMenu('update_sekolah')) {
             return $r;
         }
 
@@ -43,7 +36,7 @@ class AngkutanSekolahUpdateDataController extends Controller
 
     public function dataDomisili(): View|RedirectResponse
     {
-        if ($r = $this->guardSuperAdmin()) {
+        if ($r = $this->guardMenu('update_domisili')) {
             return $r;
         }
 
@@ -52,7 +45,7 @@ class AngkutanSekolahUpdateDataController extends Controller
 
     public function dataTrayek(): View|RedirectResponse
     {
-        if ($r = $this->guardSuperAdmin()) {
+        if ($r = $this->guardMenu('update_trayek')) {
             return $r;
         }
 
@@ -61,7 +54,7 @@ class AngkutanSekolahUpdateDataController extends Controller
 
     public function dataMap(): View|RedirectResponse
     {
-        if ($r = $this->guardSuperAdmin()) {
+        if ($r = $this->guardMenu('update_map')) {
             return $r;
         }
 
@@ -70,7 +63,7 @@ class AngkutanSekolahUpdateDataController extends Controller
 
     public function dataDriver(): View|RedirectResponse
     {
-        if ($r = $this->guardSuperAdmin()) {
+        if ($r = $this->guardMenu('update_driver')) {
             return $r;
         }
 
@@ -79,7 +72,7 @@ class AngkutanSekolahUpdateDataController extends Controller
 
     public function registrasi(): View|RedirectResponse
     {
-        if ($r = $this->guardAbsensiAccess()) {
+        if ($r = $this->guardMenu('update_siswa')) {
             return $r;
         }
 
@@ -88,7 +81,7 @@ class AngkutanSekolahUpdateDataController extends Controller
 
     public function absensiFoto(): View|RedirectResponse
     {
-        if ($r = $this->guardAbsensiAccess()) {
+        if ($r = $this->guardMenu('tambah_foto')) {
             return $r;
         }
 

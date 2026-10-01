@@ -23,6 +23,9 @@ class ReportFotoController extends Controller
         if ($r = $this->roles->requireNonGuest()) {
             return $r;
         }
+        if ($r = $this->roles->requireMenuAccess('report_foto')) {
+            return $r;
+        }
 
         return view('admin.angkutansekolah.report-foto');
     }

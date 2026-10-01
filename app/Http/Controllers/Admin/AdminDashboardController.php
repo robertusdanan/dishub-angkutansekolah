@@ -28,15 +28,38 @@ class AdminDashboardController extends Controller
             return redirect('/admin/tiket-saya');
         }
 
-        $modules = [
-            [
+        $modules = [];
+
+        $angkutanMenus = [
+            'data_absensi' => '/admin/data-absensi',
+            'report_foto' => '/admin/absensi-foto',
+            'operasional' => '/admin/operasional',
+            'update_domisili' => '/admin/data-domisili',
+            'update_sekolah' => '/admin/data-sekolah',
+            'update_siswa' => '/admin/registrasi-siswa',
+            'tambah_foto' => '/admin/tambah-absen-foto',
+            'update_trayek' => '/admin/data-trayek',
+            'update_map' => '/admin/rute-map',
+            'update_driver' => '/admin/data-driver',
+        ];
+
+        $firstAngkutanHref = null;
+        foreach ($angkutanMenus as $mId => $href) {
+            if ($this->roles->isSuperAdmin() || $this->roles->canAccessMenu($mId)) {
+                $firstAngkutanHref = $href;
+                break;
+            }
+        }
+
+        if ($firstAngkutanHref) {
+            $modules[] = [
                 'id' => 'angkutansekolah',
                 'label' => 'Angkutan Sekolah Gratis',
-                'description' => 'Data absensi siswa, absensi foto, rekap operasional, data trayek/driver, GPS driver, dan RFID writer.',
-                'href' => '/admin/data-absensi',
+                'description' => 'Data absensi siswa, absensi foto, rekap operasional, data trayek/driver, dan pembaruan rute.',
+                'href' => $firstAngkutanHref,
                 'icon' => '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 6v6M2 12h19.6M2 12c0-3.3 0-5 .8-6.1S5 4 8.5 4h7c3.5 0 4.9.8 5.7 1.9S22 8.7 22 12v3.5c0 1.2 0 1.8-.4 2.2s-1 .4-2.2.4H4.6c-1.2 0-1.8 0-2.2-.4S2 16.7 2 15.5z"/><circle cx="7" cy="19.5" r="1.6"/><circle cx="17" cy="19.5" r="1.6"/></svg>',
-            ],
-        ];
+            ];
+        }
 
         if ($this->roles->canAccessMenu('asdp_daftar') || $this->roles->canAccessMenu('asdp_koordinat')) {
             $modules[] = [

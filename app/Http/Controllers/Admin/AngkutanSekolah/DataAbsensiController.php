@@ -20,9 +20,15 @@ class DataAbsensiController extends Controller
     {
     }
 
-    public function index(): View
+    public function index(): View|\Illuminate\Http\RedirectResponse
     {
         Session::put('admin_module', 'angkutansekolah');
+
+        if (!$this->roles->isGuest() && !$this->roles->isPenggunaPublik()) {
+            if ($r = $this->roles->requireMenuAccess('data_absensi')) {
+                return $r;
+            }
+        }
 
         return view('admin.angkutansekolah.dataabsensi', [
             'isGuest' => $this->roles->isGuest() || $this->roles->isPenggunaPublik(),

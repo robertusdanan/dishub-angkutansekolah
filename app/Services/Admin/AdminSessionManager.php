@@ -59,7 +59,7 @@ class AdminSessionManager
         $cachedMeta = Cache::remember('admin_acc_meta_'.$accountId, 10, function () use ($accountId) {
             [$code, $rows] = $this->supabase->rawRequest(
                 'GET',
-                'admin_accounts?id=eq.'.$accountId.'&select=id,is_active,password_hash,admin_roles(is_active)&limit=1'
+                'admin_accounts?id=eq.'.$accountId.'&select=id,is_active,password_hash,admin_roles(role_key,role_name,level,permissions,is_active)&limit=1'
             );
 
             if ($code < 200 || $code >= 300 || empty($rows) || !is_array($rows)) {
@@ -67,12 +67,14 @@ class AdminSessionManager
             }
 
             $acc = $rows[0];
-            $roleActive = !empty($acc['admin_roles']['is_active']);
+            $roleData = $acc['admin_roles'] ?? [];
+            $roleActive = !empty($roleData['is_active']);
 
             return [
                 'is_active' => !empty($acc['is_active']),
                 'auth_hash' => self::hashPasswordSignature($acc['password_hash'] ?? null),
                 'role_active' => $roleActive,
+                'role' => $roleData,
             ];
         });
 
@@ -83,6 +85,23 @@ class AdminSessionManager
         $sessionHash = Session::get('admin_auth_hash');
         if ($sessionHash && $sessionHash !== $cachedMeta['auth_hash']) {
             return false;
+        }
+
+        // Sinkronkan permissions dan role data terbaru jika ada pembaruan di database
+        if (!empty($cachedMeta['role']) && is_array($cachedMeta['role'])) {
+            $r = $cachedMeta['role'];
+            if (isset($r['permissions']) && is_array($r['permissions'])) {
+                Session::put('admin_permissions', $r['permissions']);
+            }
+            if (!empty($r['role_key'])) {
+                Session::put('admin_role', $r['role_key']);
+            }
+            if (isset($r['role_name'])) {
+                Session::put('admin_role_name', $r['role_name'] ?: ($r['role_key'] ?? ''));
+            }
+            if (isset($r['level'])) {
+                Session::put('admin_role_level', (int) $r['level']);
+            }
         }
 
         return true;

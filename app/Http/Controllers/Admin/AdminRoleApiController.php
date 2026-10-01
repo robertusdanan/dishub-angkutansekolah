@@ -284,6 +284,8 @@ class AdminRoleApiController extends Controller
 
         $this->audit->log('admin_role.update', ['target_role_id' => $id, 'role_key' => $target['role_key'] ?? null, 'fields' => array_keys($patch)]);
 
+        \Illuminate\Support\Facades\Cache::flush();
+
         return response()->json(['status' => 'ok', 'data' => $res[0] ?? null]);
     }
 

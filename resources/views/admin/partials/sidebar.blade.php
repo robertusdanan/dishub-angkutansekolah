@@ -11,26 +11,24 @@
     $isSuperAdmin = $adminRole === 'superadmin';
     $isDishubta = $adminRole === 'dishubta';
     $isGuest = $adminRole === 'guest';
-    $canAbsensi = $isSuperAdmin || $isDishubta;
 
     $base = '/admin';
     $imgBase = '/assets';
 
-    $absensiSubmenusSuper = [
+    $allAbsensiSubmenus = [
         ['id' => 'update_domisili', 'label' => 'Data Domisili', 'href' => $base.'/data-domisili'],
         ['id' => 'update_sekolah', 'label' => 'Data Sekolah', 'href' => $base.'/data-sekolah'],
-    ];
-    $absensiSubmenusBase = [
         ['id' => 'update_siswa', 'label' => 'Registrasi Siswa', 'href' => $base.'/registrasi-siswa'],
         ['id' => 'tambah_foto', 'label' => 'Tambah Absen Foto', 'href' => $base.'/tambah-absen-foto'],
     ];
-    $absensiSubmenus = $isSuperAdmin ? array_merge($absensiSubmenusSuper, $absensiSubmenusBase) : $absensiSubmenusBase;
+    $absensiSubmenus = array_values(array_filter($allAbsensiSubmenus, fn($s) => $roles->canAccessMenu($s['id'])));
 
-    $trayekSubmenus = [
+    $allTrayekSubmenus = [
         ['id' => 'update_trayek', 'label' => 'Data Trayek', 'href' => $base.'/data-trayek'],
         ['id' => 'update_map', 'label' => 'Rute Web', 'href' => $base.'/rute-map'],
         ['id' => 'update_driver', 'label' => 'Data Driver', 'href' => $base.'/data-driver'],
     ];
+    $trayekSubmenus = array_values(array_filter($allTrayekSubmenus, fn($s) => $roles->canAccessMenu($s['id'])));
 
     $asdpMenuItems = [
         ['id' => 'asdp_daftar', 'label' => 'Daftar Lokasi ASDP', 'icon' => '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2.5"/><circle cx="8.5" cy="9" r="1.8"/><path d="M21 15l-5-5L5 21"/></svg>', 'href' => $base.'/asdp/daftar-lokasi'],
@@ -62,8 +60,8 @@
     $curPage = $currentPage ?? 'dashboard';
     $activeModule = $currentModule ?? session('admin_module');
 
-    $allAbsensiIds = array_column(array_merge($absensiSubmenusBase, $absensiSubmenusSuper), 'id');
-    $trayekIds = array_column($trayekSubmenus, 'id');
+    $allAbsensiIds = array_column($allAbsensiSubmenus, 'id');
+    $trayekIds = array_column($allTrayekSubmenus, 'id');
     $isInAbsensiGroup = in_array($curPage, $allAbsensiIds, true) || $curPage === 'update_data';
     $isInTrayekGroup = in_array($curPage, $trayekIds, true);
 @endphp
@@ -118,17 +116,19 @@
     <div class="adm-nav-label">Angkutan Sekolah Gratis</div>
 
     @foreach ($menuItems as $item)
-      @continue($isGuest && $item['id'] !== 'data_absensi')
+      @continue(!$roles->canAccessMenu($item['id']) && !$isGuest)
     <a href="{{ $item['href'] }}" class="adm-nav-item {{ $curPage === $item['id'] ? 'active' : '' }}">
       <span class="adm-nav-icon">{!! $item['icon'] !!}</span>
       <span class="adm-nav-text">{{ $item['label'] }}</span>
     </a>
     @endforeach
 
-    @if ($canAbsensi && !$isGuest)
+    @if ((!empty($absensiSubmenus) || !empty($trayekSubmenus)) && !$isGuest)
     <div class="adm-nav-divider"></div>
     <div class="adm-nav-label">Update Data</div>
+    @endif
 
+    @if (!empty($absensiSubmenus) && !$isGuest)
     <div class="adm-nav-group" id="navGroupAbsensi">
       <a href="#" class="adm-nav-group-toggle {{ $isInAbsensiGroup ? 'open group-active' : '' }}" id="toggleAbsensi" aria-expanded="{{ $isInAbsensiGroup ? 'true' : 'false' }}">
         <span class="adm-nav-icon">
@@ -158,7 +158,7 @@
     </div>
     @endif
 
-    @if ($isSuperAdmin && !$isGuest)
+    @if (!empty($trayekSubmenus) && !$isGuest)
     <div class="adm-nav-group" id="navGroupTrayek">
       <a href="#" class="adm-nav-group-toggle {{ $isInTrayekGroup ? 'open group-active' : '' }}" id="toggleTrayek" aria-expanded="{{ $isInTrayekGroup ? 'true' : 'false' }}">
         <span class="adm-nav-icon">

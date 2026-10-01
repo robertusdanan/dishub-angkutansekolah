@@ -277,12 +277,14 @@ Route::prefix('admin')->group(function () {
         Route::get('data-absensi', [\App\Http\Controllers\Admin\AngkutanSekolah\DataAbsensiController::class, 'index']);
         Route::get('operasional', [\App\Http\Controllers\Admin\AngkutanSekolah\OperasionalController::class, 'index']);
         Route::get('absensi-foto', [\App\Http\Controllers\Admin\AngkutanSekolah\ReportFotoController::class, 'index']);
+        Route::get('report-foto', [\App\Http\Controllers\Admin\AngkutanSekolah\ReportFotoController::class, 'index']);
 
         Route::controller(\App\Http\Controllers\Admin\AngkutanSekolah\AngkutanSekolahUpdateDataController::class)->group(function () {
             Route::get('data-sekolah', 'dataSekolah');
             Route::get('data-domisili', 'dataDomisili');
             Route::get('data-trayek', 'dataTrayek');
             Route::get('rute-map', 'dataMap');
+            Route::get('data-map', 'dataMap');
             Route::get('data-driver', 'dataDriver');
             Route::get('registrasi-siswa', 'registrasi');
             Route::get('tambah-absen-foto', 'absensiFoto');
