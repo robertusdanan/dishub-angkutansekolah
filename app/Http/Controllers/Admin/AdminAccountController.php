@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Services\Admin\AdminSessionManager;
 use App\Services\Admin\AuditLogService;
 use App\Services\Supabase\SupabaseClient;
 use Illuminate\Http\JsonResponse;
@@ -17,6 +18,7 @@ class AdminAccountController extends Controller
     public function __construct(
         protected SupabaseClient $supabase,
         protected AuditLogService $audit,
+        protected AdminSessionManager $sessionManager,
     ) {
     }
 
@@ -64,6 +66,10 @@ class AdminAccountController extends Controller
             if ($patchCode < 200 || $patchCode >= 300) {
                 return response()->json(['status' => 'error', 'message' => 'Gagal menyimpan: HTTP '.$patchCode]);
             }
+
+            // Perbarui hash auth sesi sendiri, dan hancurkan sesi login di perangkat lain
+            $this->sessionManager->recordLogin($currentAccountId, $newHash);
+            $this->sessionManager->revokeAccountSessions($currentAccountId, $request->session()->getId());
 
             $this->audit->log('admin_akun.self_password_change', ['account_id' => $currentAccountId]);
 

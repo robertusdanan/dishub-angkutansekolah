@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Services\Admin\AdminSessionManager;
 use App\Services\Admin\AuditLogService;
 use App\Services\Admin\TotpService;
 use App\Services\Supabase\SupabaseClient;
@@ -21,6 +22,7 @@ class AdminAuthController extends Controller
         protected SupabaseClient $supabase,
         protected AuditLogService $audit,
         protected TotpService $totp,
+        protected AdminSessionManager $sessionManager,
     ) {
     }
 
@@ -45,6 +47,10 @@ class AdminAuthController extends Controller
         }
 
         $error = '';
+        if ($request->query('reason') === 'session_invalidated') {
+            $error = 'Sesi Anda telah berakhir karena akun dinonaktifkan atau password telah diubah. Silakan login kembali.';
+        }
+
         if ($request->isMethod('post')) {
             $error = $this->attemptLogin($request);
             if ($error === '') {
@@ -124,6 +130,8 @@ class AdminAuthController extends Controller
         Session::put('admin_role_level', (int) $role['level']);
         Session::put('admin_permissions', is_array($role['permissions']) ? $role['permissions'] : []);
 
+        $this->sessionManager->recordLogin((string) $account['id'], $account['password_hash'] ?? null);
+
         $this->supabase->rawRequest('PATCH', 'admin_accounts?id=eq.'.$account['id'], [
             'last_login_at' => gmdate('c'),
         ]);
@@ -152,7 +160,7 @@ class AdminAuthController extends Controller
         $recoveryCode = trim((string) $request->input('recovery_code', ''));
 
         [$sCode, $rows] = $this->supabase->rawRequest('GET', 'admin_accounts?id=eq.'.$accountId
-            .'&select=id,username,is_active,two_factor_secret,two_factor_recovery_codes&limit=1');
+            .'&select=id,username,password_hash,is_active,two_factor_secret,two_factor_recovery_codes&limit=1');
         $account = ($sCode >= 200 && $sCode < 300 && !empty($rows)) ? $rows[0] : null;
 
         if (!$account || empty($account['is_active'])) {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Services\Admin\AdminRoleService;
+use App\Services\Admin\AdminSessionManager;
 use App\Services\Admin\AuditLogService;
 use App\Services\Supabase\SupabaseClient;
 use Illuminate\Http\JsonResponse;
@@ -32,6 +33,7 @@ class AdminAkunApiController extends Controller
         protected AdminRoleService $roles,
         protected SupabaseClient $supabase,
         protected AuditLogService $audit,
+        protected AdminSessionManager $sessionManager,
     ) {
     }
 
@@ -268,6 +270,12 @@ class AdminAkunApiController extends Controller
             return response()->json(['error' => 'Gagal mengubah status akun: HTTP '.$code], 502);
         }
 
+        if (!$isActive) {
+            $this->sessionManager->revokeAccountSessions($id);
+        } else {
+            \Illuminate\Support\Facades\Cache::forget('admin_acc_meta_'.$id);
+        }
+
         $this->audit->log('admin_akun.toggle_active', ['target_account_id' => $id, 'is_active' => $isActive]);
 
         return response()->json(['status' => 'ok', 'data' => $res[0] ?? null]);
@@ -310,6 +318,9 @@ class AdminAkunApiController extends Controller
         if ($code < 200 || $code >= 300) {
             return response()->json(['error' => 'Gagal mengubah password: HTTP '.$code], 502);
         }
+
+        // Hancurkan semua sesi login aktif untuk akun yang di-reset password-nya
+        $this->sessionManager->revokeAccountSessions($id);
 
         $this->audit->log('admin_akun.reset_password', ['target_account_id' => $id]);
 
@@ -361,6 +372,8 @@ class AdminAkunApiController extends Controller
         if ($code < 200 || $code >= 300) {
             return response()->json(['error' => 'Gagal menghapus akun: HTTP '.$code], 502);
         }
+
+        $this->sessionManager->revokeAccountSessions($id);
 
         $this->audit->log('admin_akun.delete', ['target_account_id' => $id, 'target_username' => $target['username'] ?? null]);
 

@@ -290,6 +290,7 @@ Route::prefix('admin')->group(function () {
         });
 
         Route::prefix('api')->group(function () {
+            Route::get('session-check', fn () => response()->json(['status' => 'ok', 'authenticated' => true]));
             Route::get('menu-layanan', [MenuLayananAdminController::class, 'list']);
             Route::post('menu-layanan', [MenuLayananAdminController::class, 'toggleActive']);
             Route::get('cleanup', [CleanupController::class, 'run']);

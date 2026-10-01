@@ -337,4 +337,26 @@ makeSubmenuToggle('toggleAbsensi', 'chevronAbsensi', 'submenuAbsensi');
 if (document.getElementById('toggleTrayek')) {
   makeSubmenuToggle('toggleTrayek', 'chevronTrayek', 'submenuTrayek');
 }
+
+// ── Heartbeat status sesi: auto-logout jika akun di-reset / dinonaktifkan dari perangkat lain ──
+(function() {
+  let isChecking = false;
+  setInterval(async function() {
+    if (isChecking || document.hidden) return;
+    isChecking = true;
+    try {
+      const res = await fetch('/admin/api/session-check', {
+        headers: { 'Accept': 'application/json' },
+        cache: 'no-store'
+      });
+      if (res.status === 401) {
+        window.location.href = '/admin/login?reason=session_invalidated';
+      }
+    } catch (e) {
+      // Abaikan kegagalan jaringan sementara
+    } finally {
+      isChecking = false;
+    }
+  }, 8000);
+})();
 </script>
