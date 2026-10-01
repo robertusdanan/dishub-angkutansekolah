@@ -160,7 +160,7 @@
 </div>
 
 
-<script src="/admin/assets/angkutansekolah/sb-secure.js"></script>
+<script src="/assets/admin/angkutansekolah/sb-secure.js"></script>
 <script>
 const SB_URL={!! json_encode(config('services.supabase.url')) !!};
 const SB_ANON={!! json_encode(config('services.supabase.anon_key')) !!};

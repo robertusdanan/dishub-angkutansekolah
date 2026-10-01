@@ -146,7 +146,7 @@
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
 
-<script src="/admin/assets/angkutansekolah/sb-secure.js"></script>
+<script src="/assets/admin/angkutansekolah/sb-secure.js"></script>
 <script>
 const SB_URL={!! json_encode(config('services.supabase.url')) !!};
 const tableBody=document.getElementById("tableBody"),progressContainer=document.getElementById("progressContainer"),progressBar=document.getElementById("progressBar"),progressText=document.getElementById("progressText"),filterTanggal=document.getElementById("filterTanggal"),datePicker=document.getElementById("datePicker"),filterTransportasi=document.getElementById("filterTransportasi"),filterTrayek=document.getElementById("filterTrayek"),filterPlat=document.getElementById("filterPlat"),filterAbsen=document.getElementById("filterAbsen");
