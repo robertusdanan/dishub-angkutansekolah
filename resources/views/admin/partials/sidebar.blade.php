@@ -350,7 +350,7 @@ if (document.getElementById('toggleTrayek')) {
         cache: 'no-store'
       });
       if (res.status === 401) {
-        window.location.href = '/admin/login?reason=session_invalidated';
+        window.location.href = '/admin/login';
       }
     } catch (e) {
       // Abaikan kegagalan jaringan sementara

@@ -35,7 +35,7 @@ class EnsureAdminLoggedIn
                 ], 401);
             }
 
-            return redirect('/admin/login?reason=session_invalidated');
+            return redirect('/admin/login');
         }
 
         return $next($request);

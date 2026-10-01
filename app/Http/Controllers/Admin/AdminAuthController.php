@@ -47,10 +47,6 @@ class AdminAuthController extends Controller
         }
 
         $error = '';
-        if ($request->query('reason') === 'session_invalidated') {
-            $error = 'Sesi Anda telah berakhir karena akun dinonaktifkan atau password telah diubah. Silakan login kembali.';
-        }
-
         if ($request->isMethod('post')) {
             $error = $this->attemptLogin($request);
             if ($error === '') {
