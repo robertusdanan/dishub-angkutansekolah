@@ -1,0 +1,14 @@
+services:
+  dishub-angkutan:
+    container_name: dishub-angkutan
+    build: .
+    restart: unless-stopped
+    working_dir: /app
+    volumes:
+      - /root/workspace/dishub-angkutansekolah:/app
+    networks:
+      - global-webnet
+
+networks:
+  global-webnet:
+    external: true
