@@ -19,3 +19,10 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+
+# Android build outputs and local signing material
+.gradle/
+**/build/
+local.properties
+*.jks
+*.keystore
