@@ -8,17 +8,21 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::table('asdp_lokasi', function (Blueprint $t) {
-            $t->renameColumn('created_at', 'created');
-            $t->renameColumn('updated_at', 'updated');
-        });
+        if (Schema::hasColumn('asdp_lokasi', 'created_at')) {
+            Schema::table('asdp_lokasi', fn (Blueprint $t) => $t->renameColumn('created_at', 'created'));
+        }
+        if (Schema::hasColumn('asdp_lokasi', 'updated_at')) {
+            Schema::table('asdp_lokasi', fn (Blueprint $t) => $t->renameColumn('updated_at', 'updated'));
+        }
     }
 
     public function down(): void
     {
-        Schema::table('asdp_lokasi', function (Blueprint $t) {
-            $t->renameColumn('created', 'created_at');
-            $t->renameColumn('updated', 'updated_at');
-        });
+        if (Schema::hasColumn('asdp_lokasi', 'created')) {
+            Schema::table('asdp_lokasi', fn (Blueprint $t) => $t->renameColumn('created', 'created_at'));
+        }
+        if (Schema::hasColumn('asdp_lokasi', 'updated')) {
+            Schema::table('asdp_lokasi', fn (Blueprint $t) => $t->renameColumn('updated', 'updated_at'));
+        }
     }
 };
