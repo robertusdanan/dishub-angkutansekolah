@@ -55,7 +55,19 @@ class ReferenceCacheProxyController extends Controller
         $category = $this->cache->categoryFor($table);
         $localTables = ['list_tambangan', 'trayekwisata_titik', 'trayekwisata_titik_galeri', 'trayekwisata_bus', 'trayekwisata_trayek', 'trayekwisata_jadwal'];
         if (in_array($table, $localTables, true)) {
-            [$localStatus, $localRows] = $this->supabase->rawRequest('GET', $table.'?select=*');
+            $params = $request->query();
+            unset($params['table'], $params['col'], $params['val']);
+            $cols = $request->query('col');
+            $vals = $request->query('val');
+            if (is_array($cols) && is_array($vals) && count($cols) === count($vals)) {
+                foreach ($cols as $idx => $column) $params[$column] = 'eq.'.($vals[$idx] ?? '');
+            }
+            $query = http_build_query($params);
+            [$localStatus, $localRows] = $this->supabase->rawRequest('GET', $table.($query !== '' ? '?'.$query : '?select=*'));
+            if ($localStatus < 200 || $localStatus >= 300) {
+                return response()->json(is_array($localRows) ? $localRows : ['error' => 'Local database error'], $localStatus ?: 500)
+                    ->header('X-SB-Cache', 'local');
+            }
             $result = ['status' => $localStatus, 'body' => json_encode(is_array($localRows) ? $localRows : []), 'source' => 'local'];
         } else {
             $url = rtrim((string) config('services.supabase.url'), '/').'/rest/v1/'.rawurlencode($table).'?select=*';
