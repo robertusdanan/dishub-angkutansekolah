@@ -385,7 +385,7 @@ function renderGallery(opts = {}) {
     const mediaCount = (TW_GALERI[t.id] || []).length;
     return `
     <div class="gallery-card" onclick="openWisataModal('${t.id}')">
-      ${cover ? `<img src="${cover}" loading="lazy" alt="${twEsc(t.nama)}" class="img-fade" onload="this.classList.add('loaded')"/>` : ``}
+      ${cover ? `<img src="${cover}" loading="lazy" alt="${twEsc(t.nama)}" class="img-fade" onload="this.classList.add('loaded')" onerror="this.closest('.gallery-card').classList.add('media-failed'); this.remove()"/>` : ``}
       ${mediaCount > 1 ? `<span class="gallery-card-count"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8" cy="9" r="1.5"/><path d="m4 17 5-5 3 3 2-2 6 6"/></svg>${mediaCount}</span>` : ''}
       <div class="gallery-card-overlay">
         <div class="gallery-card-tag">Pantai Selatan</div>
