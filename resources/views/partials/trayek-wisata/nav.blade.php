@@ -9,6 +9,7 @@
         ['label' => 'Destinasi', 'href' => '/trayek-wisata/destinasi'],
         ['label' => 'Jadwal', 'href' => '/trayek-wisata/jadwal'],
         ['label' => 'FAQ', 'href' => '/trayek-wisata/faq'],
+        ['label' => 'Pesan Kursi', 'href' => '/trayek-wisata/jadwal', 'cta' => true],
     ];
     foreach ($twLinks as &$twLink) {
         $twLink['active'] = ($twLink['href'] === $twCurrent);
@@ -18,6 +19,6 @@
 @include('partials.site-header', [
     'links' => $twLinks,
     'solid' => $twNavSolid,
-    'cta' => ['label' => 'Pesan Kursi', 'href' => '/trayek-wisata/jadwal'],
+    'cta' => null,
     'loginNext' => $twCurrent,
 ])

@@ -75,6 +75,24 @@
   }
   .gh-link:hover,
   .gh-link.is-active { color: #fff; }
+  .gh-link-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 18px;
+    border-radius: 100px;
+    background: #f59e0b;
+    color: #0a1f44 !important;
+    box-shadow: 0 4px 14px rgba(245,158,11,0.38);
+    font-weight: 800;
+  }
+  .gh-link-cta:hover,
+  .gh-link-cta:focus-visible {
+    background: #ffc247;
+    color: #071a38 !important;
+    box-shadow: 0 6px 20px rgba(245,158,11,0.55);
+    transform: translateY(-1px);
+  }
   .gh-cta {
     display: flex;
     align-items: center;
@@ -280,7 +298,7 @@
   @if ($links)
   <nav class="gh-links" id="ghNavLinks">
     @foreach ($links as $l)
-      <a class="gh-link{{ !empty($l['active']) ? ' is-active' : '' }}" href="{{ $l['href'] }}">{{ $l['label'] }}</a>
+      <a class="gh-link{{ !empty($l['active']) ? ' is-active' : '' }}{{ !empty($l['cta']) ? ' gh-link-cta' : '' }}" href="{{ $l['href'] }}">{{ $l['label'] }}</a>
     @endforeach
     @if ($cta)
       <a class="gh-mobile-cta" href="{{ $cta['href'] }}">{{ $cta['label'] }}</a>
