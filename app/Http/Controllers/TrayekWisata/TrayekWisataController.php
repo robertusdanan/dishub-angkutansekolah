@@ -4,6 +4,7 @@ namespace App\Http\Controllers\TrayekWisata;
 
 use App\Http\Controllers\Controller;
 use App\Services\MenuLayanan\MenuLayananService;
+use App\Services\Supabase\SupabaseClient;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -17,7 +18,7 @@ use Illuminate\View\View;
  */
 class TrayekWisataController extends Controller
 {
-    public function __construct(protected MenuLayananService $menuLayanan)
+    public function __construct(protected MenuLayananService $menuLayanan, protected SupabaseClient $supabase)
     {
     }
 
@@ -25,7 +26,8 @@ class TrayekWisataController extends Controller
     {
         $this->menuLayanan->requireAktif('trayekwisata');
 
-        return view('trayek-wisata.index');
+        [, $hero] = $this->supabase->rawRequest('GET', 'trayekwisata_hero?aktif=eq.true&order=urutan.asc');
+        return view('trayek-wisata.index', ['heroMedia' => is_array($hero) ? $hero : []]);
     }
 
     public function destinasi(): View

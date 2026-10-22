@@ -25,6 +25,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css"/>
 <link rel="stylesheet" href="{{ asset_url('/assets/trayek-wisata/style.css') }}"/>
+<style>.hero-slide{display:none!important}.hero-slide.active{display:block!important}</style>
 </head>
 <body>
 <script src="{{ asset_url('/assets/trayek-wisata/nav-progress.js') }}"></script>
@@ -33,9 +34,15 @@
 
 <header class="hero homepage-hero" id="top">
   <div class="hero-media">
-    <video autoplay muted loop playsinline poster="/assets/trayek-wisata/hero-poster.jpg" onerror="this.style.display='none';">
-      <source src="/assets/trayek-wisata/hero.mp4" type="video/mp4"/>
-    </video>
+    @forelse ($heroMedia as $i => $hero)
+      @if (($hero['tipe'] ?? '') === 'video')
+      <video class="hero-slide {{ $i === 0 ? 'active' : '' }}" autoplay muted loop playsinline poster="/assets/trayek-wisata/hero-poster.jpg" onerror="this.style.display='none';"><source src="{{ $hero['url'] }}" type="video/mp4"/></video>
+      @else
+      <img class="hero-slide {{ $i === 0 ? 'active' : '' }}" src="{{ $hero['url'] }}" alt="Hero Trayek Wisata {{ $i + 1 }}" style="width:100%;height:100%;object-fit:cover"/>
+      @endif
+    @empty
+      <video class="hero-slide active" autoplay muted loop playsinline poster="/assets/trayek-wisata/hero-poster.jpg" onerror="this.style.display='none';"><source src="/assets/trayek-wisata/hero.mp4" type="video/mp4"/></video>
+    @endforelse
     <div class="hero-fallback" id="heroFallback"></div>
   </div>
   <div class="hero-scrim"></div>
@@ -139,6 +146,15 @@
 <script src="{{ asset_url('/assets/trayek-wisata/ticket-modal.js') }}"></script>
 <script src="{{ asset_url('/assets/trayek-wisata/tw-core.js') }}"></script>
 <script>
+  const heroSlides = [...document.querySelectorAll('.hero-slide')];
+  if (heroSlides.length > 1) {
+    let heroIndex = 0;
+    setInterval(() => {
+      heroSlides[heroIndex].classList.remove('active');
+      heroIndex = (heroIndex + 1) % heroSlides.length;
+      heroSlides[heroIndex].classList.add('active');
+    }, 8000);
+  }
   twLoadAuth();
   twBootstrap({
     gallery: { limit: 3, moreLink: '/trayek-wisata/destinasi' },

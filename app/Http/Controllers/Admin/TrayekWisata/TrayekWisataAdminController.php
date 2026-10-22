@@ -69,6 +69,12 @@ class TrayekWisataAdminController extends Controller
         return view('admin.trayekwisata.titik');
     }
 
+    public function hero(): View|RedirectResponse
+    {
+        if ($r = $this->guard('trayekwisata_hero')) return $r;
+        return view('admin.trayekwisata.hero');
+    }
+
     public function planner(): View|RedirectResponse
     {
         if ($r = $this->guard('trayekwisata_planner')) {

@@ -30,6 +30,7 @@ return [
         'Trayek Wisata' => [
             'trayekwisata_dashboard' => 'Dashboard Trayek',
             'trayekwisata_planner' => 'Pengaturan Trayek Tahunan',
+            'trayekwisata_hero' => 'Pengaturan Hero',
             'trayekwisata_titik' => 'Titik Lokasi',
             'trayekwisata_armada' => 'Bus & Driver',
             'trayekwisata_pemesanan' => 'Pemesanan',
@@ -72,6 +73,7 @@ return [
         // Trayek Wisata
         'trayekwisata_dashboard' => [],
         'trayekwisata_planner' => ['create', 'edit', 'delete'],
+        'trayekwisata_hero' => ['create', 'edit', 'delete'],
         'trayekwisata_titik' => ['create', 'edit', 'delete'],
         'trayekwisata_armada' => ['create', 'edit', 'delete'],
         'trayekwisata_pemesanan' => [], // data pemesanan publik & PDF

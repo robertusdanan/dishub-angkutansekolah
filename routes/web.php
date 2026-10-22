@@ -268,6 +268,7 @@ Route::prefix('admin')->group(function () {
         Route::prefix('trayekwisata')->controller(\App\Http\Controllers\Admin\TrayekWisata\TrayekWisataAdminController::class)->group(function () {
             Route::get('/', 'dashboard');
             Route::get('planner', 'planner');
+            Route::get('hero', 'hero');
             Route::get('titik', 'titik');
             Route::get('armada', 'armada');
             Route::get('pemesanan', 'pemesanan');
@@ -340,6 +341,9 @@ Route::prefix('admin')->group(function () {
 
             Route::get('trayekwisata/dokumen-view', [\App\Http\Controllers\Admin\TrayekWisata\TrayekWisataDokumenViewController::class, 'show']);
             Route::post('trayekwisata/upload-galeri', [\App\Http\Controllers\Admin\TrayekWisata\TrayekWisataGaleriController::class, 'upload']);
+            Route::post('trayekwisata/hero/upload', [\App\Http\Controllers\Admin\TrayekWisata\TrayekWisataHeroController::class, 'upload']);
+            Route::post('trayekwisata/hero/reorder', [\App\Http\Controllers\Admin\TrayekWisata\TrayekWisataHeroController::class, 'reorder']);
+            Route::delete('trayekwisata/hero', [\App\Http\Controllers\Admin\TrayekWisata\TrayekWisataHeroController::class, 'delete']);
             Route::post('trayekwisata/copy', [\App\Http\Controllers\Admin\TrayekWisata\TrayekWisataCopyController::class, 'handle']);
 
             Route::get('angkutansekolah/absensi-report', [\App\Http\Controllers\Admin\AngkutanSekolah\AbsensiReportController::class, 'handle']);

@@ -71,7 +71,7 @@ class AdminDashboardController extends Controller
             ];
         }
 
-        if ($this->roles->canAccessMenu('trayekwisata_dashboard') || $this->roles->canAccessMenu('trayekwisata_planner') || $this->roles->canAccessMenu('trayekwisata_titik') || $this->roles->canAccessMenu('trayekwisata_armada') || $this->roles->canAccessMenu('trayekwisata_pemesanan') || $this->roles->canAccessMenu('trayekwisata_verifikasi')) {
+        if ($this->roles->canAccessMenu('trayekwisata_dashboard') || $this->roles->canAccessMenu('trayekwisata_hero') || $this->roles->canAccessMenu('trayekwisata_planner') || $this->roles->canAccessMenu('trayekwisata_titik') || $this->roles->canAccessMenu('trayekwisata_armada') || $this->roles->canAccessMenu('trayekwisata_pemesanan') || $this->roles->canAccessMenu('trayekwisata_verifikasi')) {
             $modules[] = [
                 'id' => 'trayekwisata',
                 'label' => 'Trayek Wisata Gratis',

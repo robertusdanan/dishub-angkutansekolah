@@ -277,6 +277,7 @@ class AdminSupabaseWriteProxyController
         $cacheableTables = [
             'trayekwisata_titik' => 'trayekwisata',
             'trayekwisata_titik_galeri' => 'trayekwisata',
+            'trayekwisata_hero' => 'trayekwisata',
             'trayekwisata_bus' => 'trayekwisata',
             'trayekwisata_driver' => 'trayekwisata',
             'trayekwisata_trayek' => 'trayekwisata',
@@ -286,6 +287,7 @@ class AdminSupabaseWriteProxyController
         $tableMenus = [
             'trayekwisata_titik' => ['trayekwisata_titik'],
             'trayekwisata_titik_galeri' => ['trayekwisata_titik'],
+            'trayekwisata_hero' => ['trayekwisata_hero'],
             'trayekwisata_bus' => ['trayekwisata_armada'],
             'trayekwisata_driver' => ['trayekwisata_armada'],
             'trayekwisata_trayek' => ['trayekwisata_planner'],
@@ -319,7 +321,7 @@ class AdminSupabaseWriteProxyController
                 return null;
             },
             'allowed_tables' => [
-                'trayekwisata_titik', 'trayekwisata_titik_galeri', 'trayekwisata_bus',
+                'trayekwisata_titik', 'trayekwisata_titik_galeri', 'trayekwisata_hero', 'trayekwisata_bus',
                 'trayekwisata_driver', 'trayekwisata_trayek', 'trayekwisata_trayek_titik',
                 'trayekwisata_jadwal', 'trayekwisata_pemesanan', 'trayekwisata_pemesanan_nik',
                 'akun_publik', 'trayekwisata_keluarga', 'trayekwisata_waitlist', 'trayekwisata_survei',
