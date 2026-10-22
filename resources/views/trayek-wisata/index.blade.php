@@ -4,26 +4,22 @@
 <meta charset="UTF-8"/>
 <meta name="csrf-token" content="{{ csrf_token() }}"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
-<title>Trayek Wisata Gratis - Pantai Selatan Tulungagung | Dishub Kabupaten Tulungagung</title>
-<meta name="description" content="Jelajahi Pantai Selatan Tulungagung gratis setiap Sabtu & Minggu lewat Jalur Lintas Selatan (JLS). Layanan Trayek Wisata Gratis dari Dinas Perhubungan Kabupaten Tulungagung."/>
-
+<title>Trayek Wisata Gratis | Dishub Kabupaten Tulungagung</title>
+<meta name="description" content="Pilih destinasi dan jadwal Trayek Wisata Gratis Dishub Kabupaten Tulungagung setiap akhir pekan."/>
 <meta property="og:type" content="website"/>
 <meta property="og:site_name" content="Dishub Kabupaten Tulungagung"/>
-<meta property="og:title" content="Trayek Wisata Gratis - Jelajahi Pantai Selatan Tulungagung"/>
-<meta property="og:description" content="Gratis setiap Sabtu & Minggu lewat Jalur Lintas Selatan (JLS). Pesan kursi langsung dari HP - kuota terbatas."/>
+<meta property="og:title" content="Trayek Wisata Gratis Tulungagung"/>
+<meta property="og:description" content="Pilih destinasi, lihat jadwal, dan dapatkan kursi gratis untuk menjelajahi Pantai Selatan Tulungagung."/>
 <meta property="og:image" content="{{ url('/assets/trayek-wisata/hero-poster.jpg') }}"/>
-<meta property="og:image:width" content="1200"/>
-<meta property="og:image:height" content="630"/>
 <meta property="og:url" content="{{ url('/trayek-wisata') }}"/>
 <meta property="og:locale" content="id_ID"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Trayek Wisata Gratis - Jelajahi Pantai Selatan Tulungagung"/>
-<meta name="twitter:description" content="Gratis setiap Sabtu & Minggu lewat Jalur Lintas Selatan (JLS). Pesan kursi langsung dari HP."/>
+<meta name="twitter:title" content="Trayek Wisata Gratis Tulungagung"/>
+<meta name="twitter:description" content="Pilih destinasi dan jadwal wisata gratis setiap akhir pekan."/>
 <meta name="twitter:image" content="{{ url('/assets/trayek-wisata/hero-poster.jpg') }}"/>
 <meta name="theme-color" content="#0A1F44"/>
 <link rel="manifest" href="/assets/trayek-wisata/manifest.webmanifest"/>
 <link rel="icon" href="/favicon.ico"/>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,400..600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -33,91 +29,92 @@
 <body>
 <script src="{{ asset_url('/assets/trayek-wisata/nav-progress.js') }}"></script>
 <a href="#top" class="skip-link">Lompat ke konten utama</a>
-
 @include('partials.trayek-wisata.nav')
 
-<!-- ═══ HERO SINEMATIK ═══ -->
-<header class="hero" id="top">
+<header class="hero homepage-hero" id="top">
   <div class="hero-media">
-    <video autoplay muted loop playsinline poster="/assets/trayek-wisata/hero-poster.jpg"
-           onerror="this.style.display='none';">
+    <video autoplay muted loop playsinline poster="/assets/trayek-wisata/hero-poster.jpg" onerror="this.style.display='none';">
       <source src="/assets/trayek-wisata/hero.mp4" type="video/mp4"/>
     </video>
     <div class="hero-fallback" id="heroFallback"></div>
   </div>
   <div class="hero-scrim"></div>
-
   <div class="hero-inner wrap">
-    <div class="hero-badge"><span class="dot"></span> Gratis · Setiap Sabtu &amp; Minggu · Dishub Kab. Tulungagung</div>
+    <div class="hero-badge"><span class="dot"></span> Gratis setiap Sabtu &amp; Minggu</div>
     <div class="hero-stat" id="heroStat" style="display:none">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-      <span><strong id="heroStatNum">0</strong> orang sudah ikut trayek wisata ini</span>
+      <span><strong id="heroStatNum">0</strong> orang sudah ikut</span>
     </div>
-    <h1 class="hero-title">Jelajahi <em>Pantai Selatan</em><br/>Tulungagung.</h1>
-    <p class="hero-sub">Angkutan sekolah dialihkan jadi trayek wisata gratis lewat Jalur Lintas Selatan (JLS), gratis setiap akhir pekan.</p>
+    <h1 class="hero-title">Akhir pekan,<br/><em>ke Pantai Selatan.</em></h1>
+    <p class="hero-sub">Naik trayek wisata gratis Dishub Kabupaten Tulungagung. Pilih destinasi, cek jadwal, lalu berangkat dengan nyaman.</p>
     <div class="hero-cta">
-      <a class="btn btn-solid" href="/trayek-wisata/rute">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 21s7-4.35 7-11a7 7 0 1 0-14 0c0 6.65 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
-        Lihat Trayek
-      </a>
-      <a class="btn btn-ghost" href="/trayek-wisata/jadwal">Pesan Kursi</a>
+      <a class="btn btn-solid" href="/trayek-wisata/jadwal">Pilih Jadwal</a>
+      <a class="btn btn-ghost" href="/trayek-wisata/destinasi">Lihat Destinasi</a>
     </div>
   </div>
-
   <div class="hero-scroll"><span>Gulir</span><span class="hero-scroll-line"></span></div>
-  <svg class="hero-wave" viewBox="0 0 1440 90" preserveAspectRatio="none"><path fill="#FBFBF7" d="M0,40 C240,90 480,0 720,30 C960,60 1200,10 1440,45 L1440,90 L0,90 Z"/></svg>
+  <svg class="hero-wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path fill="#FBFBF7" d="M0,40 C240,90 480,0 720,30 C960,60 1200,10 1440,45 L1440,90 L0,90 Z"/></svg>
 </header>
 
-<!-- ═══ ALUR UTAMA PENGUNJUNG ═══ -->
-<section class="visitor-flow" aria-label="Alur menggunakan Trayek Wisata">
-  <div class="wrap">
-    <div class="visitor-flow-intro"><span class="eyebrow"><svg class="eyebrow-svg" width="24" height="8" viewBox="0 0 24 8" fill="none" aria-hidden="true"><path d="M1 4h22" stroke="currentColor" stroke-linecap="round"/></svg>Mulai di sini</span><h2>Rencanakan perjalanan<br/><em>tanpa bingung.</em></h2></div>
-    <div class="visitor-flow-steps">
-      <a href="/trayek-wisata/destinasi" class="visitor-flow-step"><span class="visitor-flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5M8.5 11h5M11 8.5v5"/></svg></span><span><b>Kenali destinasi</b><small>Lihat pantai dan cerita di tiap titik.</small></span><svg class="flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
-      <a href="/trayek-wisata/rute" class="visitor-flow-step"><span class="visitor-flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 19c3-8 5-8 8-3s5 5 6-11"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="5" r="2"/></svg></span><span><b>Pahami rute</b><small>Ikuti jalur dan titik keberangkatan.</small></span><svg class="flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
-      <a href="/trayek-wisata/jadwal" class="visitor-flow-step"><span class="visitor-flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M7 3v4M17 3v4M3.5 9h17"/></svg></span><span><b>Pilih jadwal</b><small>Temukan hari dan kursi yang tersedia.</small></span><svg class="flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
-      <a href="/akun/saya" class="visitor-flow-step"><span class="visitor-flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.7-3.2 3-5 7-5s6.3 1.8 7 5"/></svg></span><span><b>Lengkapi data</b><small>Siapkan akun dan anggota keluarga bila ikut.</small></span><svg class="flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
-      <a href="/trayek-wisata/jadwal" class="visitor-flow-step visitor-flow-step-final"><span class="visitor-flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 7.5h16v12H4zM7 7.5V5a5 5 0 0 1 10 0v2.5M8 13h8"/></svg></span><span><b>Pesan kursi</b><small>Pilih peserta. Tidak ada biaya.</small></span><svg class="flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
-      <div class="visitor-flow-step visitor-flow-step-success"><span class="visitor-flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m5 12 4 4L19 6"/><circle cx="12" cy="12" r="9"/></svg></span><span><b>Kursi berhasil didapat</b><small>Simpan e-tiket dan tunjukkan QR saat berangkat.</small></span><svg class="flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></div>
+<main id="main">
+  <section class="home-start" aria-labelledby="home-start-title">
+    <div class="wrap">
+      <div class="home-section-heading">
+        <span class="eyebrow"><svg class="eyebrow-svg" width="24" height="8" viewBox="0 0 24 8" fill="none" aria-hidden="true"><path d="M1 4h22" stroke="currentColor" stroke-linecap="round"/></svg>Mulai di sini</span>
+        <h2 id="home-start-title">Mau melihat tempatnya,<br/><em>atau langsung berangkat?</em></h2>
+      </div>
+      <div class="home-choice-grid">
+        <a class="home-choice home-choice-destination" href="/trayek-wisata/destinasi">
+          <span class="home-choice-kicker">01 · Jelajahi</span>
+          <span class="home-choice-title">Kenali destinasi</span>
+          <span class="home-choice-copy">Lihat pantai dan titik wisata yang bisa Anda kunjungi.</span>
+          <span class="home-choice-action">Lihat destinasi <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
+        </a>
+        <a class="home-choice home-choice-schedule" href="/trayek-wisata/jadwal">
+          <span class="home-choice-kicker">02 · Pilihan utama</span>
+          <span class="home-choice-title">Pilih jadwal &amp; dapatkan kursi</span>
+          <span class="home-choice-copy">Lihat rute, titik keberangkatan, kuota, lalu booking gratis.</span>
+          <span class="home-choice-action">Buka jadwal <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
+        </a>
+      </div>
+      <p class="home-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg> Data diri dan peserta hanya diminta saat Anda memilih jadwal.</p>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══ CUPLIKAN ALUR PERJALANAN ═══ -->
-<section class="story" id="story">
-  <div class="wrap">
-    <div class="story-head reveal">
-      <div class="eyebrow"><svg class="eyebrow-svg" width="24" height="8" viewBox="0 0 24 8" fill="none" aria-hidden="true"><path d="M1 4h22" stroke="currentColor" stroke-linecap="round"/></svg>Alur Perjalanan</div>
-      <h2 class="sect-title" style="margin-top:14px">Satu trayek,<br/>banyak cerita.</h2>
-      <p class="sect-lede">Dari terminal keberangkatan, menyusuri Jalur Lintas Selatan, hingga singgah di tiap pantai. Begini urutan perjalanan yang akan Anda tempuh.</p>
-    </div>
-    <div class="story-track">
-      <div class="story-spine"></div>
-      <div class="story-spine-fill" id="storySpineFill"></div>
-      <div id="storyItems">
-        <div class="skel-story-item"><div class="skel skel-dot"></div><div class="skel-body"><div class="skel skel-line" style="width:120px"></div><div class="skel skel-line" style="width:220px;height:22px;margin-top:10px"></div><div class="skel skel-line" style="width:340px"></div></div></div>
+  <section class="jadwal home-schedule" id="jadwal" aria-labelledby="home-schedule-title">
+    <div class="wrap" style="position:relative">
+      <div class="home-schedule-head">
+        <div>
+          <span class="eyebrow eyebrow-light"><svg class="eyebrow-svg" width="24" height="8" viewBox="0 0 24 8" fill="none" aria-hidden="true"><path d="M1 4h22" stroke="currentColor" stroke-linecap="round"/></svg>Keberangkatan terdekat</span>
+          <h2 id="home-schedule-title" class="schedule-heading">Cari waktu yang<br/><em>paling pas.</em></h2>
+        </div>
+        <a class="tw-more-link home-inline-link" href="/trayek-wisata/jadwal">Lihat semua jadwal <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+      </div>
+      <div class="jadwal-scroll" id="jadwalScroll">
+        <div class="skel" style="flex:0 0 280px;height:230px;background:rgba(255,255,255,.08)"></div>
+        <div class="skel" style="flex:0 0 280px;height:230px;background:rgba(255,255,255,.08)"></div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══ DESTINASI UNGGULAN ═══ -->
-<section class="gallery" id="wisata">
-  <div class="wrap">
-    <div class="reveal">
-      <div class="eyebrow"><svg class="eyebrow-svg" width="24" height="8" viewBox="0 0 24 8" fill="none" aria-hidden="true"><path d="M1 4h22" stroke="currentColor" stroke-linecap="round"/></svg>Destinasi</div>
-      <h2 class="sect-title" style="margin-top:14px">Pantai-pantai yang<br/>akan Anda singgahi.</h2>
-      <p class="sect-lede">Setiap titik punya karakter sendiri. Temukan ombak besar Selatan dan teluk tenang yang tersembunyi di balik tebing.</p>
+  <section class="home-destinations" aria-labelledby="home-destination-title">
+    <div class="wrap">
+      <div class="home-destination-head">
+        <div>
+          <span class="eyebrow"><svg class="eyebrow-svg" width="24" height="8" viewBox="0 0 24 8" fill="none" aria-hidden="true"><path d="M1 4h22" stroke="currentColor" stroke-linecap="round"/></svg>Tujuan perjalanan</span>
+          <h2 id="home-destination-title">Pantai Selatan<br/><em>menunggu Anda.</em></h2>
+        </div>
+        <a class="tw-more-link home-inline-link" href="/trayek-wisata/destinasi">Lihat semua destinasi <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+      </div>
+      <div class="gallery-grid home-gallery-grid" id="galleryGrid">
+        <div class="skel skel-card" style="aspect-ratio:4/5"></div>
+        <div class="skel skel-card" style="aspect-ratio:4/5"></div>
+        <div class="skel skel-card" style="aspect-ratio:4/5"></div>
+      </div>
     </div>
-    <div class="gallery-grid" id="galleryGrid">
-      <div class="skel skel-card" style="aspect-ratio:4/5"></div>
-      <div class="skel skel-card" style="aspect-ratio:4/5"></div>
-      <div class="skel skel-card" style="aspect-ratio:4/5"></div>
-    </div>
-  </div>
-</section>
+  </section>
+</main>
 
-<!-- ═══ Modal Galeri Wisata ═══ -->
 <div class="wisata-modal-overlay" id="wisataModalOverlay" onclick="if(event.target===this) closeWisataModal()" role="dialog" aria-modal="true" aria-label="Galeri destinasi">
   <div class="wisata-modal">
     <button class="wisata-modal-close" onclick="closeWisataModal()" aria-label="Tutup galeri">✕</button>
@@ -135,117 +132,7 @@
   </div>
 </div>
 
-<!-- ═══ JADWAL MINGGU INI ═══ -->
-<section class="jadwal" id="jadwal">
-  <div class="wrap" style="position:relative">
-    <div class="reveal">
-      <div class="eyebrow"><svg class="eyebrow-svg" width="24" height="8" viewBox="0 0 24 8" fill="none" aria-hidden="true"><path d="M1 4h22" stroke="currentColor" stroke-linecap="round"/></svg>Jadwal</div>
-      <h2 class="sect-title" style="margin-top:14px">Berangkat<br/>akhir pekan ini.</h2>
-      <p class="sect-lede">Kursi terbatas. Status hijau berarti masih longgar. Lihat jadwal lengkap 4 minggu ke depan di halaman Jadwal.</p>
-    </div>
-    <div class="jadwal-scroll" id="jadwalScroll">
-      <div class="skel" style="flex:0 0 280px;height:230px;background:rgba(255,255,255,.08)"></div>
-      <div class="skel" style="flex:0 0 280px;height:230px;background:rgba(255,255,255,.08)"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ KUOTA MINGGU INI ═══ -->
-<section class="kuota">
-  <div class="wrap">
-    <div class="reveal">
-      <div class="eyebrow"><svg class="eyebrow-svg" width="24" height="8" viewBox="0 0 24 8" fill="none" aria-hidden="true"><path d="M1 4h22" stroke="currentColor" stroke-linecap="round"/></svg>Kuota Realtime</div>
-      <h2 class="sect-title" style="margin-top:14px">Kuota minggu ini.</h2>
-    </div>
-    <div class="kuota-grid">
-      <div class="kuota-ring-wrap reveal">
-        <div class="kuota-ring">
-          <svg width="260" height="260" viewBox="0 0 260 260">
-            <circle class="kuota-ring-track" cx="130" cy="130" r="112"/>
-            <circle class="kuota-ring-fill" id="kuotaRingFill" cx="130" cy="130" r="112" stroke-dasharray="704" stroke-dashoffset="704"/>
-          </svg>
-          <div class="kuota-ring-label">
-            <div class="kuota-ring-num" id="kuotaPercent">0%</div>
-            <div class="kuota-ring-sub">Kursi Terisi</div>
-          </div>
-        </div>
-      </div>
-      <div class="reveal">
-        <div class="kuota-bus-card">
-          <img src="/assets/icons/bus_sekolah.svg" alt="Ilustrasi Bus Sekolah" class="kuota-bus-img"/>
-        </div>
-        <div class="kuota-list" id="kuotaList">
-          <div class="kuota-list-item"><span>Total Kuota</span><b id="kTotal">-</b></div>
-          <div class="kuota-list-item"><span>Kursi Terisi</span><b id="kTerisi">-</b></div>
-          <div class="kuota-list-item"><span>Sisa Kursi</span><b id="kSisa">-</b></div>
-          <div class="kuota-list-item"><span>Jumlah Trayek Minggu Ini</span><b id="kTrayek">-</b></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ CARA MENGIKUTI ═══ -->
-<section class="boarding">
-  <div class="wrap">
-    <div class="reveal">
-      <div class="eyebrow"><svg class="eyebrow-svg" width="24" height="8" viewBox="0 0 24 8" fill="none" aria-hidden="true"><path d="M1 4h22" stroke="currentColor" stroke-linecap="round"/></svg>Cara Mengikuti</div>
-      <h2 class="sect-title" style="margin-top:14px">Empat langkah,<br/>siap berangkat.</h2>
-    </div>
-    <div class="boarding-strip reveal">
-      <div class="boarding-step">
-        <div class="boarding-num">01</div>
-        <div class="boarding-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="M10 17l5-5-5-5"/><path d="M15 12H3"/></svg></div>
-        <div class="boarding-title">Login</div>
-        <div class="boarding-desc">Masuk dengan akun Google. Cepat, tanpa perlu membuat akun baru.</div>
-      </div>
-      <div class="boarding-step">
-        <div class="boarding-num">02</div>
-        <div class="boarding-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div>
-        <div class="boarding-title">Verifikasi</div>
-        <div class="boarding-desc">Lengkapi data diri &amp; NIK, scan KTP langsung lewat kamera.</div>
-      </div>
-      <div class="boarding-step">
-        <div class="boarding-num">03</div>
-        <div class="boarding-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="17" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/></svg></div>
-        <div class="boarding-title">Pesan Kursi</div>
-        <div class="boarding-desc">Pilih trayek dan tanggal. Satu NIK berhak mendapat satu tiket setiap 4 minggu.</div>
-      </div>
-      <div class="boarding-step">
-        <div class="boarding-num">04</div>
-        <div class="boarding-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 6v6M2 12h19.6M2 12c0-3.3 0-5 .8-6.1S5 4 8.5 4h7c3.5 0 4.9.8 5.7 1.9S22 8.7 22 12v3.5c0 1.2 0 1.8-.4 2.2s-1 .4-2.2.4H4.6c-1.2 0-1.8 0-2.2-.4S2 16.7 2 15.5z"/></svg></div>
-        <div class="boarding-title">Datang &amp; Berangkat</div>
-        <div class="boarding-desc">Hadir di titik keberangkatan sesuai jadwal. Bus akan menunggu Anda di sana.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ FAQ (cuplikan) ═══ -->
-<section class="faq" id="faq">
-  <div class="wrap">
-    <div class="reveal">
-      <div class="eyebrow"><svg class="eyebrow-svg" width="24" height="8" viewBox="0 0 24 8" fill="none" aria-hidden="true"><path d="M1 4h22" stroke="currentColor" stroke-linecap="round"/></svg>Tanya Jawab</div>
-      <h2 class="sect-title" style="margin-top:14px">Yang sering ditanyakan.</h2>
-    </div>
-    <div class="faq-list" id="faqList">
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false"><span>Apakah benar-benar gratis?</span><span class="faq-q-icon">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">Ya. Trayek Wisata ini adalah alih fungsi layanan Angkutan Sekolah Gratis milik Dinas Perhubungan Kabupaten Tulungagung yang dioperasikan setiap Sabtu &amp; Minggu - tidak ada biaya tiket sama sekali.</div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false"><span>Apakah saya bisa memesan lebih dari 1 kali dalam sebulan?</span><span class="faq-q-icon">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">Setiap NIK - baik pemilik akun maupun anggota keluarga yang didaftarkan - hanya bisa memperoleh 1 tiket setiap 4 minggu, dihitung dari tanggal pemesanan terakhir.</div></div>
-      </div>
-    </div>
-    <div class="reveal" style="margin-top:24px">
-      <a href="/trayek-wisata/faq" class="tw-more-link">Lihat semua pertanyaan <span>→</span></a>
-    </div>
-  </div>
-</section>
-
 @include('partials.trayek-wisata.footer')
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
@@ -254,10 +141,8 @@
 <script>
   twLoadAuth();
   twBootstrap({
-    story:   { limit: 4, moreLink: '/trayek-wisata/rute' },
-    gallery: { limit: 4, moreLink: '/trayek-wisata/destinasi' },
-    jadwal:  { limit: 4, moreLink: '/trayek-wisata/jadwal' },
-    kuota: true,
+    gallery: { limit: 3, moreLink: '/trayek-wisata/destinasi' },
+    jadwal: { limit: 3, moreLink: '/trayek-wisata/jadwal' },
     heroStat: true,
   });
 </script>

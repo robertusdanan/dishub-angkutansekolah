@@ -446,6 +446,44 @@ body{ background:var(--paper); }
 .btn-solid{ box-shadow:0 8px 22px rgba(39,124,105,.22); }
 .btn-solid:hover{ box-shadow:0 12px 28px rgba(39,124,105,.28); }
 
+/* Homepage: one decision surface, not a process checklist. */
+.home-start{background:var(--paper);padding:86px 0 72px}
+.home-section-heading{display:flex;align-items:end;justify-content:space-between;gap:32px;margin-bottom:28px}
+.home-section-heading h2,.home-destination-head h2{font-family:var(--f-display);font-size:clamp(30px,4vw,52px);line-height:1.06;font-weight:500;letter-spacing:-.025em;color:var(--ink);margin-top:14px}
+.home-section-heading h2 em,.home-destination-head h2 em{color:var(--sea);font-style:italic}
+.home-choice-grid{display:grid;grid-template-columns:1fr 1.24fr;gap:16px;max-width:980px}
+.home-choice{min-height:238px;border-radius:var(--r-lg);padding:28px 30px;display:flex;flex-direction:column;text-decoration:none;transition:transform .25s ease,box-shadow .25s ease}
+.home-choice:hover,.home-choice:focus-visible{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.home-choice-destination{background:#fff;border:1px solid rgba(24,51,47,.1);color:var(--ink)}
+.home-choice-schedule{background:var(--forest);color:#fff;box-shadow:0 12px 30px rgba(24,51,47,.16)}
+.home-choice-kicker{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:.72}
+.home-choice-title{font-family:var(--f-display);font-size:clamp(24px,3vw,36px);line-height:1.08;margin-top:34px}
+.home-choice-copy{font-size:14px;line-height:1.6;max-width:360px;margin-top:10px;opacity:.78}
+.home-choice-action{display:inline-flex;align-items:center;gap:8px;margin-top:auto;font-size:13px;font-weight:700}
+.home-choice-action svg,.home-inline-link svg{width:17px;height:17px;flex:none}
+.home-note{display:flex;align-items:center;gap:8px;color:var(--ink-2);font-size:13px;margin:18px 0 0 2px}
+.home-note svg{width:17px;height:17px;color:var(--sea);flex:none}
+.home-schedule{padding:84px 0 76px}
+.home-schedule-head,.home-destination-head{display:flex;align-items:end;justify-content:space-between;gap:24px}
+.home-inline-link{white-space:nowrap;margin-bottom:6px}
+.home-destinations{background:var(--paper);padding:84px 0 104px}
+.home-destination-head h2{font-size:clamp(30px,4vw,48px)}
+.home-gallery-grid{margin-top:34px}
+@media(max-width:700px){
+  .home-start{padding:64px 0 54px}
+  .home-section-heading,.home-schedule-head,.home-destination-head{display:block}
+  .home-section-heading h2{font-size:34px}
+  .home-choice-grid{grid-template-columns:1fr;gap:12px}
+  .home-choice{min-height:204px;padding:24px}
+  .home-choice-title{margin-top:26px;font-size:28px}
+  .home-note{align-items:flex-start;line-height:1.45}
+  .home-inline-link{display:inline-flex;margin-top:20px}
+  .home-schedule{padding:62px 0 54px}
+  .home-destinations{padding:62px 0 76px}
+  .home-destination-head h2{font-size:34px}
+  .home-gallery-grid{margin-top:24px}
+}
+
 /* More breathing room without oversized empty bands. */
 .story,.gallery,.kuota,.boarding,.faq{ padding-top:96px; padding-bottom:96px; }
 .story-head,.gallery > .wrap > .reveal,.kuota > .wrap > .reveal,

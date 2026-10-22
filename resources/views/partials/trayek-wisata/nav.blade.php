@@ -6,8 +6,6 @@
     $twNavSolid = $twNavSolid ?? false;
     $twCurrent = '/'.request()->path();
     $twLinks = [
-        ['label' => 'Beranda', 'href' => '/trayek-wisata'],
-        ['label' => 'Rute', 'href' => '/trayek-wisata/rute'],
         ['label' => 'Destinasi', 'href' => '/trayek-wisata/destinasi'],
         ['label' => 'Jadwal', 'href' => '/trayek-wisata/jadwal'],
         ['label' => 'FAQ', 'href' => '/trayek-wisata/faq'],
