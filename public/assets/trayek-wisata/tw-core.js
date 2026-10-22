@@ -440,6 +440,14 @@ function renderWisataModalSlides() {
     el.innerHTML = s.tipe === 'video'
       ? `<video src="${twEsc(s.url)}" muted loop playsinline ${i === _wmIndex ? 'autoplay' : ''}></video>`
       : `<img src="${twEsc(s.url)}" loading="lazy" class="img-fade" onload="this.classList.add('loaded')"/>`;
+    const mediaEl = el.querySelector('img, video');
+    if (mediaEl && s.tipe !== 'video') {
+      mediaEl.addEventListener('load', () => {
+        if (mediaEl.naturalWidth && mediaEl.naturalHeight) {
+          media.style.setProperty('--media-ar', `${mediaEl.naturalWidth} / ${mediaEl.naturalHeight}`);
+        }
+      }, { once: true });
+    }
     media.prepend(el);
   });
 
