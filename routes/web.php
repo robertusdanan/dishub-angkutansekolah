@@ -341,6 +341,7 @@ Route::prefix('admin')->group(function () {
 
             Route::get('trayekwisata/dokumen-view', [\App\Http\Controllers\Admin\TrayekWisata\TrayekWisataDokumenViewController::class, 'show']);
             Route::post('trayekwisata/upload-galeri', [\App\Http\Controllers\Admin\TrayekWisata\TrayekWisataGaleriController::class, 'upload']);
+            Route::get('trayekwisata/hero', [\App\Http\Controllers\Admin\TrayekWisata\TrayekWisataHeroController::class, 'index']);
             Route::post('trayekwisata/hero/upload', [\App\Http\Controllers\Admin\TrayekWisata\TrayekWisataHeroController::class, 'upload']);
             Route::post('trayekwisata/hero/reorder', [\App\Http\Controllers\Admin\TrayekWisata\TrayekWisataHeroController::class, 'reorder']);
             Route::delete('trayekwisata/hero', [\App\Http\Controllers\Admin\TrayekWisata\TrayekWisataHeroController::class, 'delete']);

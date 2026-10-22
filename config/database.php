@@ -4,14 +4,9 @@ use Illuminate\Support\Str;
 
 return [
 
-    // CATATAN MIGRASI: seluruh data aplikasi (user, tiket, absensi, dst.)
-    // TETAP di Supabase, diakses lewat HTTP REST (lihat app/Services/Supabase),
-    // persis seperti sb_request() di kode lama - sesuai keputusan untuk TIDAK
-    // pindah ke Eloquent/koneksi Postgres langsung.
-    //
-    // Koneksi database di bawah ini HANYA dipakai untuk kebutuhan internal
-    // framework Laravel sendiri (mis. tabel queue jobs / cache database
-    // driver, kalau nanti dipakai) - bukan untuk data bisnis aplikasi.
+    // Data utama aplikasi tetap di Supabase lewat REST. Metadata Hero Trayek Wisata
+    // sengaja disimpan lokal di database/database.sqlite agar media bisa diatur
+    // dari server aplikasi tanpa menambah tabel pada Supabase.
     'default' => env('DB_CONNECTION', 'sqlite'),
 
     'connections' => [
@@ -19,7 +14,7 @@ return [
         'sqlite' => [
             'driver' => 'sqlite',
             'url' => env('DB_URL'),
-            'database' => env('DB_DATABASE', database_path('database.sqlite')),
+            'database' => (($db = env('DB_DATABASE')) && !str_starts_with($db, '/absolute/path/')) ? $db : database_path('database.sqlite'),
             'prefix' => '',
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
             'busy_timeout' => null,
