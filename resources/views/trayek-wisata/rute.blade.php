@@ -21,7 +21,7 @@
 @include('partials.trayek-wisata.page-header', [
     'twPageEyebrow' => 'Peta Rute',
     'twPageTitle' => 'Jelajahi rutenya<br/>sebelum berangkat.',
-    'twPageDesc' => 'Pilih trayek, lalu ketuk tiap titik di peta untuk melihat foto, video, dan estimasi waktu tiba. Di bawahnya, urutan lengkap perjalanan dari titik keberangkatan hingga pantai terakhir.',
+    'twPageDesc' => 'Pilih paket trayek, lalu ketuk tiap titik di peta untuk melihat foto, estimasi tiba, jam keberangkatan, titik pemberhentian, dan jadwal pulang.',
 ])
 
 <main id="main">
@@ -49,7 +49,7 @@
         </div>
       </div>
     </div>
-    <div class="explorer-hint">🖱️ Ketuk marker di peta untuk detail lokasi</div>
+    <div class="explorer-hint"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M7 3.5v10.2l3.1-2.5 2.1 5.3 2-.8-2.1-5.2 4-.1L7 3.5Z"/><path d="M5 20h14"/></svg> Ketuk titik di peta untuk melihat detail</div>
   </div>
 </section>
 

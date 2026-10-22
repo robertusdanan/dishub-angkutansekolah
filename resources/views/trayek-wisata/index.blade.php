@@ -68,13 +68,28 @@
   <svg class="hero-wave" viewBox="0 0 1440 90" preserveAspectRatio="none"><path fill="#FBFBF7" d="M0,40 C240,90 480,0 720,30 C960,60 1200,10 1440,45 L1440,90 L0,90 Z"/></svg>
 </header>
 
+<!-- ═══ ALUR UTAMA PENGUNJUNG ═══ -->
+<section class="visitor-flow" aria-label="Alur menggunakan Trayek Wisata">
+  <div class="wrap">
+    <div class="visitor-flow-intro"><span class="eyebrow"><svg class="eyebrow-svg" width="24" height="8" viewBox="0 0 24 8" fill="none" aria-hidden="true"><path d="M1 4h22" stroke="currentColor" stroke-linecap="round"/></svg>Mulai di sini</span><h2>Rencanakan perjalanan<br/><em>tanpa bingung.</em></h2></div>
+    <div class="visitor-flow-steps">
+      <a href="/trayek-wisata/destinasi" class="visitor-flow-step"><span class="visitor-flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5M8.5 11h5M11 8.5v5"/></svg></span><span><b>Kenali destinasi</b><small>Lihat pantai dan cerita di tiap titik.</small></span><svg class="flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+      <a href="/trayek-wisata/rute" class="visitor-flow-step"><span class="visitor-flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 19c3-8 5-8 8-3s5 5 6-11"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="5" r="2"/></svg></span><span><b>Pahami rute</b><small>Ikuti jalur dan titik keberangkatan.</small></span><svg class="flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+      <a href="/trayek-wisata/jadwal" class="visitor-flow-step"><span class="visitor-flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M7 3v4M17 3v4M3.5 9h17"/></svg></span><span><b>Pilih jadwal</b><small>Temukan hari dan kursi yang tersedia.</small></span><svg class="flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+      <a href="/akun/saya" class="visitor-flow-step"><span class="visitor-flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.7-3.2 3-5 7-5s6.3 1.8 7 5"/></svg></span><span><b>Lengkapi data</b><small>Siapkan akun dan anggota keluarga bila ikut.</small></span><svg class="flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+      <a href="/trayek-wisata/jadwal" class="visitor-flow-step visitor-flow-step-final"><span class="visitor-flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 7.5h16v12H4zM7 7.5V5a5 5 0 0 1 10 0v2.5M8 13h8"/></svg></span><span><b>Pesan kursi</b><small>Pilih peserta. Tidak ada biaya.</small></span><svg class="flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+      <div class="visitor-flow-step visitor-flow-step-success"><span class="visitor-flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m5 12 4 4L19 6"/><circle cx="12" cy="12" r="9"/></svg></span><span><b>Kursi berhasil didapat</b><small>Simpan e-tiket dan tunjukkan QR saat berangkat.</small></span><svg class="flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></div>
+    </div>
+  </div>
+</section>
+
 <!-- ═══ CUPLIKAN ALUR PERJALANAN ═══ -->
 <section class="story" id="story">
   <div class="wrap">
     <div class="story-head reveal">
-      <div class="eyebrow">Alur Perjalanan</div>
+      <div class="eyebrow"><svg class="eyebrow-svg" width="24" height="8" viewBox="0 0 24 8" fill="none" aria-hidden="true"><path d="M1 4h22" stroke="currentColor" stroke-linecap="round"/></svg>Alur Perjalanan</div>
       <h2 class="sect-title" style="margin-top:14px">Satu trayek,<br/>banyak cerita.</h2>
-      <p class="sect-lede">Dari terminal keberangkatan, menyusuri Jalur Lintas Selatan, hingga singgah di tiap pantai - begini urutan perjalanan yang akan Anda tempuh.</p>
+      <p class="sect-lede">Dari terminal keberangkatan, menyusuri Jalur Lintas Selatan, hingga singgah di tiap pantai. Begini urutan perjalanan yang akan Anda tempuh.</p>
     </div>
     <div class="story-track">
       <div class="story-spine"></div>
@@ -90,9 +105,9 @@
 <section class="gallery" id="wisata">
   <div class="wrap">
     <div class="reveal">
-      <div class="eyebrow">Destinasi</div>
+      <div class="eyebrow"><svg class="eyebrow-svg" width="24" height="8" viewBox="0 0 24 8" fill="none" aria-hidden="true"><path d="M1 4h22" stroke="currentColor" stroke-linecap="round"/></svg>Destinasi</div>
       <h2 class="sect-title" style="margin-top:14px">Pantai-pantai yang<br/>akan Anda singgahi.</h2>
-      <p class="sect-lede">Setiap titik dipilih karena punya karakter sendiri - dari ombak besar Selatan hingga teluk tenang tersembunyi di balik tebing.</p>
+      <p class="sect-lede">Setiap titik punya karakter sendiri. Temukan ombak besar Selatan dan teluk tenang yang tersembunyi di balik tebing.</p>
     </div>
     <div class="gallery-grid" id="galleryGrid">
       <div class="skel skel-card" style="aspect-ratio:4/5"></div>
@@ -124,9 +139,9 @@
 <section class="jadwal" id="jadwal">
   <div class="wrap" style="position:relative">
     <div class="reveal">
-      <div class="eyebrow">Jadwal</div>
+      <div class="eyebrow"><svg class="eyebrow-svg" width="24" height="8" viewBox="0 0 24 8" fill="none" aria-hidden="true"><path d="M1 4h22" stroke="currentColor" stroke-linecap="round"/></svg>Jadwal</div>
       <h2 class="sect-title" style="margin-top:14px">Berangkat<br/>akhir pekan ini.</h2>
-      <p class="sect-lede">Kursi terbatas - status hijau berarti masih longgar. Lihat jadwal lengkap 4 minggu ke depan di halaman Jadwal.</p>
+      <p class="sect-lede">Kursi terbatas. Status hijau berarti masih longgar. Lihat jadwal lengkap 4 minggu ke depan di halaman Jadwal.</p>
     </div>
     <div class="jadwal-scroll" id="jadwalScroll">
       <div class="skel" style="flex:0 0 280px;height:230px;background:rgba(255,255,255,.08)"></div>
@@ -139,7 +154,7 @@
 <section class="kuota">
   <div class="wrap">
     <div class="reveal">
-      <div class="eyebrow">Kuota Realtime</div>
+      <div class="eyebrow"><svg class="eyebrow-svg" width="24" height="8" viewBox="0 0 24 8" fill="none" aria-hidden="true"><path d="M1 4h22" stroke="currentColor" stroke-linecap="round"/></svg>Kuota Realtime</div>
       <h2 class="sect-title" style="margin-top:14px">Kuota minggu ini.</h2>
     </div>
     <div class="kuota-grid">
@@ -174,7 +189,7 @@
 <section class="boarding">
   <div class="wrap">
     <div class="reveal">
-      <div class="eyebrow">Cara Mengikuti</div>
+      <div class="eyebrow"><svg class="eyebrow-svg" width="24" height="8" viewBox="0 0 24 8" fill="none" aria-hidden="true"><path d="M1 4h22" stroke="currentColor" stroke-linecap="round"/></svg>Cara Mengikuti</div>
       <h2 class="sect-title" style="margin-top:14px">Empat langkah,<br/>siap berangkat.</h2>
     </div>
     <div class="boarding-strip reveal">
@@ -182,7 +197,7 @@
         <div class="boarding-num">01</div>
         <div class="boarding-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="M10 17l5-5-5-5"/><path d="M15 12H3"/></svg></div>
         <div class="boarding-title">Login</div>
-        <div class="boarding-desc">Masuk dengan akun Google - cepat, tanpa perlu buat akun baru.</div>
+        <div class="boarding-desc">Masuk dengan akun Google. Cepat, tanpa perlu membuat akun baru.</div>
       </div>
       <div class="boarding-step">
         <div class="boarding-num">02</div>
@@ -194,13 +209,13 @@
         <div class="boarding-num">03</div>
         <div class="boarding-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="17" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/></svg></div>
         <div class="boarding-title">Pesan Kursi</div>
-        <div class="boarding-desc">Pilih trayek &amp; tanggal - 1 NIK berhak 1 tiket setiap 4 minggu.</div>
+        <div class="boarding-desc">Pilih trayek dan tanggal. Satu NIK berhak mendapat satu tiket setiap 4 minggu.</div>
       </div>
       <div class="boarding-step">
         <div class="boarding-num">04</div>
         <div class="boarding-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 6v6M2 12h19.6M2 12c0-3.3 0-5 .8-6.1S5 4 8.5 4h7c3.5 0 4.9.8 5.7 1.9S22 8.7 22 12v3.5c0 1.2 0 1.8-.4 2.2s-1 .4-2.2.4H4.6c-1.2 0-1.8 0-2.2-.4S2 16.7 2 15.5z"/></svg></div>
         <div class="boarding-title">Datang &amp; Berangkat</div>
-        <div class="boarding-desc">Hadir di titik keberangkatan sesuai jam - bus akan menunggu Anda di sana.</div>
+        <div class="boarding-desc">Hadir di titik keberangkatan sesuai jadwal. Bus akan menunggu Anda di sana.</div>
       </div>
     </div>
   </div>
@@ -210,7 +225,7 @@
 <section class="faq" id="faq">
   <div class="wrap">
     <div class="reveal">
-      <div class="eyebrow">Tanya Jawab</div>
+      <div class="eyebrow"><svg class="eyebrow-svg" width="24" height="8" viewBox="0 0 24 8" fill="none" aria-hidden="true"><path d="M1 4h22" stroke="currentColor" stroke-linecap="round"/></svg>Tanya Jawab</div>
       <h2 class="sect-title" style="margin-top:14px">Yang sering ditanyakan.</h2>
     </div>
     <div class="faq-list" id="faqList">

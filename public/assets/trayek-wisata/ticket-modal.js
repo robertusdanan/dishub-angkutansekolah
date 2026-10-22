@@ -26,7 +26,7 @@ function showTicketModal(data) {
       <button class="ticket-modal-close" onclick="closeTicketModal()" aria-label="Tutup e-tiket">✕</button>
       <div class="ticket-card ${isBatal ? 'ticket-batal' : ''}">
         <div class="ticket-head" style="background:${data.warna || '#1A56DB'}">
-          <div class="ticket-brand">🚌 E-TIKET TRAYEK WISATA</div>
+          <div class="ticket-brand"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 17h14M6 17V9.5A2.5 2.5 0 0 1 8.5 7h7A2.5 2.5 0 0 1 18 9.5V17M4 12h16M8 17v2m8-2v2"/><circle cx="8" cy="14" r="1"/><circle cx="16" cy="14" r="1"/></svg> E-TIKET TRAYEK WISATA</div>
           <div class="ticket-trayek">${escTicket(data.trayekNama || 'Trayek')}</div>
         </div>
         <div class="ticket-body">

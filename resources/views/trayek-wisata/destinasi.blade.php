@@ -20,7 +20,7 @@
 @include('partials.trayek-wisata.page-header', [
     'twPageEyebrow' => 'Destinasi',
     'twPageTitle' => 'Pantai-pantai yang<br/>akan Anda singgahi.',
-    'twPageDesc' => 'Setiap titik dipilih karena punya karakter sendiri - dari ombak besar Selatan hingga teluk tenang tersembunyi di balik tebing. Ketuk untuk melihat galeri lengkapnya.',
+    'twPageDesc' => 'Setiap titik punya karakter sendiri. Temukan ombak besar Selatan dan teluk tenang di balik tebing. Ketuk kartu untuk melihat galeri lengkapnya.',
 ])
 
 <main id="main">

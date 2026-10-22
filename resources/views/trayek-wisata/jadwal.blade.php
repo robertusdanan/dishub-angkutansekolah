@@ -20,12 +20,13 @@
 @include('partials.trayek-wisata.page-header', [
     'twPageEyebrow' => 'Jadwal',
     'twPageTitle' => '4 minggu ke depan,<br/>siap dipesan.',
-    'twPageDesc' => 'Trayek ditampilkan otomatis untuk 4 minggu ke depan mengikuti kalender Dishub. Kursi terbatas - status hijau berarti masih longgar.',
+    'twPageDesc' => 'Trayek ditampilkan otomatis untuk 4 minggu ke depan mengikuti kalender Dishub. Kursi terbatas. Status hijau berarti masih longgar.',
 ])
 
 <main id="main">
-<section class="jadwal" id="jadwal" style="padding-top:60px">
+<section class="jadwal schedule-workspace" id="jadwal" style="padding-top:60px">
   <div class="wrap" style="position:relative">
+    <div class="schedule-intro"><div><span class="eyebrow eyebrow-light"><svg class="eyebrow-svg" width="24" height="8" viewBox="0 0 24 8" fill="none" aria-hidden="true"><path d="M1 4h22" stroke="currentColor" stroke-linecap="round"/></svg>Pilih keberangkatan</span><h2 class="schedule-heading">Temukan waktu<br/><em>yang paling pas.</em></h2></div><p class="schedule-note">Gunakan filter hari untuk melihat trayek yang tersedia. Status hijau berarti kursi masih longgar.</p></div>
     <div class="jadwal-tabs">
       <div class="jadwal-tab active" data-hari="" onclick="switchJadwalTab(this,'')">Semua</div>
       <div class="jadwal-tab" data-hari="SABTU" onclick="switchJadwalTab(this,'SABTU')">Sabtu</div>

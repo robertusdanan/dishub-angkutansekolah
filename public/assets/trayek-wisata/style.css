@@ -193,7 +193,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .explorer-stat{ font-family:var(--f-mono); font-size:11px; color:var(--ink-3); }
 .explorer-stat b{ display:block; font-size:14px; color:var(--ink); font-weight:600; }
 .explorer-panel-actions{ margin-top:16px; }
-.explorer-hint{ position:absolute; bottom:24px; left:24px; z-index:600; background:var(--glass); backdrop-filter:blur(16px); border:1px solid var(--glass-brd); border-radius:100px; padding:10px 18px; font-size:12.5px; color:var(--ink-2); font-weight:600; box-shadow:var(--shadow-sm); }
+.explorer-hint{ position:absolute; bottom:24px; left:24px; z-index:600; display:flex; align-items:center; gap:8px; background:var(--glass); backdrop-filter:blur(16px); border:1px solid var(--glass-brd); border-radius:100px; padding:10px 18px; font-size:12.5px; color:var(--ink-2); font-weight:600; box-shadow:var(--shadow-sm); }
 
 .map-activate-hint{
   position:absolute; inset:0; z-index:550; display:flex; align-items:center; justify-content:center;
@@ -500,4 +500,60 @@ body{ background:var(--paper); }
 @media(min-width:1100px){
   .gallery-grid{ grid-template-columns:repeat(3,minmax(0,1fr)); }
   .gallery-card:nth-child(3n+2){ transform:translateY(22px); }
+}
+
+/* ── Re-composed visitor workflow ─────────────────────────────────── */
+.eyebrow::before{ display:none; }
+.eyebrow-svg{ flex:0 0 auto; }
+.page-header{ min-height:390px; padding:132px 0 78px; }
+.page-header-grid{ display:grid; grid-template-columns:minmax(0,1fr) minmax(300px,.9fr); align-items:center; gap:40px; }
+.page-header-copy{ position:relative; z-index:1; max-width:650px; }
+.page-header-art{ opacity:.92; align-self:stretch; display:flex; align-items:flex-end; justify-content:flex-end; }
+.page-header-art svg{ width:min(520px,100%); height:auto; overflow:visible; }
+.page-header-back{ gap:8px; }
+
+.visitor-flow{ background:#fff; padding:76px 0 82px; border-bottom:1px solid var(--line-soft); }
+.visitor-flow .wrap{ display:grid; grid-template-columns:minmax(250px,.75fr) minmax(0,1.65fr); gap:64px; align-items:center; }
+.visitor-flow-intro h2{ margin-top:16px; font-family:var(--f-display); font-size:clamp(30px,3.5vw,48px); line-height:1.08; font-weight:600; }
+.visitor-flow-intro h2 em{ color:var(--forest); font-style:italic; font-weight:500; }
+.visitor-flow-steps{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+.visitor-flow-step{ min-height:106px; position:relative; display:grid; grid-template-columns:42px minmax(0,1fr) 18px; gap:13px; align-items:center; padding:18px 16px; border:1px solid var(--line-soft); border-radius:16px; background:var(--paper); transition:transform .25s,box-shadow .25s,border-color .25s; }
+.visitor-flow-step:hover{ transform:translateY(-3px); border-color:rgba(39,124,105,.28); box-shadow:var(--shadow-sm); }
+.visitor-flow-step-final{ background:var(--forest); color:#fff; border-color:var(--forest); }
+.visitor-flow-step-final:hover{ border-color:var(--forest); box-shadow:0 12px 26px rgba(39,124,105,.2); }
+.visitor-flow-icon{ width:42px; height:42px; display:grid; place-items:center; border-radius:12px; background:var(--forest-tint); color:var(--forest); }
+.visitor-flow-step-final .visitor-flow-icon{ background:rgba(255,255,255,.15); color:#fff; }
+.visitor-flow-icon svg{ width:22px; height:22px; }
+.visitor-flow-step b{ display:block; font-size:14px; font-weight:700; }
+.visitor-flow-step small{ display:block; margin-top:5px; color:var(--ink-3); font-size:11.5px; line-height:1.4; }
+.visitor-flow-step-final small{ color:rgba(255,255,255,.72); }
+.visitor-flow-step-success{ background:#f1faf5; border-color:#cce9d8; }
+.visitor-flow-step-success .visitor-flow-icon{ background:#d9f1e3; color:#238052; }
+.visitor-flow-step-success .flow-arrow{ color:#238052; }
+@media(min-width:901px){ .visitor-flow-step-success{ grid-column:1 / -1; } }
+.flow-arrow{ width:17px; color:var(--forest); }
+.visitor-flow-step-final .flow-arrow{ color:#fff; }
+@media(max-width:640px){ .visitor-flow-step-success{ grid-column:auto; } }
+
+.schedule-workspace{ background:var(--forest-deep); }
+.schedule-intro{ display:grid; grid-template-columns:minmax(0,1fr) minmax(240px,.65fr); gap:40px; align-items:end; margin-bottom:32px; }
+.schedule-heading{ color:#fff; font-family:var(--f-display); font-size:clamp(34px,4.6vw,58px); line-height:1.02; margin-top:16px; }
+.schedule-heading em{ color:#c9eadf; font-style:italic; font-weight:450; }
+.schedule-note{ color:rgba(255,255,255,.68); max-width:330px; font-size:13px; line-height:1.65; margin:0 0 4px; }
+.schedule-workspace .jadwal-tabs{ margin-top:0; }
+.schedule-workspace .jadwal-scroll{ margin-top:20px; }
+
+@media(max-width:900px){
+  .page-header-grid{ grid-template-columns:1fr; }
+  .page-header-art{ display:none; }
+  .visitor-flow .wrap{ grid-template-columns:1fr; gap:30px; }
+}
+@media(max-width:640px){
+  .page-header{ min-height:0; padding:116px 0 54px; }
+  .visitor-flow{ padding:54px 0 58px; }
+  .visitor-flow-steps{ grid-template-columns:1fr; }
+  .visitor-flow-step{ min-height:82px; padding:14px; }
+  .schedule-intro{ grid-template-columns:1fr; gap:12px; margin-bottom:24px; }
+  .schedule-heading{ font-size:clamp(35px,11vw,50px); }
+  .schedule-note{ max-width:100%; }
 }

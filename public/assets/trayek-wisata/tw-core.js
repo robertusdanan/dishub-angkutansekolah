@@ -38,7 +38,7 @@ function twToast(msg) {
 }
 
 function twMoreLink(href, label) {
-  return `<a href="${href}" class="tw-more-link">${label} <span>→</span></a>`;
+  return `<a href="${href}" class="tw-more-link">${label} <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></a>`;
 }
 
 // ── Nav glass on scroll ─────────────────────────────────────────────
@@ -243,8 +243,8 @@ function activateMapOnInteract(map, container) {
   const hint = document.createElement('div');
   hint.className = 'map-activate-hint';
   hint.innerHTML = window.matchMedia('(pointer:coarse)').matches
-    ? '👆 Ketuk peta untuk mulai berinteraksi'
-    : '🖱️ Klik peta untuk zoom &amp; geser - scroll halaman tetap bebas';
+    ? '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M7 3.5v10.2l3.1-2.5 2.1 5.3 2-.8-2.1-5.2 4-.1L7 3.5Z"/><path d="M5 20h14"/></svg> Ketuk peta untuk mulai berinteraksi'
+    : '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M7 3.5v10.2l3.1-2.5 2.1 5.3 2-.8-2.1-5.2 4-.1L7 3.5Z"/><path d="M5 20h14"/></svg> Klik peta untuk zoom dan geser. Scroll halaman tetap bebas';
   container.appendChild(hint);
 
   function activate() {
@@ -310,7 +310,7 @@ function selectTrayek(trayekId, chipEl) {
   });
 
   twMap.fitBounds(latlngs, { padding: [60,60] });
-  document.querySelector('.explorer-hint').textContent = `🖱️ ${points.length} titik pada trayek ini - ketuk marker untuk detail`;
+  document.querySelector('.explorer-hint').innerHTML = `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M7 3.5v10.2l3.1-2.5 2.1 5.3 2-.8-2.1-5.2 4-.1L7 3.5Z"/><path d="M5 20h14"/></svg> ${points.length} titik pada trayek ini. Ketuk marker untuk detail`;
 
   animateVehicle(latlngs, color);
 }
@@ -386,7 +386,7 @@ function renderGallery(opts = {}) {
     return `
     <div class="gallery-card" onclick="openWisataModal('${t.id}')">
       ${cover ? `<img src="${cover}" loading="lazy" alt="${twEsc(t.nama)}" class="img-fade" onload="this.classList.add('loaded')"/>` : ``}
-      ${mediaCount > 1 ? `<span class="gallery-card-count">🖼 ${mediaCount}</span>` : ''}
+      ${mediaCount > 1 ? `<span class="gallery-card-count"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8" cy="9" r="1.5"/><path d="m4 17 5-5 3 3 2-2 6 6"/></svg>${mediaCount}</span>` : ''}
       <div class="gallery-card-overlay">
         <div class="gallery-card-tag">Pantai Selatan</div>
         <div class="gallery-card-name">${twEsc(t.nama)}</div>
@@ -518,11 +518,11 @@ function renderJadwal(hariFilter, opts = {}) {
       <span class="jadwal-card-status status-${st}"></span>
       <div class="jadwal-card-day">${j.hari === 'SABTU' ? 'Sabtu' : 'Minggu'} · ${tgl}</div>
       <div class="jadwal-card-name">${twEsc(trayek?.nama || 'Trayek')}</div>
-      <div class="jadwal-card-time"><span>🚌 ${j.jam_berangkat?.slice(0,5)}</span><span>↩ ${j.jam_pulang ? j.jam_pulang.slice(0,5) : '-'}</span></div>
+      <div class="jadwal-card-time"><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 17h14M6 17V9.5A2.5 2.5 0 0 1 8.5 7h7A2.5 2.5 0 0 1 18 9.5V17M4 12h16M8 17v2m8-2v2"/><circle cx="8" cy="14" r="1"/><circle cx="16" cy="14" r="1"/></svg>${j.jam_berangkat?.slice(0,5)}</span><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>${j.jam_pulang ? j.jam_pulang.slice(0,5) : '-'}</span></div>
       <div class="jadwal-card-meta">${j.kuota_terisi}/${j.kuota_total} kursi terisi</div>
       <div class="jadwal-card-bar"><div class="jadwal-card-bar-fill" style="width:${pct}%"></div></div>
       <div class="jadwal-card-actions">
-        <button class="btn btn-solid btn-sm" style="flex:1;justify-content:center" ${st==='merah'?`onclick="joinWaitlist('${j.id}', this)"`:`onclick="startBooking('${j.id}')"`}>${st==='merah' ? (TW_WAITLIST.includes(j.id) ? '✓ Terdaftar di Daftar Tunggu' : '🔔 Beri Tahu Saya') : 'Pesan Kursi'}</button>
+        <button class="btn btn-solid btn-sm" style="flex:1;justify-content:center" ${st==='merah'?`onclick="joinWaitlist('${j.id}', this)"`:`onclick="startBooking('${j.id}')"`}>${st==='merah' ? (TW_WAITLIST.includes(j.id) ? 'Terdaftar di Daftar Tunggu' : 'Beri Tahu Saya') : 'Pesan Kursi'}</button>
         <button class="jadwal-share-btn" title="Ajak teman lewat WhatsApp" aria-label="Ajak teman ikut lewat WhatsApp" onclick="shareJadwalWA('${j.id}')">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1s-.8 1-.9 1.2c-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5-.1-.1-.7-1.7-.9-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1.1 2.8 1.2 3c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.1-1.4-.1-.1-.3-.2-.6-.3z"/><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.5A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .9.9-2.9-.2-.3A8 8 0 1 1 12 20z"/></svg>
         </button>
@@ -655,12 +655,13 @@ async function openBookingModal(jadwalId) {
     <div style="background:#fff;border-radius:20px;width:100%;max-width:440px;padding:26px;max-height:85vh;overflow-y:auto">
       <h3 style="font-family:var(--f-display);font-size:19px;margin:0 0 4px">${twEsc(trayek?.nama || 'Trayek')}</h3>
       <p style="font-size:12.5px;color:var(--ink-3);margin:0 0 18px">${jadwal.hari === 'SABTU'?'Sabtu':'Minggu'}, ${new Date(jadwal.tanggal).toLocaleDateString('id-ID',{day:'numeric',month:'long'})} · Berangkat ${jadwal.jam_berangkat.slice(0,5)}</p>
-      <div style="font-size:12.5px;font-weight:700;color:var(--ink-2);margin-bottom:8px">Pilih Penumpang</div>
+      <div style="font-size:12.5px;font-weight:700;color:var(--ink-2);margin-bottom:4px">Pilih peserta perjalanan</div>
+      <p style="font-size:12px;color:var(--ink-3);margin:0 0 10px">Pilih diri sendiri atau anggota keluarga yang ikut. Layanan ini gratis.</p>
       <div id="bkPaxList" style="display:flex;flex-direction:column;gap:8px;margin-bottom:18px"></div>
       <div id="bkError" style="font-size:12px;color:#C23434;margin-bottom:10px;display:none"></div>
       <div style="display:flex;gap:10px">
         <button class="btn btn-ghost btn-sm" style="flex:1;justify-content:center" onclick="closeBookingModal()">Batal</button>
-        <button class="btn btn-solid btn-sm" style="flex:1;justify-content:center" id="bkConfirmBtn" onclick="confirmBooking('${jadwalId}')">Pesan Sekarang</button>
+        <button class="btn btn-solid btn-sm" style="flex:1;justify-content:center" id="bkConfirmBtn" onclick="confirmBooking('${jadwalId}')">Dapatkan Kursi Gratis</button>
       </div>
     </div>`;
 
@@ -709,7 +710,7 @@ async function confirmBooking(jadwalId) {
   } catch (e) {
     errEl.textContent = e.message; errEl.style.display = '';
   } finally {
-    btn.disabled = false; btn.textContent = 'Pesan Sekarang';
+    btn.disabled = false; btn.textContent = 'Dapatkan Kursi Gratis';
   }
 }
 

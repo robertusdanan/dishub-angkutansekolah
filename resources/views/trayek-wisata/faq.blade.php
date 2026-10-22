@@ -20,7 +20,7 @@
 @include('partials.trayek-wisata.page-header', [
     'twPageEyebrow' => 'Tanya Jawab',
     'twPageTitle' => 'Yang sering<br/>ditanyakan.',
-    'twPageDesc' => 'Semua yang perlu Anda tahu sebelum ikut Trayek Wisata Gratis - dari aturan pemesanan sampai verifikasi dokumen.',
+    'twPageDesc' => 'Semua yang perlu Anda tahu sebelum ikut Trayek Wisata Gratis, mulai dari pemesanan sampai verifikasi dokumen.',
 ])
 
 <main id="main">
