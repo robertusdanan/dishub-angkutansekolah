@@ -8,7 +8,7 @@
 <meta name="description" content="Jelajahi rute lengkap Trayek Wisata Gratis di peta interaktif - lihat tiap titik, foto, video, dan estimasi waktu tiba sebelum berangkat."/>
 <meta name="theme-color" content="#0A1F44"/>
 <link rel="icon" href="/favicon.ico"/>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,400..600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css"/>
 <link rel="stylesheet" href="{{ asset_url('/assets/trayek-wisata/style.css') }}"/>
 </head>
