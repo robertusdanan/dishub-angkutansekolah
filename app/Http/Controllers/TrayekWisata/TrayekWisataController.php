@@ -5,6 +5,7 @@ namespace App\Http\Controllers\TrayekWisata;
 use App\Http\Controllers\Controller;
 use App\Models\TrayekWisataHero;
 use App\Services\MenuLayanan\MenuLayananService;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -26,7 +27,13 @@ class TrayekWisataController extends Controller
     {
         $this->menuLayanan->requireAktif('trayekwisata');
 
-        $hero = TrayekWisataHero::query()->where('aktif', true)->orderBy('urutan')->get()->toArray();
+        try {
+            $hero = TrayekWisataHero::query()->where('aktif', true)->orderBy('urutan')->get()->toArray();
+        } catch (QueryException $e) {
+            // Fallback aman saat migration lokal belum dijalankan: homepage tetap memakai Hero bawaan.
+            if (!str_contains($e->getMessage(), 'trayekwisata_hero')) throw $e;
+            $hero = [];
+        }
         return view('trayek-wisata.index', ['heroMedia' => $hero]);
     }
 
