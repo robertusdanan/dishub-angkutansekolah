@@ -22,7 +22,7 @@ const LOCAL_COLUMNS = [
     'akun_publik' => ['id','google_sub','email','nama','jenis_kelamin','nik','no_kk','foto_ktp_url','foto_kk_url','alamat_kabupaten','alamat_kecamatan','alamat_kode_pos','alamat_lengkap','no_hp','nama_sesuai_ktp','created_at','updated_at'],
     'akun_publik_keluarga' => ['id','akun_id','nik','nama','jenis_kelamin','created_at','updated_at'],
     'balikgratis_pengaturan' => ['id','tahun','kuota','status','dibuka_at','dibuka_oleh','ditutup_at','ditutup_oleh','created_at','updated_at'],
-    'balikgratis_pemesanan' => ['id','akun_id','pemesanan_grup_id','tahun','nomor_tiket','qr_token','nama','nik','kategori','jenis_kelamin','alamat','status','dokumen_filename','no_hp','no_kk','ip_pendaftar','verifikasi_at','created_at','updated_at'],
+    'balikgratis_pemesanan' => ['id','akun_id','pemesanan_grup_id','tahun','nomor_tiket','qr_token','nama','nik','kategori','jenis_kelamin','alamat','status','dokumen_filename','no_hp','no_kk','ip_pendaftar','verifikasi_at','verifikasi_oleh','created_at','updated_at'],
     'trayekwisata_trayek' => ['id','nama','deskripsi','warna','aktif','created_at','updated_at'],
     'trayekwisata_titik' => ['id','nama','jenis','deskripsi','lat','lng','jumlah_kunjungan','urutan','aktif','created_at','updated_at'],
     'trayekwisata_titik_galeri' => ['id','titik_id','tipe','url','urutan','created_at'],
@@ -139,6 +139,19 @@ class SupabaseClient
                         $row['trayekwisata_jadwal'] = $jadwal;
                     }
                     unset($row);
+                }
+                if (isset($params['select']) && trim((string) $params['select']) !== '' && trim((string) $params['select']) !== '*') {
+                    $selectFields = array_filter(array_map('trim', explode(',', (string) $params['select'])));
+                    foreach ($selectFields as $field) {
+                        if (str_contains($field, '(')) continue;
+                        if (!in_array($field, LOCAL_COLUMNS[$table] ?? [], true) && !array_key_exists($field, $rows[0] ?? [])) throw new \InvalidArgumentException('Invalid local select column: '.$field);
+                    }
+                    $rows = array_map(static function (array $row) use ($selectFields): array {
+                        $out = [];
+                        foreach ($selectFields as $field) if (array_key_exists($field, $row)) $out[$field] = $row[$field];
+                        foreach ($row as $field => $value) if (is_array($value) && !array_key_exists($field, $out)) $out[$field] = $value;
+                        return $out;
+                    }, $rows);
                 }
                 return [200, $rows];
             }
