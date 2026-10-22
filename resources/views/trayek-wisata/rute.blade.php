@@ -57,7 +57,7 @@
 <section class="story" id="story">
   <div class="wrap">
     <div class="story-head reveal">
-      <div class="eyebrow">Alur Perjalanan</div>
+      <div class="eyebrow"><svg class="eyebrow-svg" width="28" height="12" viewBox="0 0 28 12" fill="none" aria-hidden="true"><path d="M1 6h19" stroke="currentColor" stroke-linecap="round"/><circle cx="24" cy="6" r="2" fill="currentColor"/></svg>Alur Perjalanan</div>
       <h2 class="sect-title" style="margin-top:14px">Satu trayek,<br/>banyak cerita.</h2>
       <p class="sect-lede">Dari terminal keberangkatan, menyusuri Jalur Lintas Selatan, hingga singgah di tiap pantai - begini urutan perjalanan yang akan Anda tempuh.</p>
     </div>

@@ -10,7 +10,7 @@
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
         Kembali ke Beranda
       </a>
-      <div class="eyebrow eyebrow-light"><svg class="eyebrow-svg" width="24" height="8" viewBox="0 0 24 8" fill="none" aria-hidden="true"><path d="M1 4h22" stroke="currentColor" stroke-linecap="round"/></svg>{{ $twPageEyebrow }}</div>
+      <div class="eyebrow eyebrow-light"><svg class="eyebrow-svg" width="28" height="12" viewBox="0 0 28 12" fill="none" aria-hidden="true"><path d="M1 6h19" stroke="currentColor" stroke-linecap="round"/><circle cx="24" cy="6" r="2" fill="currentColor"/></svg>{{ $twPageEyebrow }}</div>
       <h1 class="page-header-title">{!! $twPageTitle !!}</h1>
       @if (!empty($twPageDesc))
       <p class="page-header-desc">{{ $twPageDesc }}</p>

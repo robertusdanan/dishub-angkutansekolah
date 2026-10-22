@@ -60,7 +60,7 @@
   <section class="home-start" aria-labelledby="home-start-title">
     <div class="wrap">
       <div class="home-section-heading">
-        <span class="eyebrow"><svg class="eyebrow-svg" width="24" height="8" viewBox="0 0 24 8" fill="none" aria-hidden="true"><path d="M1 4h22" stroke="currentColor" stroke-linecap="round"/></svg>Mulai di sini</span>
+        <span class="eyebrow"><svg class="eyebrow-svg" width="28" height="12" viewBox="0 0 28 12" fill="none" aria-hidden="true"><path d="M1 6h19" stroke="currentColor" stroke-linecap="round"/><circle cx="24" cy="6" r="2" fill="currentColor"/></svg>Mulai di sini</span>
         <h2 id="home-start-title">Mau melihat tempatnya,<br/><em>atau langsung berangkat?</em></h2>
       </div>
       <div class="home-choice-grid">
@@ -85,7 +85,7 @@
     <div class="wrap" style="position:relative">
       <div class="home-schedule-head">
         <div>
-          <span class="eyebrow eyebrow-light"><svg class="eyebrow-svg" width="24" height="8" viewBox="0 0 24 8" fill="none" aria-hidden="true"><path d="M1 4h22" stroke="currentColor" stroke-linecap="round"/></svg>Keberangkatan terdekat</span>
+          <span class="eyebrow eyebrow-light"><svg class="eyebrow-svg" width="28" height="12" viewBox="0 0 28 12" fill="none" aria-hidden="true"><path d="M1 6h19" stroke="currentColor" stroke-linecap="round"/><circle cx="24" cy="6" r="2" fill="currentColor"/></svg>Keberangkatan terdekat</span>
           <h2 id="home-schedule-title" class="schedule-heading">Cari waktu yang<br/><em>paling pas.</em></h2>
         </div>
         <a class="tw-more-link home-inline-link" href="/trayek-wisata/jadwal">Lihat semua jadwal <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
@@ -101,7 +101,7 @@
     <div class="wrap">
       <div class="home-destination-head">
         <div>
-          <span class="eyebrow"><svg class="eyebrow-svg" width="24" height="8" viewBox="0 0 24 8" fill="none" aria-hidden="true"><path d="M1 4h22" stroke="currentColor" stroke-linecap="round"/></svg>Tujuan perjalanan</span>
+          <span class="eyebrow"><svg class="eyebrow-svg" width="28" height="12" viewBox="0 0 28 12" fill="none" aria-hidden="true"><path d="M1 6h19" stroke="currentColor" stroke-linecap="round"/><circle cx="24" cy="6" r="2" fill="currentColor"/></svg>Tujuan perjalanan</span>
           <h2 id="home-destination-title">Pantai Selatan<br/><em>menunggu Anda.</em></h2>
         </div>
         <a class="tw-more-link home-inline-link" href="/trayek-wisata/destinasi">Lihat semua destinasi <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
