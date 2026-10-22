@@ -6,6 +6,8 @@
 /storage/*.key
 /vendor
 *.sqlite
+/storage/app/private/backups/
+/storage/app/private/dokumen/
 *.sqlite3
 .env
 .env.backup

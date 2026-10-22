@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Services\Supabase\ReferenceCacheProxyService;
+use App\Services\Supabase\SupabaseClient;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -32,8 +33,10 @@ class ReferenceCacheProxyController extends Controller
         'trayekwisata_jadwal',
     ];
 
-    public function __construct(protected ReferenceCacheProxyService $cache)
-    {
+    public function __construct(
+        protected ReferenceCacheProxyService $cache,
+        protected SupabaseClient $supabase,
+    ) {
     }
 
     public function show(Request $request): JsonResponse
@@ -50,15 +53,19 @@ class ReferenceCacheProxyController extends Controller
         }
 
         $category = $this->cache->categoryFor($table);
-        $url = rtrim((string) config('services.supabase.url'), '/').'/rest/v1/'.rawurlencode($table).'?select=*';
-        $headers = [
-            'apikey' => config('services.supabase.anon_key'),
-            'Authorization' => 'Bearer '.config('services.supabase.anon_key'),
-            'Accept' => 'application/json',
-        ];
-
-        $result = $this->cache->fetchWithCache($table, $url, $headers, $this->cache->ttlFor($category));
-
+        $localTables = ['list_tambangan', 'trayekwisata_titik', 'trayekwisata_titik_galeri', 'trayekwisata_bus', 'trayekwisata_trayek', 'trayekwisata_jadwal'];
+        if (in_array($table, $localTables, true)) {
+            [$localStatus, $localRows] = $this->supabase->rawRequest('GET', $table.'?select=*');
+            $result = ['status' => $localStatus, 'body' => json_encode(is_array($localRows) ? $localRows : []), 'source' => 'local'];
+        } else {
+            $url = rtrim((string) config('services.supabase.url'), '/').'/rest/v1/'.rawurlencode($table).'?select=*';
+            $headers = [
+                'apikey' => config('services.supabase.anon_key'),
+                'Authorization' => 'Bearer '.config('services.supabase.anon_key'),
+                'Accept' => 'application/json',
+            ];
+            $result = $this->cache->fetchWithCache($table, $url, $headers, $this->cache->ttlFor($category));
+        }
         $rows = json_decode($result['body'], true);
         if (!is_array($rows)) {
             $rows = [];
