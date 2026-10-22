@@ -53,7 +53,7 @@
     </div>
   </div>
   <div class="hero-scroll"><span>Gulir</span><span class="hero-scroll-line"></span></div>
-  <svg class="hero-wave" viewBox="0 0 1440 64" preserveAspectRatio="none" aria-hidden="true"><path fill="#F5F8FC" d="M0,30 C260,48 460,48 720,32 C980,16 1190,16 1440,30 L1440,64 L0,64 Z"/></svg>
+  <div class="hero-blend" aria-hidden="true"></div>
 </header>
 
 <main id="main">
